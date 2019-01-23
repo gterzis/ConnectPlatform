@@ -91,7 +91,7 @@
 
             <div class="buttons">
 
-                <a onclick="editInformation()"><span class="fa fa-edit"></span> Edit</a>
+                <a onclick="editInformation()"><span class="fa fa-edit"></span> Edit </a>
                 <a  style="top:80px;" onclick="changePassword()"><span class="fa fa-unlock"></span> Change Password</a>
                 <a id="upload-photo" style="top: -240px;"><span class="fa fa-camera"></span> Update photo</a>
 
