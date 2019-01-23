@@ -1,0 +1,385 @@
+/*loading spinner*/
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid blue;
+    border-bottom: 5px solid blue;
+    width: 8px;
+    height: 8px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*---------------*/
+.container {
+    position: relative;
+}
+
+.title, .subtitle {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-family: "Maiandra GD";
+    font-size: 58px;
+    color: ivory;
+}
+
+.subtitle {
+    top: 80px;
+    font-size: 28px;
+}
+
+.backgr{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.btn1, .btn2{
+    position: absolute;
+    top: 190px;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    height: 55px;
+    width: 150px;
+    font-size: 18px;
+    border-radius: 50px;
+    border: 3px solid #fff;
+    color: ivory;
+    background-color: transparent;
+    outline: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+.btn1:hover, .btn2:hover{
+    background-color: #66b3ff;
+    border: #66b3ff;
+}
+
+/*---------Register.php-----------*/
+
+.frm{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 50%;
+    height: 480px;
+    width: 600px;
+    border: #f2f2f2 solid 1px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #f2f2f2;
+}
+
+.inp{
+    width: 70%;
+    background: transparent;
+    font-family: Oswald-Medium;
+    font-size: 17px;
+    color: #43383e;
+    line-height: 1.2;
+    padding: 0px 5px 5px 5px;
+    margin: 15px;
+    margin-left: 10px;
+    border: 0;
+    outline: 0;
+    background: white;
+
+}
+
+.lbl{
+    width: 48px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #999999;
+    background: white;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.wrap-input{
+    background: white;
+    width: 45%;
+    height: 10%;
+    margin: 8px 15px 15px 15px;
+    position: relative;
+    border-radius: 50px;
+}
+
+h2{
+    margin:15px;
+    color:#43383e;
+    font-family: "Maiandra GD";
+    font-size: 28px;
+}
+
+/*radio button*/
+
+input[type=radio] {
+    width: 5%;
+    margin: 15px 0 15px 10px;
+    display: none;
+}
+
+.radio-lbl {
+    background: url("images/radio-off.png");
+    display: inline-block;
+    min-height: 15px;
+    padding-left: 35px;
+    margin: 15px 5px 15px 5px;
+    background-repeat: no-repeat;
+    font-weight: normal;
+}
+
+input[type=radio]:checked + label {
+    background: url("images/radio-on.png");
+    background-repeat: no-repeat;
+    margin-left: 5px;
+}
+
+/* Form Button */
+.btn{
+    background-color: #0066cc;
+    color: ivory;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 1% 0% 0% 20%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-weight: bold;
+    height: 40px;
+    width: 150px;
+    font-family: "Roboto", sans-serif;
+    transition: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.btn:hover{
+    background-color: #004d99;
+}
+
+/*---------Login.php-----------*/
+
+.frm-login{
+    top: 59%;
+    left: 50%;
+    height: 380px;
+    width: 410px;
+}
+
+.wrap-login{
+    width: 75%;
+    height: 15%;
+    margin: 8px 15px 15px 45px;
+}
+
+/*Remember me check box*/
+.rememberme{
+    float: left;
+    margin: 1px 15px 5px 55px;
+    cursor: pointer;
+}
+
+/* On mouse-over, add a grey background color */
+.rememberme:hover input ~ .checkmark {
+    background-color: #999999;
+}
+
+/* Style the checkmark/indicator */
+.rememberme .checkmark:after {
+    margin-left: 5px;
+    top: 5px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Hide the browser's default checkbox */
+.rememberme input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    display: inline-block;
+    height: 16px;
+    width: 18px;
+    background-color: #cccccc;
+    border: #999999 solid 1px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    display: none;
+}
+
+/* When the checkbox is checked, add a blue background */
+.rememberme input:checked ~ .checkmark {
+    background-color: #999999;
+}
+
+/* Show the checkmark when checked */
+.rememberme input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.forgot-btn{
+    color: #0066cc;
+    text-decoration: none;
+    background-color: transparent;
+    border: transparent;
+    outline: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/*---------Profile.php-----------*/
+
+.main{
+    background-color: white;
+    border-radius: 2px;
+    width: 40%;
+    height: 480px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+    position: relative;
+    top: 20px;
+    left: 100px;
+}
+
+.profile-pic{
+    border-radius: 50%;
+    border: solid 4px #f2f2f2;
+    width: 154px; height: 154px;
+    position: absolute;
+    left: 36%;
+    top: 1%;
+}
+
+.name{
+    text-align: center;
+    font-family: Verdana, Helvetica, Arial;
+    font-weight: bold;
+    position: relative;
+    top: 180px;
+}
+
+.description{
+    width: 90%;
+    height: 15%;
+    position: relative;
+    left: 5%;
+    top: 190px;
+    border: solid 2px #f2f2f2;
+    border-left: none; border-right: none;
+    font-family: Verdana, Helvetica, Arial;
+}
+
+.about{
+    position: relative;
+    left: 5%;
+    top: 200px;
+}
+
+.about span{
+    display: inline-block;
+    float: left;
+    clear: left;
+    margin-top: 10px;
+    color: #999999;
+    font-size: 22px;
+    width: 40%;
+}
+
+.about span p{
+    display: inline-block;
+    color: black;
+    margin: 5px 0 0 10px;
+    font-size: 13px;
+    font-family: Verdana, Helvetica, Arial;
+    width: 75%;
+    float: right;
+}
+
+.buttons{
+    position: relative;
+    top: 200px;
+    left: 50%;
+    width: 50%;
+    height: 33%;
+}
+
+.buttons a {
+    position: absolute;
+    top: 10px;
+    left: 115px;
+    text-align: center;
+    border-radius: 50%;
+    /*border: 2px solid #0066cc;*/
+    height: 40px;
+    width: 40px;
+    background-color: #0066cc;
+    cursor: pointer;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
+    font-size: 12px;
+    font-family: Verdana, Helvetica, Arial;
+    white-space: nowrap;
+    color: transparent;
+}
+
+.buttons .fa{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+    color: ivory;
+}
+
+.buttons a:hover {
+    background-color: transparent;
+    color: #999999;
+}
+
+.buttons a:hover .fa{
+    color: #999999;
+}
+
+
