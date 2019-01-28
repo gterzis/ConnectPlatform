@@ -151,8 +151,8 @@
     //Sending welcome email to the user
     require './SendEmail/email_sender.php';
 
-    $subject = "Welcome to Andros Air Park";
-    $message = "Hello Mr/Ms " . $_POST["last_name"] . " and welcome to Andros Air Park !";
+    $subject = "Welcome to Get in Touch";
+    $message = "Hello Mr/Ms " . $_POST["last_name"] . " and welcome to Get in Touch !";
 
 //	send_email($email,$subject,nl2br($message));
 

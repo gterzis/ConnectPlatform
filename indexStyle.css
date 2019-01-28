@@ -347,7 +347,8 @@ input[type=radio]:checked + label {
     height: 33%;
 }
 
-.buttons a {
+.buttons a,
+.save-photo {
     position: absolute;
     top: 10px;
     left: 115px;
@@ -366,20 +367,36 @@ input[type=radio]:checked + label {
     color: transparent;
 }
 
-.buttons .fa{
-    margin-top: 10px;
-    margin-left: 10px;
+.buttons .fa,
+.save-photo .fa{
+    margin-top: 10px; margin-left: 10px;
     font-size: 20px;
     color: ivory;
 }
 
-.buttons a:hover {
+.buttons a:hover,
+.save-photo:hover{
     background-color: transparent;
     color: #999999;
 }
 
-.buttons a:hover .fa{
+.buttons a:hover .fa,
+.save-photo:hover .fa{
     color: #999999;
 }
 
+.save-photo{
+    border: none;
+    top: 130px;
+    left: 320px;
+    height: 30px;
+    width: 30px;
+    color: #0066cc;
+    /*display: none;*/
+}
+
+.save-photo .fa{
+    margin: 0px 0px 0px 3px;
+    font-size: 15px;
+}
 

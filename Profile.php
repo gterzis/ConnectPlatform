@@ -47,14 +47,15 @@
                 return false;
             }
 
-            $(function(){
-                $("#upload-photo").on('click', function(e){
+            $(function() {
+                $("#upload-photo").on('click', function (e) {
                     e.preventDefault();
                     $("#photo:hidden").trigger('click');
                 });
             });
 
         </script>
+
 
     </head>
 
@@ -69,9 +70,12 @@
         <div class="main">
 
             <!--PROFILE PICTURE-->
-            <img id="phot" class="profile-pic" src="images/background.jpg">
-            <input hidden id="photo" type="file" accept="image/*"
-                   onchange="document.getElementById('phot').src = window.URL.createObjectURL(this.files[0])"/>
+            <form id="updatePhoto" action="uploadPhoto.php" method="POST" enctype="multipart/form-data">
+                <img id="phot" class="profile-pic" src="getImage.php?id=14" alt="" width="175" height="200" >
+                <input hidden id="photo" name="image" type="file" accept="image/*"
+                       onchange="document.getElementById('phot').src = window.URL.createObjectURL(this.files[0]);"/>
+                <button id="sp" class="save-photo"><span class="fa fa-save"></span>     &nbspSave photo</button>
+            </form>
             <!--FULL NAME-->
             <p class="name"><?= $row['Name']." ".$row['Surname'] ?></p>
 
