@@ -44,7 +44,10 @@
                 $('#result').load("http://localhost/Local%20Server/ConnectPlatform/forgotPassword.php");
                 return false;
             }
+
         </script>
+
+
     </head>
 
     <body style="margin: 0px; background-color: ivory;">

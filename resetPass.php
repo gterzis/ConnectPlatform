@@ -1,11 +1,12 @@
 <?php
 // Including required file for connecting to database.
-require_once './includes/Connection.php';
+require './includes/Connection.php';
 
 // Checks if user has the right to visit page
 $sql = $conn->query("SELECT Email, Link FROM reset_password WHERE Link = '" . $_GET['id'] . "'; ");
 $row = $sql->fetch_assoc();
 if (empty($row['Email'])) {
+    echo "<script type='text/javascript'>alert('".$_GET['id']."');</script>";
     header("Location: index.php");
     exit();
 }
