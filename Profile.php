@@ -9,6 +9,11 @@
 		exit();
 	}
 
+	$success = "false";
+    if(!empty($_GET['success'])) {
+        $success = $_GET['success'];
+    }
+
 	require('./includes/Connection.php');
 
     $sql = $conn -> query("SELECT * FROM users WHERE ID = '".$_SESSION['user_id']."';");
@@ -54,6 +59,18 @@
                 });
             });
 
+            $(document).ready(function(){
+                var x = <?= $success ?>;
+                if (x == true){
+                    $("#upload-photo").html("Updated successfully !").css({"background-color" : "transparent", "color" : "green"});
+                    setTimeout(
+                        function()
+                        {
+                            location.href = "Profile.php";
+                        }, 2500);
+                }
+            });
+
         </script>
 
 
@@ -71,9 +88,10 @@
 
             <!--PROFILE PICTURE-->
             <form id="updatePhoto" action="uploadPhoto.php" method="POST" enctype="multipart/form-data">
-                <img id="phot" class="profile-pic" src="getImage.php?id=14" alt="" width="175" height="200" >
+                <img id="phot" class="profile-pic" src="profile-pictures/<?= $row['Photo'] ?>" alt="" width="175" height="200" >
                 <input hidden id="photo" name="image" type="file" accept="image/*"
-                       onchange="document.getElementById('phot').src = window.URL.createObjectURL(this.files[0]);"/>
+                       onchange="document.getElementById('phot').src = window.URL.createObjectURL(this.files[0]);
+                                    document.getElementById('sp').style.display='block';"/>
                 <button id="sp" class="save-photo"><span class="fa fa-save"></span>     &nbspSave photo</button>
             </form>
             <!--FULL NAME-->

@@ -287,7 +287,7 @@ input[type=radio]:checked + label {
 
 .profile-pic{
     border-radius: 50%;
-    border: solid 4px #f2f2f2;
+    border: solid 4px #d9d9d9;
     width: 154px; height: 154px;
     position: absolute;
     left: 36%;
@@ -392,7 +392,7 @@ input[type=radio]:checked + label {
     height: 30px;
     width: 30px;
     color: #0066cc;
-    /*display: none;*/
+    display: none;
 }
 
 .save-photo .fa{
