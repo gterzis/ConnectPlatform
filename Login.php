@@ -11,7 +11,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript">
             function do_login() {
-
                 var email=$("#email").val();
                 var pass=$("#pass").val();
                 var rememberme = $("#rememberme").is(":checked");
@@ -38,12 +37,17 @@
                 }
 
                 return false;
-            }
+            };
+
 
             function forgotPassword(){
                 $('#result').load("http://localhost/Local%20Server/ConnectPlatform/forgotPassword.php");
                 return false;
             }
+
+            $(document).ready(function() {
+                $.getScript( "includes/inputBoxShadow.js" );
+            });
 
         </script>
 
@@ -98,3 +102,6 @@
 
     </body>
 </html>
+<script>
+
+</script>

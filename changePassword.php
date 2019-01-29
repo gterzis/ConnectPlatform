@@ -254,4 +254,7 @@
 
         return false;
     }
+
+    //Add box shadow on input fields when focus
+    $.getScript( "includes/inputBoxShadow.js" );
 </script>

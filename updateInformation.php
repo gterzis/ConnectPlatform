@@ -23,7 +23,7 @@ if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $name)) {
 $surname = test_input($_POST["surname"]);
 // Check if last name only contains letters, whitespace and starts with letter.
 if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $surname)) {
-    echo "Surname: only letters and white space are allowed";
+    echo " Surname: only letters and white space are allowed";
     ?>
     <script> $("#Surname").css("box-shadow", "0 0 5px red");</script>
     <?php
@@ -52,7 +52,7 @@ if (isset($_POST["bday"])) {
 $district = test_input($_POST["district"]);
 // check if address only contains letters, numbers and whitespace
 if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $district)) {
-    echo"District: only letters, numbers and  white space are allowed";
+    echo" District: only letters, numbers and  white space are allowed";
     ?>
     <script> $("#District").css("box-shadow", "0 0 5px red");</script>
     <?php
@@ -63,7 +63,7 @@ if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $district)) {
 $education = test_input($_POST["education"]);
 // check if address only contains letters, numbers and whitespace
 if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $education)) {
-    echo "Education: only letters, numbers and  white space are allowed";
+    echo " Education: only letters, numbers and  white space are allowed";
     ?>
     <script> $("#Education").css("box-shadow", "0 0 5px red");</script>
     <?php
@@ -75,9 +75,9 @@ $email = strtolower($_POST["email"]); // converting input email to lowercase.
 $email = test_input($email);
 //Check if e-mail address is well-formed
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo "Invalid email format";
+    echo " Invalid email format";
     ?>
-    <script> $("#Education").css("box-shadow", "0 0 5px red");</script>
+    <script> $("#Email").css("box-shadow", "0 0 5px red");</script>
     <?php
     exit();
 }
@@ -118,7 +118,7 @@ if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=? )")) {
         {
             $stmt->close();
             $conn->close();
-            echo "Email already exists. Please enter a new one.";
+            echo " Email already exists. Please enter a new one.";
             ?>
             <script> $("#Email").css("box-shadow", "0 0 5px red");</script>
             <?php

@@ -147,7 +147,7 @@
 
             <!--FOOTER-->
             <div class="modal-footer">
-                <button id="cancel" class="btn-forgot"> CANCEL</button>
+                <button id="cancel" class="btn-forgot" type="button"> CANCEL</button>
                 <button class="btn-forgot"> SEND</button>
             </div>
 
@@ -233,4 +233,7 @@
 
         return false;
     }
+
+    //Add box shadow on input fields when focus
+    $.getScript( "includes/inputBoxShadow.js" );
 </script>

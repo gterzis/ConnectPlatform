@@ -22,10 +22,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <?php //  echo file_get_contents("ConnectPlatform/../Bootstrap.html"); ?>
         <link rel="stylesheet" href="indexStyle.css" >
         <script>
             $(document).ready(function(){
+
                 //Set red shadow to the respective field.
                 $("#<?php echo $field; ?>").css("box-shadow", "0 0 5px red");
 
@@ -42,7 +42,9 @@
                         return true;
                     return false;
                 });
+
             });
+
         </script>
     </head>
 
@@ -152,3 +154,8 @@
     </body>
 
 </html>
+<script>
+    //Add box shadow on input fields when focus
+    $.getScript( "includes/inputBoxShadow.js" );
+    //Does not work when put in <head> :(
+</script>
