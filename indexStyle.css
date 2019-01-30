@@ -274,7 +274,8 @@ input[type=radio]:checked + label {
 
 /*---------Profile.php-----------*/
 
-.main{
+.main,
+.bulletin-board{
     background-color: white;
     border-radius: 2px;
     width: 40%;
@@ -283,8 +284,30 @@ input[type=radio]:checked + label {
     position: relative;
     top: 20px;
     left: 100px;
+    float: left;
 }
 
+/*Bulletin board*/
+.bulletin-board{
+    left: 160px;
+    height: auto;
+}
+
+.bulletin-board h1{
+    text-align: center;
+    background-color: #0073b1;
+    margin: 0;
+    color: ivory;
+    padding: 10px 0px;
+    width: 100%;
+}
+
+.announcement{
+    border-top: #999999 solid 1px;
+    border-bottom: #999999 solid 1px;
+}
+
+/*Profile info*/
 .profile-pic{
     border-radius: 50%;
     border: solid 4px #d9d9d9;

@@ -38,11 +38,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="indexStyle.css">
         <script language="JavaScript">
+            //Show change password window
             function changePassword(){
                 $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/changePassword.php");
                 return false;
             }
 
+            //Send data to edit information window and show it.
             function editInformation() {
                 //Storing user's information into an array
                 var array = ["<?= $name ?>", "<?= $surname ?>", "<?= $bday?>", "<?= $gender ?>",
@@ -59,6 +61,7 @@
                 });
             });
 
+            //Profile picture updated successfully
             $(document).ready(function(){
                 var x = <?= $success ?>;
                 if (x == true){
@@ -69,6 +72,18 @@
                             location.href = "Profile.php";
                         }, 2500);
                 }
+
+                //Fetch data for bulletin board.
+                $.ajax({    //create an ajax request to display.php
+                    type: "GET",
+                    url: "Profile/BulletinBoard.php",
+                    dataType: "html",   //expect html to be returned
+                    success: function(response){
+                        $(".bulletin-board").append(response);
+                    }
+
+                });
+
             });
 
         </script>
@@ -119,6 +134,12 @@
 
             </div>
 
+        </div>
+
+        <!--BULLETIN BOARD-->
+        <div class="bulletin-board">
+            <h1>Bulletin Board</h1>
+            <!--Any announcements will be placed here-->
         </div>
 
 
