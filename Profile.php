@@ -44,9 +44,15 @@
                 return false;
             }
 
+            //Show add interest window
+            function addInterest(){
+                $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/changePassword.php");
+                return false;
+            }
+
             //Send data to edit information window and show it.
             function editInformation() {
-                //Storing user's information into an array
+                //Storing user's information into an array in order to be send to the information window.
                 var array = ["<?= $name ?>", "<?= $surname ?>", "<?= $bday?>", "<?= $gender ?>",
                     "<?= $district ?>", "<?= $education ?>", "<?= $email?>", "<?= $description ?>" ];
                 array = JSON.stringify(array);
@@ -74,12 +80,23 @@
                 }
 
                 //Fetch data for bulletin board.
-                $.ajax({    //create an ajax request to display.php
+                $.ajax({
                     type: "GET",
                     url: "Profile/BulletinBoard.php",
                     dataType: "html",   //expect html to be returned
                     success: function(response){
                         $(".bulletin-board").append(response);
+                    }
+
+                });
+
+                //Fetch the user's interests.
+                $.ajax({
+                    type: "GET",
+                    url: "Profile/getInterests.php",
+                    dataType: "html",   //expect html to be returned
+                    success: function(response){
+                        $(".interests").append(response);
                     }
 
                 });
@@ -93,7 +110,7 @@
 
     <body style="background-color: #f2f2f2">
 
-        <!--Place change password window-->
+        <!--Place change password, edit information window-->
         <div id="modal-box"></div>
 
         <!--HEADER-->
@@ -140,6 +157,13 @@
         <div class="bulletin-board">
             <h1>Bulletin Board</h1>
             <!--Any announcements will be placed here-->
+        </div>
+
+        <!--INTERESTS-->
+        <div class="interests" style="float: left;">
+            <h2>Interests</h2>
+            <a onclick="addInterest()"><i class="fa fa-plus"></i> Add a new interest</a>
+            <!--Any user's interests will be placed here-->
         </div>
 
 

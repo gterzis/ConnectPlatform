@@ -12,4 +12,6 @@ while($data = mysqli_fetch_row($sql))
             </div>";
 }
 
+$conn->close();
+
 ?>

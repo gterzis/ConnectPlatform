@@ -272,10 +272,11 @@ input[type=radio]:checked + label {
     font-family: inherit;
 }
 
-/*---------Profile.php-----------*/
+/*----------------------Profile.php--------------------*/
 
 .main,
-.bulletin-board{
+.bulletin-board,
+.interests{
     background-color: white;
     border-radius: 2px;
     width: 40%;
@@ -305,15 +306,67 @@ input[type=radio]:checked + label {
 .announcement{
     border-top: #999999 solid 1px;
     border-bottom: #999999 solid 1px;
+    font-family: Verdana, Helvetica, Arial;
+}
+
+/*Interests*/
+.interests{
+    margin: 25px 0px;
+    clear: left;
+    height: auto;
+    font-family: Verdana, Helvetica, Arial;
+}
+
+.interests h2{
+    width: 40%;
+    display: inline-block;
+}
+
+.interests a{
+    margin-left: 20%;
+    font-size: 14px;
+    color: rgba(0,0,0,.6);
+    text-decoration: none;
+    padding: 10px;
+}
+
+.interests a:hover{
+    background-color: #f2f2f2;
+}
+
+.interest{
+    margin: 0px 15px;
+    border-bottom: #e0e0e0 solid 1px;
+}
+
+.interest p{
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 400;
+    display: inline-block;
+}
+
+.interest .fa-trash-o{
+    font-size: 22px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 26.5%;
+    color: rgba(0,0,0,.6);
+    border-radius: 85%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.interest .fa-trash-o:hover{
+    background-color: #f2f2f2;
 }
 
 /*Profile info*/
 .profile-pic{
     border-radius: 50%;
     border: solid 4px #d9d9d9;
-    width: 154px; height: 154px;
+    width: 175px; height: 175px;
     position: absolute;
-    left: 36%;
+    left: 34%;
     top: 1%;
 }
 
@@ -411,7 +464,7 @@ input[type=radio]:checked + label {
 .save-photo{
     border: none;
     top: 130px;
-    left: 320px;
+    left: 335px;
     height: 30px;
     width: 30px;
     color: #0066cc;
