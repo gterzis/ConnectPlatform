@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32dc090-be1c-4cd3-95fc-4957bff96824" name="Default Changelist" comment="Καλησπερα">
-      <change afterPath="$PROJECT_DIR$/Profile/autocomplete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Profile/fetchInterests.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0b6a5898-adec-47fe-898e-af505aeb7db0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0b6a5898-adec-47fe-898e-af505aeb7db0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Profile/addInterest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/addInterest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editInformation.php" beforeDir="false" afterPath="$PROJECT_DIR$/editInformation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/inputBoxShadow.js" beforeDir="false" afterPath="$PROJECT_DIR$/includes/inputBoxShadow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/indexStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/indexStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-pictures/17.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/profile-pictures/17.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile/autocomplete.html" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/autocomplete.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,9 +143,9 @@
           <entry key="Index" value="385" />
           <entry key="cell" value="100" />
           <entry key="css" value="3532" />
-          <entry key="html" value="1423" />
+          <entry key="html" value="1694" />
           <entry key="js" value="81" />
-          <entry key="php" value="17141" />
+          <entry key="php" value="17180" />
           <entry key="sql" value="40" />
           <entry key="txt" value="44" />
         </counts>
@@ -161,9 +153,9 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="3532" />
-          <entry key="HTML" value="1426" />
+          <entry key="HTML" value="1697" />
           <entry key="JavaScript" value="81" />
-          <entry key="PHP" value="17507" />
+          <entry key="PHP" value="17546" />
           <entry key="PLAIN_TEXT" value="44" />
           <entry key="SQL" value="16" />
           <entry key="Scratch" value="140" />
@@ -213,14 +205,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="218" column="10" lean-forward="true" selection-start-line="218" selection-start-column="10" selection-end-line="218" selection-end-column="10" />
+            <state relative-caret-position="-170">
+              <caret line="140" column="22" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="22" />
               <folding>
-                <element signature="n#style#0;n#!!top" />
-                <element signature="n#style#0;n#span#0;n#button#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
@@ -229,23 +219,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/interests">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="164" selection-start-line="164" selection-end-line="164" />
+            <state relative-caret-position="291">
+              <caret line="165" column="13" lean-forward="true" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
               <folding>
+                <element signature="e#216#538#0" />
                 <element signature="n#style#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <element signature="e#53#60#1" expanded="true" />
+                <element signature="e#78#85#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -254,7 +236,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
+            <state relative-caret-position="-304">
               <caret line="62" column="10" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="108" />
             </state>
           </provider>
@@ -331,8 +313,8 @@
         <option value="$PROJECT_DIR$/indexStyle.css" />
         <option value="$PROJECT_DIR$/Profile.php" />
         <option value="$PROJECT_DIR$/includes/inputBoxShadow.js" />
-        <option value="$PROJECT_DIR$/Profile/autocomplete.html" />
         <option value="$PROJECT_DIR$/Profile/addInterest.php" />
+        <option value="$PROJECT_DIR$/Profile/autocomplete.html" />
       </list>
     </option>
   </component>
@@ -496,7 +478,7 @@
       <workItem from="1549010998423" duration="908000" />
       <workItem from="1549018686497" duration="852000" />
       <workItem from="1549302369603" duration="2259000" />
-      <workItem from="1549377168217" duration="10348000" />
+      <workItem from="1549377168217" duration="14797000" />
     </task>
     <task id="LOCAL-00001" summary="Καλησπερα">
       <created>1545735843001</created>
@@ -509,7 +491,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="401578000" />
+    <option name="totallyTimeSpent" value="406027000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,7 +506,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1580938" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1580938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -543,7 +525,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.16490166" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.23600605" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18305598" />
@@ -889,13 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="62" column="10" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/indexStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -917,27 +892,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html">
+    <entry file="file://$PROJECT_DIR$/Login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="164" selection-start-line="164" selection-end-line="164" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="e#53#60#1" expanded="true" />
-          </folding>
+        <state relative-caret-position="-304">
+          <caret line="62" column="10" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="108" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="218" column="10" lean-forward="true" selection-start-line="218" selection-start-column="10" selection-end-line="218" selection-end-column="10" />
+        <state relative-caret-position="-170">
+          <caret line="140" column="22" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="22" />
           <folding>
-            <element signature="n#style#0;n#!!top" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="165" column="13" lean-forward="true" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
+          <folding>
+            <element signature="e#216#538#0" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="e#78#85#1" expanded="true" />
           </folding>
         </state>
       </provider>

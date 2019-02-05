@@ -137,6 +137,10 @@
         margin-left: 5px;
     }
 
+    #chosen-interests{
+        min-height: 150px;
+    }
+
 </style>
 
 <!-- The Modal -->
@@ -158,10 +162,10 @@
                 <div id="response"></div><div class="loader"></div>
 
                 <!--SEARCH INTEREST-->
-
                 <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.html"); ?>
                 <div id="chosen-interests">
-                    <button class="chosen-interest" type="button">Hello<span style="font-size: 18px; margin-left: 5px">&times;</span></button>
+<!--                    <button class="chosen-interest" type="button" onclick="this.remove();">Hello-->
+<!--                        <span style="font-size: 18px; margin-left: 5px">&times;</span></button>-->
                 </div>
             </div>
 
@@ -211,13 +215,7 @@
             modal.style.display = "none";
         }
     }
-    
-    $(document).ready(function () {
-        //remove chosen interest when click on it
-        $(".chosen-interest").click(function () {
-            this.remove();
-        })
-    })
+
 
     function updatePassword() {
         var oldPass=$("#old-pass").val();

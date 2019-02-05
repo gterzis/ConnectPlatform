@@ -75,8 +75,15 @@
                     b.addEventListener("click", function(e) {
                         /*insert the value for the autocomplete text field:*/
                         inp.value = this.getElementsByTagName("input")[0].value;
-                        //add selected element in the div with the selected elements(addInterest.php)
-                        $("#chosen-interests").append('<button class="chosen-interest" type="button">' + inp.value +' <span>&times;</span></button>');
+                        //check if interest is already selected
+                        var isSelected = $('.chosen-interest').text().indexOf(inp.value) > -1;
+                        if (isSelected == false){
+                            //add selected element in the div with the selected elements(addInterest.php)
+                            $("#chosen-interests").append('<button class="chosen-interest" type="button" onclick="this.remove();">' + inp.value +' <span>&times;</span></button>');
+                        }
+                        else if (isSelected == true){
+                            alert("You already selected this interest")
+                        }
                         //clear autocomplete input field
                         inp.value = "";
                         /*close the list of autocompleted values,
