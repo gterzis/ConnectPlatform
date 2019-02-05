@@ -37,6 +37,7 @@
         <title>Get in Touch</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="indexStyle.css">
+
         <script language="JavaScript">
             //Show change password window
             function changePassword(){
@@ -46,7 +47,7 @@
 
             //Show add interest window
             function addInterest(){
-                $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/changePassword.php");
+                $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Profile/addInterest.php");
                 return false;
             }
 
@@ -140,6 +141,7 @@
                 <span class="fa fa-home"><p>     <?= $row['District'] ?></p></span>
                 <span class="fa fa-mortar-board"><p><?= $row['Education'] ?></p></span>
                 <span class="fa fa-venus-mars"><p> <?= $gender ?></p></span>
+                <span class="fa fa-heart"><p>No relationship info to show</p></span>
 
             </div>
 

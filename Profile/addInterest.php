@@ -1,4 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
     /*body {font-family: Arial, Helvetica, sans-serif;}*/
 
@@ -73,7 +74,7 @@
     }
 
     .modal-body {
-        padding: 15px 15px 250px 15px;
+        padding: 15px;
         font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -111,6 +112,31 @@
     .btn-change:hover{
         background-color: #333333;
     }
+
+    .chosen-interest{
+        width: auto;
+        cursor: pointer;
+        background-color:#0066cc;
+        border: none;
+        border-radius: 50px;
+        color: ivory;
+        padding: 10px;
+        margin: 3px;
+        font-size: 16px;
+        outline: 0;
+        transition: 0.2s;
+        transition-timing-function: ease-in-out;
+    }
+
+    .chosen-interest:hover{
+        background-color: #004d99;
+    }
+
+    .chosen-interest span{
+        font-size: 18px;
+        margin-left: 5px;
+    }
+
 </style>
 
 <!-- The Modal -->
@@ -122,47 +148,27 @@
         <!--HEADER-->
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>Change password</h2>
+            <h2>Add Interest</h2>
         </div>
 
-        <form onsubmit="return updatePassword();">
+        <form onsubmit="">
             <!--BODY-->
             <div class="modal-body">
 
                 <div id="response"></div><div class="loader"></div>
-                <p style="font-size: 15px;">Fill the fields below in order to change your password</p>
 
+                <!--SEARCH INTEREST-->
 
-                <!--OLD PASSWORD-->
-                <div class="wrap-input wrap-login" id="Old-pass" style="float: left; border: 2px solid #cccccc; width: 85%; margin-left: 7%;">
-                    <label class="lbl" for="old-pass">
-                        <span class="fa fa-unlock-alt"></span>
-                    </label>
-                    <input class="inp" id="old-pass" type="password" name="old-pass" maxlength="25" placeholder="Old password" required/>
+                <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.html"); ?>
+                <div id="chosen-interests">
+                    <button class="chosen-interest" type="button">Hello<span style="font-size: 18px; margin-left: 5px">&times;</span></button>
                 </div>
-
-                <!--NEW PASSWORD-->
-                <div class="wrap-input wrap-login" id="New-pass" style="float: left; border: 2px solid #cccccc; width: 85%; margin-left: 7%;">
-                    <label class="lbl" for="new-pass">
-                        <span class="fa fa-lock"></span>
-                    </label>
-                    <input class="inp" id="new-pass" type="password" name="new-pass" maxlength="25" placeholder="New password" required/>
-                </div>
-
-                <!--OLD PASSWORD-->
-                <div class="wrap-input wrap-login" id="Confirm-pass" style="float: left; border: 2px solid #cccccc; width: 85%; margin-left: 7%;">
-                    <label class="lbl" for="confirm-pass">
-                        <span class="fa fa-lock"></span>
-                    </label>
-                    <input class="inp" id="confirm-pass" type="password" name="confirm-pass" maxlength="25" placeholder="Confirm new password" requiredx/>
-                </div>
-
             </div>
 
             <!--FOOTER-->
             <div class="modal-footer">
                 <button id="cancel" class="btn-change" type="button"> CANCEL</button>
-                <button class="btn-change" name="changePass" type="submit"> CHANGE</button>
+                <button class="btn-change" name="changePass" type="submit"> ADD</button>
             </div>
 
         </form>
@@ -171,6 +177,7 @@
 </div>
 
 <script>
+
     // Get the modal
     var modal = document.getElementById('myModal');
 
@@ -204,6 +211,13 @@
             modal.style.display = "none";
         }
     }
+    
+    $(document).ready(function () {
+        //remove chosen interest when click on it
+        $(".chosen-interest").click(function () {
+            this.remove();
+        })
+    })
 
     function updatePassword() {
         var oldPass=$("#old-pass").val();

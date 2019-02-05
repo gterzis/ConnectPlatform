@@ -80,7 +80,7 @@ $adult= date("Y") - 18;
         padding: 22px 16px;*/
         font-family: Arial, Helvetica, sans-serif;
         height: 400px;
-        width: 692px;
+        width: 682px;
         overflow-y: scroll;
     }
 
@@ -286,7 +286,7 @@ $adult= date("Y") - 18;
                 success:function(response)
                 {
                     if(response == "success") {
-                        $('#response').html('<p style="color:#009933; font-size:18px; margin:0;">' +
+                        $('#response').html('<p style="color:#009933; font-size:17px; margin:0;">' +
                             '<span class="fa fa-check-circle-o"> Your personal information has been saved successfully !</span></p>');
                         //After 3 seconds exit window and reload page
                         setTimeout(function(){

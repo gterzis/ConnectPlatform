@@ -73,7 +73,7 @@
     border: #66b3ff;
 }
 
-/*---------Register.php-----------*/
+/*----------------------------Register.php----------------------------------*/
 
 .frm{
     position: absolute;
@@ -188,7 +188,7 @@ input[type=radio]:checked + label {
     background-color: #004d99;
 }
 
-/*---------Login.php-----------*/
+/*---------------------------------Login.php------------------------------------*/
 
 .frm-login{
     top: 59%;
@@ -272,7 +272,7 @@ input[type=radio]:checked + label {
     font-family: inherit;
 }
 
-/*----------------------Profile.php--------------------*/
+/*------------------------------Profile.php----------------------------------------*/
 
 .main,
 .bulletin-board,
@@ -280,7 +280,7 @@ input[type=radio]:checked + label {
     background-color: white;
     border-radius: 2px;
     width: 40%;
-    height: 480px;
+    height: 520px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
     position: relative;
     top: 20px;
@@ -328,6 +328,7 @@ input[type=radio]:checked + label {
     color: rgba(0,0,0,.6);
     text-decoration: none;
     padding: 10px;
+    cursor: pointer;
 }
 
 .interests a:hover{

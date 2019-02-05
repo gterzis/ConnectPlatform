@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32dc090-be1c-4cd3-95fc-4957bff96824" name="Default Changelist" comment="Καλησπερα">
-      <change afterPath="$PROJECT_DIR$/Profile/addInterest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Profile/getInterests.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Profile/autocomplete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Profile/fetchInterests.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0b6a5898-adec-47fe-898e-af505aeb7db0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0b6a5898-adec-47fe-898e-af505aeb7db0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile/BulletinBoard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/BulletinBoard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile/addInterest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/addInterest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editInformation.php" beforeDir="false" afterPath="$PROJECT_DIR$/editInformation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/inputBoxShadow.js" beforeDir="false" afterPath="$PROJECT_DIR$/includes/inputBoxShadow.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/indexStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/indexStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-pictures/17.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/profile-pictures/17.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +58,13 @@
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="connectplatform: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="users: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="connectplatform: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="usersinterests: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -92,8 +102,9 @@
     <session id="-1565418562">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="63" />
+          <entry key="project.closed" value="67" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.113" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.140" value="1" />
           <entry key="project.open.time.16" value="1" />
@@ -110,19 +121,19 @@
           <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.42" value="2" />
           <entry key="project.open.time.43" value="1" />
-          <entry key="project.open.time.44" value="2" />
+          <entry key="project.open.time.44" value="3" />
           <entry key="project.open.time.45" value="2" />
           <entry key="project.open.time.46" value="2" />
           <entry key="project.open.time.47" value="4" />
           <entry key="project.open.time.48" value="2" />
           <entry key="project.open.time.49" value="1" />
-          <entry key="project.open.time.50" value="3" />
+          <entry key="project.open.time.50" value="4" />
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.55" value="3" />
           <entry key="project.open.time.57" value="2" />
-          <entry key="project.open.time.58" value="2" />
+          <entry key="project.open.time.58" value="3" />
           <entry key="project.open.time.61" value="1" />
           <entry key="project.open.time.63" value="3" />
           <entry key="project.open.time.67" value="1" />
@@ -132,65 +143,65 @@
           <entry key="project.open.time.82" value="1" />
           <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="64" />
+          <entry key="project.opened" value="68" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Index" value="385" />
-          <entry key="cell" value="64" />
-          <entry key="css" value="3405" />
-          <entry key="html" value="626" />
-          <entry key="js" value="19" />
-          <entry key="php" value="16302" />
+          <entry key="cell" value="100" />
+          <entry key="css" value="3532" />
+          <entry key="html" value="1423" />
+          <entry key="js" value="81" />
+          <entry key="php" value="17141" />
           <entry key="sql" value="40" />
           <entry key="txt" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="3405" />
-          <entry key="HTML" value="629" />
-          <entry key="JavaScript" value="19" />
-          <entry key="PHP" value="16668" />
+          <entry key="CSS" value="3532" />
+          <entry key="HTML" value="1426" />
+          <entry key="JavaScript" value="81" />
+          <entry key="PHP" value="17507" />
           <entry key="PLAIN_TEXT" value="44" />
           <entry key="SQL" value="16" />
-          <entry key="Scratch" value="104" />
+          <entry key="Scratch" value="140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Index" value="3" />
           <entry key="LICENSE" value="1" />
-          <entry key="css" value="23" />
+          <entry key="css" value="25" />
           <entry key="customers" value="1" />
-          <entry key="html" value="24" />
-          <entry key="interests" value="1" />
+          <entry key="html" value="26" />
+          <entry key="interests" value="3" />
           <entry key="jpeg" value="1" />
           <entry key="jpg" value="10" />
-          <entry key="js" value="1" />
+          <entry key="js" value="2" />
           <entry key="md" value="1" />
-          <entry key="php" value="121" />
+          <entry key="php" value="129" />
           <entry key="php5" value="1" />
           <entry key="png" value="5" />
-          <entry key="reset_password" value="3" />
+          <entry key="reset_password" value="4" />
           <entry key="rnc" value="3" />
           <entry key="sql" value="3" />
           <entry key="txt" value="5" />
-          <entry key="users" value="7" />
+          <entry key="users" value="8" />
           <entry key="usersinterests" value="3" />
           <entry key="yml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="23" />
-          <entry key="Database Element" value="15" />
-          <entry key="HTML" value="24" />
+          <entry key="CSS" value="25" />
+          <entry key="Database Element" value="19" />
+          <entry key="HTML" value="26" />
           <entry key="Image" value="16" />
-          <entry key="JavaScript" value="1" />
+          <entry key="JavaScript" value="2" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="125" />
+          <entry key="PHP" value="133" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="RNG Compact" value="3" />
           <entry key="SQL" value="1" />
@@ -202,24 +213,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Profile.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-              <folding>
-                <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+            <state relative-caret-position="102">
+              <caret line="218" column="10" lean-forward="true" selection-start-line="218" selection-start-column="10" selection-end-line="218" selection-end-column="10" />
               <folding>
+                <element signature="n#style#0;n#!!top" />
+                <element signature="n#style#0;n#span#0;n#button#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
@@ -229,52 +230,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/changePassword.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="242" column="49" selection-end-line="259" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/updatePassword.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/updateInformation.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/header2.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Profile/BulletinBoard.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/users">
+        <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/interests">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -283,10 +239,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/indexStyle.css">
+        <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="393">
+              <caret line="164" selection-start-line="164" selection-end-line="164" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="e#53#60#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="62" column="10" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="108" />
             </state>
           </provider>
         </entry>
@@ -298,8 +267,8 @@
       <list>
         <option value="CSS File" />
         <option value="XSLT Stylesheet" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -351,16 +320,18 @@
         <option value="$PROJECT_DIR$/uploadPhoto.php" />
         <option value="$PROJECT_DIR$/resetPass.php" />
         <option value="$PROJECT_DIR$/updateInformation.php" />
-        <option value="$PROJECT_DIR$/editInformation.php" />
         <option value="$PROJECT_DIR$/Register.php" />
-        <option value="$PROJECT_DIR$/Login.php" />
-        <option value="$PROJECT_DIR$/forgotPassword.php" />
         <option value="$PROJECT_DIR$/changePassword.php" />
-        <option value="$PROJECT_DIR$/includes/inputBoxShadow.js" />
-        <option value="$PROJECT_DIR$/indexStyle.css" />
         <option value="$PROJECT_DIR$/Profile/getInterests.php" />
         <option value="$PROJECT_DIR$/Profile/BulletinBoard.php" />
+        <option value="$PROJECT_DIR$/Profile/fetchInterests.php" />
+        <option value="$PROJECT_DIR$/editInformation.php" />
+        <option value="$PROJECT_DIR$/forgotPassword.php" />
+        <option value="$PROJECT_DIR$/Login.php" />
+        <option value="$PROJECT_DIR$/indexStyle.css" />
         <option value="$PROJECT_DIR$/Profile.php" />
+        <option value="$PROJECT_DIR$/includes/inputBoxShadow.js" />
+        <option value="$PROJECT_DIR$/Profile/autocomplete.html" />
         <option value="$PROJECT_DIR$/Profile/addInterest.php" />
       </list>
     </option>
@@ -394,6 +365,11 @@
             </path>
             <path>
               <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConnectPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="Profile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </path>
           </expand>
@@ -407,7 +383,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="database.console.LAST_STATE" value="false" />
+    <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Parking/en/Logout.php" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -516,7 +492,11 @@
       <workItem from="1548770403404" duration="11606000" />
       <workItem from="1548835542504" duration="11140000" />
       <workItem from="1548855077973" duration="1511000" />
-      <workItem from="1548935842758" duration="9801000" />
+      <workItem from="1548935842758" duration="20263000" />
+      <workItem from="1549010998423" duration="908000" />
+      <workItem from="1549018686497" duration="852000" />
+      <workItem from="1549302369603" duration="2259000" />
+      <workItem from="1549377168217" duration="10348000" />
     </task>
     <task id="LOCAL-00001" summary="Καλησπερα">
       <created>1545735843001</created>
@@ -529,7 +509,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="376749000" />
+    <option name="totallyTimeSpent" value="401578000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -544,7 +524,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14901665" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1580938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -563,7 +543,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.16490166" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.16490166" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18305598" />
@@ -624,17 +604,18 @@
     <MESSAGE value="Καλησπερα" />
     <option name="LAST_COMMIT_MESSAGE" value="Καλησπερα" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Profile.php</url>
+          <line>142</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Parking/en/Identification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1207">
-          <caret line="17" column="60" selection-start-line="17" selection-start-column="60" selection-end-line="17" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/login.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Parking/en/Login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -660,13 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="126" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/reset_password">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -803,27 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/editInformation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4420">
-          <caret line="260" column="34" selection-start-line="260" selection-start-column="34" selection-end-line="260" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="49" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/forgotPassword.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4012">
-          <caret line="236" column="4" selection-start-line="236" selection-start-column="4" selection-end-line="237" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resetPass.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -838,45 +791,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/inputBoxShadow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Register.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
           <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/interests">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/header2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Profile/getInterests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Profile/BulletinBoard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -887,34 +805,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/indexStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Profile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/updatePassword.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/BulletinBoard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/header2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -925,18 +833,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/getInterests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/reset_password">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/editInformation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="86" column="19" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/inputBoxShadow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forgotPassword.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="140" column="119" selection-start-line="140" selection-start-column="119" selection-end-line="140" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/fetchInterests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/changePassword.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
+        <state relative-caret-position="526">
           <caret line="242" column="49" selection-end-line="259" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="62" column="10" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/indexStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="182" column="10" selection-start-line="182" selection-start-column="4" selection-end-line="183" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1240">
+          <caret line="124" column="56" selection-start-line="124" selection-start-column="54" selection-end-line="124" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/interests">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="e#53#60#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+        <state relative-caret-position="102">
+          <caret line="218" column="10" lean-forward="true" selection-start-line="218" selection-start-column="10" selection-end-line="218" selection-end-column="10" />
           <folding>
+            <element signature="n#style#0;n#!!top" />
+            <element signature="n#style#0;n#span#0;n#button#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
