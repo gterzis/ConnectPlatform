@@ -6,7 +6,7 @@ $sql = $conn -> query("SELECT InterestName FROM usersinterests NATURAL JOIN inte
 
 while($data = mysqli_fetch_row($sql))
 {
-    echo "<div class='interest' ><p>$data[0]</p><i class='fa fa-trash-o'></i></div>";
+    echo "<div class='interest'><p>$data[0]</p><i class='fa fa-trash-o' onclick='deleteInterest(this)'></i></div>";
 }
 
 $conn->close();

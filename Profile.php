@@ -1,5 +1,4 @@
 <?php
-
 	session_start();
 
     //if user is not logged-in is redirected
@@ -68,8 +67,35 @@
                 });
             });
 
-            //Profile picture updated successfully
+            //Delete user's interest
+            function deleteInterest(name) {
+                if (confirm('Are you sure you want to delete it?')) {
+                    var interestName = $(name).siblings("p").text();
+                    $.ajax
+                    ({
+                        type:'post', url:'Profile/deleteInterest.php',
+                        data:{name: interestName},
+                        success:function(response)
+                        {
+                            if(response == "success") {
+                                $(name).parent().html('<p style="color:#009933; font-size:17px; margin:15px;">' +
+                                    '<span class="fa fa-check-circle-o"> Selected interest deleted successfully !</span></p>');
+                                //After 3 seconds reload page
+                                setTimeout(function(){
+                                    location.reload();
+                                }, 3000);
+                            }
+                            else{
+                            }
+                        }
+                    });
+                } else {
+                    // Do nothing!
+                }
+            }
+
             $(document).ready(function(){
+                //Profile picture updated successfully
                 var x = <?= $success ?>;
                 if (x == true){
                     $("#upload-photo").html("Updated successfully !").css({"background-color" : "transparent", "color" : "green"});

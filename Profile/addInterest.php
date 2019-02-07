@@ -137,6 +137,10 @@
         margin-left: 5px;
     }
 
+    .chosen-interest p{
+        display: inline;
+    }
+
     #chosen-interests{
         min-height: 150px;
     }
@@ -155,24 +159,24 @@
             <h2>Add Interest</h2>
         </div>
 
-        <form onsubmit="">
+        <form onsubmit="return addInterests();">
             <!--BODY-->
             <div class="modal-body">
-
-                <div id="response"></div><div class="loader"></div>
 
                 <!--SEARCH INTEREST-->
                 <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.html"); ?>
                 <div id="chosen-interests">
-<!--                    <button class="chosen-interest" type="button" onclick="this.remove();">Hello-->
-<!--                        <span style="font-size: 18px; margin-left: 5px">&times;</span></button>-->
+                    <!-- User's chosen interests will be placed here-->
                 </div>
+
+                <div id="response"></div>
+
             </div>
 
             <!--FOOTER-->
             <div class="modal-footer">
                 <button id="cancel" class="btn-change" type="button"> CANCEL</button>
-                <button class="btn-change" name="changePass" type="submit"> ADD</button>
+                <button id="add" class="btn-change" type="submit"> ADD</button>
             </div>
 
         </form>
@@ -191,14 +195,8 @@
     // Get the cancel button
     var cancel = document.getElementById('cancel');
 
-    // Get the loader element
-    var loader = document.getElementsByClassName("loader")[0];
-
     // Open the modal
     modal.style.display = "block";
-
-    //Hide loader spinner
-    loader.style.display ="none";
 
     // When the user clicks on <span> (x), close the modal
     span.onclick= function() {
@@ -217,51 +215,42 @@
     }
 
 
-    function updatePassword() {
-        var oldPass=$("#old-pass").val();
-        var newPass=$("#new-pass").val();
-        var confirmPass=$("#confirm-pass").val();
-        if (oldPass != '' && newPass != '' && confirmPass !=''){
+    function addInterests() {
+        //Disable ADD button to prevent user to click it multiple times. This causes issue !
+        $("#add").prop('disabled', true);
+
+        //Get the names of the selected interests and put them in a array.
+        var interests = new Array();
+        $(".chosen-interest p").each(function(){
+            var interestName = $(this).text();
+            interests.push(interestName);
+        });
+
+        //If no interests selected show error message. Otherwise proceed to insert them.
+         if (interests.length > 0){
             $.ajax
             ({
-                type:'post', url:'updatePassword.php',
-                data:{
-                    oldPass:oldPass,
-                    newPass:newPass,
-                    confirmPass:confirmPass
-                },
-
+                type:'post', url:'Profile/insertInterests.php',
+                data:{ interestsArray: interests },
                 success:function(response)
                 {
                     if(response == "success") {
-                        $('#response').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                            '<span class="fa fa-check-circle-o"> Password has been changed successfully !</span></p>');
-                        $("#Old-pass, #New-pass, #Confirm-pass").css("box-shadow", "0 0 5px green");
-                        loader.style.display = "block";
-                        setTimeout(
-                            function()
-                            {
-                                modal.style.display = "none";
-                            }, 2500);
+                        $('#response').html('<p style="color:#009933; font-size:17px; margin:0;">' +
+                            '<span class="fa fa-check-circle-o"> Selected interests have been added successfully !</span></p>');
+                        //After 3 seconds exit window and reload page
+                        setTimeout(function(){
+                            modal.style.display = "none";
+                            location.reload();
+                        }, 3000);
                     }
                     else{
-                        $('#response').html('<p style="color:red; font-size:17px; margin:0;">' +
-                            '<span class="fa fa-exclamation-triangle">'+ response+'</span></p>');
-                        if (response == " Wrong old password") {
-                            $("#Old-pass").css("box-shadow", "0 0 5px red");
-                        }
-                        else {
-                            $("#New-pass, #Confirm-pass").css("box-shadow", "0 0 5px red");
-                            $("#Old-pass").css("box-shadow", "none");
-                        }
+                        alert("fail");
                     }
                 }
             });
         }
         else{
-            $('#response').html('<p style="color:red; font-size:18px; margin:0;">' +
-                '<span class="fa fa-exclamation-triangle"> All fields are required !</span></p>');
-            $("#Email").css("box-shadow", "0 0 5px red");
+            alert("No interests have been selected !")
         }
 
         return false;

@@ -32,15 +32,12 @@
         }
     </style>
 
-<!--Make sure the form has the autocomplete function switched off:-->
-<form autocomplete="off" action="">
     <div class="wrap-input wrap-login" style="float: left; border: 2px solid #cccccc; margin: 0px 0px 10px 0px; width: 100%;">
         <label class="lbl" for="search">
             <span class="fa fa-search"></span>
         </label>
-        <input class="inp" id="search" maxlength="25" placeholder="Search for interest..." required autocomplete="off"/>
+        <input class="inp" id="search" maxlength="25" placeholder="Search for interest..." autocomplete="off"/>
     </div>
-</form>
 
 <script>
     function autocomplete(inp, arr) {
@@ -79,7 +76,7 @@
                         var isSelected = $('.chosen-interest').text().indexOf(inp.value) > -1;
                         if (isSelected == false){
                             //add selected element in the div with the selected elements(addInterest.php)
-                            $("#chosen-interests").append('<button class="chosen-interest" type="button" onclick="this.remove();">' + inp.value +' <span>&times;</span></button>');
+                            $("#chosen-interests").append('<button class="chosen-interest" type="button" onclick="this.remove();"><p>' + inp.value +'</p> <span>&times;</span></button>');
                         }
                         else if (isSelected == true){
                             alert("You already selected this interest")

@@ -148,7 +148,7 @@
             <!--FOOTER-->
             <div class="modal-footer">
                 <button id="cancel" class="btn-forgot" type="button"> CANCEL</button>
-                <button class="btn-forgot"> SEND</button>
+                <button id="send" class="btn-forgot"> SEND</button>
             </div>
 
         </form>
@@ -190,6 +190,9 @@
     }
 
     function sendLink() {
+        //Disable SEND button to prevent user to click it multiple times. This causes issue !
+        $("#send").prop('disabled', true);
+
         var email=$("#email").val();
         if (email != ''){
             $.ajax
