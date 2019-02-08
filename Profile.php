@@ -79,13 +79,15 @@
                         {
                             if(response == "success") {
                                 $(name).parent().html('<p style="color:#009933; font-size:17px; margin:15px;">' +
-                                    '<span class="fa fa-check-circle-o"> Selected interest deleted successfully !</span></p>');
-                                //After 3 seconds reload page
+                                    '<span id="remove" class="fa fa-check-circle-o"> Selected interest deleted successfully !</span></p>');
+                                //After 3 seconds
                                 setTimeout(function(){
-                                    location.reload();
+                                    //Remove the div where deleted interest was placed.
+                                    $("#remove").parents(".interest").remove();
                                 }, 3000);
                             }
                             else{
+                                alert("Failed");
                             }
                         }
                     });
@@ -122,7 +124,7 @@
                     type: "GET",
                     url: "Profile/getInterests.php",
                     dataType: "html",   //expect html to be returned
-                    success: function(response){
+                    success: function (response) {
                         $(".interests").append(response);
                     }
 

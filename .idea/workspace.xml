@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32dc090-be1c-4cd3-95fc-4957bff96824" name="Default Changelist" comment="Καλησπερα">
-      <change afterPath="$PROJECT_DIR$/Profile/deleteInterest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Profile/insertInterests.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Profile/addInterest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/addInterest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile/autocomplete.html" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/autocomplete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile/fetchInterests.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/fetchInterests.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile/getInterests.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/getInterests.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forgotPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/forgotPassword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-pictures/17.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/profile-pictures/17.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +88,7 @@
     <session id="-1565418562">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="68" />
+          <entry key="project.closed" value="69" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.113" value="1" />
           <entry key="project.open.time.13" value="1" />
@@ -124,7 +117,7 @@
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.53" value="1" />
-          <entry key="project.open.time.55" value="3" />
+          <entry key="project.open.time.55" value="4" />
           <entry key="project.open.time.57" value="2" />
           <entry key="project.open.time.58" value="3" />
           <entry key="project.open.time.59" value="1" />
@@ -137,7 +130,7 @@
           <entry key="project.open.time.82" value="1" />
           <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="69" />
+          <entry key="project.opened" value="70" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -147,7 +140,7 @@
           <entry key="css" value="3532" />
           <entry key="html" value="1699" />
           <entry key="js" value="81" />
-          <entry key="php" value="18896" />
+          <entry key="php" value="19409" />
           <entry key="sql" value="40" />
           <entry key="txt" value="44" />
         </counts>
@@ -157,7 +150,7 @@
           <entry key="CSS" value="3532" />
           <entry key="HTML" value="1702" />
           <entry key="JavaScript" value="81" />
-          <entry key="PHP" value="19246" />
+          <entry key="PHP" value="19759" />
           <entry key="PLAIN_TEXT" value="44" />
           <entry key="SQL" value="32" />
           <entry key="Scratch" value="140" />
@@ -169,13 +162,13 @@
           <entry key="LICENSE" value="1" />
           <entry key="css" value="26" />
           <entry key="customers" value="1" />
-          <entry key="html" value="27" />
+          <entry key="html" value="29" />
           <entry key="interests" value="3" />
           <entry key="jpeg" value="1" />
           <entry key="jpg" value="10" />
           <entry key="js" value="2" />
           <entry key="md" value="1" />
-          <entry key="php" value="153" />
+          <entry key="php" value="154" />
           <entry key="php5" value="1" />
           <entry key="png" value="5" />
           <entry key="reset_password" value="4" />
@@ -191,11 +184,11 @@
         <counts>
           <entry key="CSS" value="26" />
           <entry key="Database Element" value="20" />
-          <entry key="HTML" value="27" />
+          <entry key="HTML" value="29" />
           <entry key="Image" value="16" />
           <entry key="JavaScript" value="2" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="157" />
+          <entry key="PHP" value="158" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="RNG Compact" value="3" />
           <entry key="SQL" value="1" />
@@ -210,8 +203,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Profile/getInterests.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+            <state relative-caret-position="153">
+              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -220,7 +213,7 @@
         <entry file="file://$PROJECT_DIR$/editInformation.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
-              <caret line="291" column="38" lean-forward="true" selection-start-line="290" selection-start-column="24" selection-end-line="294" selection-end-column="37" />
+              <caret line="291" column="38" selection-start-line="290" selection-start-column="24" selection-end-line="294" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -234,14 +227,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Profile.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="84" column="54" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
+            <state relative-caret-position="383">
+              <caret line="247" column="53" lean-forward="true" selection-start-line="247" selection-start-column="53" selection-end-line="247" selection-end-column="53" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Profile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1460">
+              <caret line="89" column="48" lean-forward="true" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -271,6 +273,7 @@
     <findStrings>
       <find>regis</find>
       <find>addInter</find>
+      <find>getInter</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -325,10 +328,10 @@
         <option value="$PROJECT_DIR$/Profile/autocomplete.html" />
         <option value="$PROJECT_DIR$/Profile/fetchInterests.php" />
         <option value="$PROJECT_DIR$/Profile/insertInterests.php" />
-        <option value="$PROJECT_DIR$/Profile/addInterest.php" />
         <option value="$PROJECT_DIR$/forgotPassword.php" />
         <option value="$PROJECT_DIR$/Profile/getInterests.php" />
         <option value="$PROJECT_DIR$/Profile/deleteInterest.php" />
+        <option value="$PROJECT_DIR$/Profile/addInterest.php" />
         <option value="$PROJECT_DIR$/Profile.php" />
       </list>
     </option>
@@ -353,6 +356,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -373,7 +377,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -494,7 +497,8 @@
       <workItem from="1549018686497" duration="852000" />
       <workItem from="1549302369603" duration="2259000" />
       <workItem from="1549377168217" duration="14855000" />
-      <workItem from="1549540414154" duration="18865000" />
+      <workItem from="1549540414154" duration="18999000" />
+      <workItem from="1549623195091" duration="6844000" />
     </task>
     <task id="LOCAL-00001" summary="Καλησπερα">
       <created>1545735843001</created>
@@ -507,7 +511,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="424950000" />
+    <option name="totallyTimeSpent" value="431928000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -522,7 +526,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1603631" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16263238" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -607,7 +611,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Profile.php</url>
-          <line>168</line>
+          <line>170</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -831,27 +835,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="219" column="41" lean-forward="true" selection-start-line="219" selection-start-column="41" selection-end-line="219" selection-end-column="41" />
-          <folding>
-            <element signature="n#style#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="21" column="30" selection-start-line="18" selection-start-column="20" selection-end-line="35" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2295">
-          <caret line="147" column="11" lean-forward="true" selection-start-line="147" selection-start-column="11" selection-end-line="147" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -873,11 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-476">
           <caret line="155" column="10" lean-forward="true" selection-start-line="155" selection-start-column="10" selection-end-line="155" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,6 +884,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/editInformation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="291" column="38" selection-start-line="290" selection-start-column="24" selection-end-line="294" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Profile/insertInterests.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -909,17 +898,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/editInformation.php">
+    <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="291" column="38" lean-forward="true" selection-start-line="290" selection-start-column="24" selection-end-line="294" selection-end-column="37" />
+        <state relative-caret-position="357">
+          <caret line="161" column="17" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="38" />
+          <folding>
+            <element signature="e#85#92#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Profile/getInterests.php">
+    <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        <state relative-caret-position="383">
+          <caret line="247" column="53" lean-forward="true" selection-start-line="247" selection-start-column="53" selection-end-line="247" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -930,13 +925,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/getInterests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Profile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="84" column="54" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1460">
+          <caret line="89" column="48" lean-forward="true" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
         </state>
       </provider>
     </entry>

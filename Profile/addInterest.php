@@ -198,7 +198,7 @@
     // Open the modal
     modal.style.display = "block";
 
-    // When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span> (x) or CANCEL button, close the modal
     span.onclick= function() {
         modal.style.display = "none";
     }
@@ -235,12 +235,19 @@
                 success:function(response)
                 {
                     if(response == "success") {
+                        //Display successful message.
                         $('#response').html('<p style="color:#009933; font-size:17px; margin:0;">' +
                             '<span class="fa fa-check-circle-o"> Selected interests have been added successfully !</span></p>');
-                        //After 3 seconds exit window and reload page
+
+                        //Add selected interests in the interests div on Profile.php page.
+                        interests.forEach(myFunction);
+                        function myFunction(value) {
+                            $(".interests").append("<div class='interest'><p>"+value+"</p><i class='fa fa-trash-o' onclick='deleteInterest(this)'></i></div>")
+                        }
+
+                        //After 3 seconds exit window
                         setTimeout(function(){
                             modal.style.display = "none";
-                            location.reload();
                         }, 3000);
                     }
                     else{
