@@ -113,38 +113,6 @@
         background-color: #333333;
     }
 
-    .chosen-interest{
-        width: auto;
-        cursor: pointer;
-        background-color:#0066cc;
-        border: none;
-        border-radius: 50px;
-        color: ivory;
-        padding: 10px;
-        margin: 3px;
-        font-size: 16px;
-        outline: 0;
-        transition: 0.2s;
-        transition-timing-function: ease-in-out;
-    }
-
-    .chosen-interest:hover{
-        background-color: #004d99;
-    }
-
-    .chosen-interest span{
-        font-size: 18px;
-        margin-left: 5px;
-    }
-
-    .chosen-interest p{
-        display: inline;
-    }
-
-    #chosen-interests{
-        min-height: 150px;
-    }
-
 </style>
 
 <!-- The Modal -->
@@ -164,7 +132,15 @@
             <div class="modal-body">
 
                 <!--SEARCH INTEREST-->
+                <div class="wrap-input wrap-login" style="float: left; border: 2px solid #cccccc; margin: 0px 0px 10px 0px; width: 100%;">
+                    <label class="lbl" for="search">
+                        <span class="fa fa-search"></span>
+                    </label>
+                    <input class="inp" id="search" maxlength="25" placeholder="Search for interest..." autocomplete="off"/>
+                </div>
+                <!--Autocomplete for interests-->
                 <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.html"); ?>
+
                 <div id="chosen-interests">
                     <!-- User's chosen interests will be placed here-->
                 </div>

@@ -4,7 +4,7 @@ session_start();
 
 //Check if file is called appropriated.
 if ( !($_SERVER["REQUEST_METHOD"] == "POST") ){
-    header("Location: index.php");
+    header("Location: SearchUsers.php");
     exit();
 }
 
@@ -87,6 +87,11 @@ if (isset($_POST["description"])) {
     $description = test_input($_POST["description"]);
 }
 
+//MARITAL STATUS
+if (!empty($_POST["maritalStatus"])) {
+    $maritalStatus = test_input($_POST["maritalStatus"]);
+}
+
 function test_input($data)
 {
     $data = trim($data); //removes whitespace from both sides
@@ -131,9 +136,9 @@ if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=? )")) {
 
 //Update user's information
 if($stmt = $conn->prepare("UPDATE users SET Name = ?, Surname = ?, Birthdate = ?, Gender = ?, 
-									District = ?, Education = ?, Description = ?, Email = ? WHERE ID = ?"))
+									District = ?, Education = ?, Description = ?, Email = ?, MaritalStatus = ? WHERE ID = ?"))
 {
-    $stmt->bind_param("ssssssssi",$name, $surname, $bday, $gender ,$district, $education, $description, $email, $_SESSION['user_id'] );
+    $stmt->bind_param("sssssssssi",$name, $surname, $bday, $gender ,$district, $education, $description, $email, $maritalStatus, $_SESSION['user_id'] );
     $stmt->execute();
     $stmt->close();
     $_SESSION['user_email'] = $email;

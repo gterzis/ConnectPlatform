@@ -1,6 +1,9 @@
 <?php
 $array = json_decode($_GET['array']);
 $adult= date("Y") - 18;
+if (empty($array[8])){
+    $array[8] = "none";
+}
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -218,10 +221,24 @@ $adult= date("Y") - 18;
                 <i style='color:red; position: relative; right: 5px;'>*</i>
             </div>
 
+            <!-- MARITAL STATUS-->
+            <div class="wrap-input" id="Marital-Status" >
+                <label class="lbl" for="marital-status">
+                    <span class="fa fa-heart"></span>
+                </label>
+                <select class="inp" id="marital-status" name="marital-status" style="cursor: pointer">
+                    <option value="" disabled selected>Select your marital status</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                </select>
+            </div>
+
             <!-- DESCRIPTION-->
             <div style="float: left; clear: left; margin-left: 20px;">
                 <label style=" float:left; clear: left; color: #999999;">Description</label>
-                <textarea rows="6" cols="60" id="description" placeholder="Description" maxlength="276" style=" float:left; clear: left;"><?= $array[7]?>
+                <textarea rows="6" cols="60" id="description" placeholder="Description" maxlength="300" style=" float:left; clear: left;"><?= $array[7]?>
                 </textarea>
             </div>
 
@@ -258,6 +275,11 @@ $adult= date("Y") - 18;
         }
     }
 
+    //Set the marital status field
+    var maritalStatus = "<?= $array[8]; ?>";
+    $("#marital-status option:contains("+maritalStatus+")").attr('selected', 'selected');
+
+    //Update information
     function updateInformation() {
 
         var name=$("#name").val();
@@ -268,6 +290,7 @@ $adult= date("Y") - 18;
         var education=$("#education").val();
         var email=$("#email").val();
         var description=$("#description").val();
+        var maritalStatus=$("#marital-status").val();
 
         $.ajax
             ({
@@ -280,11 +303,10 @@ $adult= date("Y") - 18;
                     district:district,
                     education:education,
                     email:email,
-                    description:description
+                    description:description,
+                    maritalStatus:maritalStatus
                 },
-
-                success:function(response)
-                {
+                success:function(response) {
                     if(response == "success") {
                         $('#response').html('<p style="color:#009933; font-size:17px; margin:0;">' +
                             '<span class="fa fa-check-circle-o"> Your personal information has been saved successfully !</span></p>');

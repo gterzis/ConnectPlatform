@@ -41,7 +41,7 @@
 	 //If the user have not pressed the login button. This prevents users visit this page directly.
 	else
 	{
-		header("Location: index.php");
+		header("Location: SearchUsers.php");
 		exit();
 	}
 

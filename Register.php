@@ -25,24 +25,8 @@
         <link rel="stylesheet" href="indexStyle.css" >
         <script>
             $(document).ready(function(){
-
                 //Set red shadow to the respective field.
                 $("#<?php echo $field; ?>").css("box-shadow", "0 0 5px red");
-
-                //Prevents user to enter any language except English
-                $("input[type=text], input[type=email], input[type=password] ").keypress(function(event){
-                    var ew = event.which;
-                    if(ew == 32)
-                        return true;
-                    if(48 <= ew && ew <= 57)
-                        return true;
-                    if(65 <= ew && ew <= 90)
-                        return true;
-                    if(97 <= ew && ew <= 122)
-                        return true;
-                    return false;
-                });
-
             });
 
         </script>
@@ -145,7 +129,7 @@
 
             <!--BUTTON-->
             <button class="btn" type="submit" style="float: left;">REGISTER</button>
-            <p style="float: left; margin: 3% 0% 0% 5%;">Already registered ?
+            <p style="float: left; margin: 2% 0% 0% 5%;">Already registered ?
                 <a href="Login.php" style="color: #0066cc; text-decoration: none;"> Sign In</a>
             </p>
 
@@ -157,5 +141,9 @@
 <script>
     //Add box shadow on input fields when focus
     $.getScript( "includes/inputBoxShadow.js" );
-    //Does not work when put in <head> :(
+
+    //Prevents user to enter any language except English
+    $.getScript( "http://localhost/Local%20Server/ConnectPlatform/includes/onlyEnglish.js" );
+
+    //All above do not work when put in <head> :(
 </script>

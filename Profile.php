@@ -4,7 +4,7 @@
     //if user is not logged-in is redirected
 	if(!isset($_SESSION['user_id']))
 	{
-		header("Location: index.php");
+		header("Location: SearchUsers.php");
 		exit();
 	}
 
@@ -26,6 +26,7 @@
     $education=str_replace(' ', '%20', $row['Education']);
     $email=$row['Email'];
     $description=str_replace(' ', '%20', $row['Description']);
+    $maritalStatus = $row['MaritalStatus'];
 
 	$conn->close();
 ?>
@@ -54,7 +55,7 @@
             function editInformation() {
                 //Storing user's information into an array in order to be send to the information window.
                 var array = ["<?= $name ?>", "<?= $surname ?>", "<?= $bday?>", "<?= $gender ?>",
-                    "<?= $district ?>", "<?= $education ?>", "<?= $email?>", "<?= $description ?>" ];
+                    "<?= $district ?>", "<?= $education ?>", "<?= $email?>", "<?= $description ?>", "<?= $maritalStatus ?>" ];
                 array = JSON.stringify(array);
                 $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/editInformation.php?array="+array+"");
                 return false;
@@ -84,6 +85,7 @@
                                 setTimeout(function(){
                                     //Remove the div where deleted interest was placed.
                                     $("#remove").parents(".interest").remove();
+                                    $(".interests").children('.interest:first').css("border", "none"); // Remove the top border of the first interest
                                 }, 3000);
                             }
                             else{
@@ -126,8 +128,11 @@
                     dataType: "html",   //expect html to be returned
                     success: function (response) {
                         $(".interests").append(response);
-                    }
-
+                    },
+                    complete: function () {
+                        //Remove the top border of the first interest
+                        $(".interests").children('.interest:first').css("border", "none");
+                    },
                 });
 
             });
@@ -169,7 +174,7 @@
                 <span class="fa fa-home"><p>     <?= $row['District'] ?></p></span>
                 <span class="fa fa-mortar-board"><p><?= $row['Education'] ?></p></span>
                 <span class="fa fa-venus-mars"><p> <?= $gender ?></p></span>
-                <span class="fa fa-heart"><p>No relationship info to show</p></span>
+                <span class="fa fa-heart"><p> <?php if(empty($maritalStatus)) echo "No details to show"; else echo $maritalStatus; ?> </p></span>
 
             </div>
 

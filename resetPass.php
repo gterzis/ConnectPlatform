@@ -7,7 +7,7 @@ $sql = $conn->query("SELECT Email, Link FROM reset_password WHERE Link = '" . $_
 $row = $sql->fetch_assoc();
 if (empty($row['Email'])) {
     echo "<script type='text/javascript'>alert('".$_GET['id']."');</script>";
-    header("Location: index.php");
+    header("Location: SearchUsers.php");
     exit();
 }
 

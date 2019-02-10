@@ -92,7 +92,7 @@
 	}
     // If the user has not pressed register button. This prevents users visit this page directly.
     else {
-        header("Location: index.php");
+        header("Location: SearchUsers.php");
         exit();
     }
 
