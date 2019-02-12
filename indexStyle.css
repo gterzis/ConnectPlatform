@@ -118,7 +118,7 @@
 .wrap-input{
     background: white;
     width: 45%;
-    height: auto;
+    height: 47px;
     margin: 2px 15px 15px 15px;
     position: relative;
     border-radius: 50px;
@@ -277,7 +277,8 @@ input[type=radio]:checked + label {
 
 .main,
 .bulletin-board,
-.interests{
+.interests,
+.adds{
     background-color: white;
     border-radius: 2px;
     width: 40%;
@@ -311,6 +312,7 @@ input[type=radio]:checked + label {
 }
 
 /*Interests*/
+.adds,
 .interests{
     margin: 25px 0px;
     clear: left;
@@ -335,12 +337,13 @@ input[type=radio]:checked + label {
 .interests a:hover{
     background-color: #f2f2f2;
 }
-
+.add,
 .interest{
     margin: 0px 15px;
     border-top: #e0e0e0 solid 1px;
 }
 
+.add p,
 .interest p{
     color: rgba(0, 0, 0, 0.88);
     font-weight: 400;
@@ -410,10 +413,10 @@ input[type=radio]:checked + label {
 .about span p{
     display: inline-block;
     color: black;
-    margin: 5px 0 0 10px;
+    margin: 5px 0 0 0px;
     font-size: 13px;
     font-family: Verdana, Helvetica, Arial;
-    width: 75%;
+    width: 82%;
     float: right;
 }
 
@@ -478,3 +481,14 @@ input[type=radio]:checked + label {
     font-size: 15px;
 }
 
+/*----------------------admin.php---------------------------------------*/
+.add{
+    margin: 0;
+}
+.add:hover{
+    background-color: #e0e0e0;
+}
+
+.add p{
+    margin-left: 15px;
+}

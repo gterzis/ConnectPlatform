@@ -1,9 +1,14 @@
+<?php
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+$all = $_GET['all']
+
+?>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .autocomplete-items {
-            position: absolute;
-            border: 1px solid #d4d4d4;
+    position: absolute;
+    border: 1px solid #d4d4d4;
             border-bottom: none;
             border-top: none;
             z-index: 99;
@@ -14,7 +19,7 @@
         }
 
         .autocomplete-items div {
-            padding: 10px;
+    padding: 10px;
             cursor: pointer;
             background-color: #fff;
             border-bottom: 1px solid #d4d4d4;
@@ -22,19 +27,19 @@
 
         /*when hovering an item:*/
         .autocomplete-items div:hover {
-            background-color: #e9e9e9;
+    background-color: #e9e9e9;
         }
 
         /*when navigating through the items using the arrow keys:*/
         .autocomplete-active {
-            background-color: DodgerBlue !important;
+    background-color: DodgerBlue !important;
             color: #ffffff;
         }
 
         .chosen-interest{
-            width: auto;
-            cursor: pointer;
-            background-color:#0066cc;
+    width: auto;
+    cursor: pointer;
+    background-color:#0066cc;
             border: none;
             border-radius: 50px;
             color: ivory;
@@ -47,20 +52,21 @@
         }
 
         .chosen-interest:hover{
-            background-color: #004d99;
+    background-color: #004d99;
         }
 
         .chosen-interest span{
-            font-size: 18px;
+    font-size: 18px;
             margin-left: 5px;
         }
 
         .chosen-interest p{
-            display: inline;
-        }
+    display: inline;
+}
 
         #chosen-interests{
-            min-height: 150px;
+            min-height: 50px;
+            margin-bottom: 15px;
         }
     </style>
 
@@ -175,21 +181,23 @@
         });
     }
 
-    //Get interests names from database and put them in an array
-    var interests = [];
-    var temp = new Array();
-    //JQuery library must be included for the AJAX call. Here is included in the file where is called from.
-    $.ajax({
-        type: "POST",
-        url: "http://localhost/Local%20Server/ConnectPlatform/Profile/fetchInterests.php",
-        success: function(response){
-            temp = JSON.parse(response);
-            temp.forEach(myFunction);
-            function myFunction(value) {
-                interests.push(value);
+        //Get interests names from database and put them in an array
+        var all = "<?= $all ?>";
+        var interests = [];
+        var temp = new Array();
+        //JQuery library must be included for the AJAX call. Here is included in the file where is called from.
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Local%20Server/ConnectPlatform/Profile/fetchInterests.php?all="+all+"",
+            success: function (response) {
+    temp = JSON.parse(response);
+    temp.forEach(myFunction);
+
+                function myFunction(value) {
+                    interests.push(value);
+                }
             }
-        }
-    });
+        });
 
     /*initiate the autocomplete function on the "search" element, and pass along the interests array as possible autocomplete values:*/
     autocomplete(document.getElementById("search"), interests);

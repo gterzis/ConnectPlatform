@@ -4,7 +4,7 @@
     //if user is not logged-in is redirected
 	if(!isset($_SESSION['user_id']))
 	{
-		header("Location: SearchUsers.php");
+		header("Location: index.php");
 		exit();
 	}
 

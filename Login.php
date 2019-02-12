@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	if (isset($_GET['registered']))
+	    $registered = "<span class='fa fa-check-circle-o'> You registered successfully . Welcome to Get In Touch !</span>";
+	else
+	    $registered = "";
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +30,10 @@
                         },
                         success:function(response)
                         {
-                            if(response == "success") {
+                            if(response == "admin") {
+                                window.location.href="http://localhost/Local%20Server/ConnectPlatform/admin/admin.php";
+                            }
+                            else if(response == "success"){
                                 window.location.href="Profile.php";
                             }
                             else{
@@ -61,6 +68,11 @@
 
     <!--HEADER-->
     <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/head.html"); ?>
+
+    <!--Registered successfully message-->
+    <div style="left: 32%; top: 20%; position: absolute; color: green; font-size: 23px;">
+        <?= $registered ?>
+    </div>
 
     <!--LOGIN FORM-->
     <form class="frm frm-login" method="post" action="Identification.php" onsubmit="return do_login();">

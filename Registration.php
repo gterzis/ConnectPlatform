@@ -108,10 +108,12 @@
     require_once './includes/Connection.php';
 
     // Check if email already exists
-    if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=? )")) {
+    if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=? )
+                                        UNION 
+								       (SELECT Email FROM admins WHERE Email=?)")) {
 
         /* bind parameters for markers */
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("ss", $email,$email);
 
         /* execute query */
         $stmt->execute();
@@ -152,11 +154,15 @@
     require './SendEmail/email_sender.php';
 
     $subject = "Welcome to Get in Touch";
-    $message = "Hello Mr/Ms " . $_POST["last_name"] . " and welcome to Get in Touch !";
+    $message = "<div style='height: 100px;background-color: #0073b1;top: 0;left: 0; position: relative; width: 100%;'>
+                    <p style='margin: 25px 45px;font-family: \"Maiandra GD\";font-size: 45px;color: ivory;display: inline-block;'>Get in Touch</p></a>
+                    <p style='float: right; margin: 40px;font-family: \"Maiandra GD\"; font-size: 25px;color: ivory;display: inline-block;'>Meet people with common interests with you</p>
+                </div>";
+    $message .= "Hello Mr/Ms " . $_POST["last_name"] . " and welcome to Get in Touch !";
 
 //	send_email($email,$subject,nl2br($message));
 
-    header("Location: Login.php");
+    header("Location: Login.php?registered=success");
     exit();
 
 ?>

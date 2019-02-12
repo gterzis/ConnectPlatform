@@ -139,7 +139,7 @@
                     <input class="inp" id="search" maxlength="25" placeholder="Search for interest..." autocomplete="off"/>
                 </div>
                 <!--Autocomplete for interests-->
-                <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.html"); ?>
+                <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.php?all=false"); ?>
 
                 <div id="chosen-interests">
                     <!-- User's chosen interests will be placed here-->
@@ -189,7 +189,6 @@
             modal.style.display = "none";
         }
     }
-
 
     function addInterests() {
         //Disable ADD button to prevent user to click it multiple times. This causes issue !

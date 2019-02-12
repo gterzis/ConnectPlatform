@@ -1,6 +1,7 @@
 <?php
 session_start();
 $adult= date("Y") - 18;
+$field="none";
 //Show error message
 if(!empty($_GET['ErrMess'])) {
     $error_msg = base64_decode($_GET['ErrMess']);
@@ -85,25 +86,24 @@ if (!isset($_SESSION['gender']))
     </div>
 
     <!--SEARCH INTEREST-->
-    <div class="wrap-input" style="float: left; border: 2px solid #cccccc;">
+    <div class="wrap-input" style="float: left;">
         <label class="lbl" for="search">
             <span class="fa fa-search"></span>
         </label>
         <input class="inp" id="search" maxlength="25" placeholder="Search for interest..." autocomplete="off"/>
     </div>
     <!--Autocomplete for interests-->
-    <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.html"); ?>
+    <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.php?all=true"); ?>
 
-    <div id="chosen-interests" style="float: left; height: auto; width: inherit; margin-left: 15px;">
+    <div id="chosen-interests" style="float: left; height: auto; width: inherit; margin: 0px 15px 15px 15px;">
         <!-- User's chosen interests will be placed here-->
     </div>
 
     <!--BUTTON-->
     <div style="display: block; ">
-        <button class="btn" type="submit" style="float: left;">REGISTER</button>
-        <p style="float: left; margin: 1% 0% 0% 5%;">Already registered ?
-            <a href="Login.php" style="color: #0066cc; text-decoration: none;"> Sign In</a>
-        </p>
+        <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php" style="color: #0066cc; border: #0066cc solid 1px; border-radius: 4px; padding: 10px 12px; text-decoration: none; float: left; margin-left: 100px;">
+            <i class="fa fa-arrow-left"></i> Back to profile</a>
+        <button class="btn" type="submit" style="float: left;">SEARCH</button>
     </div>
 
 

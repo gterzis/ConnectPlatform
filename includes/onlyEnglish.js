@@ -1,5 +1,5 @@
 //Prevents user to enter any language except English
-$("input[type=text], input[type=email], input[type=password] ").keypress(function(event){
+$("input[type=text], input[type=password] ").keypress(function(event){
     var ew = event.which;
     if(ew == 32)
         return true;
