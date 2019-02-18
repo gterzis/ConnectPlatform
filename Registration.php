@@ -88,7 +88,6 @@
             header("Location: Register.php?ErrMess=$dataErr&field=Password");
             exit();
         }
-
 	}
     // If the user has not pressed register button. This prevents users visit this page directly.
     else {

@@ -2,31 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32dc090-be1c-4cd3-95fc-4957bff96824" name="Default Changelist" comment="Καλησπερα">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/Administrators/Admins.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/Administrators/deleteAdmin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/Administrators/getAdmins.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/Administrators/insertAdmin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/BulletinBoard/Announcements.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/BulletinBoard/deleteAnnouncement.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/BulletinBoard/getAnnouncements.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/BulletinBoard/insertAnnouncement.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/Interests/Interests.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/adminHeader.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/modalProperties.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/modalStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/tabsProperties.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/tabsStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/Interests/insertInterestAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0b6a5898-adec-47fe-898e-af505aeb7db0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0b6a5898-adec-47fe-898e-af505aeb7db0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile/BulletinBoard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/BulletinBoard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile/autocomplete.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/autocomplete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/Registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/changePassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/changePassword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editInformation.php" beforeDir="false" afterPath="$PROJECT_DIR$/editInformation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/indexStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/indexStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updatePassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/updatePassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/Interests/Interests.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/Interests/Interests.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +54,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="connectplatform: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="bulletin_board: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="connectplatform: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="interests: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -169,7 +156,7 @@
           <entry key="css" value="4054" />
           <entry key="html" value="1829" />
           <entry key="js" value="120" />
-          <entry key="php" value="28546" />
+          <entry key="php" value="29401" />
           <entry key="sql" value="40" />
           <entry key="txt" value="45" />
         </counts>
@@ -179,7 +166,7 @@
           <entry key="CSS" value="4054" />
           <entry key="HTML" value="1843" />
           <entry key="JavaScript" value="120" />
-          <entry key="PHP" value="28885" />
+          <entry key="PHP" value="29740" />
           <entry key="PLAIN_TEXT" value="45" />
           <entry key="SQL" value="32" />
           <entry key="Scratch" value="352" />
@@ -194,12 +181,12 @@
           <entry key="css" value="52" />
           <entry key="customers" value="1" />
           <entry key="html" value="41" />
-          <entry key="interests" value="4" />
+          <entry key="interests" value="7" />
           <entry key="jpeg" value="1" />
           <entry key="jpg" value="10" />
           <entry key="js" value="11" />
           <entry key="md" value="1" />
-          <entry key="php" value="268" />
+          <entry key="php" value="275" />
           <entry key="php5" value="1" />
           <entry key="png" value="5" />
           <entry key="reset_password" value="4" />
@@ -214,12 +201,12 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="52" />
-          <entry key="Database Element" value="35" />
+          <entry key="Database Element" value="38" />
           <entry key="HTML" value="41" />
           <entry key="Image" value="16" />
           <entry key="JavaScript" value="11" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="272" />
+          <entry key="PHP" value="279" />
           <entry key="PLAIN_TEXT" value="7" />
           <entry key="RNG Compact" value="3" />
           <entry key="SQL" value="2" />
@@ -234,8 +221,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+            <state relative-caret-position="346">
+              <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -243,23 +230,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/Interests/Interests.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="228" column="12" selection-start-line="228" selection-start-column="12" selection-end-line="228" selection-end-column="12" />
+            <state relative-caret-position="410">
+              <caret line="257" column="9" lean-forward="true" selection-start-line="257" selection-start-column="9" selection-end-line="257" selection-end-column="9" />
               <folding>
+                <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#label#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -293,7 +273,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/profile-pictures/index.html" />
         <option value="$PROJECT_DIR$/uploadPhoto.php" />
         <option value="$PROJECT_DIR$/resetPass.php" />
         <option value="$PROJECT_DIR$/Profile/insertInterests.php" />
@@ -314,7 +293,6 @@
         <option value="$PROJECT_DIR$/includes/onlyEnglish.js" />
         <option value="$PROJECT_DIR$/Identification.php" />
         <option value="$PROJECT_DIR$/Login.php" />
-        <option value="$PROJECT_DIR$/Registration.php" />
         <option value="$PROJECT_DIR$/admin/insertAdmin.php" />
         <option value="$PROJECT_DIR$/includes/adminHeader.html" />
         <option value="$PROJECT_DIR$/updatePassword.php" />
@@ -343,7 +321,9 @@
         <option value="$PROJECT_DIR$/admin/Administrators/Admins.php" />
         <option value="$PROJECT_DIR$/admin/BulletinBoard/Announcements.php" />
         <option value="$PROJECT_DIR$/admin/admin.php" />
+        <option value="$PROJECT_DIR$/Registration.php" />
         <option value="$PROJECT_DIR$/admin/Interests/Interests.php" />
+        <option value="$PROJECT_DIR$/admin/Interests/insertInterestAdmin.php" />
       </list>
     </option>
   </component>
@@ -382,7 +362,20 @@
             <path>
               <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
               <item name="ConnectPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="Profile" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="Administrators" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConnectPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="BulletinBoard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConnectPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="Interests" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
@@ -532,7 +525,7 @@
       <workItem from="1550227467139" duration="6225000" />
       <workItem from="1550413241896" duration="6731000" />
       <workItem from="1550420786374" duration="6379000" />
-      <workItem from="1550495092364" duration="7456000" />
+      <workItem from="1550495092364" duration="16373000" />
     </task>
     <task id="LOCAL-00001" summary="Καλησπερα">
       <created>1545735843001</created>
@@ -545,7 +538,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="553002000" />
+    <option name="totallyTimeSpent" value="561919000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -560,7 +553,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.204236" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.204236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -580,7 +573,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.17019667" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.17019667" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18305598" />
@@ -642,22 +635,8 @@
     <option name="LAST_COMMIT_MESSAGE" value="Καλησπερα" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Logout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SearchUsers/range.html" />
     <entry file="file://$PROJECT_DIR$/Profile/autocomplete.html" />
-    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/interests">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sendLink.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
@@ -850,13 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Registration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-239">
-          <caret line="106" column="58" lean-forward="true" selection-start-line="106" selection-start-column="58" selection-end-line="106" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Parking/UpdateAcc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -865,17 +837,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/Administrators/updateAdmin.php" />
-    <entry file="file://$PROJECT_DIR$/editInformation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="209" column="29" selection-start-line="209" selection-start-column="29" selection-end-line="209" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Profile/addInterest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -914,20 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/Administrators/deleteAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="17" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/BulletinBoard/deleteAnnouncement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/Administrators/insertAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -942,49 +889,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/Administrators/Admins.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="125" column="151" selection-start-line="125" selection-start-column="151" selection-end-line="125" selection-end-column="151" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Profile/BulletinBoard.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/BulletinBoard/Announcements.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-end-line="216" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -995,25 +903,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/editInformation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="86" column="22" lean-forward="true" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/BulletinBoard/deleteAnnouncement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/BulletinBoard/Announcements.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2294">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/Administrators/Admins.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="173" column="34" lean-forward="true" selection-start-line="173" selection-start-column="34" selection-end-line="173" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/Administrators/deleteAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/interests">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/Interests/insertInterestAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Registration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="97" column="4" selection-start-line="97" selection-start-column="4" selection-end-line="103" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/Interests/Interests.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="228" column="12" selection-start-line="228" selection-start-column="12" selection-end-line="228" selection-end-column="12" />
+        <state relative-caret-position="410">
+          <caret line="257" column="9" lean-forward="true" selection-start-line="257" selection-start-column="9" selection-end-line="257" selection-end-column="9" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

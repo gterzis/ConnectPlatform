@@ -35,25 +35,28 @@
 
                 <form onsubmit="return insertInterest();">
 
-                    <!--INTEREST TITLE-->
-                    <div class="wrap-input wrap-login" id="Title" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
-                        <label class="lbl" for="title">
-                            <span>Title</span>
-                        </label>
-                        <input class="inp" style="margin: 10px; padding: 0px;" id="title" type="text" name="title" maxlength="35" placeholder="Enter a title..." required/>
+                    <div style="overflow: auto; max-height: 300px;">
+                        <!--INTEREST TITLE-->
+                        <div class="wrap-input wrap-login" id="Title" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
+                            <label class="lbl" for="title">
+                                <span>Title</span>
+                            </label>
+                            <input class="inp" style="margin: 10px; padding: 0px;" id="title" type="text" name="title" maxlength="35" placeholder="Enter a title..." required/>
+                        </div>
+
+                        <!--CATEGORY-->
+                        <div class="wrap-input wrap-login" id="Category" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
+                            <label class="lbl" for="category" style="font-size: 14px;">
+                                <span>Category</span>
+                            </label>
+                            <input class="inp" id="category" style="margin: 10px; padding: 0px; width: 68%;" type="text" name="title" maxlength="35" placeholder="Enter a title..." required/>
+                        </div>
+
+                        <a onclick="addMore(this)" style="margin:5%; color:rgba(0,0,0,.8); cursor: pointer;"><i class="fa fa-plus"></i> Add more</a>
+
+                        <div id="response"></div>
+
                     </div>
-
-                    <!--CATEGORY-->
-                    <div class="wrap-input wrap-login" id="Category" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
-                        <label class="lbl" for="category" style="font-size: 14px;">
-                            <span>Category</span>
-                        </label>
-                        <input class="inp" id="category" style="margin: 10px; padding: 0px; width: 68%;" type="text" name="title" maxlength="35" placeholder="Enter a title..." required/>
-                    </div>
-
-                    <a onclick="addMore(this)" style="margin-left: 5%; color:rgba(0,0,0,.8); cursor: pointer;"><i class="fa fa-plus"></i> Add more</a>
-
-                    <div id="response"></div>
 
                     <!--FOOTER-->
                     <div class="tabsFooter">
@@ -108,33 +111,39 @@
 
     <script>
 
-        function insertAnnouncement() {
-            var Title=$("#title").val();
-            var Content=$("#content").val();
-            if (Title != '' && Content != ''){
+        function insertInterest() {
+            //Get the titles of interests.
+            var interestsTitle = [];
+            $("#Title input").each(function () {
+                interestsTitle.push($(this).val());
+            });
+
+            //Get the categories of interests.
+            var interestsCategory = [];
+            $("#Category input").each(function () {
+                interestsCategory.push($(this).val());
+            });
+
+            if (interestsTitle != '' && interestsCategory != ''){
                 $.ajax
                 ({
-                    type:'post', url:'http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/insertAnnouncement.php',
+                    type:'post', url:'http://localhost/Local%20Server/ConnectPlatform/admin/Interests/insertInterestAdmin.php',
                     data:{
-                        title:Title,
-                        content:Content,
+                        titles:interestsTitle,
+                        categories:interestsCategory,
                     },
-                    dataType:"json",
                     success:function(response)
                     {
                         if(response == "success") {
                             //Display successful message and set green shadow to all the fields.
-                            $('#response').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                                '<span class="fa fa-check-circle-o"> Announcement has been added successfully !</span></p>');
-                            $("#Title, #Content").css("box-shadow", "0 0 5px green");
-                            $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)"><p><input type="checkbox">'+Title+'</p></div>');
-                            $(".bulletin-board").append("<div class='announcement'><h2>"+Title+"</h2><p style='padding: 0px 15px;'>"+Content+"</p> </div>");
+                            $('#response').html('<p style="color:#00b300; font-size:18px; margin-top: 2%;">' +
+                                '<span class="fa fa-check-circle-o"> Interests have been added successfully !</span></p>');
                         }
                         else
                         {
                             //Display the error message and set red box shadow to the respective field.
-                            $('#response').html('<p style="color:red; font-size:17px; margin:0;">' +
-                                '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>');
+                            $('#response').html('<p style="color:red; font-size:17px; margin:2%;">' +
+                                '<span class="fa fa-exclamation-triangle">'+response+'</span></p>');
                             $("#"+response[1]+"").css("box-shadow", "0 0 5px red");
                         }
                     }
@@ -220,6 +229,11 @@
         }
         
         function addMore(x) {
+
+            $("<hr style='border-color: #e6e6e6;'>").insertBefore(x);
+
+            $("<a onclick=\"removeInterest(this)\" style=\"margin-left: 5%; color:rgba(0,0,0,.8); cursor: pointer;\"><i class=\"fa fa-remove\"></i> Remove</a>\n").insertBefore(x);
+
             $("<div class=\"wrap-input wrap-login\" id=\"Title\" style=\"border: 2px solid #cccccc; width: 85%; margin-left: 3%;\">\n" +
                 "                        <label class=\"lbl\" for=\"title\">\n" +
                 "                            <span>Title</span>\n" +
@@ -227,6 +241,20 @@
                 "                        <input class=\"inp\" style=\"margin: 10px; padding: 0px;\" id=\"title\" type=\"text\" name=\"title\" maxlength=\"35\" placeholder=\"Enter a title...\" required/>\n" +
                 "                    </div>").insertBefore(x);
 
+            $("<div class=\"wrap-input wrap-login\" id=\"Category\" style=\"border: 2px solid #cccccc; width: 85%; margin-left: 3%;\">\n" +
+                "                        <label class=\"lbl\" for=\"category\" style=\"font-size: 14px;\">\n" +
+                "                            <span>Category</span>\n" +
+                "                        </label>\n" +
+                "                        <input class=\"inp\" id=\"category\" style=\"margin: 10px; padding: 0px; width: 68%;\" type=\"text\" name=\"title\" maxlength=\"35\" placeholder=\"Enter a title...\" required/>\n" +
+                "                    </div>").insertBefore(x);
+
+        }
+
+        function removeInterest(x) {
+            $(x).prev().remove(); //remove <hr>
+            $(x).nextAll().eq(0).remove(); //remove title
+            $(x).nextAll().eq(0).remove(); //remove category
+            $(x).remove(); //remove itself
         }
 
     </script>
