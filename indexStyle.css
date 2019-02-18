@@ -253,7 +253,7 @@ input[type=radio]:checked + label {
     display: none;
 }
 
-/* When the checkbox is checked, add a blue background */
+/* When the checkbox is checked, add a background */
 .rememberme input:checked ~ .checkmark {
     background-color: #999999;
 }
@@ -337,12 +337,17 @@ input[type=radio]:checked + label {
 .interests a:hover{
     background-color: #f2f2f2;
 }
+
+.deleteAnnoun,
+.deleteAdmin,
 .add,
 .interest{
     margin: 0px 15px;
     border-top: #e0e0e0 solid 1px;
 }
 
+.deleteAnnoun p,
+.deleteAdmin p,
 .add p,
 .interest p{
     color: rgba(0, 0, 0, 0.88);
@@ -482,13 +487,39 @@ input[type=radio]:checked + label {
 }
 
 /*----------------------admin.php---------------------------------------*/
+/*.editAdmin,*/
+.deleteAnnoun,
+.deleteAdmin,
 .add{
     margin: 0;
 }
+
+/*.editAdmin:hover,*/
+/*.editAdmin:hover input,*/
+.deleteAnnoun:hover,
+.deleteAdmin:hover,
 .add:hover{
     background-color: #e0e0e0;
 }
 
+.deleteAnnoun p,
+.deleteAdmin p,
 .add p{
     margin-left: 15px;
+    cursor: default;
 }
+
+.deleteAnnoun p input,
+.deleteAdmin p input{
+    margin-right: 10px;
+}
+
+/*.editAdmin input[type=email]{*/
+    /*border: none;*/
+    /*margin: 16px 10px;*/
+    /*font-size: 16px;*/
+/*}*/
+
+/*.editAdmin input[type=checkbox]{*/
+    /*margin-left: 4%;*/
+/*}*/

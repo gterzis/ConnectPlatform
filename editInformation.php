@@ -31,7 +31,7 @@ if (empty($array[8])){
         margin: auto;
         padding: 0;
         border: 1px solid #888;
-        width: 53%;
+        width: 63.2%;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
         -webkit-animation-name: animatetop;
         -webkit-animation-duration: 0.4s;
@@ -83,7 +83,7 @@ if (empty($array[8])){
         padding: 22px 16px;*/
         font-family: Arial, Helvetica, sans-serif;
         height: 400px;
-        width: 682px;
+        width: 820px;
         overflow-y: scroll;
     }
 
@@ -94,11 +94,15 @@ if (empty($array[8])){
     }
 
     .wrap-input{
-        width: 45%;
+        width: 46%;
         display: block;
         float: left;
         border: #cccccc 1px solid;
         padding-bottom: 10px;
+    }
+
+    .wrap-input span{
+        font-size: 14px;
     }
 
     .btn-edit{
@@ -153,7 +157,7 @@ if (empty($array[8])){
             <!--NAME-->
             <div class="wrap-input" id="Name">
                 <label class="lbl" for="name">
-                    <span class="fa fa-user-o"></span>
+                    <span>Name</span>
                 </label>
                 <input class="inp" id="name" type="text" name="name" maxlength="20" placeholder="Name" value="<?= $array[0]?>" >
                 <i style='color:red; position: relative; right: 5px;'>*</i>
@@ -162,26 +166,26 @@ if (empty($array[8])){
             <!-- SURNAME-->
             <div class="wrap-input" id="Surname">
                 <label class="lbl" for="surname">
-                    <span class="fa fa-user-o"></span>
+                    <span>Surname</span>
                 </label>
                 <input class="inp" id="surname" type="text" name="surname" maxlength="25" placeholder="Surname" value="<?= $array[1]?>">
-                <i style='color:red; position: relative; right: 5px;'>*</i>
+                <i style='color:red; position: relative; right: 20px;'>*</i>
             </div>
 
             <!--BIRTHDAY-->
             <div class="wrap-input" id="Bday">
                 <label class="lbl" for="bday">
-                    <span class="fa fa-birthday-cake"></span>
+                    <span>Birthday</span>
                 </label>
                 <input class="inp" id="bday" type="text" onfocus="(this.type='date')" name="bday" required
                        min="1918-01-01" max="<?php echo date("$adult-m-d")?>" placeholder="Date of birth" value="<?= $array[2]?>">
-                <i style='color:red; position: relative; right: 5px;'>*</i>
+                <i style='color:red; position: relative; right: 20px;'>*</i>
             </div>
 
             <!--GENDER-->
             <div class="wrap-input" id="Gender">
                 <label class="lbl" for="gender">
-                    <span class="fa fa-venus-mars"></span>
+                    <span>Gender</span>
                 </label>
                 <input class="inp" type="radio" name="gender" id="male" value="male"
                     <?php if( ($array[3]) == "Male") { ?> checked <?php } ?> >
@@ -189,16 +193,16 @@ if (empty($array[8])){
                 <input class="inp" type="radio" name="gender" id="female" value="female"
                     <?php if( ($array[3]) == "Female") { ?> checked <?php } ?>>
                 <label class="lbl radio-lbl" for="female">Female</label>
-                <i style='color:red; position: relative; left: 45px;'>*</i>
+                <i style='color:red; position: relative; left: 90px;'>*</i>
             </div>
 
             <!-- DISTRICT-->
             <div class="wrap-input" id="District">
                 <label class="lbl" for="autocomplete">
-                    <span class="fa fa-home"></span>
+                    <span>District</span>
                 </label>
                 <input class="inp" id="autocomplete" type="text" name="district" minlength="2" maxlength="100" placeholder="District" value="<?= $array[4]?>">
-                <i style='color:red; position: relative; right: 5px;'>*</i>
+                <i style='color:red; position: relative; right: 12px;'>*</i>
             </div>
             <!-- Autocomplete places api -->
             <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/places.html"); ?>
@@ -206,16 +210,16 @@ if (empty($array[8])){
             <!-- EDUCATION-->
             <div class="wrap-input" id="Education" >
                 <label class="lbl" for="education">
-                    <span class="fa fa-mortar-board"></span>
+                    <span>Education</span>
                 </label>
                 <input class="inp" id="education" onFocus="geolocate()" type="text" name="education" minlength="2" maxlength="25" placeholder="Education" value="<?= $array[5]?>">
-                <i style='color:red; position: relative; right: 15px;'>*</i>
+                <i style='color:red; position: relative; right: 30px;'>*</i>
             </div>
 
             <!-- EMAIL-->
             <div class="wrap-input" id="Email" >
                 <label class="lbl" for="email">
-                    <span class="fa fa-at"></span>
+                    <span>Email</span>
                 </label>
                 <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email address" value="<?= $array[6]?>">
                 <i style='color:red; position: relative; right: 5px;'>*</i>
@@ -224,7 +228,7 @@ if (empty($array[8])){
             <!-- MARITAL STATUS-->
             <div class="wrap-input" id="Marital-Status" >
                 <label class="lbl" for="marital-status">
-                    <span class="fa fa-heart"></span>
+                    <span>Mar. Status</span>
                 </label>
                 <select class="inp" id="marital-status" name="marital-status" style="cursor: pointer">
                     <option value="" disabled selected>Select your marital status</option>

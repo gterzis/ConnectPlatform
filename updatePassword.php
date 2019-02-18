@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require ('./includes/Connection.php');
 
     // Check if all fields are filled.
     if ( empty($_POST["oldPass"]) OR empty($_POST["newPass"]) OR empty($_POST["confirmPass"]))
@@ -27,14 +28,28 @@
     // Check if Password and Confirm Password are matched.
     elseif( $_POST["newPass"] != $_POST["confirmPass"]  )
     {
-        echo " New password and confirm password do not match";
+        echo " Passwords do not match";
         exit();
     }
+    //Update admin's password
+    elseif ($_SESSION['user_admin'] == TRUE)
+    {
+        if($stmt = $conn->prepare("UPDATE admins SET Password = ? WHERE AdminID = ?"))
+        {
+            $stmt->bind_param("si",$_POST["newPass"], $_SESSION['user_id']);
+            $stmt->execute();
+            $stmt->close();
+
+            $_SESSION['user_pass'] = $_POST["newPass"];
+        }
+
+        $conn->close();
+        echo "success";
+        exit();
+    }
+    //Update user's password
     else
     {
-        // Updating password with the new one.
-        require ('./includes/Connection.php');
-
         if($stmt = $conn->prepare("UPDATE users SET Password = ? WHERE ID = ?"))
         {
             $stmt->bind_param("si",$_POST["newPass"], $_SESSION['user_id']);

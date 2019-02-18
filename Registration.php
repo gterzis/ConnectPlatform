@@ -110,7 +110,8 @@
     // Check if email already exists
     if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=? )
                                         UNION 
-								       (SELECT Email FROM admins WHERE Email=?)")) {
+								       (SELECT Email FROM admins WHERE Email=?)"))
+    {
 
         /* bind parameters for markers */
         $stmt->bind_param("ss", $email,$email);

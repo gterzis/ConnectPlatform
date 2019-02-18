@@ -190,9 +190,8 @@ $all = $_GET['all']
             type: "POST",
             url: "http://localhost/Local%20Server/ConnectPlatform/Profile/fetchInterests.php?all="+all+"",
             success: function (response) {
-    temp = JSON.parse(response);
-    temp.forEach(myFunction);
-
+                temp = JSON.parse(response);
+                temp.forEach(myFunction);
                 function myFunction(value) {
                     interests.push(value);
                 }

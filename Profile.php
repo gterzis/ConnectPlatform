@@ -195,7 +195,7 @@
         </div>
 
         <!--INTERESTS-->
-        <div class="interests" style="float: left;">
+        <div class="interests" style="float: left; position: absolute; top: 100%;">
             <h2>Interests</h2>
             <a onclick="addInterest()"><i class="fa fa-plus"></i> Add a new interest</a>
             <!--Any user's interests will be placed here-->

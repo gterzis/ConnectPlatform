@@ -39,9 +39,21 @@ $conn->close();
             return false;
         }
 
-        //Show add interest window
-        function addInterest(){
-            $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Profile/addInterest.php");
+        //Show admins window
+        function showAdmins(){
+            $('#modal-box').load("./Administrators/Admins.php");
+            return false;
+        }
+
+        //Show announcements window
+        function showAnnouncements(){
+            $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/Announcements.php");
+            return false;
+        }
+
+        //Show interests window
+        function showInterests(){
+            $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/admin/Interests/Interests.php");
             return false;
         }
 
@@ -55,54 +67,7 @@ $conn->close();
         //    return false;
         //}
 
-        $(function() {
-            $("#upload-photo").on('click', function (e) {
-                e.preventDefault();
-                $("#photo:hidden").trigger('click');
-            });
-        });
-
-        //Delete user's interest
-        function deleteInterest(name) {
-            if (confirm('Are you sure you want to delete it?')) {
-                var interestName = $(name).siblings("p").text();
-                $.ajax
-                ({
-                    type:'post', url:'Profile/deleteInterest.php',
-                    data:{name: interestName},
-                    success:function(response)
-                    {
-                        if(response == "success") {
-                            $(name).parent().html('<p style="color:#009933; font-size:17px; margin:15px;">' +
-                                '<span id="remove" class="fa fa-check-circle-o"> Selected interest deleted successfully !</span></p>');
-                            //After 3 seconds
-                            setTimeout(function(){
-                                //Remove the div where deleted interest was placed.
-                                $("#remove").parents(".interest").remove();
-                                $(".interests").children('.interest:first').css("border", "none"); // Remove the top border of the first interest
-                            }, 3000);
-                        }
-                        else{
-                            alert("Failed");
-                        }
-                    }
-                });
-            } else {
-                // Do nothing!
-            }
-        }
-
         $(document).ready(function(){
-            //Profile picture updated successfully
-            var x = <?= $success ?>;
-            if (x == true){
-                $("#upload-photo").html("Updated successfully !").css({"background-color" : "transparent", "color" : "green"});
-                setTimeout(
-                    function()
-                    {
-                        location.href = "Profile.php";
-                    }, 2500);
-            }
 
             //Fetch data for bulletin board.
             $.ajax({
@@ -112,23 +77,7 @@ $conn->close();
                 success: function(response){
                     $(".bulletin-board").append(response);
                 }
-
             });
-
-            //Fetch the user's interests.
-            $.ajax({
-                type: "GET",
-                url: "Profile/getInterests.php",
-                dataType: "html",   //expect html to be returned
-                success: function (response) {
-                    $(".interests").append(response);
-                },
-                complete: function () {
-                    //Remove the top border of the first interest
-                    $(".interests").children('.interest:first').css("border", "none");
-                },
-            });
-
         });
 
     </script>
@@ -142,22 +91,18 @@ $conn->close();
 <div id="modal-box"></div>
 
 <!--HEADER-->
-<?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/header2.html"); ?>
+<?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/adminHeader.html"); ?>
 
 <div class="main" style="height: 70px; width: 40%;" >
 
     <!--PERSONAL INFORMATION-->
     <div class="about" style="left: 5%; top: 15px;">
-
-        <span class="fa fa-user-o"><p> <?= $email ?></p></span>
-
+        <span class="fa fa-user-circle"><p> <?= $email ?></p></span>
     </div>
 
     <div class="buttons" style="top: 5px; left: 180px;">
-
         <a onclick="editInformation()"><span class="fa fa-edit"></span> Edit </a>
         <a  style="top:10px; left:200px " onclick="changePassword()"><span class="fa fa-unlock"></span> Change Password</a>
-
     </div>
 
 </div>
@@ -169,11 +114,11 @@ $conn->close();
 </div>
 
 <!--ADDS-->
-<div class="adds">
-    <h2 style="width: 40%; display: inline-block;">Additives</h2>
-    <div class='add' style="border: none;"><p>Add admin</p></i></div>
-    <div class='add'><p>Add announcement</p></div>
-    <div class='add'><p>Add interest</p></div>
+<div class="adds" style="position: absolute; top: 160px;">
+    <h2 style="width: 40%; display: inline-block;">Operations</h2>
+    <div class='add' style="border: none;" onclick="showAdmins()"><p><i class="fa fa-cog" style="color: #999999;"></i> Administrators</p></div>
+    <div class='add' onclick="showAnnouncements()"><p><i class="fa fa-cog" style="color: #999999;"></i> Announcements</p></div>
+    <div class='add' onclick="showInterests()"><p><i class="fa fa-cog" style="color: #999999;"></i> Interests</p></div>
 </div>
 
 

@@ -1,4 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../includes/modalProperties.js"></script><!--Modal properties-->
+<script src="../includes/inputBoxShadow.js"></script> <!--Add box shadow on input fields when focus-->
 <style>
     /*body {font-family: Arial, Helvetica, sans-serif;}*/
 
@@ -73,7 +75,7 @@
     }
 
     .modal-body {
-        padding: 15px 15px 250px 15px;
+        padding: 15px 5px 250px 5px;
         font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -111,6 +113,10 @@
     .btn-change:hover{
         background-color: #333333;
     }
+
+    #response{
+        margin: 0px 25px 5px 35px;
+    }
 </style>
 
 <!-- The Modal -->
@@ -129,9 +135,7 @@
         <!--BODY-->
         <div class="modal-body">
 
-            <div id="response"></div><div class="loader"></div>
-            <p style="font-size: 15px;">Fill the fields below in order to change your password</p>
-
+            <p style="font-size: 15px; margin-left: 20px;">Fill in the fields below in order to change your password</p>
 
                 <!--OLD PASSWORD-->
                 <div class="wrap-input wrap-login" id="Old-pass" style="float: left; border: 2px solid #cccccc; width: 85%; margin-left: 7%;">
@@ -157,7 +161,10 @@
                     <input class="inp" id="confirm-pass" type="password" name="confirm-pass" maxlength="25" placeholder="Confirm new password" requiredx/>
                 </div>
 
-        </div>
+            </div>
+
+            <!--Place succeed/error message-->
+            <div id="response"></div>
 
             <!--FOOTER-->
             <div class="modal-footer">
@@ -171,39 +178,6 @@
 </div>
 
 <script>
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // Get the cancel button
-    var cancel = document.getElementById('cancel');
-
-    // Get the loader element
-    var loader = document.getElementsByClassName("loader")[0];
-
-    // Open the modal
-    modal.style.display = "block";
-
-    //Hide loader spinner
-    loader.style.display ="none";
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick= function() {
-        modal.style.display = "none";
-    }
-
-    cancel.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 
     function updatePassword() {
         var oldPass=$("#old-pass").val();
@@ -212,7 +186,7 @@
         if (oldPass != '' && newPass != '' && confirmPass !=''){
             $.ajax
             ({
-                type:'post', url:'updatePassword.php',
+                type:'post', url:'http://localhost/Local%20Server/ConnectPlatform/updatePassword.php',
                 data:{
                     oldPass:oldPass,
                     newPass:newPass,
@@ -225,7 +199,6 @@
                         $('#response').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
                             '<span class="fa fa-check-circle-o"> Password has been changed successfully !</span></p>');
                         $("#Old-pass, #New-pass, #Confirm-pass").css("box-shadow", "0 0 5px green");
-                        loader.style.display = "block";
                         setTimeout(
                             function()
                             {
@@ -255,6 +228,4 @@
         return false;
     }
 
-    //Add box shadow on input fields when focus
-    $.getScript( "includes/inputBoxShadow.js" );
 </script>
