@@ -84,7 +84,7 @@
                     </div>
 
                     <!--Display successful/error message-->
-                    <div id="deleteResponse" style="margin-left: 4%;"></div>
+                    <div id="deleteResponse" hidden></div>
 
                     <!--FOOTER-->
                     <div class="tabsFooter">
@@ -123,7 +123,8 @@
                         $('#response').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
                             '<span class="fa fa-check-circle-o"> Admin has been added successfully !</span></p>');
                         $("#Email, #Password, #Confirm-pass").css("box-shadow", "0 0 5px green");
-                        $("#showAdmins").append('<div class="deleteAdmin" onclick="checkUncheck(this)"><p><input type="checkbox">'+Email+'</p></div>');
+                        //Update admins
+                        fetchAdminsDelete();
                     }
                     else if (response[1] == "Password"){
                         //Display the error message and set red box shadow to password and confirm password.
@@ -152,19 +153,24 @@
     }
 
     //Fetch all admins.
-    var admins = [];
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/Local%20Server/ConnectPlatform/admin/Administrators/getAdmins.php",
-        dataType: "json",
-        success: function(response){
-            admins = response;
-            admins.forEach(myFunction);
-            function myFunction(value) {
-                $("#showAdmins").append('<div class="deleteAdmin" onclick="checkUncheck(this)"><p><input type="checkbox">'+value+'</p></div>');
+    fetchAdminsDelete();
+    function fetchAdminsDelete() {
+        var admins = [];
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/Local%20Server/ConnectPlatform/admin/Administrators/getAdmins.php",
+            dataType: "json",
+            success: function(response){
+                $("#showAdmins").html(''); //clear contents
+                admins = response;
+                admins.forEach(myFunction);
+                function myFunction(value) {
+                    $("#showAdmins").append('<div class="deleteAdmin" onclick="checkUncheck(this)"><p><input type="checkbox">'+value+'</p></div>');
+                }
             }
-        }
-    });
+        });
+    }
+
 
     //Delete selected admins.
     function deleteAdmins()
@@ -193,11 +199,13 @@
                             if (response == "success") {
                                 //Display successful message and set green shadow to all the fields.
                                 $('#deleteResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                                    '<span class="fa fa-check-circle-o"> Admin(s) deleted successfully !</span></p>');
-                                //Remove selected admin
-                                $(".deleteAdmin p input:checked").each(function () {
-                                    $(this).parent().parent().remove();
-                                });
+                                    '<span class="fa fa-check-circle-o"> Admin(s) deleted successfully !</span></p>').show().addClass("successResponse");
+                                //Update admins
+                                fetchAdminsDelete();
+                                //Disappear message
+                                setTimeout(function(){
+                                    $('#deleteResponse').html('').hide();
+                                }, 5000);
                             }
                             else {
                                 //Display the error message.

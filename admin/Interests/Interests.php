@@ -35,7 +35,7 @@
 
                 <form onsubmit="return insertInterest();">
 
-                    <div style="overflow: auto; max-height: 300px;">
+                    <div style="overflow: auto; max-height: 270px;">
                         <!--INTEREST TITLE-->
                         <div class="wrap-input wrap-login" id="Title" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
                             <label class="lbl" for="title">
@@ -54,9 +54,9 @@
 
                         <a onclick="addMore(this)" style="margin:5%; color:rgba(0,0,0,.8); cursor: pointer;"><i class="fa fa-plus"></i> Add more</a>
 
-                        <div id="response"></div>
-
                     </div>
+
+                    <div id="addResponse" hidden></div>
 
                     <!--FOOTER-->
                     <div class="tabsFooter">
@@ -71,16 +71,16 @@
             <!--DELETE-->
             <div id="Delete" class="tabcontent">
                 <h3 class="tabTitle">Delete</h3>
-                <p class="instruction">Select announcement(s) to delete</p>
+                <p class="instruction">Select interest(s) to delete</p>
 
-                <form onsubmit="return deleteAnnounc();">
+                <form onsubmit="return deleteInterests();">
 
-                    <div id="showAnnounc">
-                        <!--Announcements will be placed here -->
+                    <div id="showInterests" style="overflow: auto; max-height: 270px;">
+                        <!--Interests will be placed here -->
                     </div>
 
                     <!--Display successful/error message-->
-                    <div id="deleteResponse" style="margin-left: 4%;"></div>
+                    <div id="deleteResponse" hidden></div>
 
                     <!--FOOTER-->
                     <div class="tabsFooter">
@@ -94,14 +94,25 @@
 
             <!--EDIT-->
             <div id="Edit" class="tabcontent">
-                <h3>Edit</h3>
-                <p>Tokyo is the capital of Japan.</p>
+                <h3 class="tabTitle">Edit</h3>
+                <p class="instruction">Click on an interest to edit it.</p>
 
-                <!--FOOTER-->
-                <div class="tabsFooter">
-                    <button id="cancel" class="btn-change" type="button"> CANCEL</button>
-                    <button class="btn-change" type="submit"> CHANGE</button>
-                </div>
+                <form onsubmit="return updateInterests();">
+
+                    <div id="showInterestsEdit" style="overflow: auto; max-height: 270px;">
+                        <!--Interests will be placed here -->
+                    </div>
+
+                    <!--Display successful/error message-->
+                    <div id="editResponse" hidden ></div>
+
+                    <!--FOOTER-->
+                    <div class="tabsFooter">
+                        <button onclick="modal.style.display='none'" class="btn-change" type="button"> CANCEL</button>
+                        <button class="btn-change" type="submit"> SAVE SELECTED</button>
+                    </div>
+
+                </form>
 
             </div>
 
@@ -136,22 +147,29 @@
                     {
                         if(response == "success") {
                             //Display successful message and set green shadow to all the fields.
-                            $('#response').html('<p style="color:#00b300; font-size:18px; margin-top: 2%;">' +
-                                '<span class="fa fa-check-circle-o"> Interests have been added successfully !</span></p>');
+                            $('#addResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
+                                '<span class="fa fa-check-circle-o"> Interests have been added successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
+                            //Update interests
+                            fetchInterestsDelete();
+                            fetchInterestsEdit();
+                            //Disappear message
+                            setTimeout(function(){
+                                $('#addResponse').html('').hide();
+                            }, 5000);
                         }
                         else
                         {
                             //Display the error message and set red box shadow to the respective field.
-                            $('#response').html('<p style="color:red; font-size:17px; margin:2%;">' +
-                                '<span class="fa fa-exclamation-triangle">'+response+'</span></p>');
+                            $('#addResponse').html('<p style="color:red; font-size:17px; margin:0;">' +
+                                '<span class="fa fa-exclamation-triangle">'+response+'</span></p>').show().addClass("errorResponse");
                             $("#"+response[1]+"").css("box-shadow", "0 0 5px red");
                         }
                     }
                 });
             }
             else{
-                $('#response').html('<p style="color:red; font-size:18px; margin:0;">' +
-                    '<span class="fa fa-exclamation-triangle"> All fields are required !</span></p>');
+                $('#addResponse').html('<p style="color:red; font-size:18px; margin:0;">' +
+                    '<span class="fa fa-exclamation-triangle"> All fields are required !</span></p>').show().addClass("errorResponse");
                 $("#Title").css("box-shadow", "0 0 5px red");
                 $("#Content").css("box-shadow", "0 0 5px red");
             }
@@ -159,34 +177,37 @@
             return false;
         }
 
-        //Delete selected announcements.
-        function deleteAnnounc()
+        //Delete selected interests.
+        function deleteInterests()
         {
             if (confirm('Are you sure you want to delete it?')) {
 
-                var selectedAnnouns = [];
-                //Get the checked checkboxes and put the corresponding announc title in a array.
-                $(".deleteAnnoun p input:checked").each(function () {
-                    selectedAnnouns.push($(this).parent().text());
+                var selectedInterests = [];
+                //Get the checked checkboxes and put the corresponding interest name in a array.
+                $(".deleteInterest p input:checked").each(function () {
+                    selectedInterests.push($(this).parent().text());
                 });
-                if (selectedAnnouns.length < 1) {
-                    alert("No announcements have been selected !")
+                if (selectedInterests.length < 1) {
+                    alert("No interests have been selected !")
                 }
                 else {
                     $.ajax
                     ({
                         type: 'post',
-                        url: 'http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/deleteAnnouncement.php',
-                        data: {announs: selectedAnnouns},
+                        url: 'http://localhost/Local%20Server/ConnectPlatform/admin/Interests/deleteInterestsAdmin.php',
+                        data: {interests: selectedInterests},
                         success: function (response) {
                             if (response == "success") {
-                                //Display successful message and set green shadow to all the fields.
+                                //Display successful message
                                 $('#deleteResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                                    '<span class="fa fa-check-circle-o"> Announcement(s) deleted successfully !</span></p>');
-                                //Remove selected announcement
-                                $(".deleteAnnoun p input:checked").each(function () {
-                                    $(this).parent().parent().remove();
-                                });
+                                    '<span class="fa fa-check-circle-o"> Interest(s) deleted successfully !</span></p>').show().addClass("successResponse");
+                                //Update interests
+                                fetchInterestsEdit();
+                                fetchInterestsDelete();
+                                //Disappear message
+                                setTimeout(function(){
+                                    $('#deleteResponse').html('').hide();
+                                }, 5000);
                             }
                             else {
                                 //Display the error message.
@@ -201,23 +222,77 @@
             return false;
         }
 
+        function updateInterests(){
+            var selectedInterests = [];
+            var changedNames = [];
+            var changedCategories = [];
+            //Get the checked checkboxes
+            $(".editInterest p input:checked").each(function () {
+                selectedInterests.push($(this).parent().text());//Gets the old name of interest
+                changedNames.push($(this).parent().parent().next().find("#title").val());//Gets the changed name of the interest.
+                changedCategories.push($(this).parent().parent().next().find("#category").val());//Gets the changed category of the interest.
+            });
 
-        //Fetch all admins.
-        var announs = [];
-        $.ajax({
-            type: "GET",
-            url: "http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/getAnnouncements.php",
-            dataType: "json",
-            success: function(response){
-                announs = response;
-                announs.forEach(myFunction);
-                function myFunction(value) {
-                    $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)"><p><input type="checkbox">'+value+'</p></div>');
+            $.ajax({
+                type:"POST",
+                url:"http://localhost/Local%20Server/ConnectPlatform/admin/Interests/updateInterests.php",
+                data:{
+                    oldNames:selectedInterests,
+                    newNames:changedNames,
+                    newCategories: changedCategories,},
+                success:function (response) {
+                    if (response == "success") {
+                        //Display successful message
+                        $('#editResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
+                            '<span class="fa fa-check-circle-o"> ' +
+                            'Interest(s) updated successfully !</span></p>').show().addClass("successResponse");
+                        //Update Interests
+                        fetchInterestsDelete();
+                        fetchInterestsEdit();
+                        //Disappear message
+                        setTimeout(function(){
+                            $('#editResponse').html('').hide();
+                        }, 5000);
+                    }
+                    else {
+                        //Display the error message.
+                        $('#editResponse').html('<p style="color:red; font-size:17px; margin:0;">' +
+                            '<span class="fa fa-exclamation-triangle"> ' + response + '</span></p>').show().addClass("errorResponse");
+                    }
                 }
-            }
-        });
+            });
 
-        // Check/Uncheck ckeckbox when click on an admin
+            return false;
+        }
+
+
+        //Fetch all interests for delete.
+        fetchInterestsDelete();
+        function fetchInterestsDelete() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost/Local%20Server/ConnectPlatform/admin/Interests/getInterestsAdmin.php?action=delete",
+                success: function (response) {
+                    $("#showInterests").html(response);
+                }
+            });
+            return false;
+        }
+
+        //Fetch all interests for edit.
+        fetchInterestsEdit();
+        function fetchInterestsEdit() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost/Local%20Server/ConnectPlatform/admin/Interests/getInterestsAdmin.php?action=edit",
+                success: function (response) {
+                    $("#showInterestsEdit").html(response);
+                }
+            });
+            return false;
+        }
+
+        // Check/Uncheck ckeckbox when click on an interest
         function checkUncheck(x) {
             cb = $(x).find(':checkbox');
             if(cb.is(':checked')){
@@ -225,6 +300,17 @@
             }
             else if(!cb.is(':checked')) {
                 cb.prop('checked', true);
+            }
+        }
+
+        //Show Title and Category divs to edit
+        function showToEdit(x) {
+            cb = $(x).find(':checkbox');
+            if(cb.is(':checked')){
+                $(x).next().fadeIn('slow');
+            }
+            else {
+                $(x).next().fadeOut('fast');
             }
         }
         

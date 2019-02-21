@@ -58,27 +58,28 @@ $conn->close();
         }
 
         //Send data to edit information window and show it.
-        //function editInformation() {
-        //    //Storing user's information into an array in order to be send to the information window.
-        //    var array = ["<?//= $name ?>//", "<?//= $surname ?>//", "<?//= $bday?>//", "<?//= $gender ?>//",
-        //        "<?//= $district ?>//", "<?//= $education ?>//", "<?//= $email?>//", "<?//= $description ?>//", "<?//= $maritalStatus ?>//" ];
-        //    array = JSON.stringify(array);
-        //    $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/editInformation.php?array="+array+"");
-        //    return false;
-        //}
+        function editInformation() {
+            //Storing user's information into an array in order to be send to the information window.
+            $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/admin/editAdminEmail.php");
+            return false;
+        }
 
-        $(document).ready(function(){
-
-            //Fetch data for bulletin board.
+        //Fetch data for bulletin board.
+        function fetchBulletinBoard() {
             $.ajax({
                 type: "GET",
                 url: "../Profile/BulletinBoard.php",
                 dataType: "html",   //expect html to be returned
-                success: function(response){
-                    $(".bulletin-board").append(response);
+                success: function (response) {
+                    $(".bulletin-board").html("<h1>Bulletin Board</h1>" + response);
                 }
             });
-        });
+        }
+
+        $(document).ready(function () {
+            fetchBulletinBoard();//cant call it outside from this scope :(
+        })
+
 
     </script>
 
@@ -109,7 +110,6 @@ $conn->close();
 
 <!--BULLETIN BOARD-->
 <div class="bulletin-board">
-    <h1>Bulletin Board</h1>
     <!--Any announcements will be placed here-->
 </div>
 

@@ -28,6 +28,7 @@
 
     if (mysqli_num_rows($checkEmail) == 1)
     {
+        //Get the user's name
         if ($stmt = $conn->prepare("SELECT Name FROM users WHERE Email=?"))
         {
             // bind parameters for markers
@@ -48,7 +49,7 @@
             $randNum=base64_encode(rand(10000,999999));
             $link = "http://localhost/Local%20Server/ConnectPlatform/resetPass.php?id=$randNum";
 
-
+            //Insert the unique code into database for the corresponding user.
             if( $stmt = $conn->prepare("INSERT INTO reset_password (Email, Link) VALUES(?,?) ") )
             {
                 $stmt->bind_param("ss", $email, $randNum);

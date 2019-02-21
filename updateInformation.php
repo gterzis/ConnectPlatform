@@ -4,7 +4,7 @@ session_start();
 
 //Check if file is called appropriated.
 if ( !($_SERVER["REQUEST_METHOD"] == "POST") ){
-    header("Location: SearchUsers.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -103,10 +103,12 @@ function test_input($data)
 require './includes/Connection.php';
 
 // Check if email already exists
-if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=? )")) {
+if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=?) 
+                                    UNION 
+								   (SELECT Email FROM admins WHERE Email=?)")) {
 
     /* bind parameters for markers */
-    $stmt->bind_param("s", $email);
+    $stmt->bind_param("ss", $email,$email);
 
     /* execute query */
     $stmt->execute();

@@ -72,7 +72,7 @@
                     </div>
 
                     <!--Display successful/error message-->
-                    <div id="deleteResponse" style="margin-left: 4%;"></div>
+                    <div id="deleteResponse" hidden></div>
 
                     <!--FOOTER-->
                     <div class="tabsFooter">
@@ -123,7 +123,9 @@
                             '<span class="fa fa-check-circle-o"> Announcement has been added successfully !</span></p>');
                         $("#Title, #Content").css("box-shadow", "0 0 5px green");
                         $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)"><p><input type="checkbox">'+Title+'</p></div>');
-                        $(".bulletin-board").append("<div class='announcement'><h2>"+Title+"</h2><p style='padding: 0px 15px;'>"+Content+"</p> </div>");
+                        //Update bulletin board
+                        fetchBulletinBoard();
+                        fetchAnnounsDelete();
                     }
                     else
                     {
@@ -168,11 +170,14 @@
                         if (response == "success") {
                             //Display successful message and set green shadow to all the fields.
                             $('#deleteResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                                '<span class="fa fa-check-circle-o"> Announcement(s) deleted successfully !</span></p>');
-                            //Remove selected announcement
-                            $(".deleteAnnoun p input:checked").each(function () {
-                                $(this).parent().parent().remove();
-                            });
+                                '<span class="fa fa-check-circle-o"> Announcement(s) deleted successfully !</span></p>').show().addClass("successResponse");
+                            //Update bulletin board.
+                            fetchBulletinBoard();
+                            fetchAnnounsDelete();
+                            //Disappear message
+                            setTimeout(function(){
+                                $('#deleteResponse').html('').hide();
+                            }, 5000);
                         }
                         else {
                             //Display the error message.
@@ -188,20 +193,25 @@
     }
 
 
-    //Fetch all admins.
-    var announs = [];
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/getAnnouncements.php",
-        dataType: "json",
-        success: function(response){
-            announs = response;
-            announs.forEach(myFunction);
-            function myFunction(value) {
-                $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)"><p><input type="checkbox">'+value+'</p></div>');
+    //Fetch bulletin board.
+    fetchAnnounsDelete();
+    function fetchAnnounsDelete() {
+        var announs = [];
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/getAnnouncements.php",
+            dataType: "json",
+            success: function(response){
+                $("#showAnnounc").html('');
+                announs = response;
+                announs.forEach(myFunction);
+                function myFunction(value) {
+                    $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)">' +
+                        '<p><input type="checkbox">'+value+'</p></div>');
+                }
             }
-        }
-    });
+        });
+    }
 
     // Check/Uncheck ckeckbox when click on an admin
     function checkUncheck(x) {

@@ -338,6 +338,8 @@ input[type=radio]:checked + label {
     background-color: #f2f2f2;
 }
 
+.editInterest,
+.deleteInterest,
 .deleteAnnoun,
 .deleteAdmin,
 .add,
@@ -346,6 +348,8 @@ input[type=radio]:checked + label {
     border-top: #e0e0e0 solid 1px;
 }
 
+.editInterest p,
+.deleteInterest p,
 .deleteAnnoun p,
 .deleteAdmin p,
 .add p,
@@ -488,20 +492,24 @@ input[type=radio]:checked + label {
 
 /*----------------------admin.php---------------------------------------*/
 /*.editAdmin,*/
+.editInterest,
+.deleteInterest,
 .deleteAnnoun,
 .deleteAdmin,
 .add{
     margin: 0;
 }
 
-/*.editAdmin:hover,*/
-/*.editAdmin:hover input,*/
+.editInterest:hover,
+.deleteInterest:hover,
 .deleteAnnoun:hover,
 .deleteAdmin:hover,
 .add:hover{
     background-color: #e0e0e0;
 }
 
+.editInterest p,
+.deleteInterest p,
 .deleteAnnoun p,
 .deleteAdmin p,
 .add p{
@@ -509,17 +517,21 @@ input[type=radio]:checked + label {
     cursor: default;
 }
 
+.editInterest p input,
+.deleteInterest p input,
 .deleteAnnoun p input,
 .deleteAdmin p input{
     margin-right: 10px;
 }
 
-/*.editAdmin input[type=email]{*/
-    /*border: none;*/
-    /*margin: 16px 10px;*/
-    /*font-size: 16px;*/
-/*}*/
+.successResponse{
+    background-color: #e8fce8;
+    padding: 2%;
+    border: #00b300 1px solid;
+}
 
-/*.editAdmin input[type=checkbox]{*/
-    /*margin-left: 4%;*/
-/*}*/
+.errorResponse{
+    background-color: #ffe6e6;
+    padding: 2%;
+    border: red 1px solid;
+}
