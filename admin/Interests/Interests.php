@@ -51,9 +51,9 @@
                             </label>
                             <input class="inp" id="category" style="margin: 10px; padding: 0px; width: 68%;" type="text" name="title" maxlength="35" placeholder="Enter a title..." required/>
                         </div>
-
-                        <a onclick="addMore(this)" style="margin:5%; color:rgba(0,0,0,.8); cursor: pointer;"><i class="fa fa-plus"></i> Add more</a>
-
+                        <div style="margin-bottom: 3%;">
+                            <a onclick="addMore(this)" style="margin:5%; color:#0066cc; cursor: pointer;"><i class="fa fa-plus"></i> Add more</a>
+                        </div>
                     </div>
 
                     <div id="addResponse" hidden></div>
@@ -318,7 +318,7 @@
 
             $("<hr style='border-color: #e6e6e6;'>").insertBefore(x);
 
-            $("<a onclick=\"removeInterest(this)\" style=\"margin-left: 5%; color:rgba(0,0,0,.8); cursor: pointer;\"><i class=\"fa fa-remove\"></i> Remove</a>\n").insertBefore(x);
+            $("<a onclick=\"removeInterest(this)\" style=\"margin-left: 5%; color:red; cursor: pointer;\"><i class=\"fa fa-remove\"></i> Remove</a>\n").insertBefore(x);
 
             $("<div class=\"wrap-input wrap-login\" id=\"Title\" style=\"border: 2px solid #cccccc; width: 85%; margin-left: 3%;\">\n" +
                 "                        <label class=\"lbl\" for=\"title\">\n" +

@@ -78,6 +78,7 @@
             $_SESSION['user_id'] = $id;
             $_SESSION['user_pass'] = $pass;
             $_SESSION['user_email'] = $email;
+            $_SESSION['user_admin'] = FALSE;
 			$stmt->close();
 			$conn->close();
 

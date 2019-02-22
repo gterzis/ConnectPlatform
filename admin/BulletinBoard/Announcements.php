@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/tabsStyle.css"><!--Tab style-->
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" style="padding-top: 70px;">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -86,12 +86,16 @@
 
             <!--EDIT-->
             <div id="Edit" class="tabcontent">
-                <h3>Edit</h3>
-                <p>Tokyo is the capital of Japan.</p>
+                <h3 class="tabTitle">Edit</h3>
+                <p class="instruction">Click on announcement to edit it.</p>
+
+                <div id="showAnnouncEdit">
+                    <!--Announcements will be placed here -->
+                </div>
 
                 <!--FOOTER-->
                 <div class="tabsFooter">
-                    <button id="cancel" class="btn-change" type="button"> CANCEL</button>
+                    <button id="cancel" onclick="modal.style.display='none'" class="btn-change" type="button"> CANCEL</button>
                     <button class="btn-change" type="submit"> CHANGE</button>
                 </div>
 
@@ -102,7 +106,6 @@
 </div>
 
 <script>
-
     function insertAnnouncement() {
         var Title=$("#title").val();
         var Content=$("#content").val();
@@ -207,6 +210,8 @@
                 announs.forEach(myFunction);
                 function myFunction(value) {
                     $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)">' +
+                        '<p><input type="checkbox">'+value+'</p></div>');
+                    $("#showAnnouncEdit").append('<div class="editAnnoun" onclick="checkUncheck(this)">' +
                         '<p><input type="checkbox">'+value+'</p></div>');
                 }
             }

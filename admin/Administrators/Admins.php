@@ -23,8 +23,8 @@
 
             <!--TAB BUTTONS-->
             <div class="tab">
-                <button class="tablinks" onclick="openTab(event, 'Add')" style="padding: 14px 81px;">Add</button>
-                <button class="tablinks" onclick="openTab(event, 'Delete')" style="padding: 14px 80px;">Delete</button>
+                <button class="tablinks" onclick="openTab(event, 'Add')" style="padding: 14px 81.5px;">Add</button>
+                <button class="tablinks" onclick="openTab(event, 'Delete')" style="padding: 14px 81.5px;">Delete</button>
             </div>
 
             <!--ADD-->

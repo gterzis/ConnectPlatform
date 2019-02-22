@@ -6,93 +6,10 @@ if (empty($array[8])){
 }
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://localhost/Local%20Server/ConnectPlatform/includes/modalProperties.js"></script><!--Modal properties-->
+<link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/modalStyle.css"><!--Modal style-->
+<script src="http://localhost/Local%20Server/ConnectPlatform/includes/inputBoxShadow.js"></script> <!--Add box shadow on input fields when focus-->
 <style>
-    /*body {font-family: Arial, Helvetica, sans-serif;}*/
-
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 30px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    /* Modal Content */
-    .modal-content {
-        position: relative;
-        background-color: #fefefe;
-        margin: auto;
-        padding: 0;
-        border: 1px solid #888;
-        width: 63.2%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-        -webkit-animation-name: animatetop;
-        -webkit-animation-duration: 0.4s;
-        animation-name: animatetop;
-        animation-duration: 0.4s
-    }
-
-    /* Add Animation */
-    @-webkit-keyframes animatetop {
-        from {top:-300px; opacity:0}
-        to {top:0; opacity:1}
-    }
-
-    @keyframes animatetop {
-        from {top:-300px; opacity:0}
-        to {top:0; opacity:1}
-    }
-
-    /* The Close Button */
-    .close {
-        color: white;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    #icon{
-        color: white;
-        float: left;
-        font-size: 24px;
-        font-weight: bold;
-        margin: 20px 10px 20px 0px;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    .modal-header {
-        padding: 2px 16px;
-        background-color: #bcbcbc;
-        color: white;
-    }
-
-    .modal-body {
-        padding: 22px 16px;*/
-        font-family: Arial, Helvetica, sans-serif;
-        height: 400px;
-        width: 820px;
-        overflow-y: scroll;
-    }
-
-    .modal-footer {
-        padding: 25px 16px;
-        background-color: #bcbcbc;
-        color: white;
-    }
-
     .wrap-input{
         width: 46%;
         display: block;
@@ -105,36 +22,6 @@ if (empty($array[8])){
         font-size: 14px;
     }
 
-    .btn-edit{
-        background-color: #4d4d4d;
-        color: ivory;
-        padding: 6px 12px;
-        position: relative;
-        bottom: 10px; right: 25px;
-        float: right;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.42857143;
-        text-align: center;
-        vertical-align: middle;
-        -ms-touch-action: manipulation;
-        touch-action: manipulation;
-        cursor: pointer;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        font-weight: bold;
-        height: 40px;
-        width: 150px;
-        font-family: "Roboto", sans-serif;
-        transition: 0.2s;
-        transition-timing-function: ease-in-out;
-        outline: 0;
-    }
-
-    .btn-edit:hover{
-        background-color: #333333;
-    }
-
     #response{
         color: red;
         width: 62%;
@@ -144,16 +31,16 @@ if (empty($array[8])){
 </style>
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" style="padding-top: 20px;">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content" style="width: 63.2%;">
         <div class="modal-header">
             <span class="close">&times;</span>
             <span class="fa fa-edit" id="icon"></span> <h2>Edit information</h2>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body" style="padding: 22px 16px; height: 400px; width: 820px; overflow-y: scroll; background-color: #f2f2f2;">
             <!--NAME-->
             <div class="wrap-input" id="Name">
                 <label class="lbl" for="name">
@@ -251,34 +138,14 @@ if (empty($array[8])){
         <!--FOOTER-->
         <div class="modal-footer">
             <div id="response"">* Required fields</div>
-            <button class="btn-edit" onclick="updateInformation()"> SAVE CHANGES</button>
+<!--            <button class="btn-change" id="cancel"> CANCEL</button>-->
+            <button class="btn-change" onclick="updateInformation()"> SAVE CHANGES</button>
         </div>
     </div>
 
 </div>
 
 <script>
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // Open the modal
-    modal.style.display = "block";
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
     //Set the marital status field
     var maritalStatus = "<?= $array[8]; ?>";
     $("#marital-status option:contains("+maritalStatus+")").attr('selected', 'selected');
@@ -329,7 +196,4 @@ if (empty($array[8])){
 
         return false;
     }
-
-    //Add box shadow on input fields when focus
-    $.getScript( "includes/inputBoxShadow.js" );
 </script>
