@@ -4,7 +4,7 @@
 <script src="http://localhost/Local%20Server/ConnectPlatform/includes/inputBoxShadow.js"></script> <!--Add box shadow on input fields when focus-->
 <script src="http://localhost/Local%20Server/ConnectPlatform/includes/tabsProperties.js"></script><!--Tabs properties-->
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/tabsStyle.css"><!--Tab style-->
-<script></script>
+
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -30,12 +30,11 @@
             <!--ADD-->
             <div id="Add" class="tabcontent">
 
-                <h3 class="tabTitle">Add</h3>
-                <p class="instruction">Fill in the fields below to add a new admin</p>
+                <p class="instruction" style="margin-left: 9%;">Fill in the fields below to add a new admin</p>
 
                 <form onsubmit="return insertAdmin();">
                     <!--EMAIL-->
-                    <div class="wrap-input wrap-login" id="Email" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
+                    <div class="wrap-input wrap-login" id="Email" style="border: 2px solid #cccccc; width: 85%; margin-left: 7%;">
                         <label class="lbl" for="email">
                             <span class="fa fa-at"></span>
                         </label>
@@ -44,7 +43,7 @@
                     </div>
 
                     <!--PASSWORD-->
-                    <div class="wrap-input wrap-login" id="Password" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
+                    <div class="wrap-input wrap-login" id="Password" style="border: 2px solid #cccccc; width: 85%; margin-left: 7%;">
                         <label class="lbl" for="pass1">
                             <span class="fa fa-lock"></span>
                         </label>
@@ -52,7 +51,7 @@
                     </div>
 
                     <!--CONFIRM PASSWORD-->
-                    <div class="wrap-input wrap-login" id="Confirm-pass" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
+                    <div class="wrap-input wrap-login" id="Confirm-pass" style="border: 2px solid #cccccc; width: 85%; margin-left: 7%;">
                         <label class="lbl" for="pass2">
                             <span class="fa fa-lock"></span>
                         </label>
@@ -74,12 +73,11 @@
             <!--DELETE-->
             <div id="Delete" class="tabcontent">
 
-                <h3 class="tabTitle">Delete</h3>
                 <p class="instruction">Select admin(s) to delete</p>
 
                 <form onsubmit="return deleteAdmins();">
 
-                    <div id="showAdmins">
+                    <div id="showAdmins" style="overflow: auto; max-height: 300px;">
                         <!--Admins's details will be placed here -->
                     </div>
 
@@ -121,7 +119,8 @@
                     if(response == "success") {
                         //Display successful message and set green shadow to all the fields.
                         $('#response').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                            '<span class="fa fa-check-circle-o"> Admin has been added successfully !</span></p>');
+                            '<span class="fa fa-check-circle-o"> ' +
+                            'Admin has been added successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
                         $("#Email, #Password, #Confirm-pass").css("box-shadow", "0 0 5px green");
                         //Update admins
                         fetchAdminsDelete();
@@ -129,15 +128,15 @@
                     else if (response[1] == "Password"){
                         //Display the error message and set red box shadow to password and confirm password.
                         $('#response').html('<p style="color:red; font-size:17px; margin:0;">' +
-                            '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>');
-                        $("#Password").css("box-shadow", "0 0 5px red");
-                        $("#Confirm-pass").css("box-shadow", "0 0 5px red");
+                            '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>').show().addClass("errorResponse");
+                        $("#Password, #Confirm-pass").css("box-shadow", "0 0 5px red");
                     }
                     else
                     {
                         //Display the error message and set red box shadow to the respective field.
                         $('#response').html('<p style="color:red; font-size:17px; margin:0;">' +
-                            '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>');
+                            '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>').show().addClass("errorResponse");
+                        $("#Password, #Confirm-pass").css("box-shadow", "none");
                         $("#"+response[1]+"").css("box-shadow", "0 0 5px red");
                     }
                 }

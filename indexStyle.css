@@ -292,8 +292,10 @@ input[type=radio]:checked + label {
 
 /*Bulletin board*/
 .bulletin-board{
-    left: 160px;
+    top: 100px;
+    left: 730px;
     height: auto;
+    position: absolute;
 }
 
 .bulletin-board h1{
@@ -338,6 +340,7 @@ input[type=radio]:checked + label {
     background-color: #f2f2f2;
 }
 
+.editAnnoun,
 .editInterest,
 .deleteInterest,
 .deleteAnnoun,
@@ -348,6 +351,7 @@ input[type=radio]:checked + label {
     border-top: #e0e0e0 solid 1px;
 }
 
+.editAnnoun p,
 .editInterest p,
 .deleteInterest p,
 .deleteAnnoun p,
@@ -492,6 +496,7 @@ input[type=radio]:checked + label {
 
 /*----------------------admin.php---------------------------------------*/
 /*.editAdmin,*/
+.editAnnoun,
 .editInterest,
 .deleteInterest,
 .deleteAnnoun,
@@ -500,6 +505,7 @@ input[type=radio]:checked + label {
     margin: 0;
 }
 
+.editAnnoun:hover,
 .editInterest:hover,
 .deleteInterest:hover,
 .deleteAnnoun:hover,
@@ -508,6 +514,7 @@ input[type=radio]:checked + label {
     background-color: #e0e0e0;
 }
 
+.editAnnoun p,
 .editInterest p,
 .deleteInterest p,
 .deleteAnnoun p,
@@ -517,6 +524,7 @@ input[type=radio]:checked + label {
     cursor: default;
 }
 
+.editAnnoun p input,
 .editInterest p input,
 .deleteInterest p input,
 .deleteAnnoun p input,

@@ -65,6 +65,7 @@ $all = $_GET['all']
 }
 
         #chosen-interests{
+            margin-left: 10px;
             min-height: 50px;
             margin-bottom: 15px;
         }

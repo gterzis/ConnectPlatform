@@ -5,12 +5,14 @@ $newNames = $_REQUEST['newNames'];
 $newCategories = $_REQUEST['newCategories'];
 $error = false;
 
+require_once '../../includes/Connection.php';
+
 //Data validation
 for ($i = 0; $i < count($names); $i++){
 
     $names[$i] = test_input($names[$i]);
 
-    //TITLE validation
+    //NAME validation
     $newNames[$i] = test_input($newNames[$i]);
     //Check if only contains letters, whitespace and starts with letter.
     if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $newNames[$i])) {
@@ -27,11 +29,35 @@ for ($i = 0; $i < count($names); $i++){
         echo " Category: only letters and white space allowed";
         exit();
     }
+
+    // Check if interest name already exists if new name is not equal to the respective old one.
+    if ( ( $stmt = $conn->prepare("SELECT InterestName FROM interests WHERE InterestName=? ") ) AND ($newNames[$i] != $names[$i]) )
+    {
+        /* bind parameters for markers */
+        $stmt->bind_param("s",$newNames[$i]);
+
+        /* execute query */
+        $stmt->execute();
+
+        /* bind result variables */
+        $stmt->bind_result($result);
+
+        /* fetch value */
+        $stmt->fetch();
+
+        if (!empty($result)) {
+            $stmt->close();
+            $conn->close();
+
+            echo " Interest name already exists. Please enter a new one.";
+            $error = true;
+            exit();
+        }
+    }
 }
 
 //If no error has occurred in validation update data
 if (!$error){
-    require_once '../../includes/Connection.php';
     for ($i = 0; $i < count($names); $i++){
 
         if ($stmt = $conn->prepare("UPDATE interests SET InterestName = ?, Category = ? WHERE InterestName = ?"))

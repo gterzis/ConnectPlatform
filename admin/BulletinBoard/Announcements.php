@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/tabsStyle.css"><!--Tab style-->
 
 <!-- The Modal -->
-<div id="myModal" class="modal" style="padding-top: 70px;">
+<div id="myModal" class="modal" style="padding-top: 40px;">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -30,7 +30,6 @@
             <!--ADD-->
             <div id="Add" class="tabcontent">
 
-                <h3 class="tabTitle">Add</h3>
                 <p class="instruction">Fill in the fields below to add a new announcement</p>
 
                 <form onsubmit="return insertAnnouncement();">
@@ -48,7 +47,7 @@
                         <textarea class="inp" style="width: 80%;" id="content" rows="6" cols="60" name="content" placeholder="Enter the content of the announcement" required ></textarea>
                     </div>
 
-                    <div id="response"></div>
+                    <div id="response" hidden></div>
 
                     <!--FOOTER-->
                     <div class="tabsFooter">
@@ -62,12 +61,11 @@
 
             <!--DELETE-->
             <div id="Delete" class="tabcontent">
-                <h3 class="tabTitle">Delete</h3>
                 <p class="instruction">Select announcement(s) to delete</p>
 
                 <form onsubmit="return deleteAnnounc();">
 
-                    <div id="showAnnounc">
+                    <div id="showAnnounc" style="overflow: auto; max-height: 300px;">
                         <!--Announcements will be placed here -->
                     </div>
 
@@ -86,18 +84,24 @@
 
             <!--EDIT-->
             <div id="Edit" class="tabcontent">
-                <h3 class="tabTitle">Edit</h3>
                 <p class="instruction">Click on announcement to edit it.</p>
 
-                <div id="showAnnouncEdit">
-                    <!--Announcements will be placed here -->
-                </div>
+                <form onsubmit="return updateAnnounc();">
 
-                <!--FOOTER-->
-                <div class="tabsFooter">
-                    <button id="cancel" onclick="modal.style.display='none'" class="btn-change" type="button"> CANCEL</button>
-                    <button class="btn-change" type="submit"> CHANGE</button>
-                </div>
+                    <div id="showAnnouncEdit" style="overflow: auto; max-height: 300px;">
+                        <!--Announcements will be placed here -->
+                    </div>
+
+                    <!--Display successful/error message-->
+                    <div id="editResponse" hidden></div>
+
+                    <!--FOOTER-->
+                    <div class="tabsFooter">
+                        <button id="cancel" onclick="modal.style.display='none'" class="btn-change" type="button"> CANCEL</button>
+                        <button class="btn-change" type="submit"> CHANGE</button>
+                    </div>
+
+                </form>
 
             </div>
 
@@ -122,19 +126,23 @@
                 {
                     if(response == "success") {
                         //Display successful message and set green shadow to all the fields.
-                        $('#response').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                            '<span class="fa fa-check-circle-o"> Announcement has been added successfully !</span></p>');
+                        $('#response').html('<p style="color:#00b300; font-size:17px; margin:0;">' +
+                            '<span class="fa fa-check-circle-o"> Announcement has been added successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
                         $("#Title, #Content").css("box-shadow", "0 0 5px green");
-                        $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)"><p><input type="checkbox">'+Title+'</p></div>');
                         //Update bulletin board
                         fetchBulletinBoard();
                         fetchAnnounsDelete();
+                        fetchAnnounsEdit();
+                        //Disappear response message
+                        setTimeout(function(){
+                            $('#response').html('').hide();
+                        }, 5000);
                     }
                     else
                     {
                         //Display the error message and set red box shadow to the respective field.
                         $('#response').html('<p style="color:red; font-size:17px; margin:0;">' +
-                            '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>');
+                            '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>').show().addClass("errorResponse");
                         $("#"+response[1]+"").css("box-shadow", "0 0 5px red");
                     }
                 }
@@ -142,7 +150,7 @@
         }
         else{
             $('#response').html('<p style="color:red; font-size:18px; margin:0;">' +
-                '<span class="fa fa-exclamation-triangle"> All fields are required !</span></p>');
+                '<span class="fa fa-exclamation-triangle"> All fields are required !</span></p>').show().addClass("errorResponse");
             $("#Title").css("box-shadow", "0 0 5px red");
             $("#Content").css("box-shadow", "0 0 5px red");
         }
@@ -177,6 +185,7 @@
                             //Update bulletin board.
                             fetchBulletinBoard();
                             fetchAnnounsDelete();
+                            fetchAnnounsEdit();
                             //Disappear message
                             setTimeout(function(){
                                 $('#deleteResponse').html('').hide();
@@ -192,6 +201,51 @@
             }
         }
 
+        return false;
+    }
+
+    //Update selected announcements
+    function updateAnnounc(){
+        var selectedAnnouns = [];
+        var changedTitles = [];
+        var changedContents = [];
+        //Get the checked checkboxes
+        $(".editAnnoun p input:checked").each(function () {
+            selectedAnnouns.push($(this).parent().text());//Gets the old title of announcement
+            changedTitles.push($(this).parent().parent().next().find("#title").val());//Gets the changed title
+            changedContents.push($(this).parent().parent().next().find("#content").val());//Gets the changed content
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/updateAnnouncements.php",
+            data: {
+                oldTitles: selectedAnnouns,
+                newTitles: changedTitles,
+                newContents: changedContents,
+            },
+            success: function (response) {
+                if (response == "success") {
+                    //Display successful message
+                    $('#editResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
+                        '<span class="fa fa-check-circle-o"> ' +
+                        'Announcement(s) updated successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
+                    //Update Announcements
+                    fetchAnnounsDelete();
+                    fetchAnnounsEdit();
+                    fetchBulletinBoard();
+                    //Disappear message
+                    setTimeout(function () {
+                        $('#editResponse').html('').hide();
+                    }, 5000);
+                }
+                else {
+                    //Display the error message.
+                    $('#editResponse').html('<p style="color:red; font-size:17px; margin:0;">' +
+                        '<span class="fa fa-exclamation-triangle"> ' + response + '</span></p>').show().addClass("errorResponse");
+                }
+            }
+        });
         return false;
     }
 
@@ -211,14 +265,35 @@
                 function myFunction(value) {
                     $("#showAnnounc").append('<div class="deleteAnnoun" onclick="checkUncheck(this)">' +
                         '<p><input type="checkbox">'+value+'</p></div>');
-                    $("#showAnnouncEdit").append('<div class="editAnnoun" onclick="checkUncheck(this)">' +
-                        '<p><input type="checkbox">'+value+'</p></div>');
                 }
             }
         });
     }
 
-    // Check/Uncheck ckeckbox when click on an admin
+    //Fetch bulletin board for edit.
+    fetchAnnounsEdit();
+    function fetchAnnounsEdit() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/getAnnouncementsEdit.php",
+            success: function(response){
+                $("#showAnnouncEdit").html(response);
+            }
+        });
+    }
+
+    //Show Title and Content divs to edit
+    function showToEdit(x) {
+        cb = $(x).find(':checkbox');
+        if(cb.is(':checked')){
+            $(x).next().fadeIn('slow');
+        }
+        else {
+            $(x).next().fadeOut('fast');
+        }
+    }
+
+    // Check/Uncheck ckeckbox when click
     function checkUncheck(x) {
         cb = $(x).find(':checkbox');
         if(cb.is(':checked')){

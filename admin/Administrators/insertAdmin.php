@@ -71,7 +71,7 @@ else {
 // Insert new admin
 if ($stmt = $conn->prepare("INSERT INTO admins (Email, Password) VALUES (?,?)")) {
     // Bind the variables to the parameters.
-    $stmt->bind_param("ss",$email, $_POST['pass1']);
+    $stmt->bind_param("ss",$email, $_POST['pass1'] );
 
     // Execute the statement.
     $stmt->execute();

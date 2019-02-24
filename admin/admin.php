@@ -1,4 +1,3 @@
-<?php ?>
 <?php
 session_start();
 
@@ -25,7 +24,7 @@ $email=$row['Email'];
 $conn->close();
 ?>
 <!DOCTYPE html>
-<html style="height: 100%;">
+<html style="overflow: hidden">
 
 <head>
     <title>Get in Touch - Admin</title>
@@ -83,44 +82,46 @@ $conn->close();
 
     </script>
 
-
 </head>
 
-<body style="background-color: #f2f2f2">
+<body style="background-color: #f2f2f2;">
 
-<!--Place change password, edit information window-->
-<div id="modal-box"></div>
+<!--Page's Content-->
+<div style="overflow: auto; position: absolute; width: 100%; height: 100%;">
+    <!--Place modal box-->
+    <div id="modal-box"></div>
 
-<!--HEADER-->
-<?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/adminHeader.html"); ?>
+    <!--HEADER-->
+    <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/adminHeader.html"); ?>
 
-<div class="main" style="height: 70px; width: 40%;" >
+    <div class="main" style="height: 70px; width: 40%;" >
 
-    <!--PERSONAL INFORMATION-->
-    <div class="about" style="left: 5%; top: 15px;">
-        <span class="fa fa-user-circle"><p> <?= $email ?></p></span>
+        <!--PERSONAL INFORMATION-->
+        <div class="about" style="left: 5%; top: 15px;">
+            <span class="fa fa-user-circle"><p> <?= $email ?></p></span>
+        </div>
+
+        <div class="buttons" style="top: 5px; left: 180px;">
+            <a onclick="editInformation()"><span class="fa fa-edit"></span> Edit </a>
+            <a  style="top:10px; left:200px " onclick="changePassword()"><span class="fa fa-unlock"></span> Change Password</a>
+        </div>
+
     </div>
 
-    <div class="buttons" style="top: 5px; left: 180px;">
-        <a onclick="editInformation()"><span class="fa fa-edit"></span> Edit </a>
-        <a  style="top:10px; left:200px " onclick="changePassword()"><span class="fa fa-unlock"></span> Change Password</a>
+    <!--BULLETIN BOARD-->
+    <div class="bulletin-board">
+        <!--Any announcements will be placed here-->
+    </div>
+
+    <!--ADDS-->
+    <div class="adds" style="position: absolute; top: 160px;">
+        <h2 style="width: 40%; display: inline-block;">Operations</h2>
+        <div class='add' style="border: none;" onclick="showAdmins()"><p><i class="fa fa-cog" style="color: #999999;"></i> Administrators</p></div>
+        <div class='add' onclick="showAnnouncements()"><p><i class="fa fa-cog" style="color: #999999;"></i> Announcements</p></div>
+        <div class='add' onclick="showInterests()"><p><i class="fa fa-cog" style="color: #999999;"></i> Interests</p></div>
     </div>
 
 </div>
-
-<!--BULLETIN BOARD-->
-<div class="bulletin-board">
-    <!--Any announcements will be placed here-->
-</div>
-
-<!--ADDS-->
-<div class="adds" style="position: absolute; top: 160px;">
-    <h2 style="width: 40%; display: inline-block;">Operations</h2>
-    <div class='add' style="border: none;" onclick="showAdmins()"><p><i class="fa fa-cog" style="color: #999999;"></i> Administrators</p></div>
-    <div class='add' onclick="showAnnouncements()"><p><i class="fa fa-cog" style="color: #999999;"></i> Announcements</p></div>
-    <div class='add' onclick="showInterests()"><p><i class="fa fa-cog" style="color: #999999;"></i> Interests</p></div>
-</div>
-
 
 </body>
 

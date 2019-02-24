@@ -30,12 +30,11 @@
             <!--ADD-->
             <div id="Add" class="tabcontent">
 
-                <h3 class="tabTitle">Add</h3>
                 <p class="instruction">Fill in the fields below to add a new interest</p>
 
                 <form onsubmit="return insertInterest();">
 
-                    <div style="overflow: auto; max-height: 270px;">
+                    <div style="overflow: auto; max-height: 300px;">
                         <!--INTEREST TITLE-->
                         <div class="wrap-input wrap-login" id="Title" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
                             <label class="lbl" for="title">
@@ -70,12 +69,11 @@
 
             <!--DELETE-->
             <div id="Delete" class="tabcontent">
-                <h3 class="tabTitle">Delete</h3>
                 <p class="instruction">Select interest(s) to delete</p>
 
                 <form onsubmit="return deleteInterests();">
 
-                    <div id="showInterests" style="overflow: auto; max-height: 270px;">
+                    <div id="showInterests" style="overflow: auto; max-height: 300px;">
                         <!--Interests will be placed here -->
                     </div>
 
@@ -94,12 +92,11 @@
 
             <!--EDIT-->
             <div id="Edit" class="tabcontent">
-                <h3 class="tabTitle">Edit</h3>
                 <p class="instruction">Click on an interest to edit it.</p>
 
                 <form onsubmit="return updateInterests();">
 
-                    <div id="showInterestsEdit" style="overflow: auto; max-height: 270px;">
+                    <div id="showInterestsEdit" style="overflow: auto; max-height: 300px;">
                         <!--Interests will be placed here -->
                     </div>
 
@@ -245,7 +242,7 @@
                         //Display successful message
                         $('#editResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
                             '<span class="fa fa-check-circle-o"> ' +
-                            'Interest(s) updated successfully !</span></p>').show().addClass("successResponse");
+                            'Interest(s) updated successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
                         //Update Interests
                         fetchInterestsDelete();
                         fetchInterestsEdit();

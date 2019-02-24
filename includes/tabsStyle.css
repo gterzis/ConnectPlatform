@@ -1,7 +1,6 @@
 /* Style the tab */
 .tab {
     overflow: hidden;
-    background-color: #f1f1f1;
 }
 
 /* Style the buttons inside the tab */
@@ -16,6 +15,7 @@
     padding: 14px 49.5px;
     transition: 0.3s;
     font-size: 17px;
+    overflow: hidden;
 }
 
 /* Change background color of buttons on hover */

@@ -136,10 +136,10 @@
 
     // Inserting data into database
     if ($stmt = $conn->prepare("INSERT INTO users
-                            (Name, Surname, Birthdate, Gender, District, Education, Email, Password) 
-                             VALUES (?,?,?,?,?,?,?,?)")) {
+                            (Name, Surname, Birthdate, Gender, District, Education, Email, Password, RegistrationDate) 
+                             VALUES (?,?,?,?,?,?,?,?,?)")) {
         // Bind the variables to the parameters.
-        $stmt->bind_param("ssssssss", $name, $surname, $_SESSION['bday'], $gender, $district, $education, $email, $_POST['pass1']);
+        $stmt->bind_param("sssssssss", $name, $surname, $_SESSION['bday'], $gender, $district, $education, $email, $_POST['pass1'], date("Y-m-d") );
 
         // Execute the statement.
         $stmt->execute();
