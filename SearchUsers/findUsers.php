@@ -42,11 +42,32 @@ $sql = $conn -> query("SELECT * FROM users WHERE ( Birthdate > '$minDate' AND Bi
                                                         (District LIKE '$district') AND 
                                                         (Education LIKE '$education') AND 
                                                         (MaritalStatus LIKE '$maritalStatus') ");
-$rows = array();
+
+echo "<p style='margin: 0px 0px 15px 35px; color: #b1b1b1;'>21 results</p>";
 while($data = mysqli_fetch_row($sql))
 {
-    $rows[] = $data[1];
+    //Calculate the age of the user
+    $currentDate = new DateTime(date("Y-m-d"));
+    $age = $currentDate->diff(new DateTime($data[3])); // get the difference between birthday and current date
+    $age =  $age->y; // get the year difference
+
+    echo "  <hr> 
+            <div class='result'>
+
+            <span class='fa fa-user-circle'></span>
+    
+            <button class='sendRequest-btn' onclick='sendRequest();'> Send request</button>
+    
+            <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
+                <p class='userID' hidden>$data[0]</p>
+                <p style='margin-top: 3px;'>$data[5] &nbsp;</p>
+                <p style='clear: left;'>$data[4] &nbsp;</p>
+                <span style='float: left; padding-top: 1px;'> &#9642; </span>
+                <p>&nbsp; $age years old</p>
+                <p style='color: #0066cc; clear: both;'>Interested in: Tennis, Music</p>
+            </div>
+
+         </div>";
 }
 
 $conn->close();
-echo json_encode($rows);

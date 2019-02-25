@@ -42,8 +42,11 @@ if (!isset($_SESSION['gender']))
 <!--HEADER-->
 <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/header2.html"); ?>
 
+<!--Place change password, edit information window-->
+<div id="modal-box"></div>
+
 <!--SIGN UP FORM-->
-<form class="frm" onsubmit="return findUsers();">
+<form class="frm" onsubmit="return showSearchResults();">
 
     <h2>Search for users</h2>
 
@@ -52,8 +55,8 @@ if (!isset($_SESSION['gender']))
         <label class="lbl" for="bday">
             <span >Age</span>
         </label>
-        <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18" max="99" placeholder="From" required>
-        <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%" min="18" min="18" max="99" placeholder="To" required>
+        <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18" max="99" value="18" placeholder="From" required>
+        <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%" min="18" min="18" max="99" value="21" placeholder="To" required>
     </div>
 
     <!--GENDER-->
@@ -143,49 +146,8 @@ if (!isset($_SESSION['gender']))
     $.getScript( "http://localhost/Local%20Server/ConnectPlatform/includes/onlyEnglish.js" );
     //All above do not work when put in <head> :(
 
-    function findUsers() {
-        //Get age range
-        var minAge = $("#minAge").val();
-        var maxAge = $("#maxAge").val();
-
-        //Get selected gender(s)
-        var gender1 = "Female";
-        var gender2 = "Male";
-        if( $("#male").is(":checked") ){
-            gender1 = "Male";
-        }
-        if ( $("#female").is(":checked") ){
-            gender2 = "Female";
-        }
-
-        //Get District
-        var district = $("input[name=district]").val();
-
-        //Get Education
-        var education = $("input[name=education]").val();
-
-        //Get Marital Status
-        var maritalStatus= $("#marital-status").val();
-
-        $.ajax
-        ({
-            method:"POST",
-            url: "http://localhost/Local%20Server/ConnectPlatform/SearchUsers/findUsers.php",
-            data:{
-                minAge: minAge,
-                maxAge: maxAge,
-                gender1: gender1,
-                gender2: gender2,
-                district: district,
-                education: education,
-                maritalStatus: maritalStatus
-            },
-            dataType:"json",
-            success:function (response) {
-                alert(response);
-            }
-        });
-
+    function showSearchResults() {
+        $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/SearchUsers/searchResults.php");
         return false;
     }
 
