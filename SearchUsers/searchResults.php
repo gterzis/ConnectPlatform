@@ -106,7 +106,7 @@
 
         <!--FOOTER-->
         <div class="modal-footer">
-            <button class="btn-change" onclick="modal.style.display='none';"> CLOSE</button>
+            <button class="btn-change" style="margin-left: 66%;" onclick="modal.style.display='none';"> CLOSE</button>
         </div>
 
     </div>

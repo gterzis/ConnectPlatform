@@ -37,6 +37,9 @@ $maritalStatus = "%";
 if (!empty($_POST['maritalStatus']) AND ($_POST['maritalStatus'] != "Any") )
     $maritalStatus = $_POST['maritalStatus'];
 
+//INTERESTS
+$interests = array("Coffee","Sing","Spanish");
+
 $sql = $conn -> query("SELECT * FROM users WHERE ( Birthdate > '$minDate' AND Birthdate < '$maxDate' ) AND 
                                                         (Gender = '$gender1' OR Gender = '$gender2') AND 
                                                         (District LIKE '$district') AND 
@@ -44,14 +47,26 @@ $sql = $conn -> query("SELECT * FROM users WHERE ( Birthdate > '$minDate' AND Bi
                                                         (MaritalStatus LIKE '$maritalStatus') ");
 
 echo "<p style='margin: 0px 0px 15px 35px; color: #b1b1b1;'>21 results</p>";
-while($data = mysqli_fetch_row($sql))
+while($data = mysqli_fetch_assoc($sql))
 {
-    //Calculate the age of the user
-    $currentDate = new DateTime(date("Y-m-d"));
-    $age = $currentDate->diff(new DateTime($data[3])); // get the difference between birthday and current date
-    $age =  $age->y; // get the year difference
+    //Check if user has common interests with the ones in the search input.
+    $commonInterests = "";
+    foreach ($interests as $interest){
+        $sql2 = $conn -> query("SELECT InterestName FROM usersinterests WHERE UserID = '". $data['ID'] ."' AND InterestName = '".$interest."' ");
+        $result = $sql2->fetch_assoc();
+        if(!empty($result))
+            $commonInterests .=  $result['InterestName'].', ';
+    }
 
-    echo "  <hr> 
+    if(!empty($commonInterests)) {
+        $commonInterests = rtrim($commonInterests,', ');//remove last comma + space
+
+        //Calculate the age of the user
+        $currentDate = new DateTime(date("Y-m-d"));
+        $age = $currentDate->diff(new DateTime($data['Birthdate'])); // get the difference between birthday and current date
+        $age = $age->y; // get the year difference
+
+        echo "  <hr> 
             <div class='result'>
 
             <span class='fa fa-user-circle'></span>
@@ -59,15 +74,17 @@ while($data = mysqli_fetch_row($sql))
             <button class='sendRequest-btn' onclick='sendRequest();'> Send request</button>
     
             <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                <p class='userID' hidden>$data[0]</p>
-                <p style='margin-top: 3px;'>$data[5] &nbsp;</p>
-                <p style='clear: left;'>$data[4] &nbsp;</p>
+                <p class='userID' hidden>$data[ID]</p>
+                <p style='margin-top: 3px;'>$data[District] &nbsp;</p>
+                <p style='clear: left;'>$data[Gender] &nbsp;</p>
                 <span style='float: left; padding-top: 1px;'> &#9642; </span>
                 <p>&nbsp; $age years old</p>
-                <p style='color: #0066cc; clear: both;'>Interested in: Tennis, Music</p>
+                <p style='color: #0066cc; clear: both;'>Interested in: $commonInterests</p>
             </div>
 
          </div>";
+    }
+
 }
 
 $conn->close();
