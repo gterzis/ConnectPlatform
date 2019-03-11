@@ -24,9 +24,17 @@
     $gender=$row['Gender'];
     $district=str_replace(' ', '%20', $row['District']);
     $education=str_replace(' ', '%20', $row['Education']);
+    $occupation=str_replace(' ', '%20', $row['Occupation']);
     $email=$row['Email'];
     $description=str_replace(' ', '%20', $row['Description']);
     $maritalStatus = $row['MaritalStatus'];
+
+    // check for matching requests
+    $notification = false;
+    $sql = $conn -> query("SELECT * FROM matching_requests WHERE ReceiverID = $_SESSION[user_id]");
+    if($sql -> num_rows > 0){
+        $notification = true;
+    }
 
 	$conn->close();
 ?>
@@ -39,6 +47,7 @@
         <link rel="stylesheet" href="indexStyle.css">
 
         <script language="JavaScript">
+
             //Show change password window
             function changePassword(){
                 $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/changePassword.php");
@@ -55,7 +64,7 @@
             function editInformation() {
                 //Storing user's information into an array in order to be send to the information window.
                 var array = ["<?= $name ?>", "<?= $surname ?>", "<?= $bday?>", "<?= $gender ?>",
-                    "<?= $district ?>", "<?= $education ?>", "<?= $email?>", "<?= $description ?>", "<?= $maritalStatus ?>" ];
+                    "<?= $district ?>", "<?= $education ?>", "<?= $occupation ?>", "<?= $email?>", "<?= $description ?>", "<?= $maritalStatus ?>" ];
                 array = JSON.stringify(array);
                 $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/editInformation.php?array="+array+"");
                 return false;
@@ -100,6 +109,8 @@
 
             $(document).ready(function(){
                 //Profile picture updated successfully
+
+
                 var x = <?= $success ?>;
                 if (x == true){
                     $("#upload-photo").html("Updated successfully !").css({"background-color" : "transparent", "color" : "green"});
@@ -173,9 +184,9 @@
                 <span class="fa fa-birthday-cake"><p> <?= $bday ?></p></span>
                 <span class="fa fa-home"><p>     <?= $row['District'] ?></p></span>
                 <span class="fa fa-mortar-board"><p><?= $row['Education'] ?></p></span>
+                <span class="fa fa-briefcase"><p> <?php if(empty($occupation)) echo "No details to show"; else echo $occupation; ?> </p></span>
                 <span class="fa fa-venus-mars"><p> <?= $gender ?></p></span>
                 <span class="fa fa-heart"><p> <?php if(empty($maritalStatus)) echo "No details to show"; else echo $maritalStatus; ?> </p></span>
-
             </div>
 
             <div class="buttons">

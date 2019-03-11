@@ -9,6 +9,7 @@
         $_SESSION['bday'] = date("Y-m-d", strtotime($_POST["bday"]));
         $_SESSION['district'] = $_POST["district"];
         $_SESSION['education'] = $_POST["education"];
+        $_SESSION['occupation'] = $_POST["occupation"];
         $_SESSION['email'] = $_POST["email"];
 
         //GENDER validation
@@ -59,6 +60,15 @@
             exit();
         }
 
+        //OCCUPATION validation
+        $occupation = test_input($_POST["occupation"]);
+        // check if address only contains letters, numbers and whitespace
+        if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $occupation)) {
+            $dataErr = base64_encode("Occupation: only letters, numbers and  white space are allowed");
+            header("Location: Register.php?ErrMess=$dataErr&field=Occupation");
+            exit();
+        }
+
         //EMAIL validation
         $email = strtolower($_POST["email"]); // converting input email to lowercase.
         $email = test_input($email);
@@ -91,7 +101,7 @@
 	}
     // If the user has not pressed register button. This prevents users visit this page directly.
     else {
-        header("Location: SearchUsers.php");
+        header("Location: index.php");
         exit();
     }
 
@@ -136,10 +146,10 @@
 
     // Inserting data into database
     if ($stmt = $conn->prepare("INSERT INTO users
-                            (Name, Surname, Birthdate, Gender, District, Education, Email, Password, RegistrationDate) 
-                             VALUES (?,?,?,?,?,?,?,?,?)")) {
+                            (Name, Surname, Birthdate, Gender, District, Education, Occupation, Email, Password, RegistrationDate) 
+                             VALUES (?,?,?,?,?,?,?,?,?,?)")) {
         // Bind the variables to the parameters.
-        $stmt->bind_param("sssssssss", $name, $surname, $_SESSION['bday'], $gender, $district, $education, $email, $_POST['pass1'], date("Y-m-d") );
+        $stmt->bind_param("ssssssssss", $name, $surname, $_SESSION['bday'], $gender, $district, $education, $occupation, $email, $_POST['pass1'], date("Y-m-d") );
 
         // Execute the statement.
         $stmt->execute();

@@ -1,14 +1,14 @@
 <?php
 $array = json_decode($_GET['array']);
 $adult= date("Y") - 18;
-if (empty($array[8])){
-    $array[8] = "none";
+if (empty($array[9])){ // marital status
+    $array[9] = "none";
 }
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://localhost/Local%20Server/ConnectPlatform/includes/modalProperties.js"></script><!--Modal properties-->
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/modalStyle.css"><!--Modal style-->
-<script src="http://localhost/Local%20Server/ConnectPlatform/includes/inputBoxShadow.js"></script> <!--Add box shadow on input fields when focus-->
+<link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/radioButtonStyle.css"> <!--Radio button style-->
 <style>
     .wrap-input{
         width: 46%;
@@ -44,52 +44,53 @@ if (empty($array[8])){
             <!--NAME-->
             <div class="wrap-input" id="Name">
                 <label class="lbl" for="name">
-                    <span>Name</span>
+                    <span>Name <i style=' color:red;'> *</i></span>
                 </label>
                 <input class="inp" id="name" type="text" name="name" maxlength="20" placeholder="Name" value="<?= $array[0]?>" >
-                <i style='color:red; position: relative; right: 5px;'>*</i>
             </div>
 
             <!-- SURNAME-->
             <div class="wrap-input" id="Surname">
                 <label class="lbl" for="surname">
-                    <span>Surname</span>
+                    <span>Surname <i style=' color:red;'> *</i></span>
                 </label>
-                <input class="inp" id="surname" type="text" name="surname" maxlength="25" placeholder="Surname" value="<?= $array[1]?>">
-                <i style='color:red; position: relative; right: 20px;'>*</i>
+                <input class="inp" id="surname" style="width: 65%;" type="text" name="surname" maxlength="25" placeholder="Surname" value="<?= $array[1]?>">
             </div>
 
             <!--BIRTHDAY-->
             <div class="wrap-input" id="Bday">
                 <label class="lbl" for="bday">
-                    <span>Birthday</span>
+                    <span>Birthday <i style=' color:red;'> *</i></span>
                 </label>
                 <input class="inp" id="bday" type="text" onfocus="(this.type='date')" name="bday" required
                        min="1918-01-01" max="<?php echo date("$adult-m-d")?>" placeholder="Date of birth" value="<?= $array[2]?>">
-                <i style='color:red; position: relative; right: 20px;'>*</i>
             </div>
 
             <!--GENDER-->
             <div class="wrap-input" id="Gender">
                 <label class="lbl" for="gender">
-                    <span>Gender</span>
+                    <span>Gender <i style=' color:red;'> *</i></span>
                 </label>
-                <input class="inp" type="radio" name="gender" id="male" value="male"
-                    <?php if( ($array[3]) == "Male") { ?> checked <?php } ?> >
-                <label class="lbl radio-lbl" for="male">Male</label>
-                <input class="inp" type="radio" name="gender" id="female" value="female"
-                    <?php if( ($array[3]) == "Female") { ?> checked <?php } ?>>
-                <label class="lbl radio-lbl" for="female">Female</label>
-                <i style='color:red; position: relative; left: 90px;'>*</i>
+                <label class="pure-material-radio">
+                    <input class="inp" type="radio" name="gender" id="male" value="male"
+                        <?php if( ($array[3]) == "Male") { ?> checked <?php } ?> >
+                    <span style="font-size: initial">Male</span>
+                </label>
+
+                <label class="pure-material-radio">
+                    <input class="inp" type="radio" name="gender" id="female" value="female"
+                        <?php if( ($array[3]) == "Female") { ?> checked <?php } ?>>
+                    <span style="font-size: initial">Female</span>
+                </label>
+
             </div>
 
             <!-- DISTRICT-->
             <div class="wrap-input" id="District">
                 <label class="lbl" for="autocomplete">
-                    <span>District</span>
+                    <span>District <i style=' color:red;'> *</i></span>
                 </label>
                 <input class="inp" id="autocomplete" type="text" name="district" minlength="2" maxlength="100" placeholder="District" value="<?= $array[4]?>">
-                <i style='color:red; position: relative; right: 12px;'>*</i>
             </div>
             <!-- Autocomplete places api -->
             <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/places.html"); ?>
@@ -97,19 +98,25 @@ if (empty($array[8])){
             <!-- EDUCATION-->
             <div class="wrap-input" id="Education" >
                 <label class="lbl" for="education">
-                    <span>Education</span>
+                    <span>Education <i style=' color:red;'> *</i></span>
                 </label>
-                <input class="inp" id="education" onFocus="geolocate()" type="text" name="education" minlength="2" maxlength="25" placeholder="Education" value="<?= $array[5]?>">
-                <i style='color:red; position: relative; right: 30px;'>*</i>
+                <input class="inp" style="width: 65%;" id="education" type="text" name="education" minlength="2" maxlength="35" placeholder="Education" value="<?= $array[5]?>">
+            </div>
+
+            <!-- OCCUPATION-->
+            <div class="wrap-input" id="Occupation" >
+                <label class="lbl" for="occupation">
+                    <span>Occupation</span>
+                </label>
+                <input class="inp" style="width: 65%;" id="occupation" type="text" name="occupation" minlength="2" maxlength="35" placeholder="Occupation" value="<?= $array[6]?>">
             </div>
 
             <!-- EMAIL-->
             <div class="wrap-input" id="Email" >
                 <label class="lbl" for="email">
-                    <span>Email</span>
+                    <span>Email <i style=' color:red;'> *</i></span>
                 </label>
-                <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email address" value="<?= $array[6]?>">
-                <i style='color:red; position: relative; right: 5px;'>*</i>
+                <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email address" value="<?= $array[7]?>">
             </div>
 
             <!-- MARITAL STATUS-->
@@ -128,8 +135,8 @@ if (empty($array[8])){
 
             <!-- DESCRIPTION-->
             <div style="float: left; clear: left; margin-left: 20px;">
-                <label style=" float:left; clear: left; color: #999999;">Description</label>
-                <textarea rows="6" cols="60" id="description" placeholder="Description" maxlength="300" style=" float:left; clear: left;"><?= $array[7]?>
+                <label style=" float:left; clear: left; color: #999999;">Description (max. 300 characters)</label>
+                <textarea rows="6" cols="60" id="description" placeholder="Description" maxlength="300" style=" float:left; clear: left;"><?= $array[8]?>
                 </textarea>
             </div>
 
@@ -147,7 +154,7 @@ if (empty($array[8])){
 
 <script>
     //Set the marital status field
-    var maritalStatus = "<?= $array[8]; ?>";
+    var maritalStatus = "<?= $array[9]; ?>";
     $("#marital-status option:contains("+maritalStatus+")").attr('selected', 'selected');
 
     //Update information
@@ -159,6 +166,7 @@ if (empty($array[8])){
         var gender=$("input[name=gender]:checked").val();
         var district=$("input[name=district]").val();
         var education=$("#education").val();
+        var occupation=$("#occupation").val();
         var email=$("#email").val();
         var description=$("#description").val();
         var maritalStatus=$("#marital-status").val();
@@ -173,6 +181,7 @@ if (empty($array[8])){
                     gender:gender,
                     district:district,
                     education:education,
+                    occupation:occupation,
                     email:email,
                     description:description,
                     maritalStatus:maritalStatus
@@ -196,4 +205,5 @@ if (empty($array[8])){
 
         return false;
     }
+
 </script>

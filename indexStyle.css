@@ -82,9 +82,9 @@
     left: 50%;
     height: auto;
     width: 600px;
-    border: #f2f2f2 solid 1px;
+    /*border: #f2f2f2 solid 1px;*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: #f2f2f2;
+    background: rgba(188, 188, 188, 0.8);
     padding-bottom: 10px;
 }
 
@@ -190,12 +190,44 @@ input[type=radio]:checked + label {
 }
 
 /*---------------------------------Login.php------------------------------------*/
+.SearchUsers-pagecontent,
+.register-pagecontent,
+.login-pagecontent{
+    background: url(images/hiking.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.register-pagecontent{
+    background: url(images/cooking2.jpg) no-repeat center center fixed;
+}
+
+.SearchUsers-pagecontent{
+    background: url(images/dogs.jpg) no-repeat center center fixed;
+}
 
 .frm-login{
-    top: 59%;
+    top: 58%;
     left: 50%;
     height: 380px;
     width: 410px;
+    background: rgba(188, 188, 188, 0.8);
+    border: none;
 }
 
 .wrap-login{
@@ -271,6 +303,7 @@ input[type=radio]:checked + label {
     outline: 0;
     cursor: pointer;
     font-family: inherit;
+    font-weight: bold;
 }
 
 /*------------------------------Profile.php----------------------------------------*/
@@ -282,7 +315,7 @@ input[type=radio]:checked + label {
     background-color: white;
     border-radius: 2px;
     width: 40%;
-    height: 520px;
+    height: 550px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
     position: relative;
     top: 20px;
@@ -307,6 +340,18 @@ input[type=radio]:checked + label {
     width: 100%;
 }
 
+.bulletin-board h2{
+    width: 40%;
+    display: inline-block;
+}
+
+.creationDate{
+    display: inline-block;
+    margin-left: 20%;
+    font-size: 14px;
+    color: rgba(0,0,0,.6);
+}
+
 .announcement{
     border-top: #999999 solid 1px;
     border-bottom: #999999 solid 1px;
@@ -316,7 +361,7 @@ input[type=radio]:checked + label {
 /*Interests*/
 .adds,
 .interests{
-    margin: 25px 0px;
+    margin: 45px 0px;
     clear: left;
     height: auto;
     font-family: Verdana, Helvetica, Arial;

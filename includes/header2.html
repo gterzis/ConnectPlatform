@@ -9,7 +9,12 @@
         <a href="http://localhost/Local%20Server/ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
     </div>
 </div>
-
+<script>
+    $(".fa-bell").click(function () {
+        $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Profile/Notifications/notifications.php");
+        return false;
+    });
+</script>
 <style>
 
     body{

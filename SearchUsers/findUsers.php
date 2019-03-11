@@ -1,6 +1,6 @@
 <?php
 require '../includes/Connection.php';
-
+session_start();
 //AGE calculations
 if (!empty($_POST['minAge'])){
     $minAge =  $_POST['minAge'];//Get selected minimum age.
@@ -38,17 +38,23 @@ if (!empty($_POST['maritalStatus']) AND ($_POST['maritalStatus'] != "Any") )
     $maritalStatus = $_POST['maritalStatus'];
 
 //INTERESTS
-$interests = array("Coffee","Sing","Spanish");
+$interests = array();
+$interests = $_POST['interests'];
 
+//Find users based on search input(except interests). Don't show those who already sent request.
 $sql = $conn -> query("SELECT * FROM users WHERE ( Birthdate > '$minDate' AND Birthdate < '$maxDate' ) AND 
                                                         (Gender = '$gender1' OR Gender = '$gender2') AND 
                                                         (District LIKE '$district') AND 
                                                         (Education LIKE '$education') AND 
-                                                        (MaritalStatus LIKE '$maritalStatus') ");
+                                                        (MaritalStatus LIKE '$maritalStatus') AND 
+                                                        (ID != $_SESSION[user_id]) AND 
+                                                        ID NOT IN (SELECT ReceiverID FROM matching_requests
+                                                                    WHERE SenderID = $_SESSION[user_id] )");
 
-echo "<p style='margin: 0px 0px 15px 35px; color: #b1b1b1;'>21 results</p>";
+$numOfResults = 0;
 while($data = mysqli_fetch_assoc($sql))
 {
+    $numOfResults += 1;
     //Check if user has common interests with the ones in the search input.
     $commonInterests = "";
     foreach ($interests as $interest){
@@ -58,6 +64,7 @@ while($data = mysqli_fetch_assoc($sql))
             $commonInterests .=  $result['InterestName'].', ';
     }
 
+    //if user has no common interests with the ones in the search input is not showing in the results.
     if(!empty($commonInterests)) {
         $commonInterests = rtrim($commonInterests,', ');//remove last comma + space
 
@@ -70,21 +77,35 @@ while($data = mysqli_fetch_assoc($sql))
             <div class='result'>
 
             <span class='fa fa-user-circle'></span>
-    
-            <button class='sendRequest-btn' onclick='sendRequest();'> Send request</button>
-    
+            
+            <button class='sendRequest-btn' onclick='sendRequest(this);'> Send request</button>
+            
             <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                 <p class='userID' hidden>$data[ID]</p>
-                <p style='margin-top: 3px;'>$data[District] &nbsp;</p>
+                <p style='margin-top: 3px;'>$data[District]</p>
                 <p style='clear: left;'>$data[Gender] &nbsp;</p>
                 <span style='float: left; padding-top: 1px;'> &#9642; </span>
                 <p>&nbsp; $age years old</p>
-                <p style='color: #0066cc; clear: both;'>Interested in: $commonInterests</p>
+                <p style='clear: left;'>$data[Education] &nbsp;</p>
+                <span style='float: left; padding-top: 1px;'> &#9642; </span>
+                <p>&nbsp; $data[MaritalStatus]</p>
+                <p style='color: #0066cc; clear: both;'>
+                    Interested in: <p class='commonInterests' style='color: #0066cc;'> $commonInterests</p>
+                </p>
             </div>
 
          </div>";
     }
+    else
+        $numOfResults -= 1;
 
 }
 
 $conn->close();
+?>
+<script>
+
+    var numOfResults = <?= $numOfResults ?>;
+    $("#results").prepend("<p style='margin: 0px 0px 15px 35px; color: #b1b1b1;'>"+ numOfResults +" results</p>");//show the number of results
+
+</script>

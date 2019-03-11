@@ -70,6 +70,17 @@ if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $education)) {
     exit();
 }
 
+//OCCUPATION validation
+$occupation = test_input($_POST["occupation"]);
+// check if address only contains letters, numbers and whitespace
+if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $occupation)) {
+    echo " Occupation: only letters, numbers and  white space are allowed";
+    ?>
+    <script> $("#Occupation").css("box-shadow", "0 0 5px red");</script>
+    <?php
+    exit();
+}
+
 //EMAIL validation
 $email = strtolower($_POST["email"]); // converting input email to lowercase.
 $email = test_input($email);
@@ -138,9 +149,9 @@ if ($stmt = $conn->prepare("(SELECT Email FROM users WHERE Email=?)
 
 //Update user's information
 if($stmt = $conn->prepare("UPDATE users SET Name = ?, Surname = ?, Birthdate = ?, Gender = ?, 
-									District = ?, Education = ?, Description = ?, Email = ?, MaritalStatus = ? WHERE ID = ?"))
+									District = ?, Education = ?, Occupation = ?, Description = ?, Email = ?, MaritalStatus = ? WHERE ID = ?"))
 {
-    $stmt->bind_param("sssssssssi",$name, $surname, $bday, $gender ,$district, $education, $description, $email, $maritalStatus, $_SESSION['user_id'] );
+    $stmt->bind_param("ssssssssssi",$name, $surname, $bday, $gender ,$district, $education, $occupation, $description, $email, $maritalStatus, $_SESSION['user_id'] );
     $stmt->execute();
     $stmt->close();
     $_SESSION['user_email'] = $email;

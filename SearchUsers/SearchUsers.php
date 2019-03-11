@@ -39,6 +39,7 @@ if (!isset($_SESSION['gender']))
     }
 </style>
 <body style="margin: 0px;">
+<div class="SearchUsers-pagecontent">
 <!--HEADER-->
 <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/header2.html"); ?>
 
@@ -55,8 +56,8 @@ if (!isset($_SESSION['gender']))
         <label class="lbl" for="bday">
             <span >Age</span>
         </label>
-        <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18" max="99" value="18" placeholder="From" required>
-        <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%" min="18" min="18" max="99" value="21" placeholder="To" required>
+        <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18"  placeholder="From" required>
+        <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%"  max="99"  placeholder="To" required>
     </div>
 
     <!--GENDER-->
@@ -96,6 +97,14 @@ if (!isset($_SESSION['gender']))
         <input class="inp" id="education" onFocus="geolocate()" type="text" name="education" minlength="2" maxlength="25" placeholder="Education">
     </div>
 
+    <!--SEARCH INTEREST-->
+    <div class="wrap-input" style="float: left;">
+        <label class="lbl" for="search">
+            <span class="fa fa-search"></span>
+        </label>
+        <input class="inp" id="search" maxlength="25" placeholder="Search for interest..." autocomplete="off"/>
+    </div>
+
     <!-- MARITAL STATUS-->
     <div class="wrap-input" id="Marital-Status" style="float: left;" >
         <label class="lbl" for="education">
@@ -111,13 +120,6 @@ if (!isset($_SESSION['gender']))
         </select>
     </div>
 
-    <!--SEARCH INTEREST-->
-    <div class="wrap-input" style="float: left; clear: both;">
-        <label class="lbl" for="search">
-            <span class="fa fa-search"></span>
-        </label>
-        <input class="inp" id="search" maxlength="25" placeholder="Search for interest..." autocomplete="off"/>
-    </div>
     <!--Autocomplete for interests-->
     <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.php?all=true"); ?>
 
@@ -127,14 +129,14 @@ if (!isset($_SESSION['gender']))
 
     <!--BUTTON-->
     <div style="display: block; ">
-        <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php" style="color: #0066cc; border: #0066cc solid 1px; border-radius: 4px; padding: 10px 12px; text-decoration: none; float: left; margin-left: 100px;">
+        <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php" style="color:#fefefe; border-radius: 4px; padding: 10px 12px; text-decoration: none; float: left; margin-left: 100px; background-color: #0066cc;">
             <i class="fa fa-arrow-left"></i> Back to profile</a>
         <button class="btn" type="submit" style="float: left;">SEARCH</button>
     </div>
 
 
 </form>
-
+</div>
 </body>
 
 </html>
@@ -150,5 +152,33 @@ if (!isset($_SESSION['gender']))
         $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/SearchUsers/searchResults.php");
         return false;
     }
+
+    var minFirstClick = true;
+    //Dont let min age surpass max age
+    $("#minAge").on('keyup mouseup', function () {
+        var minAge = $(this).val();
+        var maxAge = $(this).siblings("input").val();
+        if (minAge >= maxAge){
+            $(this).prop('max', maxAge);
+        }
+        if (minAge > maxAge){
+            $(this).siblings("input").prop('min', minAge);
+        }
+    });
+
+    var maxFirstClick = true;
+    //Dont let max age go under min age
+    $("#maxAge").on('keydown mousedown', function () {
+        var maxAge = $(this).val();
+        var minAge = $(this).siblings("input").val();
+        if (maxFirstClick){
+            $(this).prop('min', minAge);
+            maxFirstClick = false;
+        }
+
+        if (maxAge == minAge){
+            $(this).prop('min', minAge);
+        }
+    });
 
 </script>

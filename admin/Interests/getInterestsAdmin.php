@@ -19,7 +19,7 @@ else if ($_GET['action'] == "edit") {
     echo "<div class='toEdit' hidden>
                                 <!--INTEREST TITLE-->
             <div class=\"wrap-input wrap-login\" id=\"Title\" style=\"border: 2px solid #cccccc; width: 85%; margin-left: 3%;\">
-                <label class=\"lbl\" for=\"title\">
+                <label class=\"lbl\" for=\"title\" style=\"font-size: 14px;\">
                     <span>Title</span>
                 </label>
                 <input value='$r[InterestName]' class=\"inp\" style=\"margin: 10px; padding: 0px;\" id=\"title\" type=\"text\" name=\"title\" maxlength=\"35\" placeholder=\"Enter a title...\" required/>

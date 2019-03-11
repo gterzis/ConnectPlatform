@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/radioButtonStyle.css"> <!--Radio button style-->
         <link rel="stylesheet" href="indexStyle.css" >
         <script>
             $(document).ready(function(){
@@ -33,6 +34,7 @@
     </head>
 
     <body style="margin: 0px;">
+    <div class="register-pagecontent">
         <!--HEADER-->
         <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/head.html"); ?>
 
@@ -46,7 +48,7 @@
                 <label class="lbl" for="name">
                     <span class="fa fa-user-o"></span>
                 </label>
-                <input class="inp" id="name" type="text" name="name" maxlength="20" placeholder="Name"
+                <input class="inp" id="name" type="text" name="name" maxlength="20" placeholder="Name" required
                        value="<?php if (isset($_SESSION['name'])) echo $_SESSION['name']; ?>">
             </div>
 
@@ -55,7 +57,7 @@
                 <label class="lbl" for="surname">
                     <span class="fa fa-user-o"></span>
                 </label>
-                <input class="inp" id="surname" type="text" name="surname" maxlength="25" placeholder="Surname"
+                <input class="inp" id="surname" type="text" name="surname" maxlength="25" placeholder="Surname" required
                        value="<?php if (isset($_SESSION['surname'])) echo $_SESSION['surname']; ?>">
             </div>
 
@@ -74,12 +76,17 @@
                 <label class="lbl" for="gender">
                     <span class="fa fa-venus-mars"></span>
                 </label>
-                <input class="inp" type="radio" name="gender" id="male" value="male"
-                    <?php if( ($_SESSION['gender']) == "male") { ?> checked <?php } ?> >
-                <label class="lbl radio-lbl" for="male">Male</label>
-                <input class="inp" type="radio" name="gender" id="female" value="female"
-                    <?php if( ($_SESSION['gender']) == "female") { ?> checked <?php } ?>>
-                <label class="lbl radio-lbl" for="female">Female</label>
+                <label class="pure-material-radio" style="margin: 12px;">
+                    <input class="inp" type="radio" name="gender" id="male" value="male"
+                        <?php if( ($_SESSION['gender']) == "male") { ?> checked <?php } ?> >
+                    <span style="font-size: initial">Male</span>
+                </label>
+
+                <label class="pure-material-radio" style="margin: 12px;">
+                    <input class="inp" type="radio" name="gender" id="female" value="female"
+                        <?php if( ($_SESSION['gender']) == "female") { ?> checked <?php } ?>>
+                    <span style="font-size: initial">Female</span>
+                </label>
             </div>
 
             <!-- DISTRICT-->
@@ -87,7 +94,7 @@
                 <label class="lbl" for="autocomplete">
                     <span class="fa fa-home"></span>
                 </label>
-                <input class="inp" id="autocomplete" type="text" name="district" minlength="2" maxlength="100" placeholder="District"
+                <input class="inp" id="autocomplete" type="text" name="district" minlength="2" maxlength="100" placeholder="District" required
                        value="<?php if (isset($_SESSION['district'])) echo $_SESSION['district']; ?>">
             </div>
             <!-- Autocomplete places api -->
@@ -98,16 +105,25 @@
                 <label class="lbl" for="education">
                     <span class="fa fa-mortar-board"></span>
                 </label>
-                <input class="inp" id="education" onFocus="geolocate()" type="text" name="education" minlength="2" maxlength="25" placeholder="Education"
+                <input class="inp" id="education" type="text" name="education" minlength="2" maxlength="25" placeholder="Education" required
                        value="<?php if (isset($_SESSION['education'])) echo $_SESSION['education']; ?>">
             </div>
 
+            <!-- OCCUPATION-->
+            <div class="wrap-input" id="Occupation" style="float: left;">
+                <label class="lbl" for="occupation">
+                    <span class="fa fa-briefcase"></span>
+                </label>
+                <input class="inp" id="occupation" type="text" name="occupation" minlength="2" maxlength="25" placeholder="Occupation" required
+                       value="<?php if (isset($_SESSION['occupation'])) echo $_SESSION['occupation']; ?>">
+            </div>
+
             <!-- EMAIL-->
-            <div class="wrap-input" id="Email" style="float: left; margin-right: 25px;">
+            <div class="wrap-input" id="Email" style="float: right;">
                 <label class="lbl" for="email">
                     <span class="fa fa-at"></span>
                 </label>
-                <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email address"
+                <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email address" required
                        value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>">
             </div>
 
@@ -116,7 +132,7 @@
                 <label class="lbl" for="pass1">
                     <span class="fa fa-lock"></span>
                 </label>
-                <input class="inp" id="pass1" type="password" name="pass1" minlength="8" maxlength="25" placeholder="Password" >
+                <input class="inp" id="pass1" type="password" name="pass1" minlength="8" maxlength="25" placeholder="Password" required >
             </div>
 
             <!-- CONFIRM PASSWORD-->
@@ -124,7 +140,7 @@
                 <label class="lbl" for="pass2">
                     <span class="fa fa-lock"></span>
                 </label>
-                <input class="inp" id="pass2" type="password" name="pass2" minlength="8" maxlength="25" placeholder="Confirm password">
+                <input class="inp" id="pass2" type="password" name="pass2" minlength="8" maxlength="25" placeholder="Confirm password" required>
             </div>
 
             <!--BUTTON-->
@@ -134,7 +150,7 @@
             </p>
 
         </form>
-
+    </div>
     </body>
 
 </html>

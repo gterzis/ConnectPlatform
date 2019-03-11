@@ -197,7 +197,7 @@
                             if (response == "success") {
                                 //Display successful message
                                 $('#deleteResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
-                                    '<span class="fa fa-check-circle-o"> Interest(s) deleted successfully !</span></p>').show().addClass("successResponse");
+                                    '<span class="fa fa-check-circle-o"> Interest(s) deleted successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
                                 //Update interests
                                 fetchInterestsEdit();
                                 fetchInterestsDelete();
@@ -206,10 +206,11 @@
                                     $('#deleteResponse').html('').hide();
                                 }, 5000);
                             }
-                            else {
+                            else
+                                {
                                 //Display the error message.
                                 $('#deleteResponse').html('<p style="color:red; font-size:17px; margin:0;">' +
-                                    '<span class="fa fa-exclamation-triangle"> ' + response + '</span></p>');
+                                    '<span class="fa fa-exclamation-triangle"> ' + response +' is already selected by a user. You can not delete it.</span></p>').show().addClass("errorResponse");
                             }
                         }
                     });

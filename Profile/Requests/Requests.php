@@ -2,7 +2,8 @@
 <script src="http://localhost/Local%20Server/ConnectPlatform/includes/modalProperties.js"></script><!--Modal properties-->
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/modalStyle.css"><!--Modal style-->
 <style>
-    .sendRequest-btn{
+    .declineRequest-btn,
+    .acceptRequest-btn{
         float: right;
         margin-top: 3px; margin-right: 25px;
         color: #0066cc;
@@ -16,7 +17,16 @@
         outline: 0;
     }
 
-    .sendRequest-btn:hover{
+    .declineRequest-btn{
+        color: #cc0000;
+        border: #cc0000 1px solid;
+    }
+
+    .declineRequest-btn:hover{
+        background-color: #ffcccc;
+    }
+
+    .acceptRequest-btn:hover{
         background-color: #e6f2ff;
     }
 
@@ -42,74 +52,27 @@
     }
 </style>
 <script>
-    findUsers();
-    function findUsers() {
-        //Get age range
-        var minAge = $("#minAge").val();
-        var maxAge = $("#maxAge").val();
-
-        //Get selected gender(s)
-        var gender1 = "Female";
-        var gender2 = "Male";
-        if( $("#male").is(":checked") ){
-            gender1 = "Male";
-        }
-        if ( $("#female").is(":checked") ){
-            gender2 = "Female";
-        }
-
-        //Get District
-        var district = $("input[name=district]").val();
-
-        //Get Education
-        var education = $("input[name=education]").val();
-
-        //Get Marital Status
-        var maritalStatus= $("#marital-status").val();
-
-        //Get the names of the selected interests and put them in a array.
-        var interests = new Array();
-        $(".chosen-interest p").each(function(){
-            var interestName = $(this).text();
-            interests.push(interestName);
-        });
-        if (interests.length > 0 && interests.length < 6) {
+    fetchRequests();
+    function fetchRequests() {
             $.ajax
             ({
                 method: "POST",
-                url: "http://localhost/Local%20Server/ConnectPlatform/SearchUsers/findUsers.php",
-                data: {
-                    minAge: minAge,
-                    maxAge: maxAge,
-                    gender1: gender1,
-                    gender2: gender2,
-                    district: district,
-                    education: education,
-                    maritalStatus: maritalStatus,
-                    interests: interests
-                },
+                url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Requests/fetchRequests.php",
                 success: function (response) {
                     $("#results").append(response);
                 }
             });
-        }
-        else {
-            alert("You must select at least one to five interests");
-            modal.style.display='none'; //dont show modal
-        }
-
         return false;
     }
 
     // Sending matching request
-    function sendRequest(clickedBtn) {
+    function acceptRequest(clickedBtn) {
         var receiverID = $(clickedBtn).siblings(".resultInformation").find(".userID").text();
         var commonInterests = $(clickedBtn).siblings(".resultInformation").find(".commonInterests").text();
         alert(commonInterests);
         $.ajax({
             method: "POST",
             url: "http://localhost/Local%20Server/ConnectPlatform/SearchUsers/requestRegistration.php",
-            data: {receiverID:receiverID, commonInterests: commonInterests},
             success: function(response){
                 if (response == "success"){
                     alert("Request sent successfully");
@@ -117,7 +80,6 @@
                 else {
                     alert(response);
                 }
-                $(clickedBtn).text("SENT").prop('disabled', true);// change button's text and disable it
             }
         });
 
@@ -132,7 +94,7 @@
 
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>Search results</h2>
+            <h2>Notifications</h2>
         </div>
 
         <div class="modal-body">

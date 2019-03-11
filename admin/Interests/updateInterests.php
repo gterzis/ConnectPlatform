@@ -30,7 +30,15 @@ for ($i = 0; $i < count($names); $i++){
         exit();
     }
 
-    // Check if interest name already exists if new name is not equal to the respective old one.
+    // check if interest is already selected by a user. Selected interests can't be edited.
+    $sql = $conn -> query("SELECT * FROM usersinterests WHERE InterestName = '".$names[$i]."'");
+    if ($sql->num_rows > 0){
+        $error = true;
+        echo $names[$i]." is already selected by a user. Can not be edited.";
+        exit();
+    }
+
+    // Check if interest name already exists, if new name is not equal to the respective old one.
     if ( ( $stmt = $conn->prepare("SELECT InterestName FROM interests WHERE InterestName=? ") ) AND ($newNames[$i] != $names[$i]) )
     {
         /* bind parameters for markers */

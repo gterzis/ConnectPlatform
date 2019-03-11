@@ -8,8 +8,9 @@ $("input, select").blur(function () {
 });
 
 //Do not apply on
-$("input[type=checkbox], input[type=file]").focus(function () {
+$("input[type=checkbox], input[type=file], input[type=radio]").focus(function () {
     $(this).parent().css("box-shadow", "none");
 });
+
 
 

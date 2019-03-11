@@ -70,8 +70,8 @@
                 {
                     if(response == "success") {
                         //Display successful message.
-                        $('#response').html('<p style="color:#009933; font-size:17px; margin:0;">' +
-                            '<span class="fa fa-check-circle-o"> Selected interests have been added successfully !</span></p>');
+                        $('#response').html('<p style="color:#009933; font-size:16px; margin:0;">' +
+                            '<span class="fa fa-check-circle-o"> Selected interests have been added successfully !</span></p>').addClass("successResponse");
 
                         //Add selected interests in the interests div on Profile.php page.
                         interests.forEach(myFunction);

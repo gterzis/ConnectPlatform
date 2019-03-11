@@ -5,76 +5,120 @@ $all = $_GET['all']
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .autocomplete-items {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-            border-bottom: none;
-            border-top: none;
-            z-index: 99;
-            /*position the autocomplete items to be the same width as the container:*/
-            top: 65%;
-            left: 0;
-            right: 0;
-        }
+<style>
 
-        .autocomplete-items div {
-    padding: 10px;
-            cursor: pointer;
-            background-color: #fff;
-            border-bottom: 1px solid #d4d4d4;
-        }
-
-        /*when hovering an item:*/
-        .autocomplete-items div:hover {
-    background-color: #e9e9e9;
-        }
-
-        /*when navigating through the items using the arrow keys:*/
-        .autocomplete-active {
-    background-color: DodgerBlue !important;
-            color: #ffffff;
-        }
-
-        .chosen-interest{
-    width: auto;
-    cursor: pointer;
-    background-color:#0066cc;
-            border: none;
-            border-radius: 50px;
-            color: ivory;
-            padding: 10px;
-            margin: 3px;
-            font-size: 16px;
-            outline: 0;
-            transition: 0.2s;
-            transition-timing-function: ease-in-out;
-        }
-
-        .chosen-interest:hover{
-    background-color: #004d99;
-        }
-
-        .chosen-interest span{
-    font-size: 18px;
-            margin-left: 5px;
-        }
-
-        .chosen-interest p{
-    display: inline;
+.autocomplete-items {
+position: absolute;
+border: 1px solid #d4d4d4;
+border-bottom: none;
+border-top: none;
+z-index: 99;
+/*position the autocomplete items to be the same width as the container:*/
+top: 65%;
+left: 0;
+right: 0;
+    max-height: 200px;
+    overflow: auto;
 }
 
-        #chosen-interests{
-            margin-left: 10px;
-            min-height: 50px;
-            margin-bottom: 15px;
-        }
-    </style>
+.autocomplete-items div {
+padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
+.chosen-interest{
+width: auto;
+cursor: pointer;
+background-color:#0066cc;
+    border: none;
+    border-radius: 50px;
+    color: ivory;
+    padding: 10px;
+    margin: 3px;
+    font-size: 16px;
+    outline: 0;
+    transition: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.chosen-interest:hover{
+background-color: #004d99;
+}
+
+.chosen-interest span{
+font-size: 18px;
+    margin-left: 5px;
+}
+
+.chosen-interest p{
+display: inline;
+}
+
+#chosen-interests{
+    margin-left: 10px;
+    min-height: 50px;
+    margin-bottom: 15px;
+}
+</style>
 
 
 
 <script>
     function autocomplete(inp, arr) {
+        /*the autocomplete function takes two arguments,
+        the text field element and an array of possible autocompleted values:*/
+        /*execute a function when someone focus in the text field. Show all interests*/
+        inp.addEventListener("focus", function (e) {
+            var a, b, i, val = this.value;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            for (i = 0; i < arr.length; i++) {
+                /*create a DIV element for each matching element:*/
+                b = document.createElement("DIV");
+                /*insert a input field that will hold the current array item's value:*/
+                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.innerHTML += arr[i];
+                /*execute a function when someone clicks on the item value (DIV element):*/
+                b.addEventListener("click", function(e) {
+                    /*insert the value for the autocomplete text field:*/
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    //check if interest is already selected
+                    var isSelected = $('.chosen-interest').text().indexOf(inp.value) > -1;
+                    if (isSelected == false){
+                        //add selected element in the div with the selected elements(addInterest.php)
+                        $("#chosen-interests").append('<button class="chosen-interest" type="button" onclick="this.remove();"><p>' + inp.value +'</p> <span>&times;</span></button>');
+                    }
+                    else if (isSelected == true){
+                        alert("You already selected this interest")
+                    }
+                    //clear autocomplete input field
+                    inp.value = "";
+                    /*close the list of autocompleted values,
+                    (or any other open lists of autocompleted values:*/
+                    closeAllLists();
+                });
+                a.appendChild(b);
+            }
+        });
+
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/
         var currentFocus;
