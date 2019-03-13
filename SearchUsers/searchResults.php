@@ -105,22 +105,20 @@
     function sendRequest(clickedBtn) {
         var receiverID = $(clickedBtn).siblings(".resultInformation").find(".userID").text();
         var commonInterests = $(clickedBtn).siblings(".resultInformation").find(".commonInterests").text();
-        alert(commonInterests);
         $.ajax({
             method: "POST",
             url: "http://localhost/Local%20Server/ConnectPlatform/SearchUsers/requestRegistration.php",
             data: {receiverID:receiverID, commonInterests: commonInterests},
             success: function(response){
                 if (response == "success"){
-                    alert("Request sent successfully");
+                    $(clickedBtn).text("SENT").prop('disabled', true);// change button's text and disable it
+                    alert("Request sent successfully !");
                 }
                 else {
                     alert(response);
                 }
-                $(clickedBtn).text("SENT").prop('disabled', true);// change button's text and disable it
             }
         });
-
         return false;
     }
 </script>
@@ -144,7 +142,7 @@
 
         <!--FOOTER-->
         <div class="modal-footer">
-            <button class="btn-change" style="margin-left: 66%;" onclick="modal.style.display='none';"> CLOSE</button>
+            <button class="btn-change" style="margin-left: 73.5%;" onclick="modal.style.display='none';"> CLOSE</button>
         </div>
 
     </div>

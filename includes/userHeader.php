@@ -1,19 +1,29 @@
+<?php
+?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="head-title">
     <a href="http://localhost/Local%20Server/ConnectPlatform/index.php"><p class="title2">Get in Touch</p></a>
     <div class="nav">
         <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php"><span class="fa fa-home"><p>Home</p></span></a>
-        <a href="http://localhost/Local%20Server/ConnectPlatform/SearchUsers/SearchUsers.php"><span class="fa fa-search"><p>Find users</p></span></a>
+        <a href="http://localhost/Local%20Server/ConnectPlatform/SearchUsers/SearchUsers.php"><span class="fa fa-search"><p>Find people</p></span></a>
         <span class="fa fa-comments"><p>Conversations</p></span>
+        <span class="fa fa-users"><p>Matches</p></span>
+        <span class="fa fa-user-plus"><p>Requests</p></span>
         <span class="fa fa-bell"><p>Notifications</p></span>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
     </div>
 </div>
 <script>
-    $(".fa-bell").click(function () {
-        $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Profile/Notifications/notifications.php");
+    $(".fa-user-plus").click(function () {
+        $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Profile/Requests/Requests.php");
         return false;
     });
+
+    $(".fa-bell").click(function () {
+        $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Profile/Notifications/Notifications.php");
+        return false;
+    });
+
 </script>
 <style>
 
@@ -22,22 +32,23 @@
     }
 
     .nav span{
-        margin-right: 45px;
+        margin-right: 30px;
     }
 
     .nav p{
-        margin-top: 5px;
-        font-size: 14px;
+        margin-top: 7px;
+        font-size: 13px;
         font-family: Verdana, Helvetica, Arial;
     }
 
     .nav .fa{
-        font-size: 25px;
+        font-size: 20px;
         text-align: center;
         cursor: pointer;
         color: #c7d1d8;
         transition: 0.3s;
         transition-timing-function: ease-in-out;
+        text-shadow: 0 0 3px #000;
     }
 
     .nav .fa:hover{
@@ -65,11 +76,12 @@
     .nav{
         float: right;
         margin-top: 23px;
-        margin-right: 90px;
+        margin-right: 50px;
         font-family: "Maiandra GD";
         font-size: 25px;
         color: ivory;
         display: inline-block;
     }
+
 
 </style>

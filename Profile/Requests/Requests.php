@@ -52,6 +52,7 @@
     }
 </style>
 <script>
+    // Show requests
     fetchRequests();
     function fetchRequests() {
             $.ajax
@@ -65,17 +66,40 @@
         return false;
     }
 
-    // Sending matching request
+    // Accept request, match registration
     function acceptRequest(clickedBtn) {
-        var receiverID = $(clickedBtn).siblings(".resultInformation").find(".userID").text();
-        var commonInterests = $(clickedBtn).siblings(".resultInformation").find(".commonInterests").text();
-        alert(commonInterests);
+        var senderID = $(clickedBtn).siblings(".resultInformation").find(".userID").text(); // get reguest sender's id
+        var commonInterests = $(clickedBtn).siblings(".resultInformation").find(".commonInterests").text();// get the matched interests
         $.ajax({
             method: "POST",
-            url: "http://localhost/Local%20Server/ConnectPlatform/SearchUsers/requestRegistration.php",
+            url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Requests/matchRegistration.php",
+            data:{senderID: senderID, commonInterests:commonInterests},
             success: function(response){
                 if (response == "success"){
-                    alert("Request sent successfully");
+                    $(clickedBtn).text("Accepted").prop('disabled', true);// change button's text and disable it
+                    $(clickedBtn).siblings(".declineRequest-btn").hide();// hide decline button
+                    alert("You accepted the request. Now you are able to chat.")
+                }
+                else {
+                    alert(response);
+                }
+            }
+        });
+
+        return false;
+    }
+
+    //Decline request, delete matching request
+    function declineRequest(clickedBtn) {
+        var senderID = $(clickedBtn).siblings(".resultInformation").find(".userID").text(); // get request sender's id
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Requests/declineRequest.php",
+            data:{senderID: senderID},
+            success: function(response){
+                if (response == "success"){
+                    $(clickedBtn).text("Declined").prop('disabled', true);// change button's text and disable it
+                    $(clickedBtn).siblings(".acceptRequest-btn").hide();// hide decline button
                 }
                 else {
                     alert(response);
@@ -94,7 +118,7 @@
 
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>Notifications</h2>
+            <h2>Matching requests</h2>
         </div>
 
         <div class="modal-body">
@@ -106,7 +130,7 @@
 
         <!--FOOTER-->
         <div class="modal-footer">
-            <button class="btn-change" style="margin-left: 66%;" onclick="modal.style.display='none';"> CLOSE</button>
+            <button class="btn-change" style="margin-left: 73.5%;" onclick="modal.style.display='none';"> CLOSE</button>
         </div>
 
     </div>

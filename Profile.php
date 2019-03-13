@@ -15,7 +15,7 @@
 
 	require('./includes/Connection.php');
 
-    $sql = $conn -> query("SELECT * FROM users WHERE ID = '".$_SESSION['user_id']."';");
+    $sql = $conn -> query("SELECT * FROM users WHERE ID = $_SESSION[user_id]");
     $row = $sql->fetch_assoc();
 
     $name=str_replace(' ', '%20', $row['Name']);
@@ -29,11 +29,18 @@
     $description=str_replace(' ', '%20', $row['Description']);
     $maritalStatus = $row['MaritalStatus'];
 
-    // check for matching requests
-    $notification = false;
-    $sql = $conn -> query("SELECT * FROM matching_requests WHERE ReceiverID = $_SESSION[user_id]");
-    if($sql -> num_rows > 0){
-        $notification = true;
+    // check for unseen notifications
+    $unseenNotifications = "false";
+    $sql = $conn -> query("SELECT * FROM notifications WHERE toUserID = $_SESSION[user_id] AND Seen = 0");
+    if ($sql->num_rows > 0){
+        $unseenNotifications = true;
+    }
+
+    // check for unseen requests
+    $unseenRequests = "false";
+    $sql = $conn -> query("SELECT * FROM matching_requests WHERE ReceiverID = $_SESSION[user_id] AND Seen = 0");
+    if ($sql->num_rows > 0){
+        $unseenRequests = true;
     }
 
 	$conn->close();
@@ -108,9 +115,21 @@
             }
 
             $(document).ready(function(){
+                //change notification icon color if are there any unseen notifications
+                var unseenN = <?= $unseenNotifications ?>;
+                if (unseenN){
+                    $(".fa-bell").css("color", "#ffff80");
+                    $(".fa-bell").children().css("color", "#c7d1d8");
+                }
+
+                //change requests icon if are there any unseen requests
+                var unseenR = <?= $unseenRequests ?>;
+                if (unseenR){
+                    $(".fa-user-plus").css("color", "#ffff80");
+                    $(".fa-user-plus").children().css("color", "#c7d1d8");
+                }
+
                 //Profile picture updated successfully
-
-
                 var x = <?= $success ?>;
                 if (x == true){
                     $("#upload-photo").html("Updated successfully !").css({"background-color" : "transparent", "color" : "green"});
@@ -159,7 +178,7 @@
         <div id="modal-box"></div>
 
         <!--HEADER-->
-        <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/header2.html"); ?>
+        <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/userHeader.php"); ?>
 
         <div class="main">
 

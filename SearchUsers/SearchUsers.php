@@ -18,7 +18,7 @@ if (!isset($_SESSION['gender']))
 <html style="height: 100%;">
 
 <head>
-    <title>Get in Touch - Search for users</title>
+    <title>Get in Touch - Search for people</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
@@ -41,7 +41,7 @@ if (!isset($_SESSION['gender']))
 <body style="margin: 0px;">
 <div class="SearchUsers-pagecontent">
 <!--HEADER-->
-<?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/header2.html"); ?>
+<?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/userHeader.php"); ?>
 
 <!--Place change password, edit information window-->
 <div id="modal-box"></div>
@@ -49,7 +49,7 @@ if (!isset($_SESSION['gender']))
 <!--SIGN UP FORM-->
 <form class="frm" onsubmit="return showSearchResults();">
 
-    <h2>Search for users</h2>
+    <h2>Search for people</h2>
 
     <!--AGE-->
     <div class="wrap-input" id="Bday" style="float: left;">

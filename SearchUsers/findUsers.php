@@ -42,14 +42,20 @@ $interests = array();
 $interests = $_POST['interests'];
 
 //Find users based on search input(except interests). Don't show those who already sent request.
+// Don't show those where already matched
 $sql = $conn -> query("SELECT * FROM users WHERE ( Birthdate > '$minDate' AND Birthdate < '$maxDate' ) AND 
                                                         (Gender = '$gender1' OR Gender = '$gender2') AND 
                                                         (District LIKE '$district') AND 
                                                         (Education LIKE '$education') AND 
                                                         (MaritalStatus LIKE '$maritalStatus') AND 
                                                         (ID != $_SESSION[user_id]) AND 
-                                                        ID NOT IN (SELECT ReceiverID FROM matching_requests
-                                                                    WHERE SenderID = $_SESSION[user_id] )");
+                                                        (ID NOT IN (SELECT ReceiverID FROM matching_requests
+                                                                    WHERE SenderID = $_SESSION[user_id]) ) AND
+                                                        (ID NOT IN (SELECT User1 FROM matches WHERE User1 = $_SESSION[user_id]
+                                                                    OR User2 = $_SESSION[user_id]) ) AND 
+                                                        (ID NOT IN (SELECT User2 FROM matches WHERE User1 = $_SESSION[user_id]
+                                                                    OR User2 = $_SESSION[user_id]))");
+
 
 $numOfResults = 0;
 while($data = mysqli_fetch_assoc($sql))

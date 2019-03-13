@@ -131,30 +131,6 @@ h2{
     font-size: 28px;
 }
 
-/*radio button*/
-
-input[type=radio] {
-    width: 5%;
-    margin: 15px 0 15px 10px;
-    display: none;
-}
-
-.radio-lbl {
-    background: url("images/radio-off.png");
-    display: inline-block;
-    min-height: 15px;
-    padding-left: 35px;
-    margin: 15px 5px 15px 5px;
-    background-repeat: no-repeat;
-    font-weight: normal;
-}
-
-input[type=radio]:checked + label {
-    background: url("images/radio-on.png");
-    background-repeat: no-repeat;
-    margin-left: 5px;
-}
-
 /* Form Button */
 .btn{
     background-color: #0066cc;
@@ -347,8 +323,8 @@ input[type=radio]:checked + label {
 
 .creationDate{
     display: inline-block;
-    margin-left: 20%;
-    font-size: 14px;
+    margin-left: 25%;
+    font-size: 13px;
     color: rgba(0,0,0,.6);
 }
 
@@ -431,6 +407,7 @@ input[type=radio]:checked + label {
     position: absolute;
     left: 34%;
     top: 1%;
+    object-fit: cover;
 }
 
 .name{
