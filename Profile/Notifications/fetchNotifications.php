@@ -27,7 +27,7 @@ if($sql ->num_rows > 0) {
                 <div class='result'>
                     
                     
-                    <img class='notification-Picture' src='profile-pictures/$data[Photo]' alt='' width='25' height=50' >
+                    <img class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
                     <button class='acceptRequest-btn' onclick=''> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
                     
                     <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
@@ -57,4 +57,6 @@ $conn -> close();
 <script>
     // Change the notification icon to its default color. (Notifications are seen)
     $(".fa-bell").css("color", "#c7d1d8");
+    // Hide number of unseen notifications icon
+    $(".numOfNotifications").hide();
 </script>

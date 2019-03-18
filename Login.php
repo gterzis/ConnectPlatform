@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	if (isset($_GET['registered']))
-	    $registered = "<span class='fa fa-check-circle-o'> You registered successfully . Welcome to Get In Touch !</span>";
+        $registered = "success";
 	else
-	    $registered = "";
+	    $registered = "false";
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="indexStyle.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/checkBoxStyle.css"><!--check box style-->
         <script type="text/javascript">
             function do_login() {
                 var email=$("#email").val();
@@ -42,23 +43,33 @@
                         }
                     });
                 }
-
                 return false;
-            };
+            }
 
 
             function forgotPassword(){
-                $('#result').load("http://localhost/Local%20Server/ConnectPlatform/forgotPassword.php");
+                $('#result').load("http://localhost/Local%20Server/ConnectPlatform/ForgottenPassword/forgotPassword.php");
                 return false;
             }
 
             $(document).ready(function() {
                 $.getScript( "includes/inputBoxShadow.js" );
+
+                // Show succeed registration pop up window message
+                var registered = "<?= $registered; ?>";
+                if (registered == "success"){
+                    $('#result').load("http://localhost/Local%20Server/ConnectPlatform/includes/RegisteredSuccesfully.php");
+                    return false;
+                }
             });
 
         </script>
 
-
+<style>
+    input, p{
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
     </head>
 
     <body style="margin: 0;">
@@ -70,11 +81,6 @@
 
     <div class="login-pagecontent">
         <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/head.html"); ?>
-
-        <!--Registered successfully message-->
-        <div style="left: 32%; top: 20%; position: absolute; color: green; font-size: 23px;">
-            <?= $registered ?>
-        </div>
 
         <!--LOGIN FORM-->
         <form class="frm frm-login" method="post" action="Identification.php" onsubmit="return do_login();">
@@ -102,15 +108,15 @@
             </div>
 
             <!--REMEMBER ME-->
-            <label class="rememberme">
+            <label class="pure-material-checkbox" style="margin-left: 60px;">
                 <input type="checkbox" name="rememberme" id="rememberme"
                     <?php if(isset($_COOKIE["email"])) { ?> checked <?php } ?> >
-                <span class="checkmark"></span> Remember me
+                <span style="font-weight: initial; font-family: 'Roboto', sans-serif;">Remember me</span>
             </label>
 
             <button class="btn" style="width: 75%; margin: 8px 15px 15px 45px;">LOGIN</button>
             <p style="margin: 5px 10%; text-align: center;">Forgot your passwrod ?<button style="font-size: 15px;" type="button" class="forgot-btn" onclick="forgotPassword()"> Click here</button></p>
-            <p style="margin: 10px 10%; text-align: center;">Not registered ?<a href="Register.php" style="color: #0066cc; font-weight: bold; text-decoration: none;"> Sign up</a></p>
+            <p style="margin: 10px 10%; text-align: center;">Not registered ?<a href="Register.php" style="font-size: 15px; color: #0066cc; font-weight: bold; text-decoration: none;"> Sign up</a></p>
 
         </form>
 

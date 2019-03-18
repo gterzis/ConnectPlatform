@@ -1,4 +1,4 @@
-<?php
+<?php // called by Register.php
 
 	session_start();
 

@@ -42,7 +42,7 @@ $interests = array();
 $interests = $_POST['interests'];
 
 //Find users based on search input(except interests). Don't show those who already sent request.
-// Don't show those where already matched
+// Don't show those where are already matched
 $sql = $conn -> query("SELECT * FROM users WHERE ( Birthdate > '$minDate' AND Birthdate < '$maxDate' ) AND 
                                                         (Gender = '$gender1' OR Gender = '$gender2') AND 
                                                         (District LIKE '$district') AND 

@@ -29,20 +29,6 @@
     $description=str_replace(' ', '%20', $row['Description']);
     $maritalStatus = $row['MaritalStatus'];
 
-    // check for unseen notifications
-    $unseenNotifications = "false";
-    $sql = $conn -> query("SELECT * FROM notifications WHERE toUserID = $_SESSION[user_id] AND Seen = 0");
-    if ($sql->num_rows > 0){
-        $unseenNotifications = true;
-    }
-
-    // check for unseen requests
-    $unseenRequests = "false";
-    $sql = $conn -> query("SELECT * FROM matching_requests WHERE ReceiverID = $_SESSION[user_id] AND Seen = 0");
-    if ($sql->num_rows > 0){
-        $unseenRequests = true;
-    }
-
 	$conn->close();
 ?>
 <!DOCTYPE html>
@@ -115,19 +101,7 @@
             }
 
             $(document).ready(function(){
-                //change notification icon color if are there any unseen notifications
-                var unseenN = <?= $unseenNotifications ?>;
-                if (unseenN){
-                    $(".fa-bell").css("color", "#ffff80");
-                    $(".fa-bell").children().css("color", "#c7d1d8");
-                }
 
-                //change requests icon if are there any unseen requests
-                var unseenR = <?= $unseenRequests ?>;
-                if (unseenR){
-                    $(".fa-user-plus").css("color", "#ffff80");
-                    $(".fa-user-plus").children().css("color", "#c7d1d8");
-                }
 
                 //Profile picture updated successfully
                 var x = <?= $success ?>;

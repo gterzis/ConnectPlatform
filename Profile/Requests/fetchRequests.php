@@ -55,4 +55,6 @@ $conn -> close();
 <script>
     // Change the requests icon to its default color. (Requests are seen)
     $(".fa-user-plus").css("color", "#c7d1d8");
+    // Hide number of unseen requests icon
+    $(".numOfRequests").hide();
 </script>

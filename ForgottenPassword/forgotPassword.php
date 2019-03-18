@@ -1,9 +1,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="includes/modalProperties.js"></script><!--Modal properties-->
+<script src="http://localhost/Local%20Server/ConnectPlatform/includes/modalProperties.js"></script><!--Modal properties-->
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/modalStyle.css"><!--Modal style-->
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" style="padding-top: 105px;">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -63,7 +63,7 @@
         if (email != ''){
             $.ajax
             ({
-                type:'post', url:'sendLink.php',
+                type:'post', url:'http://localhost/Local%20Server/ConnectPlatform/ForgottenPassword/sendLink.php',
                 data:{
                     email:email,
                 },

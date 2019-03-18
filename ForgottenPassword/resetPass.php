@@ -1,6 +1,6 @@
 <?php
 // Including required file for connecting to database.
-require './includes/Connection.php';
+require '../includes/Connection.php';
 
 // Checks if user has the right to visit page
 $sql = $conn->query("SELECT Email, Link FROM reset_password WHERE Link = '" . $_GET['id'] . "'; ");
@@ -33,7 +33,7 @@ if (isset($_POST['reset']))
         //Sets link as no longer available
         $sql = $conn->query("DELETE FROM reset_password WHERE Email = '" . $row['Email'] . "'; ");
         echo "<script type='text/javascript'>alert('Password has been reset successfully !')
-         window.location.href='Login.php'</script>";
+         window.location.href='../Login.php'</script>";
         exit();
     }
 
@@ -44,8 +44,8 @@ if (isset($_POST['reset']))
 <html>
 
 <head>
-    <title>Get in Touch - Login</title>
-    <link rel="stylesheet" href="indexStyle.css" >
+    <title>Get in Touch - Reset password</title>
+    <link rel="stylesheet" href="../indexStyle.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -81,7 +81,7 @@ if (isset($_POST['reset']))
     </div>
 
     <button class="btn" name="reset" style="width: 75%; margin: 8px 15px 15px 45px;">RESET PASSWORD</button>
-    <a href="Login.php" style="color: #0066cc; text-decoration: none; float: left; margin-left: 35%;">
+    <a href="../Login.php" style="color: #0066cc; text-decoration: none; float: left; margin-left: 35%;">
         <i class="fa fa-arrow-left"></i> Back to login</a>
 
 </form>

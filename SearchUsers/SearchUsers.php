@@ -181,4 +181,12 @@ if (!isset($_SESSION['gender']))
         }
     });
 
+    // Dont let user uncheck both gender checkboxes
+    $("#male, #female").click(function () {
+        if($('input[type="checkbox"]:checked').length == 0) {
+            $(this).prop('checked', true);
+        }
+
+    });
+
 </script>

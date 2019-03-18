@@ -71,14 +71,16 @@ if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $education)) {
 }
 
 //OCCUPATION validation
-$occupation = test_input($_POST["occupation"]);
+if (!empty($_POST["occupation"])) {
+    $occupation = test_input($_POST["occupation"]);
 // check if address only contains letters, numbers and whitespace
-if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $occupation)) {
-    echo " Occupation: only letters, numbers and  white space are allowed";
-    ?>
-    <script> $("#Occupation").css("box-shadow", "0 0 5px red");</script>
-    <?php
-    exit();
+    if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $occupation)) {
+        echo " Occupation: only letters, numbers and  white space are allowed";
+        ?>
+        <script> $("#Occupation").css("box-shadow", "0 0 5px red");</script>
+        <?php
+        exit();
+    }
 }
 
 //EMAIL validation

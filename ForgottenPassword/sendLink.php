@@ -1,8 +1,8 @@
 <?php
 
-    require 'includes/Connection.php';
+    require_once '../includes/Connection.php';
 
-    require 'SendEmail/email_sender.php';
+    require '../SendEmail/email_sender.php';
 
     $email = strtolower($_POST['email']); //converting email in lowercase
 
@@ -47,7 +47,7 @@
 
             // Generates a encoded unique number which will be used to reset password.
             $randNum=base64_encode(rand(10000,999999));
-            $link = "http://localhost/Local%20Server/ConnectPlatform/resetPass.php?id=$randNum";
+            $link = "http://localhost/Local%20Server/ConnectPlatform/ForgottenPassword/resetPass.php?id=$randNum";
 
             //Insert the unique code into database for the corresponding user.
             if( $stmt = $conn->prepare("INSERT INTO reset_password (Email, Link) VALUES(?,?) ") )
