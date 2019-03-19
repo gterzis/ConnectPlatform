@@ -4,19 +4,19 @@
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/indexStyle.css">
 <script>
     // Show notifications
-    // getInformations();
-    // function getInformations() {
-    //     $.ajax
-    //     ({
-    //         method: "POST",
-    //         url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Notifications/fetchNotifications.php",
-    //         success: function (response) {
-    //             $("#results").append(response);
-    //         }
-    //     });
-    //     return false;
-    // }
-
+    getInformations();
+    function getInformations() {
+        $.ajax
+        ({
+            method: "POST",
+            data:{userID: userID},
+            url: "http://localhost/Local%20Server/ConnectPlatform/Matches/getInformations.php",
+            success: function (response) {
+                $("#results").append(response);
+            }
+        });
+        return false;
+    }
 
 </script>
 <style>
@@ -101,53 +101,6 @@
 
             <div id="results">
 
-                <div class='result'>
-
-                    <img class='profile-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                    <div class='profileInformation' style='display: inline-block; margin-left: 15px;'>
-                        <p class='userID' hidden>$data[ID]</p>
-                        <p style='font-weight: bold; font-size: 22px; color: #0066cc;'> George Terzis</p>
-                        <p style='clear: left;'>Male &nbsp;</p>
-                        <span style='float: left; padding-top: 1px;'> &#9642; </span>
-                        <p>&nbsp; 26 years old</p>
-                        <span style='float: left; padding-top: 1px;'> &nbsp; &#9642; </span>
-                        <p>&nbsp; Single</p>
-                    </div>
-
-                    <hr style="width: 100%; margin-top: 3px">
-
-                    <div id="description">
-                        <p id="description-content">
-                            Experienced Shipping Specialist with a demonstrated history of working in the logistics and supply chain industry. Skilled in Operations Management, Microsoft Excel, Customer Service, Microsoft Word, and Inventory Management. Strong operations professional with a High School Diploma focused in Business Administration and Management, General from Intercollege.
-                        </p>
-                    </div>
-
-                    <hr style="width: 100%; margin-top: 3px">
-
-                    <!--PERSONAL INFORMATION-->
-                    <div class="more-details">
-                        <span class="fa fa-home"><p> Tseri, Nicosia</p></span>
-                        <span class="fa fa-mortar-board"><p> Cyprus University of Technology</p></span>
-                        <span class="fa fa-briefcase"><p> Senior Programmer at Google</p></span>
-                    </div>
-
-                    <!--INTERESTS-->
-                    <div class="viewProfile-interests" >
-                        <h2 style="margin-left: 0px; margin-top: 0;">Interests</h2>
-                        <!--Any user's interests will be placed here-->
-                        <button class="chosen-interest" type="button"><p>Football</p></button>
-                        <button class="chosen-interest" type="button"><p>Football</p></button>
-                        <button class="chosen-interest" type="button"><p>Football</p></button>
-                        <button class="chosen-interest" type="button"><p>Football</p></button>
-                        <button class="chosen-interest" type="button"><p>Board games</p></button>
-                        <button class="chosen-interest" type="button"><p>Board games</p></button>
-                        <button class="chosen-interest" type="button"><p>Board games</p></button>
-                        <button class="chosen-interest" type="button"><p>Board games</p></button>
-                        <button class="chosen-interest" type="button"><p>Board games</p></button>
-                    </div>
-
-                </div>
             </div>
 
         </div>

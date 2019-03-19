@@ -52,8 +52,10 @@
             return false;
         }
 
-        //show user's profiel
-        function showProfile() {
+        //show user's profile
+        var userID;
+        function showProfile(e) {
+             userID = $(e).parent().find(".userID").text(); // get the user's id whose profile is going to be shown
             $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Matches/viewProfile.php");
             return false;
         }
@@ -71,9 +73,6 @@
     <h2>Matches</h2>
 
     <div id="results">
-
-
-
 
     </div>
 

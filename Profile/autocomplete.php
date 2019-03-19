@@ -8,29 +8,30 @@ $all = $_GET['all']
 <style>
 
 .autocomplete-items {
-position: absolute;
-border: 1px solid #d4d4d4;
-border-bottom: none;
-border-top: none;
-z-index: 99;
-/*position the autocomplete items to be the same width as the container:*/
-top: 65%;
-left: 0;
-right: 0;
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 65%;
+    left: 0;
+    right: 0;
     max-height: 200px;
     overflow: auto;
 }
 
 .autocomplete-items div {
-padding: 10px;
+    padding: 10px;
     cursor: pointer;
     background-color: #fff;
     border-bottom: 1px solid #d4d4d4;
+    font-family: "Roboto", sans-serif;
 }
 
 /*when hovering an item:*/
 .autocomplete-items div:hover {
-background-color: #e9e9e9;
+    background-color: #e9e9e9;
 }
 
 /*when navigating through the items using the arrow keys:*/
@@ -40,9 +41,9 @@ background-color: DodgerBlue !important;
 }
 
 .chosen-interest{
-width: auto;
-cursor: pointer;
-background-color:#0066cc;
+    width: auto;
+    cursor: pointer;
+    background-color:#0066cc;
     border: none;
     border-radius: 50px;
     color: ivory;
@@ -55,16 +56,16 @@ background-color:#0066cc;
 }
 
 .chosen-interest:hover{
-background-color: #004d99;
+    background-color: #004d99;
 }
 
 .chosen-interest span{
-font-size: 18px;
+    font-size: 18px;
     margin-left: 5px;
 }
 
 .chosen-interest p{
-display: inline;
+    display: inline;
 }
 
 #chosen-interests{
@@ -73,8 +74,6 @@ display: inline;
     margin-bottom: 15px;
 }
 </style>
-
-
 
 <script>
     function autocomplete(inp, arr) {

@@ -24,7 +24,7 @@
     $gender=$row['Gender'];
     $district=str_replace(' ', '%20', $row['District']);
     $education=str_replace(' ', '%20', $row['Education']);
-    $occupation=str_replace(' ', '%20', $row['Occupation']);
+    $occupation=str_replace('', '%20', $row['Occupation']);
     $email=$row['Email'];
     $description=str_replace(' ', '%20', $row['Description']);
     $maritalStatus = $row['MaritalStatus'];

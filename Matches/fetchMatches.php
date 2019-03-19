@@ -31,21 +31,23 @@ while($data = mysqli_fetch_assoc($sql))
     echo "<hr>
         <div class='result'>
 
-            <img onclick='showProfile()' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
+            <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
             <button class='chat-btn' onclick=''> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
             <button class='deleteUser-btn' onclick='deleteMatch(this);'> <span class='fa fa-user-times' style='font-size: 18px; margin-right: 5px;'></span>Delete</button>
 
             <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                 <p class='userID' hidden>$data[ID]</p>
-                <p onclick='showProfile()' style='font-weight: bold; cursor: pointer;'> $data[Name] $data[Surname]</p>
+                <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> $data[Name] $data[Surname]</p>
                 <p style='clear: left;'>$data[District]</p>
                 <p style='clear: left;'>$data[Gender] &nbsp;</p>
                 <span style='float: left; padding-top: 1px;'> &#9642; </span>
                 <p>&nbsp; $age years old</p>
-                <p style='clear: left;'>$data[Education] &nbsp;</p>
-                <span style='float: left; padding-top: 1px;'> &#9642; </span>
-                <p>&nbsp; $data[MaritalStatus]</p>
-                <p style='color: #0066cc; clear: both;'>
+                <p style='clear: left;'>$data[Education] &nbsp;</p>";
+                if(!empty($data['MaritalStatus'])) {
+                    echo "<span style='float: left; padding-top: 1px;'> &#9642; </span>
+                    <p>&nbsp; $data[MaritalStatus]</p>";
+                }
+                echo "<p style='color: #0066cc; clear: both;'>
                     Matched interests:<p class='commonInterests' style='color: #0066cc;'>$matchedInterests</p>
                 </p>
             </div>

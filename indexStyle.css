@@ -584,6 +584,10 @@ h2{
     margin-bottom: 10px;
 }
 
+.fullname:hover{
+    text-decoration: underline;
+}
+
 .chat-btn,
 .deleteUser-btn,
 .declineRequest-btn,
