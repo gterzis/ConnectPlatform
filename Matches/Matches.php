@@ -28,22 +28,33 @@
         }
 
         //delete match
-        function deletemMatch(clickedBtn) {
-            var matchedUserID = $(clickedBtn).siblings(".resultInformation").find(".userID").text(); // get request sender's id
-            $.ajax({
-                method: "POST",
-                url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Requests/declineRequest.php",
-                data:{matchedUserID: matchedUserID},
-                success: function(response){
-                    if (response == "success"){
-                        $(clickedBtn).text("Declined").prop('disabled', true);// change button's text and disable it
-                        $(clickedBtn).siblings(".chat-btn").hide();// hide decline button
+        function deleteMatch(clickedBtn) {
+            if (confirm('Are you sure you want to delete this match?')) {
+                var matchedUserID = $(clickedBtn).siblings(".resultInformation").find(".userID").text(); // get request sender's id
+                $.ajax({
+                    method: "POST",
+                    url: "http://localhost/Local%20Server/ConnectPlatform/Matches/deleteMatch.php",
+                    data:{matchedUserID: matchedUserID},
+                    success: function(response){
+                        if (response == "success"){
+                            $(clickedBtn).text("Deleted").prop('disabled', true);// change button's text and disable it
+                            $(clickedBtn).siblings(".chat-btn").hide();// hide decline button
+                        }
+                        else {
+                            alert(response);
+                        }
                     }
-                    else {
-                        alert(response);
-                    }
+                });
+            }
+            else {// Do nothing!
                 }
-            });
+
+            return false;
+        }
+
+        //show user's profiel
+        function showProfile() {
+            $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Matches/viewProfile.php");
             return false;
         }
     </script>
