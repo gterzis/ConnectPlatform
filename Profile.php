@@ -24,7 +24,7 @@
     $gender=$row['Gender'];
     $district=str_replace(' ', '%20', $row['District']);
     $education=str_replace(' ', '%20', $row['Education']);
-    $occupation=str_replace('', '%20', $row['Occupation']);
+    $occupation=str_replace(' ', '%20', $row['Occupation']);
     $email=$row['Email'];
     $description=str_replace(' ', '%20', $row['Description']);
     $maritalStatus = $row['MaritalStatus'];
@@ -122,7 +122,6 @@
                     success: function(response){
                         $(".bulletin-board").append(response);
                     }
-
                 });
 
                 //Fetch the user's interests.
@@ -138,7 +137,6 @@
                         $(".interests").children('.interest:first').css("border", "none");
                     },
                 });
-
             });
 
         </script>
@@ -177,7 +175,7 @@
                 <span class="fa fa-birthday-cake"><p> <?= $bday ?></p></span>
                 <span class="fa fa-home"><p>     <?= $row['District'] ?></p></span>
                 <span class="fa fa-mortar-board"><p><?= $row['Education'] ?></p></span>
-                <span class="fa fa-briefcase"><p> <?php if(empty($occupation)) echo "No details to show"; else echo $occupation; ?> </p></span>
+                <span class="fa fa-briefcase"><p> <?php if(empty($row['Occupation'])) echo "No details to show"; else echo $row['Occupation']; ?> </p></span>
                 <span class="fa fa-venus-mars"><p> <?= $gender ?></p></span>
                 <span class="fa fa-heart"><p> <?php if(empty($maritalStatus)) echo "No details to show"; else echo $maritalStatus; ?> </p></span>
             </div>

@@ -4,7 +4,7 @@ $newTitles = $_REQUEST['newTitles'];
 $newContents = $_REQUEST['newContents'];
 $error = false;
 
-for ($i=0; $i<count($oldTitles); $i++){
+for ( $i=0; $i<count($oldTitles); $i++){
 
     //Data validation
     $newTitles[$i] = test_input($newTitles[$i]);
@@ -38,7 +38,7 @@ for ($i=0; $i<count($oldTitles); $i++){
 
 }
 
-//If no error has occurred in validation update data
+//If no error has occurred in validation, update data
 if (!$error){
     require_once '../../includes/Connection.php';
     for ($i = 0; $i < count($oldTitles); $i++){

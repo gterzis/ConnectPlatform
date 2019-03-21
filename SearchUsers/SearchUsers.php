@@ -37,8 +37,16 @@ if (!isset($_SESSION['gender']))
     .wrap-input{
         height: auto;
     }
+    .SearchUsers-pagecontent{display:none;}
+    .preload { width:100px;
+        height: 100px;
+        position: fixed;
+        top: 40%;
+        left: 45%;}
 </style>
 <body style="margin: 0px;">
+<div class="preload"><img src="http://i.imgur.com/KUJoe.gif">
+</div>
 <div class="SearchUsers-pagecontent">
 <!--HEADER-->
 <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/userHeader.php"); ?>
@@ -141,6 +149,11 @@ if (!isset($_SESSION['gender']))
 
 </html>
 <script>
+    $(function() {
+        $(".preload").fadeOut(1000, function() {
+            $(".SearchUsers-pagecontent").fadeIn(1000);
+        });
+    });
     //Add box shadow on input fields when focus
     $.getScript( "http://localhost/Local%20Server/ConnectPlatform/includes/inputBoxShadow.js" );
 

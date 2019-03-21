@@ -1,6 +1,6 @@
 <?php
 require '../../includes/Connection.php';
-$sql = $conn -> query("SELECT Title, Content, CreationDate FROM bulletin_board ORDER BY CreationDate DESC");
+$sql = $conn -> query("SELECT * FROM bulletin_board ORDER BY CreationDate DESC");
 
 while($r = mysqli_fetch_assoc($sql))
 {
@@ -20,6 +20,9 @@ while($r = mysqli_fetch_assoc($sql))
                     <label class='lbl' for='content'></label>
                     <textarea class='inp' style='width: 80%;' id='content' rows='6' cols='40' name='content' required >$r[Content]</textarea>
                 </div>
+                
+                <img class='announcement-picture' src = 'http://localhost/Local%20Server/ConnectPlatform/BulletinBoard-images/$r[Picture]' alt = '' >
+                
             </div>
             ";
 }

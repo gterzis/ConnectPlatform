@@ -334,6 +334,13 @@ h2{
     font-family: Verdana, Helvetica, Arial;
 }
 
+.announcement-picture{
+    width: 94%;
+    margin: 0px 16px;
+    /*object-fit: cover;*/
+    height: 300px;
+}
+
 /*Interests*/
 .adds,
 .interests{

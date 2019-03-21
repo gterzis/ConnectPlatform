@@ -30,7 +30,8 @@ if($sql ->num_rows > 0) {
                     
                     <button class='acceptRequest-btn' onclick='acceptRequest(this);'> Accept</button>
                     <button class='declineRequest-btn' onclick='declineRequest(this);'> Decline</button>
-                    
+                    <button hidden id='chat' class='acceptRequest-btn' onclick=''> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
+
                     <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                         <p class='userID' hidden>$data[ID]</p>
                         <p style='margin-top: 3px;'>$data[District]</p>

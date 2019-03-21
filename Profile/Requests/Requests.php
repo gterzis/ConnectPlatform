@@ -76,8 +76,9 @@
             data:{senderID: senderID, commonInterests:commonInterests},
             success: function(response){
                 if (response == "success"){
-                    $(clickedBtn).text("Accepted").prop('disabled', true);// change button's text and disable it
+                    $(clickedBtn).hide();// hide accept button
                     $(clickedBtn).siblings(".declineRequest-btn").hide();// hide decline button
+                    $(clickedBtn).siblings("#chat").show();// show chat button
                     alert("You accepted the request. Now you are able to chat.")
                 }
                 else {

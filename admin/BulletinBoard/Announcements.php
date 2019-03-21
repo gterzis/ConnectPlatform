@@ -32,7 +32,8 @@
 
                 <p class="instruction">Fill in the fields below to add a new announcement</p>
 
-                <form onsubmit="return insertAnnouncement();">
+                <form method="POST" enctype="multipart/form-data" id="insertAnnouncementForm" onsubmit="return insertAnnouncement();"
+                      style="max-height: 400px; overflow: auto;">
                     <!--ANNOUNCEMENT TITLE-->
                     <div class="wrap-input wrap-login" id="Title" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
                         <label class="lbl" for="title">
@@ -45,6 +46,14 @@
                     <div class="wrap-input wrap-login" id="Content" style="border: 2px solid #cccccc; width: 85%; margin-left: 3%;">
                         <label class="lbl" for="content"></label>
                         <textarea class="inp" style="width: 80%;" id="content" rows="6" cols="60" name="content" placeholder="Enter the content of the announcement" required ></textarea>
+                    </div>
+
+                    <!--Show picture-->
+                    <img id="phot" class='announcement-picture' style="width: 91%;" src="" alt="" >
+
+                    <!--Add picture-->
+                    <div style="margin: 4%;">
+                        Select Photo: <input id="photo" name="image" type="file" accept="image/*" onchange="document.getElementById('phot').src = window.URL.createObjectURL(this.files[0]);">
                     </div>
 
                     <div id="response" hidden></div>
@@ -111,49 +120,44 @@
 
 <script>
     function insertAnnouncement() {
-        var Title=$("#title").val();
-        var Content=$("#content").val();
-        if (Title != '' && Content != ''){
-            $.ajax
-            ({
-                type:'post', url:'http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/insertAnnouncement.php',
-                data:{
-                    title:Title,
-                    content:Content,
-                },
-                dataType:"json",
-                success:function(response)
-                {
-                    if(response == "success") {
-                        //Display successful message and set green shadow to all the fields.
-                        $('#response').html('<p style="color:#00b300; font-size:17px; margin:0;">' +
-                            '<span class="fa fa-check-circle-o"> Announcement has been added successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
-                        $("#Title, #Content").css("box-shadow", "0 0 5px green");
-                        //Update bulletin board
-                        fetchBulletinBoard();
-                        fetchAnnounsDelete();
-                        fetchAnnounsEdit();
-                        //Disappear response message
-                        setTimeout(function(){
-                            $('#response').html('').hide();
-                        }, 5000);
-                    }
-                    else
-                    {
-                        //Display the error message and set red box shadow to the respective field.
-                        $('#response').html('<p style="color:red; font-size:17px; margin:0;">' +
-                            '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>').show().addClass("errorResponse");
-                        $("#"+response[1]+"").css("box-shadow", "0 0 5px red");
-                    }
+
+        var form = $('#insertAnnouncementForm')[0]; // get all the input values within the form
+        var data = new FormData(form);// store input values in the object
+
+        $.ajax
+        ({
+            type:'post', url:'http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/insertAnnouncement.php',
+            data:data,
+            enctype: 'multipart/form-data',
+            processData: false,  // Important!
+            contentType: false,
+            cache: false,
+            dataType:"json",
+            success:function(response)
+            {
+                if(response == "success") {
+                    //Display successful message and set green shadow to all the fields.
+                    $('#response').html('<p style="color:#00b300; font-size:17px; margin:0;">' +
+                        '<span class="fa fa-check-circle-o"> Announcement has been added successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
+                    $("#Title, #Content").css("box-shadow", "0 0 5px green");
+                    //Update bulletin board
+                    fetchBulletinBoard();
+                    fetchAnnounsDelete();
+                    fetchAnnounsEdit();
+                    //Disappear response message
+                    setTimeout(function(){
+                        $('#response').html('').hide();
+                    }, 5000);
                 }
-            });
-        }
-        else{
-            $('#response').html('<p style="color:red; font-size:18px; margin:0;">' +
-                '<span class="fa fa-exclamation-triangle"> All fields are required !</span></p>').show().addClass("errorResponse");
-            $("#Title").css("box-shadow", "0 0 5px red");
-            $("#Content").css("box-shadow", "0 0 5px red");
-        }
+                else
+                {
+                    //Display the error message and set red box shadow to the respective field.
+                    $('#response').html('<p style="color:red; font-size:17px; margin:0;">' +
+                        '<span class="fa fa-exclamation-triangle">'+response[0]+'</span></p>').show().addClass("errorResponse");
+                    $("#"+response[1]+"").css("box-shadow", "0 0 5px red");
+                }
+            }
+        });
 
         return false;
     }
@@ -215,6 +219,7 @@
             changedTitles.push($(this).parent().parent().next().find("#title").val());//Gets the changed title
             changedContents.push($(this).parent().parent().next().find("#content").val());//Gets the changed content
         });
+
 
         $.ajax({
             method: "POST",
@@ -303,5 +308,6 @@
             cb.prop('checked', true);
         }
     }
+
 
 </script>
