@@ -41,7 +41,7 @@ if($sql ->num_rows > 0) {
                         <p style='clear: left;'>$data[Education] &nbsp;</p>
                         <span style='float: left; padding-top: 1px;'> &#9642; </span>
                         <p>&nbsp; $data[MaritalStatus]</p>
-                        <p style='color: #0066cc; clear: both;'>Interested in:<p class='commonInterests' style='color: #0066cc;'>$data[CommonInterests]</p></p>
+                        <p style='color: #0066cc; clear: both;'><strong>Interested in:</strong>&nbsp;<p class='commonInterests' style='color: #0066cc;'>$data[CommonInterests]</p></p>
                     </div>
     
              </div>";

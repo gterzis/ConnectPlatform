@@ -6,7 +6,7 @@
     <div class="menu">
         <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php"><span class="fa fa-home"><p>Home</p></span></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/SearchUsers/SearchUsers.php"><span class="fa fa-search"><p>Find people</p></span></a>
-        <a><span class="fa fa-comments"><p>Conversations</p></span></a>
+        <a href="http://localhost/Local%20Server/ConnectPlatform/Chat/Messages.php"><span class="fa fa-comments"><p>Conversations</p></span></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Matches/Matches.php"><span class="fa fa-users"><p>Matches</p></span></a>
         <a><span class="fa fa-user-plus"><p>Requests</p><i class="numOfRequests" hidden></i></span></a>
         <a><span class="fa fa-bell"><p>Notifications</p><i class="numOfNotifications" hidden></i></span></a>

@@ -105,7 +105,7 @@ while ($data = mysqli_fetch_assoc($sql6)){
             }
             echo"
             <p style='color: #0066cc; clear: both;'>
-                Interested in: <p class='commonInterests' style='color: #0066cc;'> $data[commonInterests]</p>
+                <strong>Interested in:&nbsp;</strong> <p class='commonInterests' style='color: #0066cc;'> $data[commonInterests]</p>
             </p>
         </div>
     

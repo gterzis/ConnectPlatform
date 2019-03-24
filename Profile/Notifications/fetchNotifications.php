@@ -30,7 +30,7 @@ if($sql ->num_rows > 0) {
                     <img class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
                     <button class='acceptRequest-btn' onclick=''> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
                     
-                    <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
+                    <div class='resultInformation' style='display:inline-block; margin-left: 15px;'>
                         <p class='userID' hidden>$data[ID]</p>
                         <p style='font-weight: bold'> $data[Name] $data[Surname]</p>
                         <p style='clear: left;'>$data[District]</p>
@@ -44,7 +44,7 @@ if($sql ->num_rows > 0) {
                         }
                         echo "
                         <p style='color: #0066cc; clear: both;'>
-                            Interested in:<p class='commonInterests' style='color: #0066cc;'>$data[CommonInterests]</p>
+                            <strong>Interested in:&nbsp;</strong><p class='commonInterests' style='color: #0066cc;'>$data[CommonInterests]</p>
                         </p>
                     </div>
     

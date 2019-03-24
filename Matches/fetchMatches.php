@@ -48,7 +48,7 @@ while($data = mysqli_fetch_assoc($sql))
                     <p>&nbsp; $data[MaritalStatus]</p>";
                 }
                 echo "<p style='color: #0066cc; clear: both;'>
-                    Matched interests:<p class='commonInterests' style='color: #0066cc;'>$matchedInterests</p>
+                    <strong>Matched interests:&nbsp;</strong><p class='commonInterests' style='color: #0066cc;'>$matchedInterests</p>
                 </p>
             </div>
 

@@ -13,6 +13,15 @@ $userID = $_POST['userID']; // get the user's ID
 //get user's information
 if( $sql = $conn -> query("SELECT * FROM users WHERE ID = $userID") ){
 
+    //find matched interests and put them in a string
+    $matchedInterests="";
+    $findMatchedInterests = $conn -> query("SELECT MatchInterest FROM matches WHERE (User1 = $userID AND User2 = $_SESSION[user_id]) OR 
+                                                  (User1 = $_SESSION[user_id] AND User2 = $userID )");
+    while ($matchedInterest = mysqli_fetch_assoc($findMatchedInterests)){
+        $matchedInterests .= $matchedInterest['MatchInterest'] .', ';
+    }
+    $matchedInterests = rtrim($matchedInterests,', ');//remove last comma + space
+
     while ($data = mysqli_fetch_assoc($sql)){
 
         //Calculate the age of the user
@@ -34,36 +43,39 @@ if( $sql = $conn -> query("SELECT * FROM users WHERE ID = $userID") ){
                             echo" <span style='float: left; padding-top: 1px;'> &nbsp; &#9642; </span>
                             <p>&nbsp; $data[MaritalStatus]</p>";
                         }
-                    echo "</div>
+                    echo "<p style='color: #0066cc; clear: both;'>
+                            Matched interests:&nbsp;<p class='commonInterests'>$matchedInterests</p>
+                        </p>
+                        </div>
 
-                    <hr style=\"width: 100%; margin-top: 3px\">";
+                    <hr style='width: 100%; margin-top: 3px'>";
                     //if the user has no description don't show the description field
                     if (!empty($data['Description'])) {
 
-                        echo "<div id=\"description\">
-                                <p id=\"description-content\">$data[Description]</p>
+                        echo "<div id='description'>
+                                <p id='description-content'>$data[Description]</p>
                             </div>
         
-                            <hr style=\"width: 100%; margin-top: 3px\">";
+                            <hr style='width: 100%; margin-top: 3px'>";
                     }
 
                    echo "<!--PERSONAL INFORMATION-->
-                    <div class=\"more-details\">
-                        <span class=\"fa fa-home\"><p> $data[District]</p></span>
-                        <span class=\"fa fa-mortar-board\"><p> $data[Education]</p></span>";
+                    <div class='more-details'>
+                        <span class='fa fa-home'><p> $data[District]</p></span>
+                        <span class='fa fa-mortar-board'><p> $data[Education]</p></span>";
                     if (!empty($data['Occupation'])){
-                        echo "<span class=\"fa fa-briefcase\"><p> $data[Occupation]</p></span>";
+                        echo "<span class='fa fa-briefcase'><p> $data[Occupation]</p></span>";
                     }
                     echo "</div>
 
                     <!--INTERESTS-->
-                    <div class=\"viewProfile-interests\" >
+                    <div class='viewProfile-interests' >
                         <div style='font-size: 18px; color: #999999;'> <p style='float: left;margin: 10px 30px 5px 0px ;'>Interests</p>
                         <hr style=\"width: 100%; margin-top: 3px\">";
 
                          $usersInterests = $conn -> query("SELECT InterestName FROM usersinterests WHERE UserID = $userID;");
                          while ($interestName = mysqli_fetch_assoc($usersInterests) ){
-                            echo"<button class=\"chosen-interest\" type=\"button\"><p>$interestName[InterestName]</p></button>";
+                            echo"<button class='chosen-interest' type='button'><p>$interestName[InterestName]</p></button>";
                         }
 
                     echo"</div>

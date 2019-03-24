@@ -20,6 +20,14 @@
     100% { transform: rotate(360deg); }
 }
 
+/*page's content loading spinner*/
+.preload { width:100px;
+    height: 100px;
+    position: fixed;
+    top: 35%;
+    left: 40%;
+}
+
 /*---------------*/
 .container {
     position: relative;
@@ -101,7 +109,6 @@
     border: 0;
     outline: 0;
     background: white;
-
 }
 
 .lbl{
@@ -666,4 +673,123 @@ h2{
     width: 75px; height: 75px;
     margin-bottom:6%;
     object-fit: cover;
+}
+
+/*--------------------------Messaging.php----------------------------*/
+
+.messaging{
+    min-width: 30%;
+    max-width: 30%;
+    border: 1px solid #cdcfd2;
+    border-radius: 3px 0 0 0;
+    margin-left: 40px;
+    margin-top: 30px;
+    background-color: #fefefe;
+    float: left;
+}
+
+.chat-user .fullname{
+    margin-bottom:50px;
+    font-size: 20px;
+}
+
+.chat-user img{
+    margin-left: 15px;
+}
+
+.chat-user{
+    margin: 0 !important;
+    cursor: pointer;
+}
+
+.chat-user hr{
+    margin-top: 0 !important;
+}
+
+.chat-user:hover{
+    background-color: #e6e6ff;
+}
+
+.chat-users{
+    max-height: 450px;
+    overflow: auto;
+}
+
+.chatbox{
+    min-width: 50%;
+    max-width: 50%;
+    height: auto;
+    max-height: 514px;
+    border: 1px solid #cdcfd2;
+    border-radius: 0px 3px 0 0;
+    margin-top: 17px;
+    background-color: #fefefe;
+    float: left;
+    border-left: none;
+}
+
+.chatbox .result{
+    font-family:Verdana, Helvetica, Arial;
+    font-size: 13px;
+}
+
+.chatbox .input-message{
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+}
+
+.input-message button{
+    margin: 0px 0px;
+    padding: 1px 4px !important;
+    width: 80px;
+    height: 35px;
+}
+
+.input-message .inp-message{
+    width: 80%;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #43383e;
+    line-height: 1.2;
+    padding: 0px 5px 5px 5px;
+    margin: 15px;
+    margin-left: 10px;
+    border: 0;
+    outline: 0;
+}
+
+.chat-image{
+    border-radius: 50%;
+    border: solid 1px #d9d9d9;
+    width: 45px; height: 45px;
+    margin-left: 10px;
+    object-fit: cover;
+    margin-top: 15px;
+}
+
+.message{
+    font-family: "Roboto", sans-serif;
+}
+
+.message .fullname{
+    display: inline-block;
+    text-decoration: none;
+    margin: 0;
+    font-size: 15px;
+}
+
+.message .message-date{
+    display: inline-block;
+    color: #cccccc;
+    font-size: 14px;
+    margin: 0;
+}
+
+.message-content{
+   margin: 5px 10px;
+    font-size: 15px;
+    /*height: auto;*/
+    word-break: break-word;
 }

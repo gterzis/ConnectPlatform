@@ -89,7 +89,10 @@
                     interests: interests
                 },
                 success: function (response) {
-                    $("#results").append(response);
+                    $(".preload2").hide();//hide magnifier when the results have received
+                    $("#results").hide();// hide div to fade in when the results get appended
+                    $("#results").append(response);// append results
+                    $("#results").fadeIn(500);// fade in results
                 }
             });
         }
@@ -136,6 +139,9 @@
         <div class="modal-body">
 
             <div id="results" style="max-height: 420px; overflow: auto;">
+                <!--Show magnifier while searching for results-->
+                <div class="preload2" style="margin-left: 35%;"><img src="../images/Magnify.gif">
+                </div>
             </div>
 
         </div>

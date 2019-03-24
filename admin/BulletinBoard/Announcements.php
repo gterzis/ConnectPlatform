@@ -220,7 +220,6 @@
             changedContents.push($(this).parent().parent().next().find("#content").val());//Gets the changed content
         });
 
-
         $.ajax({
             method: "POST",
             url: "http://localhost/Local%20Server/ConnectPlatform/admin/BulletinBoard/updateAnnouncements.php",
