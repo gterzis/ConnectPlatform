@@ -144,7 +144,7 @@ if (empty($array[9])){ // marital status
 
         <!--FOOTER-->
         <div class="modal-footer">
-            <div id="response"">* Required fields</div>
+            <div id="response">* Required fields</div>
 <!--            <button class="btn-change" id="cancel"> CANCEL</button>-->
             <button class="btn-change" onclick="updateInformation()"> SAVE CHANGES</button>
         </div>

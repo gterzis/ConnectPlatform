@@ -34,7 +34,7 @@
     }
 
     .profileInformation{
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     #description-content{

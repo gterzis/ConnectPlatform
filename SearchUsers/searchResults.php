@@ -73,7 +73,7 @@
             var interestName = $(this).text();
             interests.push(interestName);
         });
-        if (interests.length > 0 && interests.length < 6) {
+        if (interests.length > 0 && interests.length < 5) {
             $.ajax
             ({
                 method: "POST",
@@ -97,7 +97,7 @@
             });
         }
         else {
-            alert("You must select at least one to five interests");
+            alert("You must select at least one to four interests");
             modal.style.display='none'; //dont show modal
         }
 

@@ -145,14 +145,16 @@ if (!isset($_SESSION['gender']))
 
     <!--BUTTON-->
     <div style="display: block; ">
-        <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php" style="color:#fefefe; border-radius: 4px; padding: 10px 12px; text-decoration: none; float: left; margin-left: 100px; background-color: #0066cc;">
-            <i class="fa fa-arrow-left"></i> Back to profile</a>
+        <button onclick="location.href='http://localhost/Local%20Server/ConnectPlatform/Profile.php';" class="btn" style="text-decoration: none; float: left; margin-left: 90px;">
+            <i class="fa fa-arrow-left"></i> BACK</button>
         <button class="btn" type="submit" style="float: left;">SEARCH</button>
     </div>
 
 
 </form>
+
 </div>
+
 </body>
 
 </html>

@@ -59,24 +59,37 @@
             $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Matches/viewProfile.php");
             return false;
         }
+
+        //Hide spinner and show page
+        $(function() {
+            $(".preload").fadeOut(500, function() {
+                $("#Matches-pagecontent").fadeIn(500);
+            });
+        });
     </script>
 </head>
 <body id="matches-pagecontent">
+<!--Loading spinner-->
+<div class="preload"><img src="../images/Spinner.gif">
+</div>
 
-<!--HEADER-->
-<?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/userHeader.php"); ?>
+<div id="Matches-pagecontent" hidden>
 
-<!--Place modal box-->
-<div id="modal-box"></div>
+    <!--HEADER-->
+    <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/userHeader.php"); ?>
 
-<div id="matches-main">
-    <h2>Matches</h2>
+    <!--Place modal box-->
+    <div id="modal-box"></div>
 
-    <div id="results">
+    <div id="matches-main">
+        <h2>Matches</h2>
+
+        <div id="results">
+
+        </div>
 
     </div>
 
 </div>
-
 </body>
 </html>

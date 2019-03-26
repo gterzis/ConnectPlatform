@@ -23,11 +23,22 @@ if(!isset($_SESSION['user_id']))
             $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Matches/viewProfile.php");
             return false;
         }
+
+        //Hide spinner and show page's content
+        $(function() {
+            $(".preload").fadeOut(500, function() {
+                $("#Messages-pagecontent").fadeIn(500);
+            });
+        });
+
     </script>
 </head>
 
 <body style="background-color:#f2f2f2;">
+<!--Loading spinner-->
+<div class="preload"><img src="../images/Spinner.gif"></div>
 
+<div id="Messages-pagecontent" hidden>
     <!--modal box-->
     <div id="modal-box"></div>
 
@@ -40,11 +51,11 @@ if(!isset($_SESSION['user_id']))
 
             <div class='result chat-user' style="margin-left: 15px;">
                 <hr style="width: 100%;">
-                <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
+                <img style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
 
                 <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                     <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> George Terzis</p>
+                    <p class='fullname' style='font-weight: bold; cursor: pointer; text-decoration: none;'> George Terzis</p>
 
                 </div>
 
@@ -141,7 +152,7 @@ if(!isset($_SESSION['user_id']))
             </div>
 
         </div>
-
+        <hr style="margin: 0;">
         <div id="conversation" style="max-height: 325px; overflow: auto;">
             <div class="message">
 
@@ -198,5 +209,6 @@ if(!isset($_SESSION['user_id']))
             </form>
         </div>
     </div>
+</div>
 </body>
 </html>

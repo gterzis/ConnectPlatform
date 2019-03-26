@@ -24,13 +24,13 @@ if($sql ->num_rows > 0) {
         $creationDate = date("d-M-Y H:i", strtotime($data['creationDate']));
         echo "  <div style='margin: 0px 0px 5px 0px; font-size: 14px; color: #cccccc; width: 94%;'> <p style='float: left;margin: 10px 30px 5px 30px ;'>Request accepted</p> <p style='float: right; margin: 10px 0px 5px 0px;'>$creationDate</p></div>
                 <hr> 
-                <div class='result'>
+                <div class='result' style='width: auto !important;'>
                     
                     
                     <img class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
                     <button class='acceptRequest-btn' onclick=''> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
                     
-                    <div class='resultInformation' style='display:inline-block; margin-left: 15px;'>
+                    <div class='resultInformation' style='display:inline-block; margin-left: 15px; width: auto;'>
                         <p class='userID' hidden>$data[ID]</p>
                         <p style='font-weight: bold'> $data[Name] $data[Surname]</p>
                         <p style='clear: left;'>$data[District]</p>
@@ -43,8 +43,9 @@ if($sql ->num_rows > 0) {
                             <p>&nbsp; $data[MaritalStatus]</p>";
                         }
                         echo "
-                        <p style='color: #0066cc; clear: both;'>
-                            <strong>Interested in:&nbsp;</strong><p class='commonInterests' style='color: #0066cc;'>$data[CommonInterests]</p>
+                        <p style='color: #0066cc; clear: left;'>
+                            <strong>Interested in:&nbsp;</strong>
+                            <p class='commonInterests' style='color: #0066cc;'>$data[CommonInterests]</p>
                         </p>
                     </div>
     
