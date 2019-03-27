@@ -54,15 +54,46 @@ if(!isset($_SESSION['user_id']))
                 data:{userID: userID},
                 success:function (response) {
                     $(".chatbox .result").html(response);
+                    showMessages(userID);
                 }
             });
-            // fetch conversation's messages
+
+            return false;
+        }
+
+        // refresh every one second the conversation
+        setInterval(function () {
+            var interlocutor  = $(".chatbox .result").find(".userID").text(); // get the interlocutor's id
+            showMessages(interlocutor);
+        }, 1000);
+
+        /// fetch conversation's messages
+        function showMessages(user) {
+            var userID = user;
             $.ajax({
                 method: "POST",
                 url:"getMessages.php",
                 data:{userID: userID},
                 success:function (response) {
-                    $("#conversation").html(response);
+                $("#conversation").html(response);
+                }
+            });
+            return false;
+        }
+
+
+
+        //sending message
+        function sendingMessage() {
+            var message = $(".inp-message").val(); // get the message's content
+            var receiverID = $(".chatbox .result").find(".userID").text(); // get the receiver's ID
+            $.ajax({
+                method: "POST",
+                url:"sendingMessage.php",
+                data:{receiverID: receiverID, message: message},
+                success:function (response) {
+                    $(".inp-message").val("");
+                    showMessages(receiverID); // refresh conversation's messages
                 }
             });
 
@@ -86,18 +117,7 @@ if(!isset($_SESSION['user_id']))
         <h2>Messaging</h2>
 
         <div id="results" class="chat-users">
-
-            <div class='result chat-user' style="margin-left: 15px;">
-                <hr style="width: 100%;">
-                <img style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                    <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' style='font-weight: bold; cursor: pointer; text-decoration: none;'> George Terzis</p>
-
-                </div>
-
-            </div>
+            <!--Place the users where chat with before (AJAX call)-->
         </div>
 
     </div>
@@ -105,65 +125,23 @@ if(!isset($_SESSION['user_id']))
     <div class="chatbox">
         <!-- User's information -->
         <div class='result' style="margin-left: 10px">
-
+            <!--Place the user's information (AJAX call)-->
         </div>
 
         <hr style="margin: 0;">
         <div id="conversation" style="max-height: 325px; overflow: auto;">
-            <div class="message">
-
-                <img class='chat-image' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' >
-                <div style="display: inline-block;position: relative; bottom: 17px; margin-left: 5px;">
-                    <p class='fullname' style='font-weight: bold;'> John Grimes</p>
-                    <span style='padding-top: 1px; color: #cccccc;'> &#9642; </span>
-                    <p class="message-date" >&nbsp;22 - March 12:40</p>
-                </div>
-
-                <p class="message-content"> Hello there, how are you? Last Wednesday went for interview at University of Cyprus Hello there, how are you? Last Wednesday went for interview at University of Cyprus</p>
-            </div>
-            <div class="message">
-
-                <img class='chat-image' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/18.jpg' alt='' >
-                <div style="display: inline-block;position: relative; bottom: 17px">
-                    <p class='fullname' style='font-weight: bold;'> Hodor Grimes</p>
-                    <span style='padding-top: 1px; color: #cccccc;'> &#9642; </span>
-                    <p class="message-date" >&nbsp;22 - March 12:40</p>
-                </div>
-
-                <p class="message-content"> Hello there, how are you? Last Wednesday went for interview at University of Cyprus Hello there, how are you? Last Wednesday went for interview at University of Cyprus</p>
-            </div>
-            <div class="message">
-
-                <img class='chat-image' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' >
-                <div style="display: inline-block;position: relative; bottom: 17px">
-                    <p class='fullname' style='font-weight: bold;'> John Grimes</p>
-                    <span style='padding-top: 1px; color: #cccccc;'> &#9642; </span>
-                    <p class="message-date" >&nbsp;22 - March 12:40</p>
-                </div>
-
-                <p class="message-content"> Hello there, how are you? Last Wednesday went for interview at University of Cyprus Hello there, how are you? Last Wednesday went for interview at University of Cyprus</p>
-            </div>
-            <div class="message">
-
-                <img class='chat-image' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' >
-                <div style="display: inline-block;position: relative; bottom: 17px">
-                    <p class='fullname' style='font-weight: bold;'> John Grimes</p>
-                    <span style='padding-top: 1px; color: #cccccc;'> &#9642; </span>
-                    <p class="message-date" >&nbsp;22 - March 12:40</p>
-                </div>
-
-                <p class="message-content"> Hello there, how are you? Last Wednesday went for interview at University of Cyprus Hello there, how are you? Last Wednesday went for interview at University of Cyprus</p>
-            </div>
-
+            <!--Place the conversation's messages (AJAX call)-->
         </div>
 
         <hr style="margin-top: 0px;">
+
         <div class="input-message">
-            <form>
+            <form id="sendMessage" onsubmit="return sendingMessage();">
                 <input class="inp-message" type="text"  placeholder="Write a message..." maxlength="300" style="float:left; margin:10px;">
                 <button class="btn" type="submit"> Send</button>
             </form>
         </div>
+
     </div>
 </div>
 </body>

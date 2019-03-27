@@ -17,13 +17,17 @@ $messages = $conn ->query("SELECT * FROM messages NATURAL JOIN users WHERE (Send
 
 while ($data = mysqli_fetch_assoc($messages)){
 
+    //format sent date
+    $sentDate = date( "H:i - d-M-y", strtotime($data['SentDate']));
+
+    //print message with all the details
     echo "<div class='message'>
 
                 <img class='chat-image' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' >
                 <div style='display: inline-block; position: relative; bottom: 17px'>
                     <p class='fullname' style='font-weight: bold;'> $data[Name] $data[Surname]</p>
                     <span style='padding-top: 1px; color: #cccccc;'> &#9642; </span>
-                    <p class='message-date' >&nbsp;$data[SentDate]</p>
+                    <p class='message-date' >&nbsp;$sentDate</p>
                 </div>
 
                 <p class='message-content'> $data[Message]</p>
