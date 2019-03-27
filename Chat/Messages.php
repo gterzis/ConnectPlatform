@@ -31,6 +31,44 @@ if(!isset($_SESSION['user_id']))
             });
         });
 
+        //get Interlocutors
+        getInterlocutors();
+        function getInterlocutors() {
+            $.ajax({
+                method: "POST",
+                url:"getInterlocutors.php",
+                success:function (response) {
+                    $("#results").append(response);
+                }
+            });
+            return false;
+        }
+
+        // show conversation details
+        function showConversation(clickedUser) {
+            var userID = $(clickedUser).find(".userID").text(); //get user's id from the hidden field
+            // fetch user's information
+            $.ajax({
+                method: "POST",
+                url:"getUserDetails.php",
+                data:{userID: userID},
+                success:function (response) {
+                    $(".chatbox .result").html(response);
+                }
+            });
+            // fetch conversation's messages
+            $.ajax({
+                method: "POST",
+                url:"getMessages.php",
+                data:{userID: userID},
+                success:function (response) {
+                    $("#conversation").html(response);
+                }
+            });
+
+            return false;
+        }
+
     </script>
 </head>
 
@@ -60,98 +98,16 @@ if(!isset($_SESSION['user_id']))
                 </div>
 
             </div>
-            <div class='result chat-user' style="margin-left: 15px;">
-                <hr style="width: 100%;">
-                <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                    <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> George Terzis</p>
-
-                </div>
-
-            </div>
-            <div class='result chat-user' style="margin-left: 15px;">
-                <hr style="width: 100%;">
-                <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                    <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> George Terzis</p>
-
-                </div>
-
-            </div>
-            <div class='result chat-user' style="margin-left: 15px;">
-                <hr style="width: 100%;">
-                <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                    <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> George Terzis</p>
-
-                </div>
-
-            </div>
-            <div class='result chat-user' style="margin-left: 15px;">
-                <hr style="width: 100%;">
-                <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                    <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> George Terzis</p>
-
-                </div>
-
-            </div>
-            <div class='result chat-user' style="margin-left: 15px;">
-                <hr style="width: 100%;">
-                <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                    <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> George Terzis</p>
-
-                </div>
-
-            </div>
-            <div class='result chat-user' style="margin-left: 15px;">
-                <hr style="width: 100%;">
-                <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-                <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
-                    <p class='userID' hidden>$data[ID]</p>
-                    <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> George Terzis</p>
-
-                </div>
-
-            </div>
-
         </div>
 
     </div>
 
     <div class="chatbox">
+        <!-- User's information -->
         <div class='result' style="margin-left: 10px">
 
-            <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/17.jpg' alt='' width='25' height=50' >
-
-            <div class='resultInformation' style='display: inline-block; margin-left: 10px'>
-                <p class='userID' hidden>15</p>
-                <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> John Grimes</p>
-                <p style='clear: left;'>Tseri, Nicosia</p>
-                <p style='clear: left;'>Male &nbsp;</p>
-                <span style='float: left; padding-top: 1px;'> &#9642; </span>
-                <p>&nbsp; 21 years old</p>
-                <p style='clear: left;'>Cyprus University of Technology &nbsp;</p>
-                <span style='float: left; padding-top: 1px;'> &#9642; </span>
-                <p>&nbsp; Divorced</p>
-                <p style='color: #0066cc; clear: both;'>
-                    Matched interests:<p class='commonInterests' style='color: #0066cc;'>Golf, Chess</p>
-                </p>
-            </div>
-
         </div>
+
         <hr style="margin: 0;">
         <div id="conversation" style="max-height: 325px; overflow: auto;">
             <div class="message">

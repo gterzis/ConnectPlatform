@@ -159,12 +159,6 @@ if (!isset($_SESSION['gender']))
 
 </html>
 <script>
-    //Hide spinner and show page
-    $(function() {
-        $(".preload").fadeOut(500, function() {
-            $(".SearchUsers-pagecontent").fadeIn(500);
-        });
-    });
     //Add box shadow on input fields when focus
     $.getScript( "http://localhost/Local%20Server/ConnectPlatform/includes/inputBoxShadow.js" );
 
@@ -176,6 +170,13 @@ if (!isset($_SESSION['gender']))
         $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/SearchUsers/searchResults.php");
         return false;
     }
+
+    //Hide spinner and show page
+    $(function() {
+        $(".preload").fadeOut(500, function() {
+            $(".SearchUsers-pagecontent").fadeIn(500);
+        });
+    });
 
     var minFirstClick = true;
     //Dont let min age surpass max age
