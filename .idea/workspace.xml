@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f32dc090-be1c-4cd3-95fc-4957bff96824" name="Default Changelist" comment="Καλησπερα">
-      <change afterPath="$PROJECT_DIR$/Chat/sendingMessage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chat/checkUnseenMessages.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chat/Messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/Messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/getInterlocutors.php" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/getInterlocutors.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chat/getMessages.php" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/getMessages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/sendingMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/sendingMessage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Matches/Matches.php" beforeDir="false" afterPath="$PROJECT_DIR$/Matches/Matches.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Matches/fetchMatches.php" beforeDir="false" afterPath="$PROJECT_DIR$/Matches/fetchMatches.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile/Notifications/fetchNotifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/Notifications/fetchNotifications.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile/Requests/checkUnseenRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/Requests/checkUnseenRequests.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile/Requests/fetchRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/Requests/fetchRequests.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/userHeader.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/userHeader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indexStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/indexStyle.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +94,7 @@
     <session id="-1565418562">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="119" />
+          <entry key="project.closed" value="121" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.107" value="2" />
           <entry key="project.open.time.113" value="1" />
@@ -115,9 +124,9 @@
           <entry key="project.open.time.45" value="4" />
           <entry key="project.open.time.46" value="3" />
           <entry key="project.open.time.47" value="8" />
-          <entry key="project.open.time.48" value="3" />
+          <entry key="project.open.time.48" value="4" />
           <entry key="project.open.time.49" value="3" />
-          <entry key="project.open.time.50" value="6" />
+          <entry key="project.open.time.50" value="7" />
           <entry key="project.open.time.51" value="2" />
           <entry key="project.open.time.52" value="3" />
           <entry key="project.open.time.53" value="2" />
@@ -147,27 +156,27 @@
           <entry key="project.open.time.86" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="123" />
+          <entry key="project.opened" value="125" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Index" value="385" />
           <entry key="cell" value="537" />
-          <entry key="css" value="5600" />
+          <entry key="css" value="5615" />
           <entry key="html" value="2030" />
           <entry key="js" value="125" />
-          <entry key="php" value="60187" />
+          <entry key="php" value="62327" />
           <entry key="sql" value="40" />
           <entry key="txt" value="45" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="5600" />
-          <entry key="HTML" value="2126" />
+          <entry key="CSS" value="5615" />
+          <entry key="HTML" value="2131" />
           <entry key="JavaScript" value="125" />
-          <entry key="PHP" value="60203" />
+          <entry key="PHP" value="62338" />
           <entry key="PLAIN_TEXT" value="45" />
           <entry key="SQL" value="273" />
           <entry key="Scratch" value="577" />
@@ -179,7 +188,7 @@
           <entry key="LICENSE" value="2" />
           <entry key="admins" value="14" />
           <entry key="bulletin_board" value="3" />
-          <entry key="css" value="99" />
+          <entry key="css" value="101" />
           <entry key="customers" value="1" />
           <entry key="html" value="49" />
           <entry key="interests" value="8" />
@@ -189,7 +198,7 @@
           <entry key="json" value="1" />
           <entry key="md" value="2" />
           <entry key="messages" value="2" />
-          <entry key="php" value="567" />
+          <entry key="php" value="580" />
           <entry key="php5" value="1" />
           <entry key="png" value="5" />
           <entry key="reset_password" value="4" />
@@ -203,14 +212,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="99" />
+          <entry key="CSS" value="101" />
           <entry key="Database Element" value="62" />
           <entry key="HTML" value="49" />
           <entry key="Image" value="19" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="16" />
           <entry key="Markdown" value="2" />
-          <entry key="PHP" value="571" />
+          <entry key="PHP" value="584" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="RNG Compact" value="3" />
           <entry key="SQL" value="2" />
@@ -222,71 +231,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Chat/Messages.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Matches/Matches.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="81" column="9" lean-forward="true" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+            <state relative-caret-position="408">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/userHeader.php">
+        <entry file="file://$PROJECT_DIR$/indexStyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+            <state relative-caret-position="294">
+              <caret line="728" column="22" selection-start-line="728" selection-start-column="22" selection-end-line="728" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chat/sendingMessage.php">
+        <entry file="file://$PROJECT_DIR$/Matches/fetchMatches.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chat/getInterlocutors.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chat/getMessages.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+            <state relative-caret-position="240">
+              <caret line="38" column="162" selection-start-line="38" selection-start-column="162" selection-end-line="38" selection-end-column="162" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#480#486#0" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#button#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#button#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#998#1004#0" expanded="true" />
+                <element signature="e#1106#1112#0" expanded="true" />
+                <element signature="n#style#0;n#p#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#1258#1264#0" expanded="true" />
+                <element signature="e#85#91#0" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Profile/BulletinBoard.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Chat/sendingMessage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="73" />
+            <state relative-caret-position="442">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chat/getUserDetails.php">
+        <entry file="file://$PROJECT_DIR$/Registration.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="14" column="80" lean-forward="true" selection-start-line="14" selection-start-column="80" selection-end-line="14" selection-end-column="80" />
+            <state relative-caret-position="289">
+              <caret line="107" column="4" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="113" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -326,7 +323,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/Interests/updateInterests.php" />
         <option value="$PROJECT_DIR$/admin/BulletinBoard/getAnnouncements.php" />
         <option value="$PROJECT_DIR$/includes/inputBoxShadow.js" />
         <option value="$PROJECT_DIR$/includes/radioButtonStyle.css" />
@@ -340,7 +336,6 @@
         <option value="$PROJECT_DIR$/Profile/Requests/matchRegistration.php" />
         <option value="$PROJECT_DIR$/misc/git.txt" />
         <option value="$PROJECT_DIR$/Profile/Notifications/checkUnseenNotifications.php" />
-        <option value="$PROJECT_DIR$/Profile/Requests/checkUnseenRequests.php" />
         <option value="$PROJECT_DIR$/updateInformation.php" />
         <option value="$PROJECT_DIR$/Register.php" />
         <option value="$PROJECT_DIR$/forgotPassword.php" />
@@ -359,24 +354,26 @@
         <option value="$PROJECT_DIR$/admin/BulletinBoard/updateAnnouncements.php" />
         <option value="$PROJECT_DIR$/Profile/Requests/Requests.php" />
         <option value="$PROJECT_DIR$/admin/BulletinBoard/Announcements.php" />
-        <option value="$PROJECT_DIR$/includes/userHeader.php" />
-        <option value="$PROJECT_DIR$/Profile/Requests/fetchRequests.php" />
-        <option value="$PROJECT_DIR$/Matches/fetchMatches.php" />
         <option value="$PROJECT_DIR$/SearchUsers/findUsers.php" />
         <option value="$PROJECT_DIR$/Matches/getInformations.php" />
         <option value="$PROJECT_DIR$/Profile.php" />
-        <option value="$PROJECT_DIR$/Matches/Matches.php" />
-        <option value="$PROJECT_DIR$/Profile/Notifications/fetchNotifications.php" />
         <option value="$PROJECT_DIR$/Matches/viewProfile.php" />
-        <option value="$PROJECT_DIR$/indexStyle.css" />
         <option value="$PROJECT_DIR$/SearchUsers/searchResults.php" />
         <option value="$PROJECT_DIR$/editInformation.php" />
         <option value="$PROJECT_DIR$/SearchUsers/SearchUsers.php" />
         <option value="$PROJECT_DIR$/Chat/getUserDetails.php" />
-        <option value="$PROJECT_DIR$/Chat/getInterlocutors.php" />
-        <option value="$PROJECT_DIR$/Chat/sendingMessage.php" />
-        <option value="$PROJECT_DIR$/Chat/getMessages.php" />
         <option value="$PROJECT_DIR$/Chat/Messages.php" />
+        <option value="$PROJECT_DIR$/Profile/Requests/fetchRequests.php" />
+        <option value="$PROJECT_DIR$/Matches/Matches.php" />
+        <option value="$PROJECT_DIR$/Matches/fetchMatches.php" />
+        <option value="$PROJECT_DIR$/Profile/Requests/checkUnseenRequests.php" />
+        <option value="$PROJECT_DIR$/Chat/checkUnseenMessages.php" />
+        <option value="$PROJECT_DIR$/indexStyle.css" />
+        <option value="$PROJECT_DIR$/Chat/getMessages.php" />
+        <option value="$PROJECT_DIR$/Chat/getInterlocutors.php" />
+        <option value="$PROJECT_DIR$/Profile/Notifications/fetchNotifications.php" />
+        <option value="$PROJECT_DIR$/includes/userHeader.php" />
+        <option value="$PROJECT_DIR$/Chat/sendingMessage.php" />
       </list>
     </option>
   </component>
@@ -411,6 +408,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -418,16 +416,10 @@
               <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
               <item name="ConnectPlatform" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ConnectPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ConnectPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -618,7 +610,9 @@
       <workItem from="1553501964591" duration="331000" />
       <workItem from="1553596366693" duration="3826000" />
       <workItem from="1553609088869" duration="1116000" />
-      <workItem from="1553675284527" duration="11100000" />
+      <workItem from="1553675284527" duration="11146000" />
+      <workItem from="1553709420704" duration="3072000" />
+      <workItem from="1553777648503" duration="18301000" />
     </task>
     <task id="LOCAL-00001" summary="Καλησπερα">
       <created>1545735843001</created>
@@ -631,7 +625,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="907941000" />
+    <option name="totallyTimeSpent" value="929360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -646,7 +640,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15279879" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15733737" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -729,31 +723,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Καλησπερα" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/includes/DialogBox.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="105" selection-start-line="105" selection-end-line="113" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SearchUsers/requestRegistration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/RegisteredSuccesfully.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Registration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="4" column="49" lean-forward="true" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -892,13 +865,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Chat.php" />
-    <entry file="file://$PROJECT_DIR$/Profile/Requests/fetchRequests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Matches/viewProfile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -927,24 +893,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Matches/Matches.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/BulletinBoard/Announcements.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3135">
           <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/indexStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2669">
-          <caret line="157" column="26" selection-start-line="157" selection-start-column="26" selection-end-line="157" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -969,20 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Profile/Notifications/fetchNotifications.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="62" selection-start-line="45" selection-start-column="62" selection-end-line="45" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#p#5;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#1351#1357#0" expanded="true" />
-            <element signature="e#101#107#0" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://0b6a5898-adec-47fe-898e-af505aeb7db0/schema/connectplatform/table/users">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1000,13 +938,6 @@
     <entry file="file://$PROJECT_DIR$/profile-pictures/25.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Matches/fetchMatches.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="8" lean-forward="true" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Profile/BulletinBoard.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1016,49 +947,121 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Chat/getUserDetails.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="14" column="80" lean-forward="true" selection-start-line="14" selection-start-column="80" selection-end-line="14" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chat/getInterlocutors.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chat/sendingMessage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chat/getMessages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#480#486#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/userHeader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+        <state relative-caret-position="238">
+          <caret line="14" column="80" selection-start-line="14" selection-start-column="80" selection-end-line="14" selection-end-column="80" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Chat/Messages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="81" column="9" lean-forward="true" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+        <state relative-caret-position="356">
+          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/Requests/fetchRequests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="41" column="37" lean-forward="true" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Matches/fetchMatches.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="38" column="162" selection-start-line="38" selection-start-column="162" selection-end-line="38" selection-end-column="162" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#button#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#button#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#998#1004#0" expanded="true" />
+            <element signature="e#1106#1112#0" expanded="true" />
+            <element signature="n#style#0;n#p#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#1258#1264#0" expanded="true" />
+            <element signature="e#85#91#0" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/Requests/checkUnseenRequests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chat/checkUnseenMessages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/indexStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="728" column="22" selection-start-line="728" selection-start-column="22" selection-end-line="728" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Matches/Matches.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chat/getMessages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chat/getInterlocutors.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="78" lean-forward="true" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile/Notifications/fetchNotifications.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="37" column="72" lean-forward="true" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/userHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#a#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Registration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="107" column="4" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="113" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chat/sendingMessage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>

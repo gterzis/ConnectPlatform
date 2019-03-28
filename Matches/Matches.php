@@ -13,19 +13,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../indexStyle.css">
     <script>
-        // Show matches
-        fetchMatches();
-        function fetchMatches() {
-            $.ajax
-            ({
-                method: "POST",
-                url: "http://localhost/Local%20Server/ConnectPlatform/Matches/fetchMatches.php",
-                success: function (response) {
-                    $("#results").append(response);
-                }
-            });
-            return false;
-        }
+        $(document).ready(function () {
+            // Show matches
+            fetchMatches();
+            function fetchMatches() {
+                $.ajax
+                ({
+                    method: "POST",
+                    url: "http://localhost/Local%20Server/ConnectPlatform/Matches/fetchMatches.php",
+                    success: function (response) {
+                        $("#results").append(response);
+                    }
+                });
+                return false;
+            }
+        });
 
         //delete match
         function deleteMatch(clickedBtn) {

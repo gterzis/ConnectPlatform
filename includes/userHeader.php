@@ -6,10 +6,10 @@
     <div class="menu">
         <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php"><span class="fa fa-home"><p>Home</p></span></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/SearchUsers/SearchUsers.php"><span class="fa fa-search"><p>Find people</p></span></a>
-        <a href="http://localhost/Local%20Server/ConnectPlatform/Chat/Messages.php"><span class="fa fa-comments"><p>Conversations</p></span></a>
+        <a href="http://localhost/Local%20Server/ConnectPlatform/Chat/Messages.php"><span class="fa fa-comments"><p>Conversations</p></span><i class="numOfMessages" hidden></i></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Matches/Matches.php"><span class="fa fa-users"><p>Matches</p></span></a>
-        <a><span class="fa fa-user-plus"><p>Requests</p><i class="numOfRequests" hidden></i></span></a>
-        <a><span class="fa fa-bell"><p>Notifications</p><i class="numOfNotifications" hidden></i></span></a>
+        <a><span class="fa fa-user-plus"><p>Requests</p></span><i class="numOfRequests" style="margin-left: 15px;" hidden></i></a>
+        <a><span class="fa fa-bell"><p>Notifications</p></span><i style="margin-left: 2px;" class="numOfNotifications" hidden></i></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
     </div>
 </div>
@@ -25,30 +25,45 @@
     });
 
     $(document).ready(function() {
-        // check for unseen notifications and requests every 1 second
+        // check for unseen notifications, requests, messages every 1 second
         setInterval(function () {
+            //notifications
             $.ajax({
                 type: "GET",
                 url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Notifications/checkUnseenNotifications.php",
                 success: function (response) {
                     //change notification icon color if are there any unseen notifications
                     if (response > 0) {
-                        $(".fa-bell").css("color", "#ffff66");
-                        $(".fa-bell").children().css("color", "#c7d1d8");
+                        $(".topnav .fa-bell").css("color", "#ffff66");
+                        $(".topnav .fa-bell").children().css("color", "#c7d1d8");
                         $(".numOfNotifications").text(response).show();
                     }
                 }
             });
-
+            // requests
             $.ajax({
                 type: "GET",
                 url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Requests/checkUnseenRequests.php",
                 success: function (response) {
                     //change request icon color if are there any unseen notifications
                     if (response > 0) {
-                        $(".fa-user-plus").css("color", "#ffff66");
-                        $(".fa-user-plus").children().css("color", "#c7d1d8");
+                        $(".topnav .fa-user-plus").css("color", "#ffff66");
+                        $(".topnav .fa-user-plus").children().css("color", "#c7d1d8");
                         $(".numOfRequests").text(response).show();
+                    }
+                }
+            });
+
+            // messages
+            $.ajax({
+                type: "GET",
+                url: "http://localhost/Local%20Server/ConnectPlatform/Chat/checkUnseenMessages.php",
+                success: function (response) {
+                    //change request icon color if are there any unseen notifications
+                    if (response > 0) {
+                        $(".topnav .fa-comments").css("color", "#ffff66");
+                        $(".topnav .fa-comments").children().css("color", "#c7d1d8");
+                        $(".numOfMessages").text(response).show();
                     }
                 }
             });
@@ -72,17 +87,17 @@
     body{
         margin: 0;
     }
-
+    .numOfMessages,
     .numOfRequests,
     .numOfNotifications{
         border-radius: 50%;
         background-color: red;
         font-size: 13px;
         color: ivory !important;
-        padding: 2px 5px;
+        padding: 1px 7px 1px 4px;
         position: relative;
-        bottom: 65px;
-        margin-left: 30px;
+        bottom: 30px;
+        right: 65px;
     }
 
     .topnav span{

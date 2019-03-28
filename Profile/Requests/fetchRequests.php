@@ -20,6 +20,9 @@ if($sql ->num_rows > 0) {
         $age = $currentDate->diff(new DateTime($data['Birthdate'])); // get the difference between birthday and current date
         $age = $age->y; // get the year difference
 
+        // encode user's id in order to pass it to url for the chat page
+        $encodedID = base64_encode($data['ID']);
+
         //format sent date of request
         $creationDate = date("d-M-Y H:i", strtotime($data['SentDate']));
         echo "  <div style='margin: 0px 0px 5px 0px; font-size: 14px; color: #cccccc; text-align: right; width: 94%;'>$creationDate</div>
@@ -30,7 +33,7 @@ if($sql ->num_rows > 0) {
                     
                     <button class='acceptRequest-btn' onclick='acceptRequest(this);'> Accept</button>
                     <button class='declineRequest-btn' onclick='declineRequest(this);'> Decline</button>
-                    <button hidden id='chat' class='acceptRequest-btn' onclick=''> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
+                    <button hidden id='chat'  class='chat-btn' onclick='location.href=\"http://localhost/Local%20Server/ConnectPlatform/Chat/Messages.php?id=$encodedID\";'><span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
 
                     <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                         <p class='userID' hidden>$data[ID]</p>

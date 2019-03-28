@@ -1,4 +1,4 @@
-<?php // called by Profile.php
+<?php // called by userHeader.php
 session_start();
 require('../../includes/Connection.php');
 // check for unseen requests

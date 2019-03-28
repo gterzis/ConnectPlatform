@@ -16,6 +16,8 @@ $messages = $conn ->query("SELECT * FROM messages NATURAL JOIN users WHERE (Send
                                     OR (SenderID = $userID AND ReceiverID = $_SESSION[user_id] AND SenderID =ID) ORDER BY SentDate;");
 
 while ($data = mysqli_fetch_assoc($messages)){
+    // set message as seen
+    $updateSeen = $conn -> query("UPDATE messages SET Seen = 1 WHERE MessageID = $data[MessageID] AND ReceiverID = $_SESSION[user_id]");
 
     //format sent date
     $sentDate = date( "H:i - d-M-y", strtotime($data['SentDate']));

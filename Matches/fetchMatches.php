@@ -28,20 +28,23 @@ while($data = mysqli_fetch_assoc($sql))
     $age = $currentDate->diff(new DateTime($data['Birthdate'])); // get the difference between birthday and current date
     $age = $age->y; // get the year difference
 
+    // encode user's id in order to pass it to url for the chat page
+    $encodedID = base64_encode($data['ID']);
+
     echo "<hr>
         <div class='result'>
 
             <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
-            <button class='chat-btn' onclick=''> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
-            <button class='deleteUser-btn' onclick='deleteMatch(this);'> <span class='fa fa-user-times' style='font-size: 18px; margin-right: 5px;'></span>Delete</button>
+            <button class='chat-btn' onclick='location.href=\"../../ConnectPlatform/Chat/Messages.php?id=$encodedID\";'> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
+            <button class='deleteUser-btn' onclick='deleteMatch(this);'> <span class='fa fa-user-times' style='font-size: 18px; margin-right: 5px;'></span>Disable</button>
 
             <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                 <p class='userID' hidden>$data[ID]</p>
                 <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> $data[Name] $data[Surname]</p>
-                <p style='clear: left;'>$data[District]</p>
                 <p style='clear: left;'>$data[Gender] &nbsp;</p>
                 <span style='float: left; padding-top: 1px;'> &#9642; </span>
                 <p>&nbsp; $age years old</p>
+                <p style='clear: left;'>$data[District]</p>
                 <p style='clear: left;'>$data[Education] &nbsp;</p>";
                 if(!empty($data['MaritalStatus'])) {
                     echo "<span style='float: left; padding-top: 1px;'> &#9642; </span>
