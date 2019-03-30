@@ -13,7 +13,7 @@
     <h3 class="subtitle">Meet people with common interests with you</h3>
     <img class="backgr" src="images/background.jpg">
     <button class="btn1" onclick="location.href='Register.php'">GET STARTED</button>
-    <button class="btn2" onclick="location.href='Login.php'" style="left: 60%;">LOGIN</button>
+    <button class="btn2" onclick="location.href='Login/Login.php'" style="left: 60%;">LOGIN</button>
 </div>
 
 </body>

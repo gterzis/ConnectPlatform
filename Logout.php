@@ -4,5 +4,5 @@
 	unset($_SESSION['user_email']);
 	unset($_SESSION['user_pass']);
 	session_destroy();
-	header("Location: http://localhost/Local%20Server/ConnectPlatform/Login.php");
+	header("Location: http://localhost/Local%20Server/ConnectPlatform/Login/Login.php");
 ?>

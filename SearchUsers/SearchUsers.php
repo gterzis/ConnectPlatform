@@ -145,7 +145,7 @@ if (!isset($_SESSION['gender']))
 
     <!--BUTTON-->
     <div style="display: block; ">
-        <button onclick="location.href='http://localhost/Local%20Server/ConnectPlatform/Profile.php';" class="btn" style="text-decoration: none; float: left; margin-left: 90px;">
+        <button type="button" onclick="location.href='http://localhost/Local%20Server/ConnectPlatform/Profile.php';" class="btn" style="text-decoration: none; float: left; margin-left: 90px;">
             <i class="fa fa-arrow-left"></i> BACK</button>
         <button class="btn" type="submit" style="float: left;">SEARCH</button>
     </div>

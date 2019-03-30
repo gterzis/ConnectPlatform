@@ -10,7 +10,7 @@
 
     <head>
         <title>Get in Touch - Login</title>
-        <link rel="stylesheet" href="indexStyle.css" >
+        <link rel="stylesheet" href="../indexStyle.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/checkBoxStyle.css"><!--check box style-->
@@ -35,7 +35,7 @@
                                 window.location.href="http://localhost/Local%20Server/ConnectPlatform/admin/admin.php";
                             }
                             else if(response == "success"){
-                                window.location.href="Profile.php";
+                                window.location.href="../Profile.php";
                             }
                             else{
                                 $('#result').load("http://localhost/Local%20Server/ConnectPlatform/includes/DialogBox.php?Error="+response+"");
@@ -53,7 +53,7 @@
             }
 
             $(document).ready(function() {
-                $.getScript( "includes/inputBoxShadow.js" );
+                $.getScript( "../includes/inputBoxShadow.js" );
 
                 // Show succeed registration pop up window message
                 var registered = "<?= $registered; ?>";
@@ -116,7 +116,7 @@
 
             <button class="btn" style="width: 75%; margin: 8px 15px 15px 45px;">LOGIN</button>
             <p style="margin: 5px 10%; text-align: center;">Forgot your passwrod ?<button style="font-size: 15px;" type="button" class="forgot-btn" onclick="forgotPassword()"> Click here</button></p>
-            <p style="margin: 10px 10%; text-align: center;">Not registered ?<a href="Register.php" style="font-size: 15px; color: #0066cc; font-weight: bold; text-decoration: none;"> Sign up</a></p>
+            <p style="margin: 10px 10%; text-align: center;">Not registered ?<a href="../Register.php" style="font-size: 15px; color: #0066cc; font-weight: bold; text-decoration: none;"> Sign up</a></p>
 
         </form>
 

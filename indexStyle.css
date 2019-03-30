@@ -679,19 +679,21 @@ h2{
 /*--------------------------Messaging.php----------------------------*/
 
 .messaging{
-    min-width: 30%;
+    min-width: 455px;
     max-width: 30%;
     border: 1px solid #cdcfd2;
     border-radius: 3px 0 0 0;
-    margin-left: 40px;
+    margin-left: 98px;
     margin-top: 30px;
     background-color: #fefefe;
     float: left;
+    position: absolute;
 }
 
 .chat-user .fullname{
     margin-bottom:50px;
-    font-size: 20px;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
 }
 
 .chat-user img{
@@ -717,7 +719,7 @@ h2{
 }
 
 .chatbox{
-    min-width: 50%;
+    min-width: 655.5px;
     max-width: 50%;
     height: auto;
     max-height: 512px;
@@ -727,6 +729,9 @@ h2{
     background-color: #fefefe;
     float: left;
     border-left: none;
+    position: absolute;
+    left: 555px;
+    top: 93px;
 }
 
 .chatbox .result{

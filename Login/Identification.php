@@ -1,67 +1,29 @@
 <?php
 
 	session_start();
+    //If the user have not pressed the login button. This prevents users visit this page directly.
+    if (!$_SERVER["REQUEST_METHOD"] == "POST") {
+        header("Location: ../index.php");
+        exit();
+    }
+    // include userLogin class for input validation
+    require_once ('userLogin.php');
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST")
-	{
-		//EMAIL validation
-	  	if (empty($_POST["email"]))
-	  	{
-            $error = str_replace(' ', '%20', "Email and password are both required");
-            echo $error;
-			exit();
-	  	}
-	  	else
-	  	{
-	   		$email = test_input($_POST["email"]);
-	    	//Check if e-mail address is well-formed
-	    	if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-	    	{
-                $error = str_replace(' ', '%20', "Invalid email or password");
-                echo $error;
-		  		exit();
-			}
-  		}
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $userLogin = new userLogin($email, $password); // initialize object
+    $userLogin ->checkEmail(); // email validation
+    $userLogin ->checkPassword(); // password validation
+    $email = $userLogin->email; // get back the processed email
+    $password = $userLogin->password;// get back the processed password
 
-        //PASSWORD validation
-		if ( empty($_POST["password"]) )
-  		{
-            $error = str_replace(' ', '%20', "Email and password are both required");
-            echo $error;
-	  		exit();
-  		}
-  		else if (!ctype_alnum($_POST["password"]) )
-  		{
-  		    $error = str_replace(' ', '%20', "Invalid email or password");
-	  		echo $error;
-	  		exit;
-  		}
+	require '../includes/Connection.php';
 
-	}
-	 //If the user have not pressed the login button. This prevents users visit this page directly.
-	else
-	{
-		header("Location: SearchUsers.php");
-		exit();
-	}
-
-	function test_input($data)
-	{
-	  $data = trim($data); //removes whitespace from both sides
-	  $data = stripslashes($data); //removes backslashes
-	  $data = htmlspecialchars($data);
-	  return $data;
-	}
-
-	$email = strtolower($_POST["email"]); // converting letters to lowercase.
-    $pass = $_POST["password"];
-	require './includes/Connection.php';
-
-	//Identifying user.
-	if ($stmt = $conn->prepare("SELECT ID, Email, Password FROM users WHERE Email=? AND Password=?"))
+	//Identifying user. BINARY in WHERE clause is to force case sensitivity
+	if ($stmt = $conn->prepare("SELECT ID, Email, Password FROM users WHERE BINARY Email=? AND BINARY  Password=?"))
 	{
 	    /* bind parameters for markers */
-	    $stmt->bind_param("ss",$email,$pass);
+	    $stmt->bind_param("ss",$email,$password);
 
 	    /* execute query */
 	    $stmt->execute();
@@ -91,10 +53,10 @@
 	}
 
 	//Identifying user if is an administrator.
-	if ($stmt = $conn->prepare("SELECT AdminID, Email, Password FROM admins WHERE Email=? AND Password=?"))
+	if ($stmt = $conn->prepare("SELECT AdminID, Email, Password FROM admins WHERE BINARY Email=? AND BINARY Password=?"))
 	{
 	    /* bind parameters for markers */
-	    $stmt->bind_param("ss",$email,$_POST["password"]);
+	    $stmt->bind_param("ss",$email,$password);
 
 	    /* execute query */
 	    $stmt->execute();
@@ -124,6 +86,7 @@
 		}
 	}
 
+    //COOKIES
 	function setCookies($user, $pass)
     {
         // set cookies if remember me is checked

@@ -146,7 +146,7 @@
             <!--BUTTON-->
             <button class="btn" type="submit" style="float: left;">REGISTER</button>
             <p style="float: left; margin: 2% 0% 0% 5%; font-family: 'Roboto', sans-serif">Already registered ?
-                <a href="Login.php" style="color: #0066cc; text-decoration: none; font-weight: bold;"> Sign In</a>
+                <a href="Login/Login.php" style="color: #0066cc; text-decoration: none; font-weight: bold;"> Sign In</a>
             </p>
 
         </form>

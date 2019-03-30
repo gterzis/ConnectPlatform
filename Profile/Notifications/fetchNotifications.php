@@ -36,12 +36,12 @@ if($sql ->num_rows > 0) {
                         <p class='userID' hidden>$data[ID]</p>
                         <p style='font-weight: bold'> $data[Name] $data[Surname]</p>
                         <p style='clear: left;'>$data[Gender] &nbsp;</p>
-                        <span style='float: left; padding-top: 1px;'> &#9642; </span>
+                        <span style='float: left; padding-top: 5px; font-size: 8px;'> &#9679; </span>
                         <p>&nbsp; $age years old</p>
                         <p style='clear: left;'>$data[District]</p>
                         <p style='clear: left;'>$data[Education] &nbsp;</p>";
                         if(!empty($data['MaritalStatus'])){
-                            echo" <span style='float: left; padding-top: 1px;'> &nbsp; &#9642; </span>
+                            echo" <span style='float: left; padding-top: 5px; font-size: 8px;'> &#9679; </span>
                             <p>&nbsp; $data[MaritalStatus]</p>";
                         }
                         echo "

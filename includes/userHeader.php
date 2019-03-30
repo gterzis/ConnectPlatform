@@ -6,10 +6,10 @@
     <div class="menu">
         <a href="http://localhost/Local%20Server/ConnectPlatform/Profile.php"><span class="fa fa-home"><p>Home</p></span></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/SearchUsers/SearchUsers.php"><span class="fa fa-search"><p>Find people</p></span></a>
-        <a href="http://localhost/Local%20Server/ConnectPlatform/Chat/Messages.php"><span class="fa fa-comments"><p>Conversations</p></span><i class="numOfMessages" hidden></i></a>
+        <a href="http://localhost/Local%20Server/ConnectPlatform/Chat/Messages.php"><span class="fa fa-comments"><p>Conversations</p><p style="margin-left: 50px;" class="numOfMessages" hidden></p></span></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Matches/Matches.php"><span class="fa fa-users"><p>Matches</p></span></a>
-        <a><span class="fa fa-user-plus"><p>Requests</p></span><i class="numOfRequests" style="margin-left: 15px;" hidden></i></a>
-        <a><span class="fa fa-bell"><p>Notifications</p></span><i style="margin-left: 2px;" class="numOfNotifications" hidden></i></a>
+        <a><span class="fa fa-user-plus"><p>Requests</p><p class="numOfRequests" style="margin-left: 33px;" hidden></p></span></a>
+        <a><span class="fa fa-bell"><p>Notifications</p><p style="margin-left: 46px;" class="numOfNotifications" hidden></p></span></a>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
     </div>
 </div>
@@ -92,12 +92,12 @@
     .numOfNotifications{
         border-radius: 50%;
         background-color: red;
-        font-size: 13px;
+        font-size: 11px !important;
         color: ivory !important;
-        padding: 1px 7px 1px 4px;
+        padding: 3px 13px 3px 5px;
         position: relative;
-        bottom: 30px;
-        right: 65px;
+        bottom: 63px;
+        width: 0;
     }
 
     .topnav span{
@@ -127,6 +127,7 @@
     .menu{
         float: right;
         margin: 20px 40px;
+        min-width: 655px;
     }
 
     .head-title{
@@ -149,6 +150,7 @@
         width: 100%;
         height: 80px;
         background-color: #0073b1;
+        min-width: 1110px;
     }
 
     /* Style the links inside the navigation bar */

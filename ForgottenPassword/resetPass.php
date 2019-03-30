@@ -33,7 +33,7 @@ if (isset($_POST['reset']))
         //Sets link as no longer available
         $sql = $conn->query("DELETE FROM reset_password WHERE Email = '" . $row['Email'] . "'; ");
         echo "<script type='text/javascript'>alert('Password has been reset successfully !')
-         window.location.href='../Login.php'</script>";
+         window.location.href='../Login/Login.php'</script>";
         exit();
     }
 
@@ -81,7 +81,7 @@ if (isset($_POST['reset']))
     </div>
 
     <button class="btn" name="reset" style="width: 75%; margin: 8px 15px 15px 45px;">RESET PASSWORD</button>
-    <a href="../Login.php" style="color: #0066cc; text-decoration: none; float: left; margin-left: 35%;">
+    <a href="../Login/Login.php" style="color: #0066cc; text-decoration: none; float: left; margin-left: 35%;">
         <i class="fa fa-arrow-left"></i> Back to login</a>
 
 </form>

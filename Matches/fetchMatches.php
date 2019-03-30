@@ -8,15 +8,15 @@ if ( !$_SERVER["REQUEST_METHOD"] == "POST" ) {
 
 require_once '../includes/Connection.php';
 session_start();
-$sql = $conn -> query("SELECT DISTINCT * FROM matches NATURAL JOIN users WHERE (User1= $_SESSION[user_id] AND User2 = users.ID) OR (User2= $_SESSION[user_id] AND User1 = users.ID ) 
+$sql = $conn -> query("SELECT DISTINCT * FROM matches NATURAL JOIN users WHERE (User1= $_SESSION[user_id] AND User2 = users.ID AND Active=1) OR (User2= $_SESSION[user_id] AND User1 = users.ID AND Active=1 ) 
                               GROUP BY ID ORDER BY Name ;");
 
 while($data = mysqli_fetch_assoc($sql))
 {
-    $matchedInterests ="";
+    $matchedInterests ="";// storage for the names of the matched interests
 
     //get the matched interests for each user
-    $sql2 = $conn -> query("SELECT MatchInterest FROM matches WHERE (User1= $_SESSION[user_id] AND User2 = $data[ID]) OR (User2= $_SESSION[user_id] AND User1 = $data[ID] )");
+    $sql2 = $conn -> query("SELECT MatchInterest FROM matches WHERE (User1= $_SESSION[user_id] AND User2 = $data[ID] AND Active=1 ) OR (User2= $_SESSION[user_id] AND User1 = $data[ID] AND Active=1)");
     while ($matchInterest = mysqli_fetch_assoc($sql2)){
         $matchedInterests .=  $matchInterest['MatchInterest'].', ';
     }
@@ -36,18 +36,18 @@ while($data = mysqli_fetch_assoc($sql))
 
             <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
             <button class='chat-btn' onclick='location.href=\"../../ConnectPlatform/Chat/Messages.php?id=$encodedID\";'> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
-            <button class='deleteUser-btn' onclick='deleteMatch(this);'> <span class='fa fa-user-times' style='font-size: 18px; margin-right: 5px;'></span>Disable</button>
+            <button class='deleteUser-btn' onclick='deleteMatch(this);'> <span class='fa fa-user-times' style='font-size: 18px; margin-right: 5px;'></span>Delete</button>
 
             <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                 <p class='userID' hidden>$data[ID]</p>
                 <p class='fullname' onclick='showProfile(this)' style='font-weight: bold; cursor: pointer;'> $data[Name] $data[Surname]</p>
                 <p style='clear: left;'>$data[Gender] &nbsp;</p>
-                <span style='float: left; padding-top: 1px;'> &#9642; </span>
+                <span style='float: left; padding-top: 4px; font-size: 10px;'> &#9679; </span>
                 <p>&nbsp; $age years old</p>
                 <p style='clear: left;'>$data[District]</p>
                 <p style='clear: left;'>$data[Education] &nbsp;</p>";
                 if(!empty($data['MaritalStatus'])) {
-                    echo "<span style='float: left; padding-top: 1px;'> &#9642; </span>
+                    echo "<span style='float: left; padding-top: 4px; font-size: 10px;'> &#9679; </span>
                     <p>&nbsp; $data[MaritalStatus]</p>";
                 }
                 echo "<p style='color: #0066cc; clear: both;'>

@@ -17,7 +17,7 @@ else
     $usersID = -1;
 ?>
 <!DOCTYPE html>
-<html style="height: 100%;">
+<html style="height: 100%; overflow: hidden;">
 
 <head>
     <title>Get in Touch - Messages</title>
@@ -31,7 +31,6 @@ else
             $('#modal-box').load("http://localhost/Local%20Server/ConnectPlatform/Matches/viewProfile.php");
             return false;
         }
-
 
         // on page loading show the last conversation
         $(document).ready(function () {
@@ -82,11 +81,22 @@ else
                 url:"getUserDetails.php",
                 data:{userID: userID},
                 success:function (response) {
-                    $(".chatbox .result").html(response);
-                    showMessages(userID); // show the conversation's messages
+                    $(".chatbox .result").html(response); //display user's information
                 }
             });
-            // $("#conversation").animate({ scrollTop: $('#conversation').prop("scrollHeight")});// move scrollbar to the bottom
+
+            //show the messages of the conversation
+            if (userID)
+                $.ajax({
+                    method: "POST",
+                    url:"getMessages.php",
+                    data:{userID: userID},
+                    success:function (response) {
+                        $("#conversation").html(response);// display messages
+                        $('#conversation').scrollTop($('#conversation')[0].scrollHeight); //move scrollbar at the bottom
+                    }
+                });
+
             return false;
         }
 
@@ -105,8 +115,7 @@ else
                 url:"getMessages.php",
                 data:{userID: userID},
                 success:function (response) {
-                    $("#conversation").html(response);
-                    // $('#conversation').scrollTop($('#conversation')[0].scrollHeight); //move scrollbar at the bottom
+                    $("#conversation").html(response); // display messages
                 }
             });
             return false;
@@ -121,9 +130,15 @@ else
                 url:"sendingMessage.php",
                 data:{receiverID: receiverID, message: message},
                 success:function (response) {
-                    $(".inp-message").val("");// clear input message field
-                    showMessages(receiverID); // refresh conversation's messages
-                    $("#conversation").animate({ scrollTop: $('#conversation').prop("scrollHeight")}, 1000);// move scrollbar to the bottom
+                    if (response == "success") {
+                        $(".inp-message").val("");// clear input message field
+                        showMessages(receiverID); // refresh conversation's messages
+                        $("#conversation").animate({scrollTop: $('#conversation').prop("scrollHeight")}, 1000);// move scrollbar to the bottom
+                    }
+                    else if(response == "fail"){
+                        alert("You are no longer matched with the user");
+                        $(".inp-message").val("");// clear input message field
+                    }
                 }
             });
             return false;

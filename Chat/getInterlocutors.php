@@ -11,7 +11,7 @@ session_start();
 
 // get the details of the users that had chat with before
 $getInterlocutors = $conn -> query("SELECT DISTINCT * FROM users NATURAL JOIN messages WHERE (SenderID = $_SESSION[user_id] AND ReceiverID = users.ID) 
-                                            OR (ReceiverID = $_SESSION[user_id] AND SenderID = users.ID) GROUP BY ID ORDER BY SentDate");
+                                            OR (ReceiverID = $_SESSION[user_id] AND SenderID = users.ID) GROUP BY ID ORDER BY SentDate DESC");
 
 while ($data = mysqli_fetch_assoc($getInterlocutors)) {
     echo "<div class='result chat-user' onclick='showConversation(this);' style='margin-left: 15px;'>

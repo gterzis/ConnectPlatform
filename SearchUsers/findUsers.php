@@ -42,7 +42,8 @@ $interests = array();
 $interests = $_POST['interests'];
 
 //Find users based on search input(except interests). Don't show those who already sent request.
-// Don't show those where are already matched
+// Don't show those where are already active matched
+//Store results in a temporary table
 $sql = $conn -> query("CREATE TEMPORARY TABLE IF NOT EXISTS temp_table AS (SELECT * FROM users WHERE ( Birthdate > '$minDate' AND Birthdate < '$maxDate' ) AND 
                                                         (Gender = '$gender1' OR Gender = '$gender2') AND 
                                                         (District LIKE '$district') AND 
@@ -51,18 +52,18 @@ $sql = $conn -> query("CREATE TEMPORARY TABLE IF NOT EXISTS temp_table AS (SELEC
                                                         (ID != $_SESSION[user_id]) AND 
                                                         (ID NOT IN (SELECT ReceiverID FROM matching_requests
                                                                     WHERE SenderID = $_SESSION[user_id]) ) AND
-                                                        (ID NOT IN (SELECT User1 FROM matches WHERE User1 = $_SESSION[user_id]
-                                                                    OR User2 = $_SESSION[user_id]) ) AND 
-                                                        (ID NOT IN (SELECT User2 FROM matches WHERE User1 = $_SESSION[user_id]
-                                                                    OR User2 = $_SESSION[user_id])) )");
+                                                        (ID NOT IN (SELECT User1 FROM matches WHERE (User1 = $_SESSION[user_id]
+                                                                    OR User2 = $_SESSION[user_id]) AND Active=1)) AND 
+                                                        (ID NOT IN (SELECT User2 FROM matches WHERE (User1 = $_SESSION[user_id]
+                                                                    OR User2 = $_SESSION[user_id]) AND Active=1)) )");
 
 $sql3 = $conn -> query("SELECT * FROM temp_table");
-$sql4 = $conn -> query(" ALTER TABLE temp_table ADD numOfInterests smallint, ADD commonInterests text");
+$sql4 = $conn -> query(" ALTER TABLE temp_table ADD numOfInterests smallint, ADD commonInterests text"); // add two columns
 
 while($data = mysqli_fetch_assoc($sql3))
 {
     //Check if user has common interests with the ones in the search input.
-    $commonInterests = "";
+    $commonInterests = "";// storage for the names of the common interests
     $numOfInterests =0; // number of common interests
     foreach ($interests as $interest){
         $sql2 = $conn -> query("SELECT InterestName FROM usersinterests WHERE UserID = '". $data['ID'] ."' AND InterestName = '".$interest."' ");
@@ -94,10 +95,10 @@ while ($data = mysqli_fetch_assoc($sql6)){
         
         <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
             <p class='userID' hidden>$data[ID]</p>
-            <p style='margin-top: 3px;'>$data[District]</p>
-            <p style='clear: left;'>$data[Gender] &nbsp;</p>
-            <span style='float: left; padding-top: 1px;'> &#9642; </span>
-            <p>&nbsp; $age years old</p>
+            <p style='clear: left; margin-top: 3px;'>$data[Gender] &nbsp;</p>
+            <span style='float: left; padding-top: 1px; margin-top: 3px;'> &#9642; </span>
+            <p style='margin-top: 3px;'>&nbsp; $age years old</p>
+            <p style='clear: left;'>$data[District]</p>
             <p style='clear: left;'>$data[Education] &nbsp;</p>";
             if(!empty($data['MaritalStatus'])){
                 echo "<span style='float: left; padding-top: 1px;'> &#9642; </span>
