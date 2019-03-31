@@ -62,7 +62,7 @@ if (!isset($_SESSION['gender']))
 <!--Place change password, edit information window-->
 <div id="modal-box"></div>
 
-<!--SIGN UP FORM-->
+<!--SEARCH FORM-->
 <form class="frm" onsubmit="return showSearchResults();">
 
     <h2>Search for people</h2>
@@ -211,7 +211,6 @@ if (!isset($_SESSION['gender']))
         if($('input[type="checkbox"]:checked').length == 0) {
             $(this).prop('checked', true);
         }
-
     });
 
 </script>

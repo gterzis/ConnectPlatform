@@ -594,9 +594,29 @@ h2{
     background-color: #fefefe;
     padding: 15px;
     min-width: 55%;
+    max-width: 55%;
     height: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 10px;
+}
+
+#matches-main h2{
+    width: 50%;
+    margin-right: 0;
+    float: left;
+}
+/*simply lunch*/
+#matches-main #search-filters{
+    margin: 20px;
+    float: right;
+    font-family: Verdana, Helvetica, Arial;
+    color: #0073b1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#filters .wrap-input{
+    height: auto;
 }
 
 .fullname:hover{

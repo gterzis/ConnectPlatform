@@ -64,6 +64,6 @@ $conn->close();
 <script>
 
     var numOfResults = <?= $sql->num_rows ?>;
-    $("#results").prepend("<p style='margin: 0px 0px 15px 15px; color: #b1b1b1;'>"+ numOfResults +" matches</p>");//show the number of results
+    $("#results").prepend("<p style='margin: 0px 0px 15px 15px; color: #b1b1b1;clear: both;'>"+ numOfResults +" matches</p>");//show the number of results
 
 </script>
