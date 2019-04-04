@@ -78,7 +78,7 @@ if( $sql = $conn -> query("SELECT * FROM users WHERE ID = $userID") ){
 
             $usersInterests = $conn->query("SELECT InterestName FROM usersinterests WHERE UserID = $userID;");
             while ($interestName = mysqli_fetch_assoc($usersInterests)) {
-                echo "<button class='chosen-interest' type='button'><p>$interestName[InterestName]</p></button>";
+                echo "<button class='viewProfile-chosen-interest' type='button'><p>$interestName[InterestName]</p></button>";
             }
 
             echo "</div>

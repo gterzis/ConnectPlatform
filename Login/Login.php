@@ -53,6 +53,7 @@
             }
 
             $(document).ready(function() {
+                //show shadow on input focus
                 $.getScript( "../includes/inputBoxShadow.js" );
 
                 // Show succeed registration pop up window message
@@ -61,6 +62,9 @@
                     $('#result').load("http://localhost/Local%20Server/ConnectPlatform/includes/RegisteredSuccesfully.php");
                     return false;
                 }
+
+                //show page's content
+                $(".login-pagecontent").fadeIn(1000);
             });
 
         </script>
@@ -79,7 +83,7 @@
 
     <!--HEADER-->
 
-    <div class="login-pagecontent">
+    <div class="login-pagecontent" hidden>
         <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/head.html"); ?>
 
         <!--LOGIN FORM-->

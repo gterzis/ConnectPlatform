@@ -1,8 +1,26 @@
-<?php
-require '../../includes/Connection.php';
+<?php //called by Interests.php
 
-//Fetch all interests
-$sql = $conn -> query("SELECT * FROM interests ORDER BY InterestName");
+// prevent users visit page improperly
+if ( !$_SERVER["REQUEST_METHOD"] == "POST" ) {
+    header("Location: ../../index.php");
+    exit();
+}
+
+require_once '../../includes/Connection.php';
+session_start();
+
+$interestName ="%"; // if no interest name inserted
+if (!empty($_POST['interestName'])){
+    $interestName = $_POST['interestName'];
+}
+
+$interestCategory ="%";// if no category inserted
+if (!empty($_POST['interestCategory'])){
+    $interestCategory = $_POST['interestCategory'];
+}
+
+//Fetch interests based on input
+$sql = $conn -> query("SELECT * FROM interests WHERE InterestName LIKE '$interestName' AND Category LIKE '$interestCategory' ORDER BY InterestName");
 
 //Display interests for delete
 if ($_GET['action'] == "delete") {
@@ -16,7 +34,7 @@ else if ($_GET['action'] == "edit") {
     while ($r = mysqli_fetch_assoc($sql)) {
         echo "<div class='editInterest' onclick='checkUncheck(this); showToEdit(this);'><p style='display: inline-block;' class='intrestName'><input type='checkbox'>" .
             "$r[InterestName]</p> &#9642;<p style='margin-left: 5px; color: #999999; display: inline-block;'>$r[Category]</p></div>";
-    echo "<div class='toEdit' hidden>
+        echo "<div class='toEdit' hidden>
                                 <!--INTEREST TITLE-->
             <div class=\"wrap-input wrap-login\" id=\"Title\" style=\"border: 2px solid #cccccc; width: 85%; margin-left: 3%;\">
                 <label class=\"lbl\" for=\"title\" style=\"font-size: 14px;\">
@@ -37,6 +55,5 @@ else if ($_GET['action'] == "edit") {
     }
 }
 
-$conn -> close();
-
-
+$conn->close();
+exit();

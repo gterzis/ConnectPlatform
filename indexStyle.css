@@ -568,7 +568,35 @@ h2{
 .deleteAdmin p input{
     margin-right: 10px;
 }
+/*Interests Delete*/
+#Edit #search-interests,
+#Delete #search-interests{
+    display: inline;
+    float: right;
+    margin: 15px 25px 0px 0px;
+    color: #0073b1;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
+.interests-filters-input{
+    width: 40%;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-left: 15px;
+    border: #999999 1px solid;
+    border-radius: 15px;
+}
+#interests-filters-form button{
+    margin-left: 330px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    color: #fefefe;
+    background-color: #0066cc;
+    outline: 0;
+}
 /* ------- Responses --------*/
 .successResponse{
     background-color: #e8fce8;
@@ -582,7 +610,7 @@ h2{
     border: red 1px solid;
 }
 
-/*------------ Matches.php ---------------*/
+/*--------------------- Matches.php -------------------------------*/
 #matches-pagecontent{
     background-color: #f2f2f2;
 }

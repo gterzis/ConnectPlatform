@@ -63,12 +63,12 @@
         margin-left: 0;
     }
 
-    .chosen-interest{
+    .viewProfile-interests .viewProfile-chosen-interest{
         width: auto;
-        background-color: #fefefe;
-        border: #0066cc 1.5px solid;
+        background-color: #fefefe !important;
+        border: #0066cc 1.5px solid !important;
         border-radius: 50px;
-        color: #0066cc;
+        color: #0066cc !important;
         padding: 10px;
         margin: 3px;
         font-size: 16px;
@@ -77,12 +77,12 @@
         transition-timing-function: ease-in-out;
     }
 
-    .chosen-interest span{
+    .viewProfile-chosen-interest span{
         font-size: 18px;
         margin-left: 5px;
     }
 
-    .chosen-interest p{
+    .viewProfile-chosen-interest p{
         display: inline;
     }
 

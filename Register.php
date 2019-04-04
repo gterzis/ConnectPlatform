@@ -2,6 +2,7 @@
     session_start();
     $adult= date("Y") - 18;
     //Show error message
+    $field="none";
     if(!empty($_GET['ErrMess'])) {
         $error_msg = base64_decode($_GET['ErrMess']);
         $field = $_GET['field'];
@@ -26,15 +27,19 @@
         <link rel="stylesheet" href="indexStyle.css" >
         <script>
             $(document).ready(function(){
+                //show page's content
+                $(".register-pagecontent").fadeIn(1000);
+
                 //Set red shadow to the respective field.
                 $("#<?php echo $field; ?>").css("box-shadow", "0 0 5px red");
+
             });
 
         </script>
     </head>
 
     <body style="margin: 0px;">
-    <div class="register-pagecontent">
+    <div class="register-pagecontent" hidden>
         <!--HEADER-->
         <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/head.html"); ?>
 

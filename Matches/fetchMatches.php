@@ -9,7 +9,7 @@ if ( !$_SERVER["REQUEST_METHOD"] == "POST" ) {
 require_once '../includes/Connection.php';
 session_start();
 $sql = $conn -> query("SELECT DISTINCT * FROM matches NATURAL JOIN users WHERE (User1= $_SESSION[user_id] AND User2 = users.ID AND Active=1) OR (User2= $_SESSION[user_id] AND User1 = users.ID AND Active=1 ) 
-                              GROUP BY ID ORDER BY Name ;");
+                              GROUP BY ID ORDER BY MatchDate DESC;");
 
 while($data = mysqli_fetch_assoc($sql))
 {
@@ -31,7 +31,11 @@ while($data = mysqli_fetch_assoc($sql))
     // encode user's id in order to pass it to url for the chat page
     $encodedID = base64_encode($data['ID']);
 
-    echo "<hr>
+    //format match date
+    $matchDate = date("d-M-Y", strtotime($data['MatchDate']));
+    echo "
+        <div style='margin: 0px 0px 5px 0px; font-size: 14px; color: #cccccc; text-align: right; width: 94%;'>Match date: $matchDate</div>
+        <hr>
         <div class='result'>
 
             <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
@@ -64,6 +68,6 @@ $conn->close();
 <script>
 
     var numOfResults = <?= $sql->num_rows ?>;
-    $("#results").prepend("<p style='margin: 0px 0px 15px 15px; color: #b1b1b1;clear: both;'>"+ numOfResults +" matches</p>");//show the number of results
-
+    // $("#results").prepend("<p id='numOfResults' style='margin: 0px 0px 15px 15px; color: #b1b1b1;clear: both;'>"+ numOfResults +" matches</p>");//show the number of results
+    $("#numOfResults").html(numOfResults+" matches");
 </script>

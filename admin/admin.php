@@ -92,9 +92,9 @@ $conn->close();
     <div id="modal-box"></div>
 
     <!--HEADER-->
-    <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/adminHeader.html"); ?>
+    <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/adminHeader.php"); ?>
 
-    <div class="main" style="height: 70px; width: 40%;" >
+    <div class="main" style="height: 70px; width: 40%; top: 27px;" >
 
         <!--PERSONAL INFORMATION-->
         <div class="about" style="left: 5%; top: 15px;">

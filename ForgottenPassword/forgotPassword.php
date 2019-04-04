@@ -33,7 +33,7 @@
 
             </div>
 
-            <div id="response"><div class="loader"></div></div>
+            <div id="response" style="font-family: 'Roboto', sans-serif;" hidden><div style="float: left;" class="loader"></div>&nbsp;Sending email...</div>
 
             <!--FOOTER-->
             <div class="modal-footer">
@@ -69,6 +69,7 @@
                 },
                 beforeSend: function() {
                     //show loading spinner
+                    $("#response").show();
                     loader.style.display = "block";
                 },
                 success:function(response)

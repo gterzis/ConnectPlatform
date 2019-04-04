@@ -17,17 +17,6 @@
         $(document).ready(function () {
             // Show matches
             fetchMatches();
-            function fetchMatches() {
-                $.ajax
-                ({
-                    method: "POST",
-                    url: "http://localhost/Local%20Server/ConnectPlatform/Matches/fetchMatches.php",
-                    success: function (response) {
-                        $("#results").append(response);
-                    }
-                });
-                return false;
-            }
 
             // Dont let user uncheck both gender checkboxes
             $("#male, #female").click(function () {
@@ -37,7 +26,20 @@
             });
 
         });
-        
+
+        //show matches
+        function fetchMatches() {
+            $.ajax
+            ({
+                method: "POST",
+                url: "http://localhost/Local%20Server/ConnectPlatform/Matches/fetchMatches.php",
+                success: function (response) {
+                    $("#results").html(response);
+                }
+            });
+            return false;
+        }
+
         //get filter results
         function getFilterResults() {
 
@@ -70,7 +72,7 @@
 
             //Get the names of the selected interests and put them in a array.
             var interests = new Array();
-            $(".chosen-interest p").each(function(){
+            $("#filters .chosen-interest p").each(function(){
                 var interestName = $(this).text();
                 interests.push(interestName);
             });
@@ -89,7 +91,7 @@
                     district: district,
                     education: education,
                     maritalStatus: maritalStatus,
-                    interests: interests
+                    interests: interests,
                 },
                 success: function (response) {
                     $("#results").html(response);// append results
@@ -189,8 +191,8 @@
                     <label class="lbl" for="bday">
                         <span >Age</span>
                     </label>
-                    <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18"  placeholder="From" required>
-                    <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%"  max="99"  placeholder="To" required>
+                    <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18"  placeholder="From">
+                    <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%"  max="99"  placeholder="To">
                 </div>
 
                 <!--GENDER-->
@@ -256,18 +258,22 @@
                 <!--Autocomplete for interests-->
                 <?php echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/Profile/autocomplete.php?all=true"); ?>
 
-                <div id="chosen-interests" style="float: left; height: auto; width: inherit; margin: 0px 15px 15px 15px;">
+                <div id="chosen-interests" style="float: left; height: auto; width: 100%; margin: 0px 15px 0px 15px;">
                     <!-- User's chosen interests will be placed here-->
                 </div>
 
                 <!--BUTTON-->
-                <div style="display: block; ">
-                    <button class="btn" type="submit" style="float: right; margin: 15px 25px 0px 0px;">SEARCH</button>
+                <div style="display: block; width: 100%">
+                    <button type="button" onclick="fetchMatches();" class="btn" style="text-decoration: none; float: left; margin: 15px 0px 0px 90px;">RESET</button>
+                    <button class="btn" type="submit" style="float: right; margin: 15px 85px 0px 0px;">SEARCH</button>
                 </div>
 
                 </fieldset>
             </form>
         </div>
+
+        <!--Number of results/matches-->
+        <p id='numOfResults' style='font-size: 18px; font-family: "Roboto", sans-serif; padding: 10px 0px 0px 20px; color: #b1b1b1;clear: both;'></p>
 
         <div id="results">
 

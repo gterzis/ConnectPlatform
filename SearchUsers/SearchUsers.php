@@ -123,7 +123,7 @@ if (!isset($_SESSION['gender']))
 
     <!-- MARITAL STATUS-->
     <div class="wrap-input" id="Marital-Status" style="float: left;" >
-        <label class="lbl" for="education">
+        <label class="lbl" for="marital-status">
             <span class="fa fa-heart"></span>
         </label>
         <select class="inp" id="marital-status" name="marital-status" style="cursor: pointer">

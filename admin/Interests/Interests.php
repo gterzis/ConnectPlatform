@@ -4,9 +4,10 @@
 <script src="../includes/inputBoxShadow.js"></script> <!--Add box shadow on input fields when focus-->
 <script src="../includes/tabsProperties.js"></script><!--Tabs properties-->
 <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/tabsStyle.css"><!--Tab style-->
+<link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/indexStyle.css">
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" style="overflow: hidden;">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -55,7 +56,7 @@
                         </div>
                     </div>
 
-                    <div id="addResponse" hidden></div>
+                    <div id="addResponse" style="font-family: 'Roboto', sans-serif;" hidden><div style="float: left;" class="loader"></div>&nbsp;Adding interests...</div>
 
                     <!--FOOTER-->
                     <div class="tabsFooter">
@@ -69,11 +70,28 @@
 
             <!--DELETE-->
             <div id="Delete" class="tabcontent">
-                <p class="instruction">Select interest(s) to delete</p>
+                <p class="instruction" style="display: inline-block;">Select interest(s) to delete</p>
+                <a id="search-interests" onclick="showFilters();">Search</a>
+                <!--Filters field-->
+                <div id="interests-filters" style="margin-bottom: 10px;" hidden>
+                    <form id="interests-filters-form" onsubmit="return searchInterests(this);">
+
+                        <div class="interests-filters-input">
+                            <input id="interests-filters-name" style="width: 90%; border: none; outline: 0;" type="text" placeholder="Interest name"/>
+                        </div>
+
+                        <div class="interests-filters-input" style="margin-left: 5px;">
+                            <input id="interests-filters-category" style="width: 90%; border: none; outline: 0;" type="text" placeholder="Category"/>
+                        </div>
+
+                        <button>Search</button>
+
+                    </form>
+                </div>
 
                 <form onsubmit="return deleteInterests();">
 
-                    <div id="showInterests" style="overflow: auto; max-height: 300px;">
+                    <div id="showInterests" style="overflow: auto; max-height: 290px;">
                         <!--Interests will be placed here -->
                     </div>
 
@@ -92,11 +110,29 @@
 
             <!--EDIT-->
             <div id="Edit" class="tabcontent">
-                <p class="instruction">Click on an interest to edit it.</p>
+                <p class="instruction" style="display: inline-block;">Click on an interest to edit it.</p>
+
+                <a id="search-interests" onclick="showFilters();">Search</a>
+                <!--Filters field-->
+                <div id="interests-filters-edit" style="margin-bottom: 10px;" hidden>
+                    <form id="interests-filters-form" onsubmit="return searchInterests(this);">
+
+                        <div class="interests-filters-input">
+                            <input id="interests-filters-name" style="width: 90%; border: none; outline: 0;" type="text" placeholder="Interest name"/>
+                        </div>
+
+                        <div class="interests-filters-input" style="margin-left: 5px;">
+                            <input id="interests-filters-category" style="width: 90%; border: none; outline: 0;" type="text" placeholder="Category"/>
+                        </div>
+
+                        <button>Search</button>
+
+                    </form>
+                </div>
 
                 <form onsubmit="return updateInterests();">
 
-                    <div id="showInterestsEdit" style="overflow: auto; max-height: 300px;">
+                    <div id="showInterestsEdit" style="overflow: auto; max-height: 290px;">
                         <!--Interests will be placed here -->
                     </div>
 
@@ -119,16 +155,29 @@
 
     <script>
 
+        // Get the loader element
+        var loader = document.getElementsByClassName("loader")[0];
+
+        //Hide loader spinner
+        loader.style.display ="none";
+
+        //show filters field
+        function showFilters() {
+            $("#interests-filters").fadeToggle();
+            $("#interests-filters-edit").fadeToggle();
+            return false;
+        }
+
         function insertInterest() {
             //Get the titles of interests.
             var interestsTitle = [];
-            $("#Title input").each(function () {
+            $("#Add #Title input").each(function () {
                 interestsTitle.push($(this).val());
             });
 
             //Get the categories of interests.
             var interestsCategory = [];
-            $("#Category input").each(function () {
+            $("#Add #Category input").each(function () {
                 interestsCategory.push($(this).val());
             });
 
@@ -140,9 +189,16 @@
                         titles:interestsTitle,
                         categories:interestsCategory,
                     },
+                    dataType: "json",
+                    beforeSend: function() {
+                        //show loading spinner
+                        $("#addResponse").show();
+                        loader.style.display = "block";
+                        $("#Add input").parent().css("box-shadow", "none");// remove any box shadow
+                    },
                     success:function(response)
                     {
-                        if(response == "success") {
+                        if(response.result == "success") {
                             //Display successful message and set green shadow to all the fields.
                             $('#addResponse').html('<p style="color:#00b300; font-size:18px; margin:0;">' +
                                 '<span class="fa fa-check-circle-o"> Interests have been added successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
@@ -158,8 +214,8 @@
                         {
                             //Display the error message and set red box shadow to the respective field.
                             $('#addResponse').html('<p style="color:red; font-size:17px; margin:0;">' +
-                                '<span class="fa fa-exclamation-triangle">'+response+'</span></p>').show().addClass("errorResponse");
-                            $("#"+response[1]+"").css("box-shadow", "0 0 5px red");
+                                '<span class="fa fa-exclamation-triangle">'+response.errorMessage+'</span></p>').show().addClass("errorResponse");
+                            $('#Add #'+response.field+' .inp:eq('+response.index+')').parent().css("box-shadow", "0 0 5px red");
                         }
                     }
                 });
@@ -170,6 +226,32 @@
                 $("#Title").css("box-shadow", "0 0 5px red");
                 $("#Content").css("box-shadow", "0 0 5px red");
             }
+
+            return false;
+        }
+
+        //Search interests with filters
+        function searchInterests(frm) {
+            var interestName = $(frm).find("#interests-filters-name").val();
+            var interestCategory = $(frm).find("#interests-filters-category").val();
+            var formID = $(frm).parent().is("#interests-filters"); // get the id of the submitted form parent
+            if (formID){
+                var action = "delete"; // if the submitted form is in the delete tab
+            }
+            else {
+                var action = "edit"; // if the submitted form is in the edit tab
+            }
+            $.ajax({
+                type: "POST",
+                url: "Interests/searchInterests.php?action="+action+"",
+                data:{interestName: interestName, interestCategory: interestCategory},
+                success: function (response) {
+                    if ( formID )
+                        $("#showInterests").html(response);
+                    else
+                        $("#showInterestsEdit").html(response);
+                }
+            });
 
             return false;
         }
