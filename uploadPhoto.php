@@ -4,7 +4,7 @@ require './includes/Connection.php';
 
 $temp = explode(".", $_FILES["image"]["name"]); // get the extension of the image
 $newfilename = $_SESSION['user_id'] . '.' . end($temp);// name image
-// define the path which image is going to be stored
+// define the path where image is going to be stored
 $uploadfile = $_SERVER['DOCUMENT_ROOT']. '/Local Server/ConnectPlatform/profile-pictures/' .
                 $newfilename;
 

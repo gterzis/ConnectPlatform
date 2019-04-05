@@ -633,7 +633,7 @@ h2{
     margin-right: 0;
     float: left;
 }
-/*simply lunch*/
+
 #matches-main #search-filters{
     margin: 20px;
     float: right;
@@ -704,7 +704,9 @@ h2{
 }
 
 .result .fa{
-    color: #0066cc; font-size: 24px; float: left;
+    color: #0066cc;
+    font-size: 24px;
+    float: left;
 }
 
 #results{

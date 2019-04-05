@@ -146,22 +146,20 @@
 <body>
 
 <div class="topnav" id="myTopnav">
-    <a href="../../ConnectPlatform/index.php"><p class="title2">Get in Touch</p></a>
+    <a href="http://localhost/Local%20Server/ConnectPlatform/index.php"><p class="title2">Get in Touch</p></a>
     <div class="topnav-menu">
-        <a href="../../ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
-        <a href="../../ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
-        <a href="../../ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
+        <a href="http://localhost/Local%20Server/ConnectPlatform/admin/admin.php"><span class="fa fa-home"><p>Home</p></span></a>
+<!--        <a href="../../ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>-->
         <div class="dropdown">
             <button class="dropbtn">
-                <span class="fa fa-sign-out"><p>Log out</p></span>
+                <span class="fa fa-line-chart"><p>Reports</p></span>
             </button>
             <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <a href="http://localhost/Local%20Server/ConnectPlatform/admin/Reports/UsersReports.php">Users</a>
+                <a href="#">Interests</a>
             </div>
         </div>
-        <a href="../../ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
+        <a href="http://localhost/Local%20Server/ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
         <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 </div>

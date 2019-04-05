@@ -42,11 +42,15 @@
             $_SESSION['user_email'] = $email;
             $_SESSION['user_admin'] = FALSE;
 			$stmt->close();
-			$conn->close();
 
             // set cookies
             setCookies($user, $pass);
 
+            //Update last login
+            $today = date("Y-m-d");
+            $lastLogin = $conn -> query("UPDATE users SET LastLogin = '$today' WHERE ID = $id");
+
+            $conn->close();
             echo "success";
 			exit();
 		}
