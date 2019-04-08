@@ -1,4 +1,4 @@
-<?php // called by Matches.php
+<?php // called by Interests.php
 
 // prevent users visit page improperly
 if ( !$_SERVER["REQUEST_METHOD"] == "POST" ) {

@@ -44,6 +44,7 @@
 			$stmt->close();
 
             // set cookies
+
             setCookies($user, $pass);
 
             //Update last login

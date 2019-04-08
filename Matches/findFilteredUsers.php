@@ -1,4 +1,4 @@
-<?php // called by Matches.php
+<?php // called by Interests.php
 require '../includes/Connection.php';
 session_start();
 //NAME

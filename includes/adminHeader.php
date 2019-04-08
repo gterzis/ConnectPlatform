@@ -156,7 +156,7 @@
             </button>
             <div class="dropdown-content">
                 <a href="http://localhost/Local%20Server/ConnectPlatform/admin/Reports/UsersReports.php">Users</a>
-                <a href="#">Interests</a>
+                <a href="http://localhost/Local%20Server/ConnectPlatform/admin/Reports/Interests/InterestsReports.php">Interests</a>
             </div>
         </div>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>
