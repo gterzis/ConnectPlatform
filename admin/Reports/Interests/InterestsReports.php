@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])){
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Get in Touch - Matches reports</title>
+    <title>Get in Touch - Interests reports</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../../indexStyle.css">
     <style>
@@ -45,11 +45,12 @@ if (!isset($_SESSION['user_id'])){
     </style>
     <script>
         $(document).ready(function () {
-            fetchMatches();
+            fetchInterests();
 
         });
 
-        function fetchMatches() {
+        // fetch interests
+        function fetchInterests() {
             $.ajax({
                 method: "POST",
                 url: "fetchInterests.php",

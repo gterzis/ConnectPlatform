@@ -17,7 +17,7 @@ if($getInterests = $conn ->query("SELECT *, COUNT(Active) total,
                                     GROUP BY InterestName") ) {
     echo "<tr>
         <th hidden>ID</th>
-        <th>A/A</th>
+        <th>#</th>
         <th>Name</th>
         <th>Category</th>
         <th>Active Matches</th>

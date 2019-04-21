@@ -12,7 +12,7 @@ session_start();
 if($getUsers = $conn ->query("SELECT * FROM users ORDER BY Name") ) {
     echo "<tr>
         <th hidden>ID</th>
-        <th>A/A</th>
+        <th>#</th>
         <th>Name</th>
         <th>Surname</th>
         <th>Age</th>
@@ -21,6 +21,7 @@ if($getUsers = $conn ->query("SELECT * FROM users ORDER BY Name") ) {
         <th>Education</th>
         <th>Occupation</th>
         <th>Marital Status</th>
+        <th>Email</th>
         <th>Registration Date</th>
         <th>Last Login</th>
         <th># Matches</th>
@@ -57,6 +58,7 @@ if($getUsers = $conn ->query("SELECT * FROM users ORDER BY Name") ) {
             <td class='reports-education'>$data[Education]</td>
             <td class='reports-occupation'>$data[Occupation]</td>
             <td class='reports-marital'>$data[MaritalStatus]</td>
+            <td class='reports-email'>$data[Email]</td>
             <td class='reports-registration'>$registrationDate</td>
             <td class='reports-login'>$lastLogin</td>
             <td class='reports-matches'>$numberOfMatches[0]</td>

@@ -6,7 +6,7 @@
 	    $registered = "false";
 ?>
 <!DOCTYPE html>
-<html>
+<html style="background-color: #f2f2f2;">
 
     <head>
         <title>Get in Touch - Login</title>
@@ -60,6 +60,7 @@
                 var registered = "<?= $registered; ?>";
                 if (registered == "success"){
                     $('#result').load("http://localhost/Local%20Server/ConnectPlatform/includes/RegisteredSuccesfully.php");
+                    $(".login-pagecontent").fadeIn(1000);
                     return false;
                 }
 
@@ -94,7 +95,7 @@
             <!--EMAIL-->
             <div class="wrap-input wrap-login" style="float: left;">
                 <label class="lbl" for="email">
-                    <span class="fa fa-at"></span>
+                    <span class="fa fa-at" style="padding-top: 20px;"></span>
                 </label>
                 <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email" required
                        value="<?php if(isset($_COOKIE["email"])) { echo $_COOKIE["email"];}
@@ -105,7 +106,7 @@
             <!--PASSWORD-->
             <div class="wrap-input wrap-login" style="float: left;">
                 <label class="lbl" for="pass">
-                    <span class="fa fa-unlock"></span>
+                    <span class="fa fa-unlock" style="padding-top: 20px;"></span>
                 </label>
                 <input class="inp" id="pass" type="password" name="pass" maxlength="25" placeholder="Password" required
                        value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"];} ?>">

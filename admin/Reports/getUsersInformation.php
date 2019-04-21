@@ -39,7 +39,8 @@ if( $sql = $conn -> query("SELECT * FROM users WHERE ID = $userID") ){
                 echo " <span style='float: left; padding-top: 1px;'> &nbsp; &#9642; </span>
                             <p>&nbsp; $data[MaritalStatus]</p>";
             }
-            echo "</div>
+            echo "      <p style='clear: left;'><span class='fa fa-at'></span>&nbsp;$data[Email]</p>
+                    </div>
                     <hr style='width: 100%; margin-top: 3px'>";
             //if the user has no description don't show the description field
             if (!empty($data['Description'])) {
@@ -68,6 +69,9 @@ if( $sql = $conn -> query("SELECT * FROM users WHERE ID = $userID") ){
             $usersInterests = $conn->query("SELECT InterestName FROM usersinterests WHERE UserID = $userID;");
             while ($interestName = mysqli_fetch_assoc($usersInterests)) {
                 echo "<button class='viewProfile-chosen-interest' type='button'><p>$interestName[InterestName]</p></button>";
+            }
+            if ($usersInterests->num_rows == 0){
+                echo "<h5> User has no inserted any interests</h5>";
             }
 
             echo "</div>

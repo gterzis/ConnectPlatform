@@ -101,6 +101,7 @@ if (isset($_POST["description"])) {
 }
 
 //MARITAL STATUS
+$maritalStatus = $_POST["maritalStatus"];
 if (!empty($_POST["maritalStatus"])) {
     $maritalStatus = test_input($_POST["maritalStatus"]);
 }

@@ -16,7 +16,7 @@ foreach( $interests as $title => $category){
     //Check if only contains letters, whitespace and starts with letter.
     if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $title)) {
         $error = true;
-        $responseArray=["errorMessage" => " Title: only letters and white space allowed", "field" => $index ];
+        $responseArray=["errorMessage" => " Title: only letters and white space allowed", "field"=>"Title", "index" => $index ];
         echo json_encode($responseArray);
         $conn->close();
         exit();
@@ -40,7 +40,7 @@ foreach( $interests as $title => $category){
         if (!empty($result)){
             $error = true;
             $sql->close();
-            $responseArray=["errorMessage" => " Interest name already exists","field"=>"Title", "index" => $index ];
+            $responseArray=["errorMessage" => " Interest name already exists", "field"=>"Title", "index" => $index ];
             echo json_encode($responseArray);
             $conn->close();
             exit();
@@ -59,7 +59,6 @@ foreach( $interests as $title => $category){
         $conn->close();
         exit();
     }
-
     $index++;
 }
 

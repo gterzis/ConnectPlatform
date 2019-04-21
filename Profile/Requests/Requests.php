@@ -92,7 +92,7 @@
 
     //Decline request, delete matching request
     function declineRequest(clickedBtn) {
-        var userID = $(clickedBtn).siblings(".resultInformation").find(".userID").text(); // get request sender's id
+        var senderID = $(clickedBtn).siblings(".resultInformation").find(".userID").text(); // get request sender's id
         $.ajax({
             method: "POST",
             url: "http://localhost/Local%20Server/ConnectPlatform/Profile/Requests/declineRequest.php",

@@ -15,7 +15,7 @@
 ?>
 
 <!DOCTYPE html>
-<html style="height: 100%;">
+<html style="height: 100%;background-color: #f2f2f2;">
 
     <head>
         <title>Get in Touch - Sign Up</title>

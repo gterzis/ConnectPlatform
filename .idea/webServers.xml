@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="44e93249-7cbe-4f02-b711-ef421aa43623" name="GetInTouch" url="http://seiis.cut.ac.cy">
+        <fileTransfer host="seiis.cut.ac.cy" port="3440" rootFolder="/home/tepak_system" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="3440" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

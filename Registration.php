@@ -172,7 +172,7 @@
 
 //	send_email($email,$subject,nl2br($message));
 
-    header("Location: ../Login/Login.php?registered=success");
+    header("Location: ./Login/Login.php?registered=success");
     exit();
 
 ?>

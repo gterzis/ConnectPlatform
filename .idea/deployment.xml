@@ -9,6 +9,18 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="GetInTouch">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/public_html/ConnectPlatform" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="http://localhost/Local%20Server/" />
+            <excludedPath path="http://seiis.cut.ac.cy/~tepak_system/" />
+            <excludedPath path="/public_html/ConnectPlatform" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
     </serverData>
   </component>
 </project>

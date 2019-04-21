@@ -126,6 +126,7 @@ if (empty($array[9])){ // marital status
                 </label>
                 <select class="inp" id="marital-status" name="marital-status" style="cursor: pointer">
                     <option value="" disabled selected>Select your marital status</option>
+                    <option value="">Do not show</option>
                     <option value="Single">Single</option>
                     <option value="Married">Married</option>
                     <option value="Divorced">Divorced</option>
