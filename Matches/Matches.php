@@ -167,7 +167,7 @@
         <div id="filters" style="margin: 15px;" hidden>
 
             <!--SEARCH FORM-->
-            <form style="float: left;" onsubmit="return getFilterResults();">
+            <form id="matches-filters" style="float: left;" onsubmit="return getFilterResults();">
                 <fieldset style="background-color: #e6e6e6; padding-top: 20px; border: #cccccc 1px solid;border-radius: 5px;">
 
                 <!--NAME-->
@@ -264,7 +264,7 @@
 
                 <!--BUTTON-->
                 <div style="display: block; width: 100%">
-                    <button type="button" onclick="fetchMatches();" class="btn" style="text-decoration: none; float: left; margin: 15px 0px 0px 90px;">RESET</button>
+                    <button type="button" onclick="fetchMatches();document.getElementById('matches-filters').reset();" class="btn" style="text-decoration: none; float: left; margin: 15px 0px 0px 90px;">RESET</button>
                     <button class="btn" type="submit" style="float: right; margin: 15px 85px 0px 0px;">SEARCH</button>
                 </div>
 

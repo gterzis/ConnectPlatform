@@ -22,7 +22,7 @@ if (!empty($_POST['minAge'])){
 $minDate = date("Y-m-d", strtotime('1920-01-01'));// set date format
 if (!empty($_POST['maxAge'])){
     $maxAge =  $_POST['maxAge'];
-    $minDate = strtotime(''.date("Y-m-d").'-'.$maxAge.'years');
+    $minDate = strtotime(''.date("Y-m-d").'-'.($maxAge+1).'years');
     $minDate = date("Y-m-d", $minDate);
 }
 
@@ -87,6 +87,17 @@ $lastLoginDateTo = date("Y-m-d");
 if (!empty($_POST['lastLoginDateTo']))
     $lastLoginDateTo = $_POST['lastLoginDateTo'];
 
+//ORDER BY
+$orderByType = $_POST['orderByType'];
+$orderBy = "Name"; //default value
+if (!empty($_POST['orderBy'])) {
+    $orderBy = $_POST['orderBy'];
+    if ($orderBy == "Birthdate" && $orderByType == "DESC")
+        $orderByType = "ASC";
+    elseif ($orderBy == "Birthdate" && $orderByType == "ASC")
+        $orderByType = "DESC";
+}
+
 
 function test_input($data)
 {
@@ -98,7 +109,7 @@ function test_input($data)
 
 //Find users based on search input
 $sql = $conn->query("SELECT * FROM users WHERE (Name LIKE '$name') AND (Surname LIKE '$surname') AND 
-                                                    (Birthdate > '$minDate' AND Birthdate < '$maxDate') AND 
+                                                    (Birthdate >= '$minDate' AND Birthdate <= '$maxDate') AND 
                                                     (Gender = '$gender1' OR Gender = '$gender2') AND 
                                                     (District LIKE '$district') AND 
                                                     (Education LIKE '$education') AND
@@ -106,7 +117,7 @@ $sql = $conn->query("SELECT * FROM users WHERE (Name LIKE '$name') AND (Surname 
                                                     (Email LIKE '$email') AND 
                                                     (MaritalStatus LIKE '$maritalStatus') AND 
                                                     (RegistrationDate >= '$registrationDateFrom' AND RegistrationDate <= '$registrationDateTo') AND
-                                                    (LastLogin >= '$lastLoginDateFrom' AND LastLogin <= '$lastLoginDateTo')");
+                                                    (LastLogin >= '$lastLoginDateFrom' AND LastLogin <= '$lastLoginDateTo') ORDER BY $orderBy $orderByType;");
 echo "<tr>
         <th hidden>ID</th>
         <th>#</th>

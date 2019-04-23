@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])){
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html style="background-color: #f1f1f1;">
 <head>
     <title>Get in Touch - Users reports</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,6 +20,7 @@ if (!isset($_SESSION['user_id'])){
             border-collapse: collapse;
             width: 100%;
             margin-top: 10px;
+            background-color: #fefefe;
         }
 
         #users td, #users th {
@@ -52,6 +53,13 @@ if (!isset($_SESSION['user_id'])){
     <script>
         $(document).ready(function () {
            fetchUsers();
+
+            // Dont let user uncheck both gender checkboxes. One must be always checked.
+            $("#male, #female").click(function () {
+                if($('input[type="checkbox"]:checked').length == 0) {
+                    $(this).prop('checked', true);
+                }
+            });
 
             //Add box shadow on input fields when focus
             $.getScript( "../../includes/inputBoxShadow.js" );
@@ -94,7 +102,6 @@ if (!isset($_SESSION['user_id'])){
             });
         });
 
-
         //get filter results
         function getFilterResults() {
 
@@ -105,6 +112,11 @@ if (!isset($_SESSION['user_id'])){
             //Get age range
             var minAge = $("#minAge").val();
             var maxAge = $("#maxAge").val();
+
+            if (minAge > maxAge){
+                alert("Minumum age must be less than maximum age");
+                return false;
+            }
 
             //Get selected gender(s)
             var gender1 = "Female";
@@ -139,6 +151,13 @@ if (!isset($_SESSION['user_id'])){
             var lastLoginDateFrom = $("#lastLogin-from").val();
             var lastLoginDateTo = $("#lastLogin-to").val();
 
+            //Get selected column for sorting
+            var orderBy = $("#sorting").val();
+
+            //Get sorting type
+            var orderByType=$("input[name=sorting-type]:checked").val();
+
+
             $.ajax
             ({
                 method: "POST",
@@ -158,7 +177,9 @@ if (!isset($_SESSION['user_id'])){
                     registrationDateFrom:registrationDateFrom,
                     registrationDateTo:registrationDateTo,
                     lastLoginDateFrom:lastLoginDateFrom,
-                    lastLoginDateTo: lastLoginDateTo
+                    lastLoginDateTo: lastLoginDateTo,
+                    orderBy: orderBy,
+                    orderByType: orderByType
                 },
                 success: function (response) {
                     $("#users").html(response);// append results
@@ -184,7 +205,7 @@ if (!isset($_SESSION['user_id'])){
 
     <!--SEARCH FORM-->
     <form id="reportsFilters-form" style="float: left;" onsubmit="return getFilterResults();">
-        <fieldset style="background-color: #e6e6e6; padding-top: 20px; border: #cccccc 1px solid;border-radius: 5px;">
+        <fieldset style="background-color: #e6e6e6; padding-top: 20px; border: #999999 1px solid;border-radius: 5px;">
 
             <!--NAME-->
             <div class="wrap-input" id="Name" style="float: left;">
@@ -207,8 +228,8 @@ if (!isset($_SESSION['user_id'])){
                 <label class="lbl" for="bday">
                     <span >Age</span>
                 </label>
-                <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18"  placeholder="From">
-                <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%"  max="99"  placeholder="To">
+                <input class="inp" type="number" id="minAge" style="border: #cccccc solid 1px; width: 20%" min="18" max="99"  placeholder="From">
+                <input class="inp" type="number" id="maxAge" style="border: #cccccc solid 1px; width: 20%" min="18"  max="99"  placeholder="To">
             </div>
 
             <!--GENDER-->
@@ -335,9 +356,9 @@ if (!isset($_SESSION['user_id'])){
             </div>
 
             <!--SORT BY-->
-            <div class="wrap-input" id="Sorting" style="float: left; width: 47% !important;">
+            <div class="wrap-input" id="Sorting" style="float: left; width: 47% !important; padding-bottom: 5px;">
                 <label class="lbl" for="gender">
-                    <span>SORT BY</span>
+                    <span>Sort By</span>
                 </label>
 
                 <select class="inp" id="sorting" name="sorting" style="cursor: pointer; margin-right: 2px; width: 28%;">
