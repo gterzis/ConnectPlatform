@@ -157,6 +157,7 @@
             <div class="dropdown-content">
                 <a href="http://localhost/Local%20Server/ConnectPlatform/admin/Reports/UsersReports.php">Users</a>
                 <a href="http://localhost/Local%20Server/ConnectPlatform/admin/Reports/Interests/InterestsReports.php">Interests</a>
+                <a href="http://localhost/Local%20Server/ConnectPlatform/admin/Reports/Analytics/Analytics.php">Analytics</a>
             </div>
         </div>
         <a href="http://localhost/Local%20Server/ConnectPlatform/Logout.php"><span class="fa fa-sign-out"><p>Log out</p></span></a>

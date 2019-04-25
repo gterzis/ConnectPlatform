@@ -20,6 +20,14 @@ if (!empty($_POST['category'])){
     $category = test_input($_POST['category']);
 }
 
+//Interest (or Category) number of selected times range
+$selectedFrom = $_POST['selectedFrom'];
+$selectedTo = $_POST['selectedTo'];
+if (!is_numeric($_POST['selectedFrom'])){
+    $selectedFrom = 0;
+    $selectedTo = 1000000;
+}
+
 //ACTIVE Matches
 $activeFrom = $_POST['activeFrom'];
 $activeTo = $_POST['activeTo'];
@@ -56,7 +64,7 @@ if (!empty($_POST['orderBy']))
 function test_input($data)
 {
     $data = trim($data); //removes whitespace from both sides
-    $data = stripslashes($data); //removes backslashesr
+    $data = stripslashes($data); //removes backslash
     $data = htmlspecialchars($data);
     return $data;
 }
@@ -65,7 +73,11 @@ function test_input($data)
 if($getInterests = $conn ->query("SELECT *, COUNT(Active) total, 
                                     sum(case when Active = 1 then 1 else 0 end) active, 
                                     sum(case when Active = 0 then 1 else 0 end) noActive 
-                                    FROM interests LEFT JOIN matches ON interests.InterestName = matches.MatchInterest
+                                    FROM (SELECT interests.InterestName, sum(case when UIID is null then 0 else 1 end) selected FROM interests LEFT JOIN usersinterests ON interests.InterestName = usersinterests.InterestName 
+                                          GROUP BY interests.$groupBy
+                                          HAVING selected >= $selectedFrom AND selected <= $selectedTo) selectedInterests 
+                                          NATURAL JOIN 
+                                          interests LEFT JOIN matches ON interests.InterestName = matches.MatchInterest
                                     WHERE (InterestName LIKE '$interestName') AND (Category LIKE '$category') 
                                     GROUP BY $groupBy 
                                     HAVING (active >= $activeFrom AND active <= $activeTo) AND 
@@ -78,24 +90,27 @@ if($getInterests = $conn ->query("SELECT *, COUNT(Active) total,
         if ($groupBy == "InterestName") echo "<th>Interest Name</th>";
         echo"
         <th>Category</th>
+        <th>Selected</th>
         <th>Active Matches</th>
         <th>Deactivated Matches</th>
         <th>Total Matches</th>
     </tr>";
 
-    $numberOfRow = 1; $totalActive = 0;$totalDeactivated = 0;$totalMatches = 0;
+    $numberOfRow = 1; $totalInterestSelectedTimes = 0; $totalActive = 0;$totalDeactivated = 0;$totalMatches = 0;
     while ($data = mysqli_fetch_assoc($getInterests)) {
         $totalActive += $data['active']; $totalDeactivated += $data['noActive']; $totalMatches += $data['total'];
+        $totalInterestSelectedTimes += $data['selected'];
         echo "
         <tr>
             <td class='reports-interestID' hidden>$data[InterestID]</td>
             <td>$numberOfRow</td>";
-            if ($groupBy == "InterestName") echo "<td class='reports-name'>$data[InterestName]</td>";
+            if ($groupBy == "InterestName") echo "<td class='reports-interestName'>$data[InterestName]</td>";
         echo"
-            <td class='reports-surname'>$data[Category]</td>
-            <td class='reports-age'>$data[active]</td>
-            <td class='reports-gender'>$data[noActive]</td>
-            <td class='reports-district'>$data[total]</td>
+            <td class='reports-category'>$data[Category]</td>
+            <td class='reports-category'>$data[selected]</td>
+            <td class='reports-active'>$data[active]</td>
+            <td class='reports-noActive'>$data[noActive]</td>
+            <td class='reports-total'>$data[total]</td>
         </tr>";
         $numberOfRow++;
     }
@@ -107,6 +122,7 @@ if($getInterests = $conn ->query("SELECT *, COUNT(Active) total,
     if ($groupBy == "InterestName") echo "<th>$numberOfRow</th>";
     echo"
         <th>$numberOfRow</th>
+        <th>$totalInterestSelectedTimes</th>
         <th>$totalActive</th>
         <th>$totalDeactivated</th>
         <th>$totalMatches</th>

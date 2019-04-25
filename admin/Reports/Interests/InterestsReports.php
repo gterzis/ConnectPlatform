@@ -91,9 +91,13 @@ if (!isset($_SESSION['user_id'])){
         //get filter results
         function getFilterResults() {
 
-            //Get name and surname
+            //Get interest name and category
             var interestName = $("#interestName").val();
             var category = $("#category").val();
+
+            // //Get number of selected times range
+            var selectedFrom = $("#selectedFrom").val();
+            var selectedTo = $("#selectedTo").val();
 
             // //Get active matches range
             var activeFrom = $("#activeFrom").val();
@@ -124,6 +128,8 @@ if (!isset($_SESSION['user_id'])){
                 data: {
                     interestName: interestName,
                     category: category,
+                    selectedFrom: selectedFrom,
+                    selectedTo: selectedTo,
                     activeFrom:activeFrom,
                     activeTo:activeTo,
                     deactivatedFrom:deactivatedFrom,
@@ -176,6 +182,15 @@ if (!isset($_SESSION['user_id'])){
                 <input class="inp" id="category" type="text" name="category" maxlength="35" placeholder="Category" >
             </div>
 
+            <!--INTEREST NUMBER OF SELECTED TIMES-->
+            <div class="wrap-input" id="Selected" style="float: left;">
+                <label class="lbl" for="selected">
+                    <span>Selected</span>
+                </label>
+                <input class="inp" type="number" id="selectedFrom" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="From">
+                <input class="inp" type="number" id="selectedTo" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="To">
+            </div>
+
             <!--ACTIVE MATCHES-->
             <div class="wrap-input" id="ActiveMatches" style="float: left;">
                 <label class="lbl" for="activeMatches">
@@ -204,7 +219,7 @@ if (!isset($_SESSION['user_id'])){
             </div>
 
             <!--GROUP BY-->
-            <div class="wrap-input" id="GroupBy" style="float: left; padding-bottom: 5px;">
+            <div class="wrap-input" id="GroupBy" style="float: left; padding-bottom: 5px; width: 38%;">
                 <label class="lbl" for="GroupBy">
                     <span>Group By </span>
                 </label>
@@ -260,9 +275,6 @@ if (!isset($_SESSION['user_id'])){
 
 <table id="interests">
 </table>
-
-
-
 
 </body>
 </html>
