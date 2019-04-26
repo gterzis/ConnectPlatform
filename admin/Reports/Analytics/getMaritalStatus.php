@@ -13,7 +13,16 @@ $maritalStatus = "%";
 if (!empty($_POST['maritalStatus']))
     $maritalStatus=$_POST['maritalStatus'];
 
-if ($sql = $conn -> query("SELECT MaritalStatus, COUNT(*) numOfUsers FROM users WHERE MaritalStatus LIKE '$maritalStatus' GROUP BY MaritalStatus")){
+//ORDER BY
+$orderByType = $_POST['orderByType'];
+$orderBy = "MaritalStatus"; //default value
+if (!empty($_POST['orderBy'])) {
+    $orderBy = $_POST['orderBy'];
+}
+
+if ($sql = $conn -> query("SELECT MaritalStatus, COUNT(*) numOfUsers FROM users WHERE MaritalStatus LIKE '$maritalStatus' 
+                                  GROUP BY MaritalStatus
+                                  ORDER BY $orderBy $orderByType")){
     //echo table details
     if ($_GET['data'] == "table")
     {

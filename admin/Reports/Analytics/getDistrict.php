@@ -13,7 +13,16 @@ $district = "%";
 if (!empty($_POST['district']))
     $district=$_POST['district'];
 
-if ($sql = $conn -> query("SELECT District, COUNT(*) numOfUsers FROM users WHERE District LIKE '$district' GROUP BY District")){
+//ORDER BY
+$orderByType = $_POST['orderByType'];
+$orderBy = "District"; //default value
+if (!empty($_POST['orderBy'])) {
+    $orderBy = $_POST['orderBy'];
+}
+
+if ($sql = $conn -> query("SELECT District, COUNT(*) numOfUsers FROM users WHERE District LIKE '$district' 
+                                  GROUP BY District
+                                  ORDER BY $orderBy $orderByType")){
     //echo table details
     if ($_GET['data'] == "table")
     {

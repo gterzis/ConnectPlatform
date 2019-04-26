@@ -13,7 +13,16 @@ $occupation = "%";
 if (!empty($_POST['occupation']))
     $occupation=$_POST['occupation'];
 
-if ($sql = $conn -> query("SELECT Occupation, COUNT(*) numOfUsers FROM users WHERE Occupation LIKE '$occupation' GROUP BY Occupation")){
+//ORDER BY
+$orderByType = $_POST['orderByType'];
+$orderBy = "Occupation"; //default value
+if (!empty($_POST['orderBy'])) {
+    $orderBy = $_POST['orderBy'];
+}
+
+if ($sql = $conn -> query("SELECT Occupation, COUNT(*) numOfUsers FROM users WHERE Occupation LIKE '$occupation' 
+                                  GROUP BY Occupation
+                                  ORDER BY $orderBy $orderByType")){
     //echo table details
     if ($_GET['data'] == "table")
     {

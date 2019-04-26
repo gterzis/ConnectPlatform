@@ -24,10 +24,21 @@ if (!empty($_POST['maxAge'])){
     $minDate = date("Y-m-d", $minDate);
 }
 
+//ORDER BY
+$orderByType = $_POST['orderByType'];
+$orderBy = "yearOfBirth"; //default value
+if (!empty($_POST['orderBy'])) {
+    $orderBy = $_POST['orderBy'];
+    if ($orderBy == "yearOfBirth" && $orderByType == "ASC")
+        $orderByType = "DESC";
+    elseif ($orderBy == "yearOfBirth" && $orderByType == "DESC")
+        $orderByType = "ASC";
+}
+
 if($sql = $conn ->query("SELECT YEAR(Birthdate) as yearOfBirth, COUNT(*) as numOfUsers FROM users 
                                 WHERE Birthdate >= '$minDate' AND Birthdate <= '$maxDate'
                                 GROUP BY YEAR(Birthdate)
-                                ORDER BY yearOfBirth DESC;")) {
+                                ORDER BY $orderBy $orderByType;")) {
     //echo table details
     if ($_GET['data'] == "table")
     {

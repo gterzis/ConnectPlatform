@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_id'])){
     <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/radioButtonStyle.css"> <!--Radio button style-->
     <link rel="stylesheet" href="../../indexStyle.css">
     <style>
+
         #users {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -68,7 +69,6 @@ if (!isset($_SESSION['user_id'])){
             $.getScript( "http://localhost/Local%20Server/ConnectPlatform/includes/onlyEnglish.js" );
 
         });
-
 
 
         function fetchUsers() {
@@ -157,7 +157,6 @@ if (!isset($_SESSION['user_id'])){
             //Get sorting type
             var orderByType=$("input[name=sorting-type]:checked").val();
 
-
             $.ajax
             ({
                 method: "POST",
@@ -188,6 +187,28 @@ if (!isset($_SESSION['user_id'])){
 
             return false;
         }
+
+        //show filters field
+        function showFilters() {
+            $("#usersReports-filters").fadeToggle();
+            return false;
+        }
+
+        //print
+        function printTable() {
+            $("#printHeader").show(); // show the header of the printing page
+            $("#printDate").show(); // show the current date of the printing page
+            var printContents = document.getElementById('printableArea').innerHTML;
+            $("#printHeader").hide();
+            $("#printDate").hide();
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
     </script>
 </head>
 
@@ -201,12 +222,15 @@ if (!isset($_SESSION['user_id'])){
 <!--Place modal box-->
 <div id="modal-box"></div>
 
-<div id="usersReports-filters" style="margin: 15px; width:81%; overflow: hidden; ">
+<!--Filters, print buttons-->
+<button id="search-filters" onclick="showFilters();" class="btn" type="button" style="margin: 15px 0px 5px 10%; white-space: nowrap;"><i class="fa fa-filter"></i> Show/Hide filters</button>
+<button id="print" onclick="printTable();" class="btn" type="button" style="margin: 15px 0px 5px 15px; white-space: nowrap;"><i class="fa fa-print"></i> PRINT</button>
 
+<div id="usersReports-filters" style="margin: 15px 0 15px 10%; width:81%; overflow: hidden; " hidden>
     <!--SEARCH FORM-->
     <form id="reportsFilters-form" style="float: left;" onsubmit="return getFilterResults();">
-        <fieldset style="background-color: #e6e6e6; padding-top: 20px; border: #999999 1px solid;border-radius: 5px;">
 
+        <fieldset style="background-color: #e6e6e6; padding-top: 20px; border: #999999 1px solid;border-radius: 5px;">
             <!--NAME-->
             <div class="wrap-input" id="Name" style="float: left;">
                 <label class="lbl" for="name">
@@ -398,12 +422,15 @@ if (!isset($_SESSION['user_id'])){
     </form>
 </div>
 
+<!--PRINTABLE ARE-->
+<div id="printableArea">
+    <h1 id="printHeader" style="text-align: center;" hidden> Get In Touch - Users Report</h1>
 
-<table id="users">
-</table>
-
-
-
+    <h3 id="printDate" style="text-align: center;" hidden>Date: <?= date("d/m/Y")  ?> </h3>
+    <!--TABLE-->
+    <table id="users">
+    </table>
+</div>
 
 </body>
 </html>

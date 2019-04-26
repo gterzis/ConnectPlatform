@@ -147,6 +147,28 @@ if (!isset($_SESSION['user_id'])){
 
             return false;
         }
+
+        //print
+        function printTable() {
+            $("#printHeader").show(); // show the header of the printing page
+            $("#printDate").show(); // show the current date of the printing page
+            var printContents = document.getElementById('printableArea').innerHTML;
+            $("#printHeader").hide();
+            $("#printDate").hide();
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+
+        //show filters field
+        function showFilters() {
+            $("#report-filters").fadeToggle();
+            return false;
+        }
     </script>
 </head>
 
@@ -160,7 +182,11 @@ if (!isset($_SESSION['user_id'])){
 <!--Place modal box-->
 <div id="modal-box"></div>
 
-<div id="usersReports-filters" style="margin: 15px; width:75%; overflow: hidden; ">
+<!--Filters, print buttons-->
+<button id="search-filters" onclick="showFilters();" class="btn" type="button" style="margin: 15px 0px 5px 12%; white-space: nowrap;"><i class="fa fa-filter"></i> Show/Hide filters</button>
+<button id="print" onclick="printTable();" class="btn" type="button" style="margin: 15px 0px 5px 15px; white-space: nowrap;"><i class="fa fa-print"></i> PRINT</button>
+
+<div id="report-filters" style="margin: 15px 0 15px 12%; width:75%; overflow: hidden;" hidden>
 
     <!--SEARCH FORM-->
     <form id="reportsFilters-form" style="float: left;" onsubmit="return getFilterResults();">
@@ -246,6 +272,7 @@ if (!isset($_SESSION['user_id'])){
                     <option value="" disabled selected>Select column</option>
                     <option value="InterestName">Interest name</option>
                     <option value="Category">Category</option>
+                    <option value="selected">Selected</option>
                     <option value="active">Active matches</option>
                     <option value="noActive">Deactivated matches</option>
                     <option value="total">Total matches</option>
@@ -273,8 +300,15 @@ if (!isset($_SESSION['user_id'])){
     </form>
 </div>
 
-<table id="interests">
-</table>
+<!--PRINTABLE ARE-->
+<div id="printableArea">
+    <h1 id="printHeader" style="text-align: center;" hidden> Get In Touch - Interests Report</h1>
 
+    <h3 id="printDate" style="text-align: center;" hidden>Date: <?= date("d/m/Y")  ?> </h3>
+    <!--TABLE-->
+    <table id="interests">
+    </table>
+
+</div>
 </body>
 </html>
