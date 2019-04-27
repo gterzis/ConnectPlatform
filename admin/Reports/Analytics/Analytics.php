@@ -54,7 +54,7 @@
             border: none;
             outline: none;
             cursor: pointer;
-            padding: 14px 16px;
+            padding: 14px 14px;
             transition: 0.3s;
             font-size: 17px;
         }
@@ -91,6 +91,10 @@
         google.charts.setOnLoadCallback(drawMaritalStatusChart);
         google.charts.setOnLoadCallback(drawRegistrationDateChart);
         google.charts.setOnLoadCallback(drawLastLoginDateChart);
+        google.charts.setOnLoadCallback(drawSelectedInterestsChart);
+        google.charts.setOnLoadCallback(drawActiveMatchesChart);
+        google.charts.setOnLoadCallback(drawDeactivatedMatchesChart);
+        google.charts.setOnLoadCallback(drawTotalMatchesChart);
 
         //AGE table
         function fetchAge() {
@@ -270,6 +274,134 @@
                 },
                 success: function (response) {
                     $("#lastLoginDateTable").html(response);
+                }
+            });
+
+            return false;
+        }
+
+        //SELECTED INTERESTS table
+        function fetchSelectedInterests() {
+            var selectedFrom = $("#minSelectedInterests").val();
+            var selectedTo = $("#maxSelectedInterests").val();
+
+            //Group by
+            var groupBy = $("#SelectedInterests input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#SelectedInterests #sorting").val();
+
+            //Get sorting type
+            var orderByType=$("#SelectedInterests input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getSelectedInterests.php?data=table",
+                data:{
+                    selectedFrom: selectedFrom,
+                    selectedTo: selectedTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (response) {
+                    $("#selectedInterestsTable").html(response);
+                }
+            });
+
+            return false;
+        }
+
+        //ACTIVE MATCHES table
+        function fetchActiveMatches() {
+            var activeFrom = $("#minActiveMatches").val();
+            var activeTo = $("#maxActiveMatches").val();
+
+            //Group by
+            var groupBy = $("#ActiveMatches input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#ActiveMatches #sorting").val();
+
+            //Get sorting type
+            var orderByType=$("#ActiveMatches input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getActiveMatches.php?data=table",
+                data:{
+                    activeFrom: activeFrom,
+                    activeTo: activeTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (response) {
+                    $("#activeMatchesTable").html(response);
+                }
+            });
+
+            return false;
+        }
+
+        //DEACTIVATED MATCHES table
+        function fetchDeactivatedMatches() {
+            var deactivatedFrom = $("#minDeactivatedMatches").val();
+            var deactivatedTo = $("#maxDeactivatedMatches").val();
+
+            //Group by
+            var groupBy = $("#DeactivatedMatches input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#DeactivatedMatches #sorting").val();
+
+            //Get sorting type
+            var orderByType=$("#DeactivatedMatches input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getDeactivatedMatches.php?data=table",
+                data:{
+                    deactivatedFrom: deactivatedFrom,
+                    deactivatedTo: deactivatedTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (response) {
+                    $("#deactivatedMatchesTable").html(response);
+                }
+            });
+
+            return false;
+        }
+
+        //TOTAL MATCHES table
+        function fetchTotalMatches() {
+            var totalFrom = $("#minTotalMatches").val();
+            var totalTo = $("#maxTotalMatches").val();
+
+            //Group by
+            var groupBy = $("#TotalMatches input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#TotalMatches #sorting").val();
+
+            //Get sorting type
+            var orderByType=$("#TotalMatches input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getTotalMatches.php?data=table",
+                data:{
+                    totalFrom: totalFrom,
+                    totalTo: totalTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (response) {
+                    $("#totalMatchesTable").html(response);
                 }
             });
 
@@ -507,6 +639,7 @@
                     });
 
                     var Options = {
+                        is3D:true,
                         hAxis: {
                             title: "Marital status"
                         },
@@ -626,7 +759,235 @@
             return false;
         }
 
-        //CURRENT DAY
+        //Draw SELECTED INTERESTS chart
+        function drawSelectedInterestsChart() {
+            fetchSelectedInterests();//show table
+            var selectedFrom = $("#minSelectedInterests").val();
+            var selectedTo = $("#maxSelectedInterests").val();
+
+            //Group by
+            var groupBy = $("#SelectedInterests input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#SelectedInterests #sorting").val();
+            //Get sorting type
+            var orderByType=$("#SelectedInterests input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getSelectedInterests.php?data=chart",
+                dataType: "JSON",
+                data: {
+                    selectedFrom: selectedFrom,
+                    selectedTo: selectedTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (data) {
+
+                    var jsonData = data;
+                    var Data = new google.visualization.DataTable();
+                    Data.addColumn('string', 'Interest');
+                    Data.addColumn('number', 'Selected');
+                    $.each(jsonData, function (i, jsonData) {
+                        var interest = jsonData.interest;
+                        var selected = jsonData.selected;
+                        Data.addRows([[String(interest), Number(selected)]]);
+                    });
+
+                    var Options = {
+                        hAxis: {
+                            title: "Interest"
+                        },
+                        vAxis: {
+                            title: 'Selected'
+                        },
+                        bar: {groupWidth: "100%"},
+                        width: 700,
+                        height:500
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('selectedInterestsChart'));
+                    chart.draw(Data, Options);
+                }
+            });
+
+            return false;
+        }
+
+        //Draw ACTIVE MATCHES chart
+        function drawActiveMatchesChart() {
+            fetchActiveMatches();//show table
+            var activeFrom = $("#minActiveMatches").val();
+            var activeTo = $("#maxActiveMatches").val();
+
+            //Group by
+            var groupBy = $("#ActiveMatches input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#ActiveMatches #sorting").val();
+            //Get sorting type
+            var orderByType=$("#ActiveMatches input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getActiveMatches.php?data=chart",
+                dataType: "JSON",
+                data: {
+                    activeFrom: activeFrom,
+                    activeTo: activeTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (data) {
+
+                    var jsonData = data;
+                    var Data = new google.visualization.DataTable();
+                    Data.addColumn('string', 'Interest');
+                    Data.addColumn('number', 'Active');
+                    $.each(jsonData, function (i, jsonData) {
+                        var interest = jsonData.interest;
+                        var active = jsonData.active;
+                        Data.addRows([[String(interest), Number(active)]]);
+                    });
+
+                    var Options = {
+                        hAxis: {
+                            title: "Interest"
+                        },
+                        vAxis: {
+                            title: 'Active'
+                        },
+                        bar: {groupWidth: "100%"},
+                        width: 700,
+                        height:500
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('activeMatchesChart'));
+                    chart.draw(Data, Options);
+                }
+            });
+
+            return false;
+        }
+
+        //Draw DEACTIVATED MATCHES chart
+        function drawDeactivatedMatchesChart() {
+            fetchDeactivatedMatches();//show table
+            var deactivatedFrom = $("#minDeactivatedMatches").val();
+            var deactivatedTo = $("#maxDeactivatedMatches").val();
+
+            //Group by
+            var groupBy = $("#DeactivatedMatches input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#DeactivatedMatches #sorting").val();
+            //Get sorting type
+            var orderByType=$("#DeactivatedMatches input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getDeactivatedMatches.php?data=chart",
+                dataType: "JSON",
+                data: {
+                    deactivatedFrom: deactivatedFrom,
+                    deactivatedTo: deactivatedTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (data) {
+
+                    var jsonData = data;
+                    var Data = new google.visualization.DataTable();
+                    Data.addColumn('string', 'Interest');
+                    Data.addColumn('number', 'Deactivated');
+                    $.each(jsonData, function (i, jsonData) {
+                        var interest = jsonData.interest;
+                        var deactivated = jsonData.deactivated;
+                        Data.addRows([[String(interest), Number(deactivated)]]);
+                    });
+
+                    var Options = {
+                        hAxis: {
+                            title: "Interest"
+                        },
+                        vAxis: {
+                            title: 'Deactivated'
+                        },
+                        bar: {groupWidth: "100%"},
+                        width: 700,
+                        height:500
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('deactivatedMatchesChart'));
+                    chart.draw(Data, Options);
+                }
+            });
+
+            return false;
+        }
+
+        //Draw TOTAL MATCHES chart
+        function drawTotalMatchesChart() {
+            fetchTotalMatches();//show table
+            var totalFrom = $("#minTotalMatches").val();
+            var totalTo = $("#maxTotalMatches").val();
+
+            //Group by
+            var groupBy = $("#TotalMatches input[name=groupBy]:checked").val();
+
+            //Get selected column for sorting
+            var orderBy = $("#TotalMatches #sorting").val();
+            //Get sorting type
+            var orderByType=$("#TotalMatches input[name=sorting-type]:checked").val();
+
+            $.ajax({
+                method: "POST",
+                url: "getTotalMatches.php?data=chart",
+                dataType: "JSON",
+                data: {
+                    totalFrom: totalFrom,
+                    totalTo: totalTo,
+                    groupBy: groupBy,
+                    orderBy: orderBy,
+                    orderByType: orderByType
+                },
+                success: function (data) {
+
+                    var jsonData = data;
+                    var Data = new google.visualization.DataTable();
+                    Data.addColumn('string', 'Interest');
+                    Data.addColumn('number', 'Total');
+                    $.each(jsonData, function (i, jsonData) {
+                        var interest = jsonData.interest;
+                        var total = jsonData.total;
+                        Data.addRows([[String(interest), Number(total)]]);
+                    });
+
+                    var Options = {
+                        hAxis: {
+                            title: "Interest"
+                        },
+                        vAxis: {
+                            title: 'Total'
+                        },
+                        bar: {groupWidth: "100%"},
+                        width: 700,
+                        height:500
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('totalMatchesChart'));
+                    chart.draw(Data, Options);
+                }
+            });
+
+            return false;
+        }
+
+        //CURRENT DATE
         var currentDate = currentDate();
         function currentDate() {
             var today = new Date();
@@ -654,8 +1015,8 @@
             var printContents = document.getElementById(printableArea).innerHTML;
 
             //remove header
-            $("#printHeader").hide();
-            $("#printDate").hide();
+            $("#printHeader").remove();
+            $("#printDate").remove();
 
             var originalContents = document.body.innerHTML;
             document.body.innerHTML = printContents;
@@ -677,9 +1038,13 @@
     <button class="tablinks" onclick="openTab(event, 'District')">District</button>
     <button class="tablinks" onclick="openTab(event, 'Education')">Education</button>
     <button class="tablinks" onclick="openTab(event, 'Occupation')">Occupation</button>
-    <button class="tablinks" onclick="openTab(event, 'MaritalStatus')">Marital status</button>
-    <button class="tablinks" onclick="openTab(event, 'RegistrationDate')">Registration Date</button>
-    <button class="tablinks" onclick="openTab(event, 'LastLoginDate')">Last Log in Date</button>
+    <button class="tablinks" onclick="openTab(event, 'MaritalStatus')">Mar. status</button>
+    <button class="tablinks" onclick="openTab(event, 'RegistrationDate')">Reg. Date</button>
+    <button class="tablinks" onclick="openTab(event, 'LastLoginDate')">Last Login</button>
+    <button class="tablinks" onclick="openTab(event, 'SelectedInterests')">Selected interests</button>
+    <button class="tablinks" onclick="openTab(event, 'ActiveMatches')">Active Matches</button>
+    <button class="tablinks" onclick="openTab(event, 'DeactivatedMatches')">Deactivated Matches</button>
+    <button class="tablinks" onclick="openTab(event, 'TotalMatches')">Total Matches</button>
 </div>
 
 <!-- AGE -->
@@ -703,7 +1068,7 @@
 
             <select class="inp" id="sorting" name="sorting" style="cursor: pointer; margin-right: 2px; width: 27%;">
                 <option value="" disabled >Select column</option>
-                <option value="yearOfBirth" selected>Age</option>
+                <option value="yearOfBirth" active>Age</option>
                 <option value="numOfUsers">Users</option>
             </select>
 
@@ -1089,6 +1454,294 @@
 
         <!--CHART -->
         <div id="lastLoginDateChart" style="display: inline-block;"></div>
+    </div>
+
+</div>
+
+<!--SELECTED INTERESTS-->
+<div id="SelectedInterests" class="tabcontent">
+    <form onsubmit="return drawSelectedInterestsChart();">
+
+        <!--SEARCH INPUT-->
+        <div class="wrap-input" id="SelectedInterests" style="border: #999999 1px solid; margin-left: 0px; width: 27%; display: inline-block;">
+            <label class="lbl" for="selectedInterests">
+                <span>Selected</span>
+            </label>
+            <input class="inp" type="number" id="minSelectedInterests" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="From">
+            <input class="inp" type="number" id="maxSelectedInterests" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="To">
+        </div>
+
+        <!--GROUP BY-->
+        <div class="wrap-input" id="GroupBy" style="border: #999999 1px solid;display: inline-block; width: 28% !important; padding-bottom: 5px;">
+            <label class="lbl" for="GroupBy">
+                <span>Group By </span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="groupBy" id="InterestName" value="InterestName" checked>
+                <span style="font-size: initial">InterestName</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; font-size: 12px; ">
+                <input class="inp" type="radio" name="groupBy" id="Category" value="Category">
+                <span style="font-size: initial">Category</span>
+            </label>
+
+        </div>
+
+        <!--SORT BY-->
+        <div class="wrap-input" id="Sorting" style="border: #999999 1px solid;display: inline-block; width: 37% !important; padding-bottom: 5px;">
+            <label class="lbl">
+                <span>Sort By</span>
+            </label>
+
+            <select class="inp" id="sorting" name="sorting" style="cursor: pointer; margin-right: 2px; width: 27%;">
+                <option value="" disabled >Select column</option>
+                <option value="InterestName" selected>Interest</option>
+                <option value="selected">Selected</option>
+            </select>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="asc" value="ASC" checked>
+                <span style="font-size: initial">Ascending</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 0px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="desc" value="DESC">
+                <span style="font-size: initial">Descending</span>
+            </label>
+
+        </div>
+
+        <!--BUTTON-->
+        <button class="btn" type="submit" style="display: inline-block; margin-left: 5px;">SEARCH</button>
+        <button type="button" onclick="this.parentNode.reset(); drawSelectedInterestsChart();" class="btn" style="display: inline-block; margin-left: 5px;">RESET</button>
+        <button id="print" onclick="printTable('selectedInterestsPrintableArea','Selected interests');" class="btn" type="button" style="margin: 5px 0px 5px 0px; white-space: nowrap;"><i class="fa fa-print"></i> PRINT</button>
+
+    </form>
+
+    <div id="selectedInterestsPrintableArea">
+        <!--TABLE-->
+        <table id="selectedInterestsTable" style="float: left;"></table>
+
+        <!--CHART -->
+        <div id="selectedInterestsChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+    </div>
+
+</div>
+
+<!--ACTIVE MATCHES-->
+<div id="ActiveMatches" class="tabcontent">
+    <form onsubmit="return drawActiveMatchesChart();">
+
+        <!--SEARCH INPUT-->
+        <div class="wrap-input" id="ActiveMatches" style="border: #999999 1px solid; margin-left: 0px; width: 27%; display: inline-block;">
+            <label class="lbl" for="activeMatches">
+                <span>Active M.</span>
+            </label>
+            <input class="inp" type="number" id="minActiveMatches" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="From">
+            <input class="inp" type="number" id="maxActiveMatches" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="To">
+        </div>
+
+        <!--GROUP BY-->
+        <div class="wrap-input" id="GroupBy" style="border: #999999 1px solid;display: inline-block; width: 28% !important; padding-bottom: 5px;">
+            <label class="lbl" for="GroupBy">
+                <span>Group By </span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="groupBy" id="InterestName" value="InterestName" checked>
+                <span style="font-size: initial">InterestName</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; font-size: 12px; ">
+                <input class="inp" type="radio" name="groupBy" id="Category" value="Category">
+                <span style="font-size: initial">Category</span>
+            </label>
+
+        </div>
+
+        <!--SORT BY-->
+        <div class="wrap-input" id="Sorting" style="border: #999999 1px solid;display: inline-block; width: 37% !important; padding-bottom: 5px;">
+            <label class="lbl">
+                <span>Sort By</span>
+            </label>
+
+            <select class="inp" id="sorting" name="sorting" style="cursor: pointer; margin-right: 2px; width: 27%;">
+                <option value="" disabled >Select column</option>
+                <option value="InterestName" selected>Interest</option>
+                <option value="active">Active M.</option>
+            </select>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="asc" value="ASC" checked>
+                <span style="font-size: initial">Ascending</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 0px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="desc" value="DESC">
+                <span style="font-size: initial">Descending</span>
+            </label>
+
+        </div>
+
+        <!--BUTTON-->
+        <button class="btn" type="submit" style="display: inline-block; margin-left: 5px;">SEARCH</button>
+        <button type="button" onclick="this.parentNode.reset(); drawActiveMatchesChart();" class="btn" style="display: inline-block; margin-left: 5px;">RESET</button>
+        <button id="print" onclick="printTable('activeMatchesPrintableArea','Active Matches');" class="btn" type="button" style="margin: 5px 0px 5px 0px; white-space: nowrap;"><i class="fa fa-print"></i> PRINT</button>
+
+    </form>
+
+    <div id="activeMatchesPrintableArea">
+        <!--TABLE-->
+        <table id="activeMatchesTable" style="float: left;"></table>
+
+        <!--CHART -->
+        <div id="activeMatchesChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+    </div>
+
+</div>
+
+<!--DEACTIVATED MATCHES-->
+<div id="DeactivatedMatches" class="tabcontent">
+    <form onsubmit="return drawDeactivatedMatchesChart();">
+
+        <!--SEARCH INPUT-->
+        <div class="wrap-input" id="DeactivatedMatches" style="border: #999999 1px solid; margin-left: 0px; width: 27%; display: inline-block;">
+            <label class="lbl" for="deactivatedMatches">
+                <span>Deactivated M.</span>
+            </label>
+            <input class="inp" type="number" id="minDeactivatedMatches" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="From">
+            <input class="inp" type="number" id="maxDeactivatedMatches" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="To">
+        </div>
+
+        <!--GROUP BY-->
+        <div class="wrap-input" id="GroupBy" style="border: #999999 1px solid;display: inline-block; width: 28% !important; padding-bottom: 5px;">
+            <label class="lbl" for="GroupBy">
+                <span>Group By </span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="groupBy" id="InterestName" value="InterestName" checked>
+                <span style="font-size: initial">InterestName</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; font-size: 12px; ">
+                <input class="inp" type="radio" name="groupBy" id="Category" value="Category">
+                <span style="font-size: initial">Category</span>
+            </label>
+
+        </div>
+
+        <!--SORT BY-->
+        <div class="wrap-input" id="Sorting" style="border: #999999 1px solid;display: inline-block; width: 37% !important; padding-bottom: 5px;">
+            <label class="lbl">
+                <span>Sort By</span>
+            </label>
+
+            <select class="inp" id="sorting" name="sorting" style="cursor: pointer; margin-right: 2px; width: 27%;">
+                <option value="" disabled >Select column</option>
+                <option value="InterestName" selected>Interest</option>
+                <option value="deactivated">Deactivated M.</option>
+            </select>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="asc" value="ASC" checked>
+                <span style="font-size: initial">Ascending</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 0px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="desc" value="DESC">
+                <span style="font-size: initial">Descending</span>
+            </label>
+
+        </div>
+
+        <!--BUTTON-->
+        <button class="btn" type="submit" style="display: inline-block; margin-left: 5px;">SEARCH</button>
+        <button type="button" onclick="this.parentNode.reset(); drawDeactivatedMatchesChart();" class="btn" style="display: inline-block; margin-left: 5px;">RESET</button>
+        <button id="print" onclick="printTable('deactivatedMatchesPrintableArea','Deactivated Matches');" class="btn" type="button" style="margin: 5px 0px 5px 0px; white-space: nowrap;"><i class="fa fa-print"></i> PRINT</button>
+
+    </form>
+
+    <div id="deactivatedMatchesPrintableArea">
+        <!--TABLE-->
+        <table id="deactivatedMatchesTable" style="float: left;"></table>
+
+        <!--CHART -->
+        <div id="deactivatedMatchesChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+    </div>
+
+</div>
+
+<!--TOTAL MATCHES-->
+<div id="TotalMatches" class="tabcontent">
+    <form onsubmit="return drawTotalMatchesChart();">
+
+        <!--SEARCH INPUT-->
+        <div class="wrap-input" id="TotalMatches" style="border: #999999 1px solid; margin-left: 0px; width: 27%; display: inline-block;">
+            <label class="lbl" for="totalMatches">
+                <span>Total M.</span>
+            </label>
+            <input class="inp" type="number" id="minTotalMatches" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="From">
+            <input class="inp" type="number" id="maxTotalMatches" style="border: #cccccc solid 1px; width: 20%" min="0" placeholder="To">
+        </div>
+
+        <!--GROUP BY-->
+        <div class="wrap-input" id="GroupBy" style="border: #999999 1px solid;display: inline-block; width: 28% !important; padding-bottom: 5px;">
+            <label class="lbl" for="GroupBy">
+                <span>Group By </span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="groupBy" id="InterestName" value="InterestName" checked>
+                <span style="font-size: initial">InterestName</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 5px; font-size: 12px; ">
+                <input class="inp" type="radio" name="groupBy" id="Category" value="Category">
+                <span style="font-size: initial">Category</span>
+            </label>
+
+        </div>
+
+        <!--SORT BY-->
+        <div class="wrap-input" id="Sorting" style="border: #999999 1px solid;display: inline-block; width: 37% !important; padding-bottom: 5px;">
+            <label class="lbl">
+                <span>Sort By</span>
+            </label>
+
+            <select class="inp" id="sorting" name="sorting" style="cursor: pointer; margin-right: 2px; width: 27%;">
+                <option value="" disabled >Select column</option>
+                <option value="InterestName" selected>Interest</option>
+                <option value="total">Total M.</option>
+            </select>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 2px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="asc" value="ASC" checked>
+                <span style="font-size: initial">Ascending</span>
+            </label>
+
+            <label class="pure-material-radio" style="margin-left: 0px; margin-right: 0px; font-size: 12px;">
+                <input class="inp" type="radio" name="sorting-type" id="desc" value="DESC">
+                <span style="font-size: initial">Descending</span>
+            </label>
+
+        </div>
+
+        <!--BUTTON-->
+        <button class="btn" type="submit" style="display: inline-block; margin-left: 5px;">SEARCH</button>
+        <button type="button" onclick="this.parentNode.reset(); drawTotalMatchesChart();" class="btn" style="display: inline-block; margin-left: 5px;">RESET</button>
+        <button id="print" onclick="printTable('totalMatchesPrintableArea','Total Matches');" class="btn" type="button" style="margin: 5px 0px 5px 0px; white-space: nowrap;"><i class="fa fa-print"></i> PRINT</button>
+
+    </form>
+
+    <div id="totalMatchesPrintableArea">
+        <!--TABLE-->
+        <table id="totalMatchesTable" style="float: left;"></table>
+
+        <!--CHART -->
+        <div id="totalMatchesChart" style="width: 700px; height: 400px; display: inline-block;"></div>
     </div>
 
 </div>

@@ -37,7 +37,6 @@ if (!isset($_SESSION['gender']))
         $(document).ready(function(){
             //Set red shadow to the respective field.
             $("#<?php echo $field; ?>").css("box-shadow", "0 0 5px red");
-
         });
     </script>
 </head>
