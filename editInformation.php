@@ -106,7 +106,7 @@ if (empty($array[9])){ // marital status
             <!-- OCCUPATION-->
             <div class="wrap-input" id="Occupation" >
                 <label class="lbl" for="occupation">
-                    <span>Occupation</span>
+                    <span>Occupation <i style=' color:red;'> *</i></span>
                 </label>
                 <input class="inp" style="width: 65%;" id="occupation" type="text" name="occupation" minlength="2" maxlength="35" placeholder="Occupation" value="<?= $array[6]?>">
             </div>

@@ -57,7 +57,7 @@
                                 <div class="slider-text-inner">
                                     <h1>Meet people with common interests</h1>
                                     <h2>with you</h2>
-                                    <p style="display: inline-block;"><a class="btn btn-primary btn-lg btn-learn" href="Register.php">Get started !</a></p>
+                                    <p style="display: inline-block;"><a class="btn btn-primary btn-lg btn-learn" href="Register.php">Get started!</a></p>
                                     <p style="display: inline-block;margin-left:25px;"><a class="btn btn-primary btn-lg btn-learn" href="Login/Login.php">Log in</a></p>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                 <div class="slider-text-inner">
                                     <h1>Sign up and add your interests</h1>
                                     <h2></h2>
-                                    <p style="display: inline-block;"><a class="btn btn-primary btn-lg btn-learn" href="Register.php">Get started !</a></p>
+                                    <p style="display: inline-block;"><a class="btn btn-primary btn-lg btn-learn" href="Register.php">Get started!</a></p>
                                     <p style="display: inline-block; margin-left:25px;"><a class="btn btn-primary btn-lg btn-learn" href="Login/Login.php">Log in</a></p>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 <div class="slider-text-inner">
                                     <h1>Find people from all over the world</h1>
                                     <h2>and have your interests together</h2>
-                                    <p style="display: inline-block;"><a class="btn btn-primary btn-lg btn-learn" href="Register.php">Get started !</a></p>
+                                    <p style="display: inline-block;"><a class="btn btn-primary btn-lg btn-learn" href="Register.php">Get started!</a></p>
                                     <p style="display: inline-block;margin-left:25px;"><a class="btn btn-primary btn-lg btn-learn" href="Login/Login.php">Log in</a></p>
                                 </div>
                             </div>

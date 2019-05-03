@@ -41,9 +41,13 @@ if($sql ->num_rows > 0) {
                         <p style='clear: left;'>$data[Gender] &nbsp;</p>
                         <span style='float: left; padding-top: 1px;'> &#9642; </span>
                         <p>&nbsp; $age years old</p>
-                        <p style='clear: left;'>$data[Education] &nbsp;</p>
-                        <span style='float: left; padding-top: 1px;'> &#9642; </span>
-                        <p>&nbsp; $data[MaritalStatus]</p>
+                        <p style='clear: left;'>$data[Education] &nbsp;</p>";
+                        if (!empty($data['MaritalStatus'])) {
+                        echo "
+                        <span style = 'float: left; padding-top: 1px;' > &#9642; </span>
+                        <p >&nbsp; $data[MaritalStatus] </p >";
+                            }
+                        echo"
                         <p style='color: #0066cc; clear: both;'><strong>Interested in:</strong>&nbsp;<p class='commonInterests' style='color: #0066cc;'>$data[CommonInterests]</p></p>
                     </div>
     

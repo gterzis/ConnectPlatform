@@ -1,107 +1,124 @@
 <?php // called by Register.php
 
-	session_start();
-
-	if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
-	    //Storing user's input into sessions
-	    $_SESSION['name'] = $_POST["name"];
-        $_SESSION['surname'] = $_POST["surname"];
-        $_SESSION['bday'] = date("Y-m-d", strtotime($_POST["bday"]));
-        $_SESSION['district'] = $_POST["district"];
-        $_SESSION['education'] = $_POST["education"];
-        $_SESSION['occupation'] = $_POST["occupation"];
-        $_SESSION['email'] = $_POST["email"];
-
-        //GENDER validation
-        if (isset($_POST['gender'])) {
-            ($_POST['gender'] == "male") ? $gender = "Male" : $gender = "Female";
-            $_SESSION['gender'] = $_POST['gender'];
-        }
-        else
-        {
-            $dataErr = base64_encode("Please select your gender");
-            header("Location: Register.php?ErrMess=$dataErr&field=Gender");
-            exit();
-        }
-
-        //NAME validation
-        $name = test_input($_POST["name"]);
-        //Check if name only contains letters, whitespace and starts with letter.
-        if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $name)) {
-            $dataErr =  base64_encode("Name: only letters and white space allowed");
-            header("Location: Register.php?ErrMess=$dataErr&field=Name");
-            exit();
-        }
-
-        //LAST NAME validation
-        $surname = test_input($_POST["surname"]);
-        // Check if last name only contains letters, whitespace and starts with letter.
-        if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $surname)) {
-            $dataErr = base64_encode("Surname: only letters and white space are allowed");
-            header("Location: Register.php?ErrMess=$dataErr&field=Surname");
-            exit();
-        }
-
-        //DISTRICT validation
-        $district = test_input($_POST["district"]);
-        // check if address only contains letters, numbers and whitespace
-        if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $district)) {
-            $dataErr = base64_encode("District: only letters, numbers and  white space are allowed");
-            header("Location: Register.php?ErrMess=$dataErr&field=District");
-            exit();
-        }
-
-        //EDUCATION validation
-        $education = test_input($_POST["education"]);
-        // check if address only contains letters, numbers and whitespace
-        if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $education)) {
-            $dataErr = base64_encode("Education: only letters, numbers and  white space are allowed");
-            header("Location: Register.php?ErrMess=$dataErr&field=Education");
-            exit();
-        }
-
-        //OCCUPATION validation
-        $occupation = test_input($_POST["occupation"]);
-        // check if address only contains letters, numbers and whitespace
-        if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $occupation)) {
-            $dataErr = base64_encode("Occupation: only letters, numbers and  white space are allowed");
-            header("Location: Register.php?ErrMess=$dataErr&field=Occupation");
-            exit();
-        }
-
-        //EMAIL validation
-        $email = strtolower($_POST["email"]); // converting input email to lowercase.
-        $email = test_input($email);
-        //Check if e-mail address is well-formed
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $dataErr = base64_encode("Invalid email format");
-            header("Location: Register.php?ErrMess=$dataErr&field=Email");
-            exit();
-        }
-
-        // PASSWORDS validation
-        // Checking if length of password is greater than 7.
-        if (strlen($_POST["pass1"]) < 8) {
-            $dataErr = base64_encode("Password must has 8 or more characters");
-            header("Location: Register.php?ErrMess=$dataErr&field=Password");
-            exit();
-        }
-        // Checking if passwords contain only letters and numbers.
-        if (!ctype_alnum($_POST["pass1"]) or !ctype_alnum($_POST["pass2"])) {
-            $dataErr = base64_encode("Password must consits of letters, numbers and no space");
-            header("Location: Register.php?ErrMess=$dataErr&field=Password");
-            exit();
-        }
-        // Checking if Password and Confirm Password are matched.
-        if ($_POST["pass1"] != $_POST["pass2"]) {
-            $dataErr = base64_encode("Password and Confirm Password do not match");
-            header("Location: Register.php?ErrMess=$dataErr&field=Password");
-            exit();
-        }
-	}
-    // If the user has not pressed register button. This prevents users visit this page directly.
-    else {
+    //if user visit page improperly
+	if (!$_SERVER["REQUEST_METHOD"] == "POST" ) {
         header("Location: index.php");
+        exit();
+    }
+    session_start();
+
+	$_SESSION['email'] = $_POST["email"];// store user's email in a session
+    $error = false;
+
+    //GENDER validation
+    if (isset($_POST['gender'])) {
+        ($_POST['gender'] == "male") ? $gender = "Male" : $gender = "Female";
+    }
+    else {
+        $error = true;
+        $output[] = array(
+            'field' => "Gender",
+            'errorMessage' => "Please select your gender"
+        );
+    }
+
+    //NAME validation
+    $name = test_input($_POST["name"]);
+    //Check if name only contains letters, whitespace and starts with letter.
+    if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $name)) {
+        $error = true;
+        $output[] = array(
+            'field'   => "Name",
+            'errorMessage'  => "Name: only letters and white space allowed"
+        );
+
+    }
+
+    //LAST NAME validation
+    $surname = test_input($_POST["surname"]);
+    // Check if last name only contains letters, whitespace and starts with letter.
+    if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $surname)) {
+        $error = true;
+        $output[] = array(
+            'field'   => "Surname",
+            'errorMessage'  => "Surname: only letters and white space are allowed"
+        );
+    }
+
+    //DISTRICT validation
+    $district = test_input($_POST["district"]);
+    // check if address only contains letters, numbers and whitespace
+    if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $district)) {
+        $error = true;
+        $output[] = array(
+            'field' => "District",
+            'errorMessage' => "District: only english letters, numbers and  white space are allowed"
+        );
+    }
+
+    //EDUCATION validation
+    $education = test_input($_POST["education"]);
+    // check if address only contains letters, numbers and whitespace
+    if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $education)) {
+        $error = true;
+        $output[] = array(
+            'field' => "Education",
+            'errorMessage' => "Education: only letters, numbers and  white space are allowed"
+        );
+    }
+
+    //OCCUPATION validation
+    $occupation = test_input($_POST["occupation"]);
+    // check if address only contains letters, numbers and whitespace
+    if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9., ]*[a-zA-Z0-9]$/", $occupation)) {
+        $error = true;
+        $output[] = array(
+            'field' => "Occupation",
+            'errorMessage' => "Occupation: only letters, numbers and  white space are allowed"
+        );
+    }
+
+    //EMAIL validation
+    $email = strtolower($_POST["email"]); // converting input email to lowercase.
+    $email = test_input($email);
+    //Check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = true;
+        $output[] = array(
+            'field' => "Email",
+            'errorMessage' => "Invalid email format"
+        );
+    }
+
+    // PASSWORDS validation
+    // Checking if length of password is greater than 7.
+    if (strlen($_POST["pass1"]) < 8) {
+        $error = true;
+        $output[] = array(
+            'field' => "Password",
+            'errorMessage' => "Password must has 8 or more characters"
+        );
+    }
+    // Checking if passwords contain only letters and numbers.
+    if (!ctype_alnum($_POST["pass1"]) or !ctype_alnum($_POST["pass2"])) {
+        $error = true;
+        $output[] = array(
+            'field' => "Password",
+            'errorMessage' => "Password must consists of letters, numbers and no space"
+        );
+    }
+    // Checking if Password and Confirm Password are matched.
+    if ($_POST["pass1"] != $_POST["pass2"]) {
+        $error = true;
+        $output[] = array(
+            'field' => "Password",
+            'errorMessage' => "Password and Confirm Password do not match"
+        );
+    }
+
+    //When error occurs
+    if ($error){
+        echo json_encode($output);
         exit();
     }
 
@@ -137,19 +154,22 @@
         if (!empty($mail)) {
             $stmt->close();
             $conn->close();
-            $dataErr = base64_encode("Email already exists. Please enter a new one.");
-            header("Location: Register.php?ErrMess=$dataErr&field=Email");
+            $output[] = array(
+                'field' => "Email",
+                'errorMessage' => "Email already exists. Please enter a new one."
+            );
+            echo json_encode($output);
             exit();
         }
 
     }
-
+    $currentDate = date("Y-m-d");
     // Inserting data into database
     if ($stmt = $conn->prepare("INSERT INTO users
                             (Name, Surname, Birthdate, Gender, District, Education, Occupation, Email, Password, RegistrationDate) 
                              VALUES (?,?,?,?,?,?,?,?,?,?)")) {
         // Bind the variables to the parameters.
-        $stmt->bind_param("ssssssssss", $name, $surname, $_SESSION['bday'], $gender, $district, $education, $occupation, $email, $_POST['pass1'], date("Y-m-d") );
+        $stmt->bind_param("ssssssssss", $name, $surname, $_POST['bday'], $gender, $district, $education, $occupation, $email, $_POST['pass1'], $currentDate );
 
         // Execute the statement.
         $stmt->execute();
@@ -168,11 +188,13 @@
                     <p style='margin: 25px 45px;font-family: \"Maiandra GD\";font-size: 45px;color: ivory;display: inline-block;'>Get in Touch</p></a>
                     <p style='float: right; margin: 40px;font-family: \"Maiandra GD\"; font-size: 25px;color: ivory;display: inline-block;'>Meet people with common interests with you</p>
                 </div>";
-    $message .= "Hello Mr/Ms " . $_POST["last_name"] . " and welcome to Get in Touch !";
+    $message .= "Hello Mr/Ms " . $_POST["surname"] . " and welcome to Get in Touch !";
 
 //	send_email($email,$subject,nl2br($message));
+    $output[] = array(
+        'errorMessage' => "success"
+    );
+    echo json_encode($output);
 
-    header("Location: ./Login/Login.php?registered=success");
-    exit();
 
 ?>

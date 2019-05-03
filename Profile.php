@@ -178,7 +178,14 @@
 
         <!--DESCRIPTION-->
         <div class="description">
-            <p style="word-wrap: break-word; font-size: 11px;"><?= $row['Description']; ?></p>
+            <p style="word-wrap: break-word; font-size: 11px;">
+                <?php if(empty($row['Description']))
+                    echo '<a style="margin-left: 38%; font-size: 14px; color: #0066cc; cursor: pointer;" onclick="editInformation()">
+                            <i class="fa fa-plus"></i> Add description </a>';
+                else
+                    echo $row['Description'];
+                ?>
+            </p>
         </div>
         <!--PERSONAL INFORMATION-->
         <div class="about">

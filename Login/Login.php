@@ -100,7 +100,6 @@
                 <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email" required
                        value="<?php if(isset($_COOKIE["email"])) { echo $_COOKIE["email"];}
                        elseif (isset($_SESSION['email'])) { echo $_SESSION['email'];} ?>" />
-
             </div>
 
             <!--PASSWORD-->

@@ -1,21 +1,10 @@
 <?php
     session_start();
     $adult= date("Y") - 18;
-    //Show error message
-    $field="none";
-    if(!empty($_GET['ErrMess'])) {
-        $error_msg = base64_decode($_GET['ErrMess']);
-        $field = $_GET['field'];
-        $dialogBox = preg_replace("/ /", "%20", "http://localhost/Local%20Server/ConnectPlatform/includes/DialogBox.php?Error=$error_msg");
-        echo file_get_contents($dialogBox);
-    }
-
-    if (!isset($_SESSION['gender']))
-        $_SESSION['gender'] = "";
 ?>
 
 <!DOCTYPE html>
-<html style="height: 100%;background-color: #f2f2f2;">
+<html style="background-color: #f2f2f2; overflow: auto;">
 
     <head>
         <title>Get in Touch - Sign Up</title>
@@ -26,14 +15,66 @@
         <link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/radioButtonStyle.css"> <!--Radio button style-->
         <link rel="stylesheet" href="indexStyle.css" >
         <script>
-            $(document).ready(function(){
+            $(document).ready(function() {
                 //show page's content
                 $(".register-pagecontent").fadeIn(1000);
-
-                //Set red shadow to the respective field.
-                $("#<?php echo $field; ?>").css("box-shadow", "0 0 5px red");
-
             });
+
+            //Form submission
+            function registration(){
+                var name = $("#name").val();
+                var surname = $("#surname").val();
+                var bday = $("#bday").val();
+                var gender = $("input[name=gender]:checked").val();
+                var district = $("input[name=district]").val();
+                var education = $("#education").val();
+                var occupation = $("#occupation").val();
+                var email = $("#email").val();
+                var pass1 = $("#pass1").val();
+                var pass2 = $("#pass2").val();
+
+
+                //Remove any error messages and error styles.
+                $("#errorMessages").html("");
+                $(".wrap-input").css("box-shadow", "none");
+
+                $.ajax
+                ({
+                    type: 'post', url: 'Registration.php',
+                    data: {
+                        name: name,
+                        surname: surname,
+                        bday: bday,
+                        gender: gender,
+                        district: district,
+                        education: education,
+                        occupation: occupation,
+                        email: email,
+                        pass1: pass1,
+                        pass2: pass2
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        $.each(response, function (i, response) {
+                            //Registered successfully, redirect to log-in page
+                            if (response.errorMessage == "success" ) {
+                                window.location.href = "./Login/Login.php?registered=success";
+                                return false;
+                            }
+                            else {
+                                // Display error messages
+                                $("#" + response.field + "").css("box-shadow", "0 0 5px red");
+                                $("#errorMessages").append('<p class="errorResponse" style=" width: 43%; margin:0 0 5px 15px; color: red; font-size: 14px; display: inline-block;">' + response.errorMessage + '</p>');
+                                if (i == 1) {
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+                });
+                return false;
+            }
+
 
         </script>
     </head>
@@ -44,17 +85,17 @@
         <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/head.html"); ?>
 
         <!--SIGN UP FORM-->
-        <form class="frm" action="Registration.php"  method="post">
+        <form id="registrationForm" class="frm" onsubmit="return registration();">
 
             <h2>Sign Up</h2>
+            <div id="errorMessages"></div>
 
            <!--NAME-->
             <div class="wrap-input" id="Name" style="float: left;">
                 <label class="lbl" for="name">
                     <span class="fa fa-user-o"></span>
                 </label>
-                <input class="inp" id="name" type="text" name="name" maxlength="20" placeholder="Name" required
-                       value="<?php if (isset($_SESSION['name'])) echo $_SESSION['name']; ?>">
+                <input class="inp" id="name" type="text" name="name" maxlength="20" placeholder="Name" autofocus required >
             </div>
 
             <!-- SURNAME-->
@@ -62,8 +103,7 @@
                 <label class="lbl" for="surname">
                     <span class="fa fa-user-o"></span>
                 </label>
-                <input class="inp" id="surname" type="text" name="surname" maxlength="25" placeholder="Surname" required
-                       value="<?php if (isset($_SESSION['surname'])) echo $_SESSION['surname']; ?>">
+                <input class="inp" id="surname" type="text" name="surname" maxlength="25" placeholder="Surname" required >
             </div>
 
             <!--BIRTHDAY-->
@@ -72,8 +112,7 @@
                     <span class="fa fa-birthday-cake"></span>
                 </label>
                 <input class="inp" id="bday" type="text" onfocus="(this.type='date')" name="bday" required
-                       min="1918-01-01" max="<?php echo date("$adult-m-d")?>" placeholder="Date of birth"
-                       value="<?php if (isset($_SESSION['bday'])) echo $_SESSION['bday']; ?>">
+                       min="1918-01-01" max="<?php echo date("$adult-m-d")?>" placeholder="Date of birth" >
             </div>
 
             <!--GENDER-->
@@ -82,14 +121,12 @@
                     <span class="fa fa-venus-mars"></span>
                 </label>
                 <label class="pure-material-radio" style="margin: 12px;">
-                    <input class="inp" type="radio" name="gender" id="male" value="male"
-                        <?php if( ($_SESSION['gender']) == "male") { ?> checked <?php } ?> >
+                    <input class="inp" type="radio" name="gender" id="male" value="male" >
                     <span style="font-size: initial">Male</span>
                 </label>
 
                 <label class="pure-material-radio" style="margin: 12px;">
-                    <input class="inp" type="radio" name="gender" id="female" value="female"
-                        <?php if( ($_SESSION['gender']) == "female") { ?> checked <?php } ?>>
+                    <input class="inp" type="radio" name="gender" id="female" value="female" >
                     <span style="font-size: initial">Female</span>
                 </label>
             </div>
@@ -99,8 +136,7 @@
                 <label class="lbl" for="autocomplete">
                     <span class="fa fa-home"></span>
                 </label>
-                <input class="inp" id="autocomplete" type="text" name="district" minlength="2" maxlength="100" placeholder="District" required
-                       value="<?php if (isset($_SESSION['district'])) echo $_SESSION['district']; ?>">
+                <input class="inp" id="autocomplete" type="text" name="district" minlength="2" maxlength="100" placeholder="District" required >
             </div>
             <!-- Autocomplete places api -->
             <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/places.html"); ?>
@@ -110,8 +146,7 @@
                 <label class="lbl" for="education">
                     <span class="fa fa-mortar-board"></span>
                 </label>
-                <input class="inp" id="education" type="text" name="education" minlength="2" maxlength="25" placeholder="Education" required
-                       value="<?php if (isset($_SESSION['education'])) echo $_SESSION['education']; ?>">
+                <input class="inp" id="education" type="text" name="education" minlength="2" maxlength="25" placeholder="Education" required >
             </div>
 
             <!-- OCCUPATION-->
@@ -119,8 +154,7 @@
                 <label class="lbl" for="occupation">
                     <span class="fa fa-briefcase"></span>
                 </label>
-                <input class="inp" id="occupation" type="text" name="occupation" minlength="2" maxlength="25" placeholder="Occupation" required
-                       value="<?php if (isset($_SESSION['occupation'])) echo $_SESSION['occupation']; ?>">
+                <input class="inp" id="occupation" type="text" name="occupation" minlength="2" maxlength="25" placeholder="Occupation" required >
             </div>
 
             <!-- EMAIL-->
@@ -128,8 +162,7 @@
                 <label class="lbl" for="email">
                     <span class="fa fa-at"></span>
                 </label>
-                <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email address" required
-                       value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>">
+                <input class="inp" id="email" type="email" name="email" maxlength="65" placeholder="Email address" required >
             </div>
 
             <!-- PASSWORD-->
