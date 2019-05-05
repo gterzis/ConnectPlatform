@@ -40,7 +40,7 @@ while($data = mysqli_fetch_assoc($sql))
 
             <img onclick='showProfile(this)' style='cursor: pointer;' class='notification-Picture' src='http://localhost/Local%20Server/ConnectPlatform/profile-pictures/$data[Photo]' alt='' width='25' height=50' >
             <button class='chat-btn' onclick='location.href=\"../../ConnectPlatform/Chat/Messages.php?id=$encodedID\";'> <span class='fa fa-comments' style='font-size: 18px; margin-right: 5px;'></span>Chat</button>
-            <button class='deleteUser-btn' onclick='deleteMatch(this);'> <span class='fa fa-user-times' style='font-size: 18px; margin-right: 5px;'></span>Delete</button>
+            <button class='deleteUser-btn' onclick='deleteMatch(this);' style='margin-right: 5px;'><span class='fa fa-user-times' style='font-size: 18px; margin-right: 0px;'></span></button>
 
             <div class='resultInformation' style='display: inline-block; margin-left: 15px;'>
                 <p class='userID' hidden>$data[ID]</p>

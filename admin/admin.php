@@ -116,9 +116,9 @@ $conn->close();
     <!--ADDS-->
     <div class="adds" style="position: absolute; top: 160px;">
         <h2 style="width: 40%; display: inline-block;">Operations</h2>
-        <div class='add' style="border: none;" onclick="showAdmins()"><p><i class="fa fa-cog" style="color: #999999;"></i> Administrators</p></div>
-        <div class='add' onclick="showAnnouncements()"><p><i class="fa fa-cog" style="color: #999999;"></i> Announcements</p></div>
-        <div class='add' onclick="showInterests()"><p><i class="fa fa-cog" style="color: #999999;"></i> Interests</p></div>
+        <div class='add' style="border: none;" onclick="showAdmins()"><p><i class="fa fa-group" style="color: #999999;"></i> Administrators</p></div>
+        <div class='add' onclick="showAnnouncements()"><p><i class="fa fa-newspaper-o" style="color: #999999;"></i> Announcements</p></div>
+        <div class='add' onclick="showInterests()"><p><i class="fa fa-futbol-o" style="color: #999999;"></i> Interests</p></div>
     </div>
 
 </div>

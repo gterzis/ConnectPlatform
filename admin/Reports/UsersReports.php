@@ -16,6 +16,14 @@ if (!isset($_SESSION['user_id'])){
     <link rel="stylesheet" href="../../indexStyle.css">
     <style>
 
+        @media print {/* apply on printing */
+            #users th {
+                background-color: #0073b1;
+                color: white;
+                -webkit-print-color-adjust: exact; /* important ! */
+            }
+        }
+
         #users {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;

@@ -58,9 +58,11 @@ if ($stmt = $conn->prepare("INSERT INTO bulletin_board (Title, Content ) VALUES 
     // Close the prepared statement.
     $stmt->close();
 
-//    $conn->close();
-//    echo json_encode("success");
-//    exit();
+    if (empty($_FILES["image"]["name"])) {
+        echo json_encode("success");
+        $conn->close();
+        exit();
+    }
 }
 else {
     echo json_encode(" Something went wrong. Try again later");
@@ -68,38 +70,38 @@ else {
     exit();
 }
 
-// name the image with the announcement's id.
-// get the announcement's id.
-$sql = $conn -> query("SELECT LAST_INSERT_ID() AS AnnouncementID");
-$annID = $sql->fetch_assoc();
+if (!empty($_FILES["image"]["name"])) {
+    // name the image with the announcement's id.
+    // get the announcement's id.
+    $sql = $conn->query("SELECT LAST_INSERT_ID() AS AnnouncementID");
+    $annID = $sql->fetch_assoc();
 
-//IMAGE
-$temp = explode(".", $_FILES["image"]["name"]); // get the extension of the image
-$newfilename = $annID['AnnouncementID'] . '.' . end($temp);// name image
-// define the path which image is going to be stored
-$uploadfile = $_SERVER['DOCUMENT_ROOT']. '/Local Server/ConnectPlatform/BulletinBoard-images/' .
-    $newfilename;
+    //IMAGE
+    $temp = explode(".", $_FILES["image"]["name"]); // get the extension of the image
+    $newfilename = $annID['AnnouncementID'] . '.' . end($temp);// name image
+    // define the path which image is going to be stored
+    $uploadfile = $_SERVER['DOCUMENT_ROOT'] . '/Local Server/ConnectPlatform/BulletinBoard-images/' .
+        $newfilename;
 
-//store image in the defined path-directory
-if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+    //store image in the defined path-directory
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
 
-    // Inserting data into database
-    if ($stmt = $conn->prepare("UPDATE bulletin_board SET Picture = ? WHERE AnnouncementID = ?")) {
-        // Bind the variables to the parameters.
-        $stmt->bind_param("si", $newfilename,$annID['AnnouncementID']);
+        // Inserting data into database
+        if ($stmt = $conn->prepare("UPDATE bulletin_board SET Picture = ? WHERE AnnouncementID = ?")) {
+            // Bind the variables to the parameters.
+            $stmt->bind_param("si", $newfilename, $annID['AnnouncementID']);
 
-        // Execute the statement.
-        $stmt->execute();
+            // Execute the statement.
+            $stmt->execute();
 
-        // Close the prepared statement.
-        $stmt->close();
+            // Close the prepared statement.
+            $stmt->close();
 
-        $conn->close();
+            $conn->close();
+        }
+        echo json_encode("success");
+        exit();
+    } else {
+        echo "Upload failed";
     }
-    echo json_encode("success");
-    exit();
-}
-else
-{
-    echo "Upload failed";
 }

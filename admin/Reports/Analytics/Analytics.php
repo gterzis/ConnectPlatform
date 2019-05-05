@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../../../indexStyle.css">
     <style>
 
+        @media print {/* apply on printing */
+            th {
+                background-color: #0073b1;
+                color: white;
+                -webkit-print-color-adjust: exact; /* important ! */
+            }
+        }
+
         table {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -926,7 +934,6 @@
                     chart.draw(Data, Options);
                 }
             });
-
             return false;
         }
 
@@ -1341,7 +1348,8 @@
                 <span style="font-size: 14px;">From</span>
             </label>
             <input class="inp" id="registration-from" type="date" name="registration-from"
-                   min="1918-01-01" max="<?php echo date("Y-m-d")?>" style="width: 60%;">
+                   min="1918-01-01" max="<?php echo date("Y-m-d")?>"
+                   value="<?= date('Y-m-d', strtotime('-6 days')) ?>" style="width: 60%;">
         </div>
 
         <!--TO-->
@@ -1350,7 +1358,8 @@
                 <span style="font-size: 14px;">To</span>
             </label>
             <input class="inp" id="registration-to" type="date" name="registration-to"
-                   min="1918-01-01" max="<?php echo date("Y-m-d")?>" style="width: 65%;">
+                   min="1918-01-01" max="<?php echo date("Y-m-d")?>"
+                   value="<?= date('Y-m-d')?>" style="width: 65%;">
         </div>
 
         <!--SORT BY-->

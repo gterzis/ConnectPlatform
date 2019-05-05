@@ -138,7 +138,7 @@
                 if(response == "success") {
                     //Display successful message and set green shadow to all the fields.
                     $('#response').html('<p style="color:#00b300; font-size:17px; margin:0;">' +
-                        '<span class="fa fa-check-circle-o"> Announcement has been added successfully !</span></p>').show().removeClass("errorResponse").addClass("successResponse");
+                        '<span class="fa fa-check-circle-o"> Announcement has been added successfully!</span></p>').show().removeClass("errorResponse").addClass("successResponse");
                     $("#Title, #Content").css("box-shadow", "0 0 5px green");
                     //Update bulletin board
                     fetchBulletinBoard();

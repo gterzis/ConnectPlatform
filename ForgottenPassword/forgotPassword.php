@@ -11,7 +11,7 @@
         <!--HEADER-->
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>Forgot password</h2>
+            <h2>Forgotten password</h2>
         </div>
 
         <form onsubmit="return sendLink();">
