@@ -1,0 +1,44 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://localhost/Local%20Server/ConnectPlatform/includes/modalProperties.js"></script><!--Modal properties-->
+<link rel="stylesheet" href="http://localhost/Local%20Server/ConnectPlatform/includes/modalStyle.css"><!--Modal style-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal" style="padding-top: 105px;">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+
+        <!--HEADER-->
+        <div class="modal-header">
+        </div>
+
+        
+        <!--BODY-->
+        <div class="modal-body">
+
+            <p class="instruction" style="font-size: 19px;">
+                To continue you must agree. By doing this you consent to give your personal information.
+                Also, we use cookies to remember your credentials for logging in in our website.
+            </p>
+            
+        </div>
+        
+        <!--FOOTER-->
+        <div class="modal-footer">
+            <button id="cancel" class="btn-change" type="button"> CANCEL</button>
+            <button id="agree" class="btn-change"> AGREE</button>
+        </div>
+        
+    </div>
+
+</div>
+
+<script>
+    $("#agree").click(function () {
+       $("#myModal").hide();
+    });
+
+    $("#cancel").click(function () {
+        window.location = "Login/Login.php";
+    });
+</script>

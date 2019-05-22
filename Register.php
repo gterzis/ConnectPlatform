@@ -18,6 +18,9 @@
             $(document).ready(function() {
                 //show page's content
                 $(".register-pagecontent").fadeIn(1000);
+
+                $("#cookiesMessage").load("http://localhost/Local%20Server/ConnectPlatform/includes/cookiesMessage.html");
+
             });
 
             //Form submission
@@ -83,6 +86,9 @@
     <div class="register-pagecontent" hidden>
         <!--HEADER-->
         <?php   echo file_get_contents("http://localhost/Local%20Server/ConnectPlatform/includes/head.html"); ?>
+
+        <!--Display cookies message-->
+        <div id="cookiesMessage"></div>
 
         <!--SIGN UP FORM-->
         <form id="registrationForm" class="frm" onsubmit="return registration();">

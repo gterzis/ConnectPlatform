@@ -46,22 +46,28 @@ if($sql = $conn ->query("SELECT YEAR(Birthdate) as yearOfBirth, COUNT(*) as numO
         <th>Age</th>
         <th>Number of users</th>
         </tr>";
+        $totalUsers = 0;
         while ($data = mysqli_fetch_assoc($sql)) {
 
             //Calculate the age
             $currentDate = date("Y");
             $age = $currentDate - $data['yearOfBirth'];
-
+            $totalUsers += $data['numOfUsers'];
             echo "
         <tr>
             <td>$age</td>
             <td>$data[numOfUsers]</td>
         </tr>";
         }
+        echo "
+        <tr>
+            <th>Total</th>
+            <th>$totalUsers</th>
+        </tr>";
     }
     // return details for chart
     elseif ($_GET['data'] == "chart"){
-
+        $ageRanges = array("25" => 0, "40" => 0, "60" =>0, "100" => 0 );
         while ($data = mysqli_fetch_assoc($sql))
         {
 
@@ -69,10 +75,42 @@ if($sql = $conn ->query("SELECT YEAR(Birthdate) as yearOfBirth, COUNT(*) as numO
             $currentDate = date("Y");
             $age = $currentDate - $data['yearOfBirth'];
 
-            $output[] = array(
-                'age'   => $age,
-                'users'  => $data["numOfUsers"]
-            );
+            if ($age <= 25)
+                $ageRanges["25"]+= $data['numOfUsers'];
+            elseif ($age >25 && $age <=40)
+                $ageRanges["40"]+= $data['numOfUsers'];
+            elseif ($age >40 && $age<=60 )
+                $ageRanges["60"]+= $data['numOfUsers'];
+            elseif ($age>60)
+                $ageRanges["100"]+= $data['numOfUsers'];
+
+        }
+
+        foreach( $ageRanges as $key => $val ){
+            if ($key == "25" ){
+                $output[] = array(
+                    'age'   => "18-25",
+                    'users'  => $val
+                );
+            }
+            elseif ($key == "40" ){
+                $output[] = array(
+                    'age'   => "26-40",
+                    'users'  => $val
+                );
+            }
+            elseif ($key == "60" ){
+                $output[] = array(
+                    'age'   => "41-60",
+                    'users'  => $val
+                );
+            }
+            elseif ($key == "100" ){
+                $output[] = array(
+                    'age'   => "60<",
+                    'users'  => $val
+                );
+            }
         }
         echo json_encode($output);
     }

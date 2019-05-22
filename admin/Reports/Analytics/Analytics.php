@@ -235,6 +235,10 @@
 
         //REGISTRATION DATE table
         function fetchRegistrationDate() {
+
+            //Dates range
+            var registrationDateRange = $("#registrationDate-range").val();
+
             //Registration Date
             var registrationDateFrom = $("#registration-from").val();
             var registrationDateTo = $("#registration-to").val();
@@ -248,6 +252,7 @@
                 method: "POST",
                 url: "getRegistrationDate.php?data=table",
                 data:{
+                    registrationDateRange: registrationDateRange,
                     registrationDateFrom: registrationDateFrom,
                     registrationDateTo: registrationDateTo,
                     orderBy: orderBy,
@@ -669,6 +674,10 @@
         //Draw Registration Date Chart
         function drawRegistrationDateChart(){
             fetchRegistrationDate();// show table
+
+            //Dates range
+            var registrationDateRange = $("#registrationDate-range").val();
+
             var registrationDateFrom = $("#registration-from").val();
             var registrationDateTo = $("#registration-to").val();
 
@@ -682,6 +691,7 @@
                 url: "getRegistrationDate.php?data=chart",
                 dataType:"JSON",
                 data:{
+                    registrationDateRange: registrationDateRange,
                     registrationDateFrom:registrationDateFrom,
                     registrationDateTo:registrationDateTo,
                     orderBy: orderBy,
@@ -690,13 +700,24 @@
                 success: function (data) {
                     var jsonData = data;
                     var Data = new google.visualization.DataTable();
-                    Data.addColumn('date', 'Registration Date');
-                    Data.addColumn('number', 'Users');
-                    $.each(jsonData, function(  i, jsonData){
-                        var registrationDate = jsonData.registrationDate;
-                        var users = jsonData.users;
-                        Data.addRows([[new Date(jsonData.year, (jsonData.month)-1, jsonData.day), Number(users)]]);
-                    });
+                    if (registrationDateRange == "lastYear" || registrationDateRange == "perYear"){
+                        Data.addColumn('string', 'Registration Date');
+                        Data.addColumn('number', 'Users');
+                        $.each(jsonData, function(  i, jsonData){
+                            var registrationDate = jsonData.registrationDate;
+                            var users = jsonData.users;
+                            Data.addRows([[registrationDate, Number(users)]]);
+                        });
+                    }
+                    else {
+                        Data.addColumn('date', 'Registration Date');
+                        Data.addColumn('number', 'Users');
+                        $.each(jsonData, function(  i, jsonData){
+                            var registrationDate = jsonData.registrationDate;
+                            var users = jsonData.users;
+                            Data.addRows([[new Date(jsonData.year, (jsonData.month) - 1, jsonData.day), Number(users)]]);
+                        });
+                    }
 
                     var Options = {
                         hAxis: {
@@ -1031,6 +1052,21 @@
             document.body.innerHTML = originalContents;
         }
 
+        $(document).ready(function () {
+            $("#registrationDate-range").change(function(){
+                var value = $("#registrationDate-range").val();
+                if ( value == "custom"){
+                    $("#Registration-from").css("display", "inline-block");
+                    $("#Registration-to").css("display", "inline-block");
+                }
+                else
+                {
+                    $("#Registration-from").css("display", "none");
+                    $("#Registration-to").css("display", "none");
+                }
+            });
+        });
+
     </script>
 </head>
 <body>
@@ -1342,8 +1378,21 @@
     <form onsubmit="return drawRegistrationDateChart();">
 
         <!--SEARCH INPUT-->
+        <div class="wrap-input" id="RegistrationDate-range" style="border: #999999 1px solid; margin-left: 0px; width: 20%; display: inline-block;" >
+            <label class="lbl" for="registrationDate-range">
+                <span class="fa fa-calendar"></span>
+            </label>
+            <select class="inp" id="registrationDate-range" name="registrationDate-range" style="cursor: pointer">
+                <option value="custom">Custom</option>
+                <option value="lastWeek">Last week</option>
+                <option value="lastMonth">Last month</option>
+                <option value="lastYear" selected>Last year</option>
+                <option value="perYear">Per year</option>
+            </select>
+        </div>
+
         <!--FROM-->
-        <div class="wrap-input" id="Registration-from" style="border: #999999 1px solid; padding-bottom: 5px; margin-left: 0px; width: 20%; display: inline-block;">
+        <div class="wrap-input" id="Registration-from" style="border: #999999 1px solid; padding-bottom: 5px; margin-left: 0px; width: 20%; display: none;">
             <label class="lbl" for="registration-from">
                 <span style="font-size: 14px;">From</span>
             </label>
@@ -1353,7 +1402,7 @@
         </div>
 
         <!--TO-->
-        <div class="wrap-input" id="Registration-to" style="border: #999999 1px solid; margin-left: 0px; width: 20%; padding-bottom: 5px; display: inline-block;">
+        <div class="wrap-input" id="Registration-to" style="border: #999999 1px solid; margin-left: 0px; width: 20%; padding-bottom: 5px; display: none;">
             <label class="lbl" for="registration-to">
                 <span style="font-size: 14px;">To</span>
             </label>

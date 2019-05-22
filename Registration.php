@@ -163,13 +163,18 @@
         }
 
     }
+
+    // Hash a new password for storing in the database.
+    // The function automatically generates a cryptographically safe salt.
+    $hashToStoreInDb = password_hash($_POST['pass1'], PASSWORD_DEFAULT);
+
     $currentDate = date("Y-m-d");
     // Inserting data into database
     if ($stmt = $conn->prepare("INSERT INTO users
                             (Name, Surname, Birthdate, Gender, District, Education, Occupation, Email, Password, RegistrationDate) 
                              VALUES (?,?,?,?,?,?,?,?,?,?)")) {
         // Bind the variables to the parameters.
-        $stmt->bind_param("ssssssssss", $name, $surname, $_POST['bday'], $gender, $district, $education, $occupation, $email, $_POST['pass1'], $currentDate );
+        $stmt->bind_param("ssssssssss", $name, $surname, $_POST['bday'], $gender, $district, $education, $occupation, $email, $hashToStoreInDb, $currentDate );
 
         // Execute the statement.
         $stmt->execute();

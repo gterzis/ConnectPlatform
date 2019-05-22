@@ -29,16 +29,15 @@
                             password:pass,
                             rememberme:rememberme
                         },
-                        success:function(response)
-                        {
-                            if(response == "admin") {
+                        success:function(response) {
+                            if(response == "admin") { //Correct input. Redirect to the admin's home page
                                 window.location.href="http://localhost/Local%20Server/ConnectPlatform/admin/admin.php";
                             }
-                            else if(response == "success"){
+                            else if(response == "success"){ //Correct input. Redirect to the user's home page
                                 window.location.href="../Profile.php";
                             }
-                            else{
-                                $('#result').load("http://localhost/Local%20Server/ConnectPlatform/includes/DialogBox.php?Error="+response+"");
+                            else{//Something went wrong. Show error message.
+                            $('#result').load("http://localhost/Local%20Server/ConnectPlatform/includes/DialogBox.php?Error="+response+"");
                             }
                         }
                     });

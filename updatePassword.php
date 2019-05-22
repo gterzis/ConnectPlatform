@@ -34,9 +34,13 @@
     //Update admin's password
     elseif ($_SESSION['user_admin'] == TRUE)
     {
+        // Hash a new password for storing in the database.
+        // The function automatically generates a cryptographically safe salt.
+        $hashToStoreInDb = password_hash($_POST["newPass"], PASSWORD_DEFAULT);
+
         if($stmt = $conn->prepare("UPDATE admins SET Password = ? WHERE AdminID = ?"))
         {
-            $stmt->bind_param("si",$_POST["newPass"], $_SESSION['user_id']);
+            $stmt->bind_param("si",$hashToStoreInDb, $_SESSION['user_id']);
             $stmt->execute();
             $stmt->close();
 
@@ -50,9 +54,13 @@
     //Update user's password
     else
     {
+        // Hash a new password for storing in the database.
+        // The function automatically generates a cryptographically safe salt.
+        $hashToStoreInDb = password_hash($_POST["newPass"], PASSWORD_DEFAULT);
+
         if($stmt = $conn->prepare("UPDATE users SET Password = ? WHERE ID = ?"))
         {
-            $stmt->bind_param("si",$_POST["newPass"], $_SESSION['user_id']);
+            $stmt->bind_param("si",$hashToStoreInDb, $_SESSION['user_id']);
             $stmt->execute();
             $stmt->close();
 

@@ -20,10 +20,10 @@
 	require '../includes/Connection.php';
 
 	//Identifying user. BINARY in WHERE clause is to force case sensitivity
-	if ($stmt = $conn->prepare("SELECT ID, Email, Password FROM users WHERE BINARY Email=? AND BINARY  Password=?"))
+	if ($stmt = $conn->prepare("SELECT ID, Email, Password FROM users WHERE BINARY Email=? "))
 	{
 	    /* bind parameters for markers */
-	    $stmt->bind_param("ss",$email,$password);
+	    $stmt->bind_param("s",$email);
 
 	    /* execute query */
 	    $stmt->execute();
@@ -34,18 +34,21 @@
 	    /* fetch value */
 	    $stmt->fetch();
 
-		if ( !empty($user) AND !empty($pass) )
+	    //checking if the encoded password from database matches with the password user has entered.
+        $isPasswordCorrect = password_verify($password, $pass);
+
+		if ($isPasswordCorrect )
 		{
             //set Sessions
             $_SESSION['user_id'] = $id;
-            $_SESSION['user_pass'] = $pass;
+            $_SESSION['user_pass'] = $password;
             $_SESSION['user_email'] = $email;
             $_SESSION['user_admin'] = FALSE;
 			$stmt->close();
 
             // set cookies
 
-            setCookies($user, $pass);
+            setCookies($user, $password);
 
             //Update last login
             $today = date("Y-m-d");
@@ -58,10 +61,10 @@
 	}
 
 	//Identifying user if is an administrator.
-	if ($stmt = $conn->prepare("SELECT AdminID, Email, Password FROM admins WHERE BINARY Email=? AND BINARY Password=?"))
+	if ($stmt = $conn->prepare("SELECT AdminID, Email, Password FROM admins WHERE BINARY Email=?"))
 	{
 	    /* bind parameters for markers */
-	    $stmt->bind_param("ss",$email,$password);
+	    $stmt->bind_param("s",$email);
 
 	    /* execute query */
 	    $stmt->execute();
@@ -72,19 +75,22 @@
 	    /* fetch value */
 	    $stmt->fetch();
 
-		if ( !empty($user) AND !empty($pass) )
+        //checking if the encoded password from database matches with the password user has entered.
+        $isPasswordCorrect = password_verify($password, $pass);
+
+		if ($isPasswordCorrect)
 		{
 			//set Sessions
 			$_SESSION['user_id'] = $id;
 			$_SESSION['user_email'] = $user;
-			$_SESSION['user_pass'] = $pass;
+			$_SESSION['user_pass'] = $password;
 			$_SESSION['user_admin'] = TRUE;
 
             $stmt->close();
             $conn->close();
 
             // set cookies
-            setCookies($user, $pass);
+            setCookies($user, $password);
 
             echo "admin";
             exit();

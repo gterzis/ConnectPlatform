@@ -44,7 +44,6 @@ if ($sql = $conn -> query("SELECT District, COUNT(*) numOfUsers FROM users WHERE
 
         while ($data = mysqli_fetch_assoc($sql))
         {
-
             $output[] = array(
                 'district'   => $data['District'],
                 'users'  => $data["numOfUsers"]
