@@ -24,9 +24,12 @@ if (isset($_POST['reset']))
     }
     else
     {
+        //encoding password
+        $hashToStoreInDb = password_hash($_POST["pass"], PASSWORD_DEFAULT);
+
         // Updates user's password
         if ($stmt = $conn->prepare("UPDATE users SET Password = ? WHERE Email = ? ")) {
-            $stmt->bind_param("ss", $_POST["pass"], $row['Email']);
+            $stmt->bind_param("ss", $hashToStoreInDb, $row['Email']);
             $stmt->execute();
             $stmt->close();
         }

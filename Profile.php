@@ -75,7 +75,8 @@
     //Delete user's interest
     function deleteInterest(name) {
         if (confirm('Are you sure you want to delete it?')) {
-            var interestName = $(name).siblings("p").text();
+            var interestName = $(name).siblings("p").first().text();
+            alert(interestName);
             $.ajax
             ({
                 type:'post', url:'Profile/deleteInterest.php',
