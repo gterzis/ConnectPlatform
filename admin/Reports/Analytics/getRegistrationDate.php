@@ -70,7 +70,7 @@ switch ($range) {
                                   ORDER BY $orderBy $orderByType";
         break;
     default:
-        echo "Your favorite color is neither red, blue, nor green!";
+        echo "Something went wrong !";
 }
 
 
@@ -78,11 +78,15 @@ if ($sql = $conn -> query($rangeSql)){
     //echo table details
     if ($_GET['data'] == "table")
     {
-        echo "<tr>
-        <th>Registration Date</th>
-        <th>Number of users</th>
+        echo "
+        <tr>
+            <th>Registration Date</th>
+            <th>Number of users</th>
         </tr>";
+        $total = 0;
         while ($data = mysqli_fetch_assoc($sql)) {
+
+            $total += $data['numOfUsers'];
             $registrationDate = date("d-M-Y", strtotime($data['RegistrationDate']));
 
             if ($range == "lastYear"){
@@ -98,7 +102,13 @@ if ($sql = $conn -> query($rangeSql)){
                 <td>$registrationDate</td>
                 <td>$data[numOfUsers]</td>
             </tr>";
-            }
+        }
+        echo "
+        <tr>
+            <th>Total</th>
+            <th>$total</th>
+        </tr>";
+
     }
     // return details for chart
     elseif ($_GET['data'] == "chart"){

@@ -36,9 +36,10 @@ if (!empty($_POST['gender2'])){
 
 //DISTRICT
 $district = "%";//If no district entered.
-if (!empty($_POST['district']))
+if (!empty($_POST['district'])) {
     $district = test_input($_POST['district']);
-
+    $district = "%".$district."%";
+}
 //EDUCATION
 $education = "%";//If no education entered.
 if (!empty($_POST['education']))

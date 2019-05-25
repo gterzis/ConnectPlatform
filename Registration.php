@@ -171,10 +171,10 @@
     $currentDate = date("Y-m-d");
     // Inserting data into database
     if ($stmt = $conn->prepare("INSERT INTO users
-                            (Name, Surname, Birthdate, Gender, District, Education, Occupation, Email, Password, RegistrationDate) 
-                             VALUES (?,?,?,?,?,?,?,?,?,?)")) {
+                            (Name, Surname, Birthdate, Gender, District, Education, Occupation, Email, Password, RegistrationDate, LastLogin) 
+                             VALUES (?,?,?,?,?,?,?,?,?,?,?)")) {
         // Bind the variables to the parameters.
-        $stmt->bind_param("ssssssssss", $name, $surname, $_POST['bday'], $gender, $district, $education, $occupation, $email, $hashToStoreInDb, $currentDate );
+        $stmt->bind_param("sssssssssss", $name, $surname, $_POST['bday'], $gender, $district, $education, $occupation, $email, $hashToStoreInDb, $currentDate, $currentDate );
 
         // Execute the statement.
         $stmt->execute();
@@ -189,11 +189,13 @@
     require './SendEmail/email_sender.php';
 
     $subject = "Welcome to Get in Touch";
-    $message = "<div style='height: 100px;background-color: #0073b1;top: 0;left: 0; position: relative; width: 100%;'>
-                    <p style='margin: 25px 45px;font-family: \"Maiandra GD\";font-size: 45px;color: ivory;display: inline-block;'>Get in Touch</p></a>
-                    <p style='float: right; margin: 40px;font-family: \"Maiandra GD\"; font-size: 25px;color: ivory;display: inline-block;'>Meet people with common interests with you</p>
-                </div>";
-    $message .= "Hello Mr/Ms " . $_POST["surname"] . " and welcome to Get in Touch !";
+    $message = "<html style='background-color: #9ccff4'>
+                    <body>
+                        <h1 style='color: #0066cc;'>Get In Touch</h1>
+                        <h2 style='color: #0066cc; margin-top: 0;'>Meet people with common interests with you</h2>
+                        <p style='font-size: 18px;'>Hello Mr/Ms " . $_POST["surname"] . " and welcome to Get in Touch !<br><br> Your email in order to log in is: <strong>".$email. "</strong></p>
+                    </body>
+                </html>";
 
 //	send_email($email,$subject,nl2br($message));
     $output[] = array(

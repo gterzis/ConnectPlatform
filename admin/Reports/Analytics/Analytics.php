@@ -268,6 +268,9 @@
 
         //LAST LOG IN DATE table
         function fetchLastLoginDate() {
+            //Dates range
+            var lastLoginRange = $("#lastLogin-range").val();
+
             var lastLoginFrom = $("#lastLogin-from").val();
             var lastLoginTo = $("#lastLogin-to").val();
 
@@ -280,6 +283,7 @@
                 method: "POST",
                 url: "getLastLoginDate.php?data=table",
                 data:{
+                    lastLoginRange: lastLoginRange,
                     lastLoginFrom: lastLoginFrom,
                     lastLoginTo:lastLoginTo,
                     orderBy: orderBy,
@@ -741,6 +745,10 @@
         //Draw Last Log in Date Chart
         function drawLastLoginDateChart(){
             fetchLastLoginDate();// show table
+
+            //Dates range
+            var lastLoginRange = $("#lastLogin-range").val();
+
             var lastLoginFrom = $("#lastLogin-from").val();
             var lastLoginTo = $("#lastLogin-to").val();
 
@@ -754,6 +762,7 @@
                 url: "getLastLoginDate.php?data=chart",
                 dataType:"JSON",
                 data:{
+                    lastLoginRange:lastLoginRange,
                     lastLoginFrom: lastLoginFrom,
                     lastLoginTo: lastLoginTo,
                     orderBy: orderBy,
@@ -762,13 +771,22 @@
                 success: function (data) {
                     var jsonData = data;
                     var Data = new google.visualization.DataTable();
-                    Data.addColumn('date', 'Last Login Date');
-                    Data.addColumn('number', 'Users');
-                    $.each(jsonData, function(  i, jsonData){
-                        var users = jsonData.users;
-                        Data.addRows([[new Date(jsonData.year, (jsonData.month)-1, jsonData.day), Number(users)]]);
-                    });
-
+                    if (lastLoginRange == "lastYear" || lastLoginRange == "perYear"){
+                        Data.addColumn('string', 'Last Login Date');
+                        Data.addColumn('number', 'Users');
+                        $.each(jsonData, function(  i, jsonData){
+                            var users = jsonData.users;
+                            Data.addRows([[jsonData.lastLoginDate, Number(users)]]);
+                        });
+                    }
+                    else {
+                        Data.addColumn('date', 'Last Login Date');
+                        Data.addColumn('number', 'Users');
+                        $.each(jsonData, function (i, jsonData) {
+                            var users = jsonData.users;
+                            Data.addRows([[new Date(jsonData.year, (jsonData.month) - 1, jsonData.day), Number(users)]]);
+                        });
+                    }
                     var Options = {
                         hAxis: {
                             title: "Last Log-in date"
@@ -1052,6 +1070,7 @@
             document.body.innerHTML = originalContents;
         }
 
+        //Registration date
         $(document).ready(function () {
             $("#registrationDate-range").change(function(){
                 var value = $("#registrationDate-range").val();
@@ -1064,7 +1083,24 @@
                     $("#Registration-from").css("display", "none");
                     $("#Registration-to").css("display", "none");
                 }
+                drawRegistrationDateChart();
             });
+
+            //Last Log-in date
+            $("#lastLogin-range").change(function(){
+                var value = $("#lastLogin-range").val();
+                if ( value == "custom"){
+                    $("#LastLogin-from").css("display", "inline-block");
+                    $("#LastLogin-to").css("display", "inline-block");
+                }
+                else
+                {
+                    $("#LastLogin-from").css("display", "none");
+                    $("#LastLogin-to").css("display", "none");
+                }
+                drawLastLoginDateChart();
+            });
+
         });
 
     </script>
@@ -1198,10 +1234,10 @@
 
     <div id="districtPrintableArea">
         <!--TABLE-->
-        <table id="districtTable" style="float: left;"></table>
+        <table id="districtTable" style="margin: 0 auto;"></table>
 
-        <!--CHART -->
-        <div id="districtChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+        <!--CHART (hidden)-->
+        <div id="districtChart" style="width: 700px; height: 400px; display: none;"></div>
     </div>
 
 </div>
@@ -1251,10 +1287,10 @@
 
     <div id="educationPrintableArea">
         <!--TABLE-->
-        <table id="educationTable" style="float: left;"></table>
+        <table id="educationTable" style="margin: 0 auto;"></table>
 
-        <!--CHART -->
-        <div id="educationChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+        <!--CHART (hidden)-->
+        <div id="educationChart" style="width: 700px; height: 400px; display: none;"></div>
     </div>
 
 </div>
@@ -1304,10 +1340,10 @@
 
     <div id="occupationPrintableArea">
         <!--TABLE-->
-        <table id="occupationTable" style="float: left;"></table>
+        <table id="occupationTable" style="margin: 0 auto;"></table>
 
-        <!--CHART -->
-        <div id="occupationChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+        <!--CHART (hidden)-->
+        <div id="occupationChart" style="width: 700px; height: 400px; display: none;"></div>
     </div>
 
 </div>
@@ -1384,9 +1420,9 @@
             </label>
             <select class="inp" id="registrationDate-range" name="registrationDate-range" style="cursor: pointer">
                 <option value="custom">Custom</option>
-                <option value="lastWeek">Last week</option>
+                <option value="lastWeek" selected>Last week</option>
                 <option value="lastMonth">Last month</option>
-                <option value="lastYear" selected>Last year</option>
+                <option value="lastYear">Last year</option>
                 <option value="perYear">Per year</option>
             </select>
         </div>
@@ -1457,22 +1493,38 @@
 
     <form onsubmit="return drawLastLoginDateChart();">
 
+        <!--SEARCH INPUT-->
+        <div class="wrap-input" id="LastLogin-range" style="border: #999999 1px solid; margin-left: 0px; width: 20%; display: inline-block;" >
+            <label class="lbl" for="lastLogin-range">
+                <span class="fa fa-calendar"></span>
+            </label>
+            <select class="inp" id="lastLogin-range" name="lastLogin-range" style="cursor: pointer">
+                <option value="custom">Custom</option>
+                <option value="lastWeek" selected>Last week</option>
+                <option value="lastMonth">Last month</option>
+                <option value="lastYear">Last year</option>
+                <option value="perYear">Per year</option>
+            </select>
+        </div>
+
         <!--FROM-->
-        <div class="wrap-input" id="LastLogin-from" style="border: #999999 1px solid; padding-bottom: 5px; margin-left: 0px; width: 20%; display: inline-block;">
+        <div class="wrap-input" id="LastLogin-from" style="border: #999999 1px solid; padding-bottom: 5px; margin-left: 0px; width: 20%; display: none;">
             <label class="lbl" for="lastLogin-from">
                 <span style="font-size: 14px;">From</span>
             </label>
             <input class="inp" id="lastLogin-from" type="date" name="lastLogin-from"
-                   min="1918-01-01" max="<?php echo date("Y-m-d")?>" style="width: 60%;">
+                   min="1918-01-01" max="<?php echo date("Y-m-d")?>" style="width: 60%;"
+                   value="<?= date('Y-m-d', strtotime('-6 days')) ?>">
         </div>
 
         <!--TO-->
-        <div class="wrap-input" id="LastLogin-to" style="border: #999999 1px solid; padding-bottom: 5px; margin-left: 0px; width: 20%; display: inline-block;">
+        <div class="wrap-input" id="LastLogin-to" style="border: #999999 1px solid; padding-bottom: 5px; margin-left: 0px; width: 20%; display: none;">
             <label class="lbl" for="lastLogin-to">
                 <span style="font-size: 14px;">To</span>
             </label>
             <input class="inp" id="lastLogin-to" type="date" name="lastLogin-to"
-                   min="1918-01-01" max="<?php echo date("Y-m-d")?>" style="width: 65%;">
+                   min="1918-01-01" max="<?php echo date("Y-m-d")?>" style="width: 65%;"
+                   value="<?= date('Y-m-d') ?>">
         </div>
 
         <!--SORT BY-->
@@ -1580,10 +1632,10 @@
 
     <div id="selectedInterestsPrintableArea">
         <!--TABLE-->
-        <table id="selectedInterestsTable" style="float: left;"></table>
+        <table id="selectedInterestsTable" style="margin: 0 auto;"></table>
 
-        <!--CHART -->
-        <div id="selectedInterestsChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+        <!--CHART (hidden)-->
+        <div id="selectedInterestsChart" style="width: 700px; height: 400px; display: none;"></div>
     </div>
 
 </div>
@@ -1652,10 +1704,10 @@
 
     <div id="activeMatchesPrintableArea">
         <!--TABLE-->
-        <table id="activeMatchesTable" style="float: left;"></table>
+        <table id="activeMatchesTable" style="margin: 0 auto;"></table>
 
-        <!--CHART -->
-        <div id="activeMatchesChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+        <!--CHART (hidden)-->
+        <div id="activeMatchesChart" style="width: 700px; height: 400px; display: none;"></div>
     </div>
 
 </div>
@@ -1724,10 +1776,10 @@
 
     <div id="deactivatedMatchesPrintableArea">
         <!--TABLE-->
-        <table id="deactivatedMatchesTable" style="float: left;"></table>
+        <table id="deactivatedMatchesTable" style="margin: 0 auto;"></table>
 
-        <!--CHART -->
-        <div id="deactivatedMatchesChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+        <!--CHART (hidden)-->
+        <div id="deactivatedMatchesChart" style="width: 700px; height: 400px; display: none;"></div>
     </div>
 
 </div>
@@ -1796,10 +1848,10 @@
 
     <div id="totalMatchesPrintableArea">
         <!--TABLE-->
-        <table id="totalMatchesTable" style="float: left;"></table>
+        <table id="totalMatchesTable" style="margin: 0 auto;"></table>
 
-        <!--CHART -->
-        <div id="totalMatchesChart" style="width: 700px; height: 400px; display: inline-block;"></div>
+        <!--CHART (hidden)-->
+        <div id="totalMatchesChart" style="width: 700px; height: 400px; display: none;"></div>
     </div>
 
 </div>

@@ -26,18 +26,25 @@ if ($sql = $conn -> query("SELECT MaritalStatus, COUNT(*) numOfUsers FROM users 
     //echo table details
     if ($_GET['data'] == "table")
     {
-        echo "<tr>
-        <th>Marital status</th>
-        <th>Number of users</th>
-        </tr>";
-        while ($data = mysqli_fetch_assoc($sql)) {
-
-            echo "
+        echo "
         <tr>
-            <td>$data[MaritalStatus]</td>
-            <td>$data[numOfUsers]</td>
+            <th>Marital status</th>
+            <th>Number of users</th>
         </tr>";
+        $total = 0;
+        while ($data = mysqli_fetch_assoc($sql)) {
+            $total += $data['numOfUsers'];
+            echo "
+            <tr>
+                <td>$data[MaritalStatus]</td>
+                <td>$data[numOfUsers]</td>
+            </tr>";
         }
+        echo "
+        <tr>
+            <th>Total</th>
+            <th>$total</th>
+        </tr>";
     }
     // return details for chart
     elseif ($_GET['data'] == "chart"){

@@ -27,39 +27,119 @@ if (!empty($_POST['orderBy'])) {
     $orderBy = $_POST['orderBy'];
 }
 
-if ($sql = $conn -> query("SELECT LastLogin, COUNT(*) numOfUsers FROM users 
+
+//Registration date range
+$range = $_POST['lastLoginRange'];
+
+switch ($range) {
+    case "custom":
+        $rangeSql ="SELECT LastLogin, COUNT(*) numOfUsers FROM users 
                                   WHERE (LastLogin >= '$lastLoginFrom' AND LastLogin <= '$lastLoginTo') 
                                   GROUP BY LastLogin
-                                  ORDER BY $orderBy $orderByType")){
+                                  ORDER BY $orderBy $orderByType";
+        break;
+    case "lastWeek":
+        $lastLoginFrom = date('Y-m-d', strtotime('-6 days')); //six days before
+        $lastLoginTo = date("Y-m-d"); //today
+        $rangeSql ="SELECT LastLogin, COUNT(*) numOfUsers FROM users 
+                                  WHERE (LastLogin >= '$lastLoginFrom' AND LastLogin <= '$lastLoginTo') 
+                                  GROUP BY LastLogin
+                                  ORDER BY $orderBy $orderByType";
+        break;
+    case "lastMonth":
+        $lastLoginFrom = date('Y-m-01'); //first day of current month
+        $lastLoginTo = date("Y-m-d"); //today
+        $rangeSql ="SELECT LastLogin, COUNT(*) numOfUsers FROM users 
+                                  WHERE (LastLogin >= '$lastLoginFrom' AND LastLogin <= '$lastLoginTo') 
+                                  GROUP BY LastLogin
+                                  ORDER BY $orderBy $orderByType";
+
+        break;
+    case "lastYear":
+        $lastLoginFrom = date('Y-m-d', strtotime('-1 year'));
+        $lastLoginTo = date("Y-m-d"); //today
+        $rangeSql ="SELECT MONTH(LastLogin) perMonth, COUNT(*) numOfUsers FROM users 
+                                  WHERE (LastLogin >= '$lastLoginFrom' AND LastLogin <= '$lastLoginTo') 
+                                  GROUP BY perMonth
+                                  ORDER BY $orderBy $orderByType";
+
+        break;
+    case "perYear":
+        $lastLoginFrom = date('2017-01-01');
+        $lastLoginTo = date("Y-m-d"); //today
+        $rangeSql ="SELECT YEAR(LastLogin) perYear, COUNT(*) numOfUsers FROM users 
+                                  WHERE (LastLogin >= '$lastLoginFrom' AND LastLogin <= '$lastLoginTo') 
+                                  GROUP BY perYear
+                                  ORDER BY $orderBy $orderByType";
+        break;
+    default:
+        echo "Something went wrong !";
+}
+
+if ($sql = $conn -> query($rangeSql)){
     //echo table details
     if ($_GET['data'] == "table")
     {
-        echo "<tr>
-        <th>Last log in Date</th>
-        <th>Number of users</th>
+        echo "
+        <tr>
+            <th>Last log in Date</th>
+            <th>Number of users</th>
         </tr>";
+        $total = 0;
         while ($data = mysqli_fetch_assoc($sql)) {
 
             $lastLoginDate = date("d-M-Y", strtotime($data['LastLogin']));
+            $total += $data['numOfUsers'];
+
+            if ($range == "lastYear"){
+                $monthNum  = $data['perMonth'];
+                $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+                $lastLoginDate = $dateObj->format('F');
+            }
+            elseif ($range == "perYear"){
+                $lastLoginDate = $data['perYear'];
+            }
             echo "
-        <tr>
-            <td>$lastLoginDate</td>
-            <td>$data[numOfUsers]</td>
-        </tr>";
+            <tr>
+                <td>$lastLoginDate</td>
+                <td>$data[numOfUsers]</td>
+            </tr>";
         }
+        echo "
+        <tr>
+            <th>Total</th>
+            <th>$total</th>
+        </tr>";
     }
     // return details for chart
     elseif ($_GET['data'] == "chart"){
 
         while ($data = mysqli_fetch_assoc($sql))
         {
-
-            $output[] = array(
-                'year'   => date('Y', strtotime($data['LastLogin'])),
-                'month'   => date('m', strtotime($data['LastLogin'])),
-                'day'   => date('d', strtotime($data['LastLogin'])),
-                'users'  => $data["numOfUsers"]
-            );
+            if ($range == "lastYear"){
+                $monthNum  = $data['perMonth'];
+                $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+                $lastLoginDate = $dateObj->format('F');
+                $output[] = array(
+                    'lastLoginDate' => $lastLoginDate,
+                    'users' => $data["numOfUsers"]
+                );
+            }
+            elseif ($range == "perYear"){
+                $lastLoginDate = $data['perYear'];
+                $output[] = array(
+                    'lastLoginDate' => $lastLoginDate,
+                    'users' => $data["numOfUsers"]
+                );
+            }
+            else {
+                $output[] = array(
+                    'year' => date('Y', strtotime($data['LastLogin'])),
+                    'month' => date('m', strtotime($data['LastLogin'])),
+                    'day' => date('d', strtotime($data['LastLogin'])),
+                    'users' => $data["numOfUsers"]
+                );
+            }
         }
         echo json_encode($output);
     }

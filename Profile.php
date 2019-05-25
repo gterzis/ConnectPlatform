@@ -28,6 +28,8 @@
     $email=$row['Email'];
     $description=str_replace(' ', '%20', $row['Description']);
     $maritalStatus = $row['MaritalStatus'];
+    $registrationDate = $row['RegistrationDate'];
+    $lastLogin = $row['LastLogin'];
 
 	$conn->close();
 ?>
@@ -102,6 +104,12 @@
 
     $(document).ready(function(){
 
+        var registrationDate = <?= $registrationDate ?>;
+        var lastLogin = <?= $lastLogin ?>;
+        if (registrationDate == lastLogin){
+            //Show add interest window
+            addInterest();
+        }
 
         //Profile picture updated successfully
         var x = <?= $success ?>;

@@ -30,14 +30,20 @@ if ($sql = $conn -> query("SELECT District, COUNT(*) numOfUsers FROM users WHERE
         <th>District</th>
         <th>Number of users</th>
         </tr>";
+        $total = 0;
         while ($data = mysqli_fetch_assoc($sql)) {
-
+            $total += $data['numOfUsers'];
             echo "
-        <tr>
-            <td>$data[District]</td>
-            <td>$data[numOfUsers]</td>
-        </tr>";
+            <tr>
+                <td>$data[District]</td>
+                <td>$data[numOfUsers]</td>
+            </tr>";
         }
+        echo "
+        <tr>
+            <th>Total</th>
+            <th>$total</th>
+        </tr>";
     }
     // return details for chart
     elseif ($_GET['data'] == "chart"){

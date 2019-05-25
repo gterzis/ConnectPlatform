@@ -34,18 +34,25 @@ if($sql = $conn ->query("SELECT interests.$groupBy interestName, sum(case when U
     //echo table details
     if ($_GET['data'] == "table")
     {
-        echo "<tr>
-        <th>Interest</th>
-        <th>Selected</th>
-        </tr>";
-        while ($data = mysqli_fetch_assoc($sql)) {
-
         echo "
+        <tr>
+            <th>Interest</th>
+            <th>Selected</th>
+        </tr>";
+        $total = 0;
+        while ($data = mysqli_fetch_assoc($sql)) {
+            $total += $data['selected'];
+            echo "
             <tr>
                 <td>$data[interestName]</td>
                 <td>$data[selected]</td>
             </tr>";
         }
+        echo "
+        <tr>
+            <th>Total</th>
+            <th>$total</th>
+        </tr>";
     }
     // return details for chart
     elseif ($_GET['data'] == "chart"){

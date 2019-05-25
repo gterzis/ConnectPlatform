@@ -30,14 +30,20 @@ if ($sql = $conn -> query("SELECT Education, COUNT(*) numOfUsers FROM users WHER
         <th>Education</th>
         <th>Number of users</th>
         </tr>";
+        $total = 0;
         while ($data = mysqli_fetch_assoc($sql)) {
-
+            $total += $data['numOfUsers'];
             echo "
-        <tr>
-            <td>$data[Education]</td>
-            <td>$data[numOfUsers]</td>
-        </tr>";
+            <tr>
+                <td>$data[Education]</td>
+                <td>$data[numOfUsers]</td>
+            </tr>";
         }
+        echo "
+        <tr>
+            <th>Total</th>
+            <th>$total</th>
+        </tr>";
     }
     // return details for chart
     elseif ($_GET['data'] == "chart"){

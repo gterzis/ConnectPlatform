@@ -11,7 +11,8 @@
         <!--HEADER-->
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>Add Interest</h2>
+            <h2>Add your Interests</h2>
+            <p class="instruction" style="color: black; font-size: 16px;">People can find you based on your interests</p>
         </div>
 
         <form onsubmit="return addInterests();">
