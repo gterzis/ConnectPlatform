@@ -31,6 +31,10 @@
     $registrationDate = $row['RegistrationDate'];
     $lastLogin = $row['LastLogin'];
 
+    //check if user has selected any interests
+    $selectedInterests = $conn -> query("SELECT * FROM usersinterests WHERE UserID = $_SESSION[user_id]");
+    $result = $selectedInterests->num_rows;
+
 	$conn->close();
 ?>
 <!DOCTYPE html>
@@ -76,7 +80,6 @@
     function deleteInterest(name) {
         if (confirm('Are you sure you want to delete it?')) {
             var interestName = $(name).siblings("p").first().text();
-            alert(interestName);
             $.ajax
             ({
                 type:'post', url:'Profile/deleteInterest.php',
@@ -107,7 +110,8 @@
 
         var registrationDate = <?= $registrationDate ?>;
         var lastLogin = <?= $lastLogin ?>;
-        if (registrationDate == lastLogin){
+        var selectedInterests = <?= $result ?>;
+        if (registrationDate == lastLogin && selectedInterests  < 1){
             //Show add interest window
             addInterest();
         }

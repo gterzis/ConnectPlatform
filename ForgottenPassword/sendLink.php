@@ -61,7 +61,13 @@
 
             //Sending email to user with a unique link to reset password
             $subject = "Reset password";
-            $message = "Dear $name, click on the following link to reset your password: $link";
+            $message = "<html style='background-color: #9ccff4'>
+                            <body>
+                                <h1 style='color: #0066cc;'>Get In Touch</h1>
+                                <h2 style='color: #0066cc; margin-top: 0;'>Meet people with common interests with you</h2>
+                                <p style='font-size: 18px;'>Dear $name, click on the following link to reset your password: $link</p>
+                            </body>
+                        </html>";
             send_email($email,$subject,$message);
             echo "success";
             exit();

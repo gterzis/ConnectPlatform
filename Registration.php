@@ -197,7 +197,7 @@
                     </body>
                 </html>";
 
-//	send_email($email,$subject,nl2br($message));
+	send_email($email,$subject,nl2br($message));
     $output[] = array(
         'errorMessage' => "success"
     );
